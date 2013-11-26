@@ -1,0 +1,19 @@
+[user]
+name = Josh French
+email = josh@vitamin-j.com
+[alias]
+co = checkout
+stat = status
+ci = commit
+[apply]
+whitespace = nowarn
+[push]
+default = tracking
+[hub]
+protocol = https
+[credential]
+helper = /opt/boxen/bin/boxen-git-credential
+[core]
+excludesfile = /opt/boxen/config/git/gitignore
+[rerere]
+enabled = true
