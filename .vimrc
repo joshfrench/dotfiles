@@ -104,6 +104,9 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
+map <S-H> gT                              " easy tab navigation
+map <S-L> gt
+
 " Typo fixes
 command! -bang -nargs=* -complete=file E e<bang> <args>
 command! -bang -nargs=* -complete=file W w<bang> <args>
