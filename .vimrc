@@ -144,7 +144,7 @@ map <C-e> :NERDTreeTabsToggle<CR>
 map <leader>e :NERDTreeFind<CR>
 nmap <leader>nt :NERDTreeFind<CR>
 
-let NERDTreeShowBookmarks=1
+" let NERDTreeShowBookmarks=0
 let NERDTreeIgnore=['\~$', '\.swo$', '\.swp$', '\.git']
 let NERDTreeChDirMode=0
 let NERDTreeQuitOnOpen=0
