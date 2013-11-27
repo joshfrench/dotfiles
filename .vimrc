@@ -140,18 +140,17 @@ vnoremap / /\v
 nnoremap <leader>A :Ack
 
 " Plugins
-map <C-e> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
+map <C-e> :NERDTreeTabsToggle<CR>
 map <leader>e :NERDTreeFind<CR>
 nmap <leader>nt :NERDTreeFind<CR>
 
 let NERDTreeShowBookmarks=1
 let NERDTreeIgnore=['\~$', '\.swo$', '\.swp$', '\.git']
 let NERDTreeChDirMode=0
-let NERDTreeQuitOnOpen=1
+let NERDTreeQuitOnOpen=0
 let NERDTreeMouseMode=2
 let NERDTreeShowHidden=1
 let NERDTreeKeepTreeInNewTab=1
-let g:nerdtree_tabs_open_on_gui_startup=0
 
 " Remap to old TextMate binding
 let g:tcommentMapLeader1='<C-\>'
