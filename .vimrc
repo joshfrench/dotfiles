@@ -84,6 +84,7 @@ set ignorecase                            " ignore case when searching
 set smartcase                             " case-sensitive IF uppercase present
 set wildmenu                              " show list instead of autocomplete
 set wildmode=list:longest,full            " wildmenu completion options
+set wildignore+=*/tmp/*,*/sourcemaps/*    " ignore some junk"
 set whichwrap=b,s,h,l,<,>,[,]             " motion keys can wrap on line ends
 set scrolljump=5                          " how far to scroll when cursor leaves screen
 set scrolloff=3                           " keep X lines above/below cursor
@@ -154,3 +155,6 @@ let g:nerdtree_tabs_open_on_gui_startup=0
 
 " Remap to old TextMate binding
 let g:tcommentMapLeader1='<C-\>'
+
+" Set ctrlp working dir to project root
+let g:ctrlp_working_path_mode = 'ra'
