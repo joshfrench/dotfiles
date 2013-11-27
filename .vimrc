@@ -41,6 +41,7 @@ set virtualedit=onemore                   " allow cursor past EOL
 set history=1000
 set spell
 set hidden                                " switch buffers w/out save
+set switchbuf=usetab,newtab               " open buffers in tabs"
 set nobackup
 set noswapfile
 
