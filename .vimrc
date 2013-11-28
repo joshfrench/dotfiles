@@ -146,7 +146,6 @@ nnoremap <leader>A :Ack
 " Plugins
 map <C-e> :NERDTreeTabsToggle<CR>
 map <leader>e :NERDTreeFind<CR>
-nmap <leader>nt :NERDTreeFind<CR>
 
 let NERDTreeIgnore=['\~$', '\.swo$', '\.swp$', '\.git']
 let NERDTreeShowHidden=1
