@@ -43,7 +43,6 @@ set switchbuf=usetab,newtab               " open buffers in tabs"
 set splitright
 set splitbelow
 
-let g:solarized_termcolors=256
 let g:solarized_termtrans=1
 let g:solarized_contrast="normal"
 let g:solarized_visibility="low"
@@ -59,13 +58,6 @@ set rnu
 autocmd InsertEnter * :set nu nornu
 autocmd InsertLeave * :set nonu rnu
 
-" match gutters to BG
-hi clear SignColumn
-hi clear LineNr
-hi CursorLineNr ctermfg=15
-"80 column shading looks awful on solarized
-"let &colorcolumn=join(range(81,999),",")
-"hi ColorColumn ctermbg=0
 
 " Statusline
 set laststatus=2                          " status bar in all modes
