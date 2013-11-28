@@ -74,7 +74,7 @@ let g:airline_right_sep=''
 let g:airline_section_x=''                " turn off filetype info
 let g:airline_section_y=''
 
-set clipboard=unnamed                     " use system clipboard"
+set clipboard=unnamed                     " use system clipboard
 set backspace=indent,eol,start            " backspace ALL the things!
 set showmatch                             " hl matching pairs
 set incsearch                             " search as you type
