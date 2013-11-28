@@ -76,6 +76,8 @@ let g:airline_section_y=''
 
 set clipboard=unnamed                     " use system clipboard
 set backspace=indent,eol,start            " backspace ALL the things!
+nnoremap <silent> <leader>v :set invpaste paste?<CR> " toggle paste (normal mode)
+set pastetoggle=<leader>v                 " toggle paste (insert mode)
 set showmatch                             " hl matching pairs
 set incsearch                             " search as you type
 set hlsearch                              " hl search terms
