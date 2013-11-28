@@ -149,8 +149,6 @@ map <leader>e :NERDTreeFind<CR>
 nmap <leader>nt :NERDTreeFind<CR>
 
 let NERDTreeIgnore=['\~$', '\.swo$', '\.swp$', '\.git']
-let NERDTreeChDirMode=0
-let NERDTreeQuitOnOpen=0
 let NERDTreeShowHidden=1
 let NERDTreeKeepTreeInNewTab=1
 
