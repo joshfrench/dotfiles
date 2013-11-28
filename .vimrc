@@ -31,8 +31,6 @@ Bundle 'tpope/vim-markdown'
 " VIM UI
 filetype plugin indent on                 " auto detect filetypes
 syntax on                                 " syntax highlighting
-set mouse=a                               " allow mouse
-set mousehide                             " hide cursor when typing
 scriptencoding utf-8
 set background=dark                       " assume dark BG
 set shortmess+=filmnrxoOtT                " shorter messages & prompts
@@ -148,11 +146,9 @@ map <C-e> :NERDTreeTabsToggle<CR>
 map <leader>e :NERDTreeFind<CR>
 nmap <leader>nt :NERDTreeFind<CR>
 
-" let NERDTreeShowBookmarks=0
 let NERDTreeIgnore=['\~$', '\.swo$', '\.swp$', '\.git']
 let NERDTreeChDirMode=0
 let NERDTreeQuitOnOpen=0
-let NERDTreeMouseMode=2
 let NERDTreeShowHidden=1
 let NERDTreeKeepTreeInNewTab=1
 
