@@ -40,8 +40,8 @@ set history=1000
 set spell
 set hidden                                " switch buffers w/out save
 set switchbuf=usetab,newtab               " open buffers in tabs"
-set nobackup
-set noswapfile
+set splitright
+set splitbelow
 
 let g:solarized_termcolors=256
 let g:solarized_termtrans=1
