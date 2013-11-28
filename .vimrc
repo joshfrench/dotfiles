@@ -42,6 +42,7 @@ set hidden                                " switch buffers w/out save
 set switchbuf=usetab,newtab               " open buffers in tabs"
 set splitright
 set splitbelow
+set cursorline
 
 let g:solarized_termtrans=1
 let g:solarized_contrast="normal"
