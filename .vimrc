@@ -91,21 +91,24 @@ set scrolljump=5                          " how far to scroll when cursor leaves
 set scrolloff=3                           " keep X lines above/below cursor
 set list
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " highlight whitespace
+set nobackup
+set noswapfile
 
 " Formatting
 set nowrap                                " don't soft-wrap text
 set autoindent                            " match indentation of prev line
 set shiftwidth=2                          " tabstop to use when reindenting
+set shiftround                            " round to shiftwidth when realigning
 set tabstop=2
 set softtabstop=2
 set expandtab                             " use spaces when hitting TAB
 set nojoinspaces                          " prevent extra spaces when joining with J
 
 " Key mappings
-map <C-h> <C-w>h                          " easy window navigation
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
 map <S-H> gT                              " easy tab navigation
 map <S-L> gt
