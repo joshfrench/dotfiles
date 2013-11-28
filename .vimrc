@@ -141,7 +141,7 @@ vnoremap . :normal .<CR>
 " search with regexps
 nnoremap / /\v
 vnoremap / /\v
-nnoremap <leader>A :Ack
+nnoremap <leader>A :Ack 
 
 " Plugins
 map <C-e> :NERDTreeTabsToggle<CR>
