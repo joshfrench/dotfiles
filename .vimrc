@@ -71,8 +71,10 @@ set noshowmode                            " already displayed in statusline
 
 set clipboard=unnamed                     " use system clipboard
 set backspace=indent,eol,start            " backspace ALL the things!
-nnoremap <silent> <leader>v :set invpaste paste?<CR> " toggle paste (normal mode)
-set pastetoggle=<leader>v                 " toggle paste (insert mode)
+" Toggle paste with extra verbosity (since showcmd is off)
+nmap <silent> <leader>v :set invpaste<CR>
+imap <leader>v <C-O>:set paste<CR>
+set pastetoggle=<leader>v
 set showmatch                             " hl matching pairs
 set incsearch                             " search as you type
 set hlsearch                              " hl search terms
