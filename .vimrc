@@ -150,3 +150,10 @@ let g:tcommentMapLeader1='<C-\>'
 
 " Set ctrlp working dir to project root
 let g:ctrlp_working_path_mode = 'ra'
+
+function! AirlineThemePatch(palette)
+  let s:solar_blue = [ '#eee8d5', '#268bd2', 7, 4 ]
+  let a:palette.insert.airline_a = s:solar_blue
+  let a:palette.insert.airline_z = s:solar_blue
+endfunction
+let g:airline_theme_patch_func = 'AirlineThemePatch'
