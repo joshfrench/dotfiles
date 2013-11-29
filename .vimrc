@@ -88,8 +88,12 @@ set scrolljump=5                          " how far to scroll when cursor leaves
 set scrolloff=3                           " keep X lines above/below cursor
 set list
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " highlight whitespace
-set nobackup
+set nobackup                              " stop with this nonsense
 set noswapfile
+set undofile                              " peristent undo is nice though
+set undodir=~/.vim/undo
+set undolevels=1000
+set undoreload=10000
 
 " Formatting
 set nowrap                                " don't soft-wrap text
