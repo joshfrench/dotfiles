@@ -67,6 +67,8 @@ let g:airline_right_sep=''
 let g:airline_section_x=''                " turn off filetype info
 let g:airline_section_y=''
 
+set noshowmode                            " already displayed in statusline
+
 set clipboard=unnamed                     " use system clipboard
 set backspace=indent,eol,start            " backspace ALL the things!
 nnoremap <silent> <leader>v :set invpaste paste?<CR> " toggle paste (normal mode)
