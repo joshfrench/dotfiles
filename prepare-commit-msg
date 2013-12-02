@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+
+msg_template = ARGV[0]
+msg = File.read(msg_template).strip
+
+issue = %x(git symbolic-ref -q HEAD 2>/dev/null)[/\/(\d+)\/[\w_-]+\b/] && $1
+ref = "(##{issue})"
+
+if issue && !msg.include?(ref)
+  File.open(msg_template, 'w') do |f|
+    if msg.lines.count == 1
+      f.write msg
+      f.write " #{ref}"
+    else
+      f.write "#{ref}"
+      f.write "\n"
+      f.write msg
+    end
+  end
+end
