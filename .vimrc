@@ -17,6 +17,7 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'tComment'
 Bundle 'tpope/vim-fugitive'
 Bundle 'bling/vim-airline'
+Bundle 'ervandew/supertab'
 
 Bundle 'scrooloose/syntastic'
 Bundle 'vim-coffee-script'
