@@ -50,9 +50,6 @@ let g:solarized_contrast="normal"
 let g:solarized_visibility="low"
 color solarized
 
-" switch to current directory when opening a new buffer
-autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
-
 set tabpagemax=15                         " max 15 tabs
 
 " Toggle relative numbers by mode
