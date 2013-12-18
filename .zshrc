@@ -70,3 +70,15 @@ bindkey "^A" beginning-of-line
 bindkey "^E" end-of-line
 bindkey 'b' backward-word
 bindkey 'f' forward-word
+
+tmux_session_repo_name() {
+  if (($+TMUX)) {
+    local repo_root=/Users/josh/src/
+     if [[ "${PWD##$repo_root}" != "$PWD" ]] {
+       local repo=$(echo ${PWD##$repo_root} | cut -d / -f 1)
+       tmux list-sessions | grep -q "^${repo}:" || tmux rename-session ${repo}
+     }
+  }
+}
+
+chpwd_functions=(${chpwd_functions[@]} "tmux_session_repo_name")
