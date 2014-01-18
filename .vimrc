@@ -29,6 +29,8 @@ Bundle 'Better-CSS-Syntax-for-Vim'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-markdown'
 
+runtime macros/matchit.vim
+
 " VIM UI
 filetype plugin indent on                 " auto detect filetypes
 syntax on                                 " syntax highlighting
