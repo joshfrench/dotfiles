@@ -18,6 +18,8 @@ Bundle 'tComment'
 Bundle 'tpope/vim-fugitive'
 Bundle 'bling/vim-airline'
 Bundle 'ervandew/supertab'
+Bundle 'tpope/vim-dispatch'
+Bundle 'thoughtbot/vim-rspec'
 
 Bundle 'scrooloose/syntastic'
 Bundle 'vim-coffee-script'
@@ -165,3 +167,11 @@ function! AirlineThemePatch(palette)
   let a:palette.insert.airline_z = s:solar_blue
 endfunction
 let g:airline_theme_patch_func = 'AirlineThemePatch'
+
+" vim-rspec mappings
+map <Leader>s :call RunCurrentSpecFile()<CR>   " run (s)pec file
+map <Leader>t :call RunNearestSpec()<CR>       " run (t)his spec
+map <Leader>l :call RunLastSpec()<CR>          " run (l)ast spec
+map <Leader>r :call RunAllSpecs()<CR>          " run (r)spec all
+
+let g:rspec_command = 'compiler rspec | set makeprg=spring | Make rspec {spec}'
