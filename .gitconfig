@@ -8,7 +8,7 @@ ci = commit
 [apply]
 whitespace = nowarn
 [push]
-default = tracking
+default = upstream
 [hub]
 protocol = https
 [credential]
