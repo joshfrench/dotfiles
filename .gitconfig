@@ -1,19 +1,21 @@
 [user]
-name = Josh French
-email = josh@vitamin-j.com
+  name = Josh French
+  email = josh@vitamin-j.com
 [alias]
-co = checkout
-stat = status
-ci = commit
+  co = checkout
+  stat = status
+  ci = commit
 [apply]
-whitespace = nowarn
+  whitespace = nowarn
 [push]
-default = upstream
+  default = upstream
 [hub]
-protocol = https
+  protocol = https
 [credential]
-helper = /opt/boxen/bin/boxen-git-credential
+  helper = /opt/boxen/bin/boxen-git-credential
 [core]
-excludesfile = /opt/boxen/config/git/gitignore
+  excludesfile = /opt/boxen/config/git/gitignore
 [rerere]
-enabled = true
+  enabled = true
+[init]
+	templatedir = ~/.git_template
