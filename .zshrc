@@ -57,6 +57,7 @@ export PATH="/usr/local/heroku/bin:$PATH"
 export $(cat ~/.setec-astronomy | grep -ve "^#") > /dev/null
 
 eval "$(rbenv init -)"
+eval "$(nodenv init -)"
 export REDIS_URL=$BOXEN_REDIS_URL
 
 foreground-vi() {
