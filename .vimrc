@@ -31,6 +31,9 @@ Bundle 'HTML-AutoCloseTag'
 Bundle 'Better-CSS-Syntax-for-Vim'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-markdown'
+Bundle 'tpope/vim-leiningen'
+Bundle 'tpope/vim-fireplace'
+Bundle 'kien/rainbow_parentheses.vim'
 
 runtime macros/matchit.vim
 
@@ -54,6 +57,17 @@ let g:solarized_termtrans=1
 let g:solarized_contrast="normal"
 let g:solarized_visibility="low"
 color solarized
+
+let g:rbpt_colorpairs = [
+  \ [ '13', '#6c71c4'],
+  \ [ '5',  '#d33682'],
+  \ [ '1',  '#dc322f'],
+  \ [ '9',  '#cb4b16'],
+  \ [ '3',  '#b58900'],
+  \ [ '2',  '#859900'],
+  \ [ '6',  '#2aa198'],
+  \ [ '4',  '#268bd2'],
+  \ ]
 
 set tabpagemax=15                         " max 15 tabs
 
