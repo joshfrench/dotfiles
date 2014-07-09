@@ -83,6 +83,7 @@ let g:airline_left_sep=''                 " don't show silly arrows
 let g:airline_right_sep=''
 let g:airline_section_x=''                " turn off filetype info
 let g:airline_section_y=''
+let g:airline_section_b='%{fnamemodify(getcwd(), ":t")}@%{airline#util#wrap(airline#extensions#branch#get_head(),0)}'
 
 set noshowmode                            " already displayed in statusline
 
