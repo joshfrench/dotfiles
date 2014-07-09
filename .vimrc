@@ -18,6 +18,7 @@ Bundle 'tComment'
 Bundle 'tpope/vim-fugitive'
 Bundle 'bling/vim-airline'
 Bundle 'ervandew/supertab'
+Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'tpope/vim-dispatch'
 Bundle 'thoughtbot/vim-rspec'
 
@@ -108,10 +109,6 @@ set expandtab                             " use spaces when hitting TAB
 set nojoinspaces                          " prevent extra spaces when joining with J
 
 " Key mappings
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
 
 map <S-H> gT                              " easy tab navigation
 map <S-L> gt
