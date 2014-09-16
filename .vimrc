@@ -180,6 +180,20 @@ function! AirlineThemePatch(palette)
 endfunction
 let g:airline_theme_patch_func = 'AirlineThemePatch'
 
+" Autoload rainbow parens for Clojure
+augroup rainbow_parentheses
+  au VimEnter *.clj RainbowParenthesesActivate
+  au BufEnter *.clj RainbowParenthesesLoadRound
+  au BufEnter *.clj RainbowParenthesesLoadSquare
+  au BufEnter *.clj RainbowParenthesesLoadBraces
+augroup END
+
+" Fix some clojure indentations
+" https://github.com/guns/vim-clojure-static
+let g:clojure_fuzzy_indent = 1
+let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let', '^fnk', '^dfnk']
+let g:clojure_fuzzy_indent_blacklist = ['-fn$', '\v^with-%(meta|out-str|loading-context)$']
+
 " vim-rspec mappings
 map <Leader>s :call RunCurrentSpecFile()<CR>   " run (s)pec file
 map <Leader>t :call RunNearestSpec()<CR>       " run (t)his spec
