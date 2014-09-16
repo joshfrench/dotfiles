@@ -182,10 +182,10 @@ let g:airline_theme_patch_func = 'AirlineThemePatch'
 
 " Autoload rainbow parens for Clojure
 augroup rainbow_parentheses
-  au VimEnter *.clj RainbowParenthesesActivate
-  au BufEnter *.clj RainbowParenthesesLoadRound
-  au BufEnter *.clj RainbowParenthesesLoadSquare
-  au BufEnter *.clj RainbowParenthesesLoadBraces
+  autocmd Syntax clojure RainbowParenthesesActivate
+  autocmd Syntax clojure RainbowParenthesesLoadRound
+  autocmd Syntax clojure RainbowParenthesesLoadSquare
+  autocmd Syntax clojure RainbowParenthesesLoadBraces
 augroup END
 
 " Fix some clojure indentations
