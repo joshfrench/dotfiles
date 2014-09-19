@@ -66,5 +66,5 @@ bindkey '^Z' foreground-vi
 bindkey "^K" kill-line
 bindkey "^A" beginning-of-line
 bindkey "^E" end-of-line
-bindkey 'b' backward-word
-bindkey 'f' forward-word
+bindkey '' backward-word
+bindkey '^F' forward-word
