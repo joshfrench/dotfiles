@@ -1,5 +1,3 @@
-source /opt/boxen/env.sh
-
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
@@ -56,9 +54,8 @@ export PATH="/usr/local/heroku/bin:$PATH"
 
 export $(cat ~/.setec-astronomy | grep -ve "^#") > /dev/null
 
-eval "$(rbenv init -)"
+eval "$(rbenv init - --no-rehash)"
 eval "$(nodenv init -)"
-export REDIS_URL=$BOXEN_REDIS_URL
 
 foreground-vi() {
   fg %vi
