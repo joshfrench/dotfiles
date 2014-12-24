@@ -27,6 +27,7 @@ Bundle 'scrooloose/syntastic'
 Bundle 'vim-coffee-script'
 Bundle 'elzr/vim-json'
 Bundle 'vim-javascript'
+Bundle 'mxw/vim-jsx'
 Bundle 'vim-less'
 Bundle 'HTML-AutoCloseTag'
 Bundle 'Better-CSS-Syntax-for-Vim'
@@ -196,6 +197,10 @@ augroup END
 let g:clojure_fuzzy_indent = 1
 let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let', '^fnk', '^dfnk']
 let g:clojure_fuzzy_indent_blacklist = ['-fn$', '\v^with-%(meta|out-str|loading-context)$']
+
+" let g:jsx_ext_required = 0
+" let g:jsx_pragma_required = 0
+let g:syntastic_javascript_checkers = ['jsxhint']
 
 " vim-rspec mappings
 map <Leader>s :call RunCurrentSpecFile()<CR>   " run (s)pec file
