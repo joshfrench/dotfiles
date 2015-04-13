@@ -50,13 +50,12 @@ source $ZSH/oh-my-zsh.sh
 export EDITOR=vim
 
 export PATH="/usr/local/bin:$PATH"
+export NODE_PATH="/usr/local/lib/node"
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
-export $(cat ~/.setec-astronomy | grep -ve "^#") > /dev/null
-
 eval "$(rbenv init - --no-rehash)"
-eval "$(nodenv init -)"
+# eval "$(nodenv init -)"
 
 foreground-vi() {
   fg %vi
@@ -69,3 +68,6 @@ bindkey "^A" beginning-of-line
 bindkey "^E" end-of-line
 bindkey '' backward-word
 bindkey '^F' forward-word
+
+autoload -U zmv
+eval "$(direnv hook $0)"
