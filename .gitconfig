@@ -13,7 +13,7 @@
   protocol = https
 [credential]
 [core]
-  excludesfile = /opt/boxen/config/git/gitignore
+	excludesfile = /Users/josh/.gitignore
 [rerere]
   enabled = true
 [init]
