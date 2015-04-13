@@ -77,8 +77,10 @@ set tabpagemax=15                         " max 15 tabs
 
 " Toggle relative numbers by mode
 set rnu
-autocmd InsertEnter * :set nu nornu
-autocmd InsertLeave * :set nonu rnu
+set nu
+autocmd InsertEnter * :set nornu
+autocmd InsertLeave * :set rnu
+hi CursorLineNr ctermbg=0 ctermfg=14
 
 
 " Statusline
