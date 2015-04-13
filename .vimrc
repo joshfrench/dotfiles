@@ -170,8 +170,11 @@ map <leader>e :NERDTreeFind<CR>
 
 let NERDTreeIgnore=['\~$', '\.swo$', '\.swp$', '\.git']
 let NERDTreeShowHidden=1
-let NERDTreeKeepTreeInNewTab=1
+let NERDTreeKeepTreeInNewTab=0
 let NERDTreeMinimalUI=1
+let NERDTreeChDirMode=1
+let NERDTreeQuitOnOpen=1
+let g:nerdtree_tabs_focus_on_files=1
 
 " Remap to old TextMate binding
 let g:tcommentMapLeader1='<C-\>'
