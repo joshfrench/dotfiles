@@ -119,6 +119,7 @@ set undofile                              " peristent undo is nice though
 set undodir=~/.vim/undo
 set undolevels=1000
 set undoreload=10000
+set ttimeoutlen=0                         " no delay when <esc> exits imode
 
 " Formatting
 set nowrap                                " don't soft-wrap text
@@ -213,7 +214,10 @@ let g:paredit_leader = '\'
 " Fix some clojure indentations
 " https://github.com/guns/vim-clojure-static
 let g:clojure_fuzzy_indent = 1
-let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let', '^fnk', '^dfnk']
+let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let',
+                                      \ '^fnk', '^dfnk',
+                                      \ '^query', '^render', '^params', '^ident'
+                                      \ ]
 let g:clojure_fuzzy_indent_blacklist = ['-fn$', '\v^with-%(meta|out-str|loading-context)$']
 let g:clojure_align_multiline_strings = 1
 
@@ -229,6 +233,3 @@ let g:rspec_command = 'compiler rspec | set makeprg=spring | Make rspec {spec}'
 
 " Filetypes
 au BufNewFile,BufRead *.boot set filetype=clojure
-
-" Disable <ESC> (force ctrl-c usage)
-inoremap <esc> <nop>
