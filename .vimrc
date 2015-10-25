@@ -13,7 +13,6 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
-Bundle 'AutoClose'
 Bundle 'kien/ctrlp.vim'
 Bundle 'tComment'
 Bundle 'tpope/vim-fugitive'
@@ -26,18 +25,20 @@ Bundle 'thoughtbot/vim-rspec'
 Bundle 'scrooloose/syntastic'
 Bundle 'vim-coffee-script'
 Bundle 'elzr/vim-json'
-Bundle 'vim-javascript'
 Bundle 'mxw/vim-jsx'
+Bundle 'vim-es6'
 Bundle 'vim-less'
+Bundle 'lambdatoast/elm.vim'
 Bundle 'HTML-AutoCloseTag'
 Bundle 'Better-CSS-Syntax-for-Vim'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-leiningen'
 Bundle 'tpope/vim-fireplace'
-Bundle 'guns/vim-sexp.git'
-Bundle 'tpope/vim-sexp-mappings-for-regular-people'
+Bundle 'venantius/vim-eastwood'
+Bundle 'paredit.vim'
 Bundle 'kien/rainbow_parentheses.vim'
+Bundle 'guns/vim-clojure-static'
 
 runtime macros/matchit.vim
 
@@ -197,14 +198,25 @@ augroup rainbow_parentheses
   autocmd Syntax clojure RainbowParenthesesLoadBraces
 augroup END
 
+" add some common keywords
+let g:clojure_syntax_keywords = {
+      \ 'clojuremacro': ["defui"]
+      \ }
+
+" Smart jump is aware that Clojure uses [] and {} as well as ()
+let g:paredit_smartjump = 1
+" Not into this behavior
+let g:paredit_electric_return = 0
+" Use system leader
+let g:paredit_leader = '\'
+
 " Fix some clojure indentations
 " https://github.com/guns/vim-clojure-static
 let g:clojure_fuzzy_indent = 1
 let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let', '^fnk', '^dfnk']
 let g:clojure_fuzzy_indent_blacklist = ['-fn$', '\v^with-%(meta|out-str|loading-context)$']
+let g:clojure_align_multiline_strings = 1
 
-" let g:jsx_ext_required = 0
-" let g:jsx_pragma_required = 0
 let g:syntastic_javascript_checkers = ['jsxhint']
 
 " vim-rspec mappings
@@ -214,3 +226,9 @@ map <Leader>l :call RunLastSpec()<CR>          " run (l)ast spec
 map <Leader>r :call RunAllSpecs()<CR>          " run (r)spec all
 
 let g:rspec_command = 'compiler rspec | set makeprg=spring | Make rspec {spec}'
+
+" Filetypes
+au BufNewFile,BufRead *.boot set filetype=clojure
+
+" Disable <ESC> (force ctrl-c usage)
+inoremap <esc> <nop>
