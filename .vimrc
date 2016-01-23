@@ -36,7 +36,7 @@ Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-classpath'
 Bundle 'tpope/vim-salve'
 Bundle 'tpope/vim-fireplace'
-Bundle 'venantius/vim-eastwood'
+Bundle 'Raimondi/delimitMate'
 Bundle 'paredit.vim'
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'guns/vim-clojure-static'
@@ -207,6 +207,14 @@ let g:paredit_electric_return = 0
 " Use system leader
 let g:paredit_leader = '\'
 
+" Steal tpope's sexp mappings
+nnoremap <silent> <) ):<C-U>call PareditMoveLeft()<CR>
+nnoremap <silent> >) ):<C-U>call PareditMoveRight()<CR>
+nnoremap <silent> <( (:<C-U>call PareditMoveLeft()<CR>
+nnoremap <silent> >( (:<C-U>call PareditMoveRight()<CR>
+nnoremap <silent> <I (a
+nnoremap <silent> >I )i
+
 " Fix some clojure indentations
 " https://github.com/guns/vim-clojure-static
 let g:clojure_fuzzy_indent = 1
@@ -233,3 +241,8 @@ let g:rspec_command = 'compiler rspec | set makeprg=spring | Make rspec {spec}'
 
 " Filetypes
 au BufNewFile,BufRead *.boot set filetype=clojure
+
+let delimitMate_excluded_ft = "clojure"
+let delimitMate_expand_cr = 2
+let delimitMate_expand_space = 1
+let delimitMate_jump_expansion = 1
