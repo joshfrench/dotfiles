@@ -33,7 +33,8 @@ Bundle 'HTML-AutoCloseTag'
 Bundle 'Better-CSS-Syntax-for-Vim'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-markdown'
-Bundle 'tpope/vim-leiningen'
+Bundle 'tpope/vim-classpath'
+Bundle 'tpope/vim-salve'
 Bundle 'tpope/vim-fireplace'
 Bundle 'venantius/vim-eastwood'
 Bundle 'paredit.vim'
@@ -199,11 +200,6 @@ augroup rainbow_parentheses
   autocmd Syntax clojure RainbowParenthesesLoadBraces
 augroup END
 
-" add some common keywords
-let g:clojure_syntax_keywords = {
-      \ 'clojuremacro': ["defui"]
-      \ }
-
 " Smart jump is aware that Clojure uses [] and {} as well as ()
 let g:paredit_smartjump = 1
 " Not into this behavior
@@ -220,6 +216,10 @@ let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let',
                                       \ ]
 let g:clojure_fuzzy_indent_blacklist = ['-fn$', '\v^with-%(meta|out-str|loading-context)$']
 let g:clojure_align_multiline_strings = 1
+" add some common keywords
+let g:clojure_syntax_keywords = {
+      \ 'clojuremacro': ["defui"]
+      \ }
 
 let g:syntastic_javascript_checkers = ['jsxhint']
 
