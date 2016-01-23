@@ -10,6 +10,7 @@ ZSH_THEME="joshfrench"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias fixaudio="sudo killall coreaudiod"
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"

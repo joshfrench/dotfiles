@@ -185,6 +185,8 @@ let g:tcommentMapLeader1='<C-\>'
 " Set ctrlp working dir to project root
 let g:ctrlp_working_path_mode = 'ra'
 
+" let g:vim_json_syntax_conceal = 0
+
 function! AirlineThemePatch(palette)
   let s:solar_blue = [ '#eee8d5', '#268bd2', 7, 4 ]
   let a:palette.insert.airline_a = s:solar_blue
@@ -229,7 +231,7 @@ let g:clojure_syntax_keywords = {
       \ 'clojuremacro': ["defui"]
       \ }
 
-let g:syntastic_javascript_checkers = ['jsxhint']
+let g:syntastic_javascript_checkers = ['eslint']
 
 " vim-rspec mappings
 map <Leader>s :call RunCurrentSpecFile()<CR>   " run (s)pec file
