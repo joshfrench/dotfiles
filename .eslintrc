@@ -1,0 +1,27 @@
+{
+    "extends": "eslint:recommended",
+    "env": {
+        "es6": true,
+        "browser": true,
+        "commonjs": true
+    },
+    "parserOptions": {
+      "ecmaFeatures": {
+          "jsx": true
+      }
+    },
+    "plugins": [
+      "react"
+    ],
+    "rules": {
+        "linebreak-style": [2, "unix"],
+        "semi": [2, "always"],
+        "no-trailing-spaces": 2,
+        "react/jsx-uses-vars": 2,
+        "react/jsx-no-undef": 2,
+        "react/no-did-mount-set-state": 2,
+        "react/no-did-update-set-state": 2,
+        "react/no-direct-mutation-state": 2,
+        "react/no-unknown-property": 2
+    }
+}
