@@ -232,6 +232,7 @@ let g:clojure_syntax_keywords = {
       \ }
 
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exe = '$(npm bin)/eslint'
 
 " vim-rspec mappings
 map <Leader>s :call RunCurrentSpecFile()<CR>   " run (s)pec file
