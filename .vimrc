@@ -21,6 +21,7 @@ Bundle 'ervandew/supertab'
 Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'tpope/vim-dispatch'
 Bundle 'thoughtbot/vim-rspec'
+Bundle 'airblade/vim-gitgutter'
 
 Bundle 'scrooloose/syntastic'
 Bundle 'vim-coffee-script'
@@ -40,12 +41,11 @@ Bundle 'Raimondi/delimitMate'
 Bundle 'paredit.vim'
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'guns/vim-clojure-static'
+Bundle 'mattn/emmet-vim'
 
 runtime macros/matchit.vim
 
 " VIM UI
-filetype plugin indent on                 " auto detect filetypes
-syntax on                                 " syntax highlighting
 scriptencoding utf-8
 set background=dark                       " assume dark BG
 set shortmess+=filmnrxoOtT                " shorter messages & prompts
@@ -217,6 +217,8 @@ nnoremap <silent> >( (:<C-U>call PareditMoveRight()<CR>
 nnoremap <silent> <I (a
 nnoremap <silent> >I )i
 
+let g:user_emmet_settings = { 'javascript': { 'extends': 'jsx' } }
+
 " Fix some clojure indentations
 " https://github.com/guns/vim-clojure-static
 let g:clojure_fuzzy_indent = 1
@@ -233,6 +235,16 @@ let g:clojure_syntax_keywords = {
 
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exe = '$(npm bin)/eslint'
+let g:syntastic_ruby_checkers = ['rubocop']
+let g:syntastic_ruby_exec = '/usr/local/opt/rbenv/shims/ruby'
+let g:syntastic_ruby_rubocop_exec = '/usr/local/opt/rbenv/shims/rubocop'
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_loc_list_height = 5
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_enable_signs = 1
+
+set updatetime=250
 
 " vim-rspec mappings
 map <Leader>s :call RunCurrentSpecFile()<CR>   " run (s)pec file
@@ -249,3 +261,8 @@ let delimitMate_excluded_ft = "clojure"
 let delimitMate_expand_cr = 2
 let delimitMate_expand_space = 1
 let delimitMate_jump_expansion = 1
+
+filetype plugin on
+filetype indent on
+filetype plugin indent on                 " auto detect filetypes
+syntax on                                 " syntax highlighting
