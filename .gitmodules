@@ -7,3 +7,9 @@
 [submodule ".vim/pack/joshfrench/start/vim-tmux-navigator"]
 	path = .vim/pack/joshfrench/start/vim-tmux-navigator
 	url = https://github.com/christoomey/vim-tmux-navigator.git
+[submodule ".vim/pack/joshfrench/start/nerdtree"]
+	path = .vim/pack/joshfrench/start/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
+[submodule ".vim/pack/joshfrench/start/vim-nerdtree-tabs"]
+	path = .vim/pack/joshfrench/start/vim-nerdtree-tabs
+	url = https://github.com/jistr/vim-nerdtree-tabs.git

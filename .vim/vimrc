@@ -27,15 +27,13 @@ autocmd InsertEnter * :set nornu
 autocmd InsertLeave * :set rnu
 hi CursorLineNr ctermbg=0 ctermfg=14
 
-
 " Statusline
 set laststatus=2                          " status bar in all modes
 set noshowmode                            " already displayed in statusline
 
 set clipboard=unnamed                     " use system clipboard
 set backspace=indent,eol,start            " backspace ALL the things!
-" Toggle paste with extra verbosity (since showcmd is off)
-nmap <silent> <leader>v :set invpaste<CR>
+nmap <silent> <leader>v :set invpaste<CR> " Toggle paste with extra verbosity (since showcmd is off)
 imap <leader>v <C-O>:set paste<CR>
 set pastetoggle=<leader>v
 set showmatch                             " hl matching pairs
@@ -102,6 +100,18 @@ vnoremap . :normal .<CR>
 nnoremap / /\v
 vnoremap / /\v
 nnoremap <leader>A :Ack 
+
+" Plugins
+map <C-e> :NERDTreeTabsToggle<CR>
+map <leader>e :NERDTreeFind<CR>
+
+let NERDTreeIgnore=['\~$', '\.swo$', '\.swp$', '\.git']
+let NERDTreeShowHidden=1
+let NERDTreeKeepTreeInNewTab=0
+let NERDTreeMinimalUI=1
+let NERDTreeChDirMode=1
+let NERDTreeQuitOnOpen=1
+let g:nerdtree_tabs_focus_on_files=1
 
 " Remap to old TextMate binding
 let g:tcommentMapLeader1='<C-\>'
