@@ -1,0 +1,4 @@
+TO INSTALL:
+
+% git submodule add https://github.com/vim-airline/vim-airline.git .vim/pack/joshfrench/start/vim-airline
+% git add .gitmodules .vim/pack/joshfrench/start/vim-airline
