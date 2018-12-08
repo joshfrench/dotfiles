@@ -13,3 +13,9 @@
 [submodule ".vim/pack/joshfrench/start/vim-nerdtree-tabs"]
 	path = .vim/pack/joshfrench/start/vim-nerdtree-tabs
 	url = https://github.com/jistr/vim-nerdtree-tabs.git
+[submodule ".vim/pack/joshfrench/start/vim-surround"]
+	path = .vim/pack/joshfrench/start/vim-surround
+	url = https://github.com/tpope/vim-surround.git
+[submodule ".vim/pack/joshfrench/start/vim-repeat"]
+	path = .vim/pack/joshfrench/start/vim-repeat
+	url = https://github.com/tpope/vim-repeat.git
