@@ -13,8 +13,9 @@ set switchbuf=usetab,newtab               " open buffers in tabs
 set splitright
 set splitbelow
 set cursorline
-
 set tabpagemax=15                         " max 15 tabs
+
+colorscheme solarized
 
 " Toggle relative numbers by mode
 set rnu
@@ -26,7 +27,6 @@ hi CursorLineNr ctermbg=0 ctermfg=14
 
 " Statusline
 set laststatus=2                          " status bar in all modes
-
 set noshowmode                            " already displayed in statusline
 
 set clipboard=unnamed                     " use system clipboard
