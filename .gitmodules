@@ -64,3 +64,9 @@
 [submodule ".vim/pack/joshfrench/start/emmet-vim"]
 	path = .vim/pack/joshfrench/start/emmet-vim
 	url = https://github.com/mattn/emmet-vim.git
+[submodule ".vim/pack/joshfrench/start/vim-css3-syntax"]
+	path = .vim/pack/joshfrench/start/vim-css3-syntax
+	url = https://github.com/hail2u/vim-css3-syntax.git
+[submodule ".vim/pack/joshfrench/start/vim-less"]
+	path = .vim/pack/joshfrench/start/vim-less
+	url = https://github.com/groenewege/vim-less.git
