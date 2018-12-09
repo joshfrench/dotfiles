@@ -1,5 +1,7 @@
 set nocompatible                          " be vIMproved!
 
+set rtp+=/usr/local/opt/fzf
+
 " VIM UI
 scriptencoding utf-8
 set background=dark                       " assume dark BG
@@ -112,6 +114,9 @@ let NERDTreeMinimalUI=1
 let NERDTreeChDirMode=1
 let NERDTreeQuitOnOpen=1
 let g:nerdtree_tabs_focus_on_files=1
+let g:fzf_layout = { 'down': '~20%' }
+map <C-p> :Files<CR>
+let g:ackprg = 'ag --vimgrep'
 
 " Remap to old TextMate binding
 let g:tcommentMapLeader1='<C-\>'

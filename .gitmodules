@@ -19,3 +19,6 @@
 [submodule ".vim/pack/joshfrench/start/vim-repeat"]
 	path = .vim/pack/joshfrench/start/vim-repeat
 	url = https://github.com/tpope/vim-repeat.git
+[submodule ".vim/pack/joshfrench/start/fzf.vim"]
+	path = .vim/pack/joshfrench/start/fzf.vim
+	url = https://github.com/junegunn/fzf.vim.git
