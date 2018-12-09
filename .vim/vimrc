@@ -16,6 +16,7 @@ set splitright
 set splitbelow
 set cursorline
 set tabpagemax=15                         " max 15 tabs
+set updatetime=250
 
 colorscheme solarized
 let g:solarized_termtrans=1
@@ -130,6 +131,19 @@ function! LightlinePWD()
   return winwidth(0) > g:truncate ? fnamemodify(getcwd(), ':t') : ''
 endfunction
 
+function! LightlineLinterWarnings() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:all_non_errors == 0 ? '' : printf('<%d>', all_non_errors)
+endfunction
+
+function! LightlineLinterErrors() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  return l:all_errors == 0 ? '' : printf('<%d>', all_errors)
+endfunction
+
 let g:lightline = {
       \ 'colorscheme': 'solarized',
       \ 'active': {
@@ -142,8 +156,8 @@ let g:lightline = {
       \   'filename': 'LightlineFilename',
       \ },
       \ 'component_expand': {
-      \   'linter_warnings': 'lightline#ale#warnings',
-      \   'linter_errors': 'lightline#ale#errors'
+      \   'linter_warnings': 'LightlineLinterWarnings',
+      \   'linter_errors': 'LightlineLinterErrors'
       \ },
       \ 'component_type': {
       \   'linter_warnings': 'warning',
@@ -156,15 +170,13 @@ let g:ale_linters = {
       \ }
 
 let g:ale_sign_error = '>>'
-let g:ale_sign_warning = '??'
+let g:ale_sign_warning = '<>'
 let g:lightline#ale#indicator_errors = 'E:'
 let g:lightline#ale#indicator_warnings = 'W:'
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
 hi link ALEErrorSign DiffDelete
 hi link ALEWarningSign DiffChange
-
-set updatetime=250
 
 filetype plugin on
 filetype indent on
