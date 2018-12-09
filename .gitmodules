@@ -43,3 +43,6 @@
 [submodule "lightline-ale"]
 	path = lightline-ale
 	url = https://github.com/maximbaz/lightline-ale.git
+[submodule ".vim/pack/joshfrench/start/lightline-ale"]
+	path = .vim/pack/joshfrench/start/lightline-ale
+	url = https://github.com/maximbaz/lightline-ale.git

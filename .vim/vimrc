@@ -27,7 +27,6 @@ set rnu
 set nu
 autocmd InsertEnter * :set nornu
 autocmd InsertLeave * :set rnu
-hi CursorLineNr ctermbg=0 ctermfg=14
 
 " Statusline
 set laststatus=2                          " status bar in all modes
@@ -135,12 +134,20 @@ let g:lightline = {
       \ 'colorscheme': 'solarized',
       \ 'active': {
       \   'left':  [ ['mode', 'paste'], ['pwd', 'gitbranch', 'filename'] ],
-      \   'right': [ ['lineinfo'], ['percent'], ['filetype'] ]
+      \   'right': [ ['linter_warnings', 'linter_errors', 'lineinfo'], ['percent'], ['filetype'] ]
       \ },
       \ 'component_function': {
       \   'gitbranch': 'fugitive#head',
       \   'pwd': 'LightlinePWD',
       \   'filename': 'LightlineFilename',
+      \ },
+      \ 'component_expand': {
+      \   'linter_warnings': 'lightline#ale#warnings',
+      \   'linter_errors': 'lightline#ale#errors'
+      \ },
+      \ 'component_type': {
+      \   'linter_warnings': 'warning',
+      \   'linter_errors': 'error'
       \ }
 \ }
 
@@ -148,9 +155,19 @@ let g:ale_linters = {
       \ 'javascript': ['eslint']
       \ }
 
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '??'
+let g:lightline#ale#indicator_errors = 'E:'
+let g:lightline#ale#indicator_warnings = 'W:'
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
+hi link ALEErrorSign DiffDelete
+hi link ALEWarningSign DiffChange
+
 set updatetime=250
 
 filetype plugin on
 filetype indent on
 filetype plugin indent on                 " auto detect filetypes
 syntax on                                 " syntax highlighting
+hi CursorLineNr ctermbg=0 ctermfg=14
