@@ -49,3 +49,9 @@
 [submodule ".vim/pack/joshfrench/start/vim-json"]
 	path = .vim/pack/joshfrench/start/vim-json
 	url = https://github.com/elzr/vim-json.git
+[submodule ".vim/pack/joshfrench/start/vim-javascript"]
+	path = .vim/pack/joshfrench/start/vim-javascript
+	url = https://github.com/pangloss/vim-javascript.git
+[submodule ".vim/pack/joshfrench/start/vim-jsx"]
+	path = .vim/pack/joshfrench/start/vim-jsx
+	url = https://github.com/mxw/vim-jsx.git
