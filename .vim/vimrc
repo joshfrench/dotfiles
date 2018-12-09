@@ -104,7 +104,8 @@ nnoremap / /\v
 vnoremap / /\v
 nnoremap <leader>A :Ack 
 
-" Plugins
+" PLUGINS
+" NERDtree
 map <C-e> :NERDTreeTabsToggle<CR>
 map <leader>e :NERDTreeFind<CR>
 
@@ -115,13 +116,17 @@ let NERDTreeMinimalUI=1
 let NERDTreeChDirMode=1
 let NERDTreeQuitOnOpen=1
 let g:nerdtree_tabs_focus_on_files=1
+
+" fzf
 let g:fzf_layout = { 'down': '~20%' }
 map <C-t> :Files<CR>
 let g:ackprg = 'ag --vimgrep'
 
+" TComment
 " Remap to old TextMate binding
 let g:tcomment_mapleader1='<C-\>'
 
+" Lightline
 let g:truncate = 90
 
 function! LightlineFilename()
@@ -166,6 +171,7 @@ let g:lightline = {
       \ }
 \ }
 
+" ALE
 let g:ale_linters = {
       \ 'javascript': ['eslint']
       \ }
@@ -179,12 +185,14 @@ let g:ale_set_quickfix = 1
 hi link ALEErrorSign DiffDelete
 hi link ALEWarningSign DiffChange
 
+" Closetag
 let g:closetag_filenames = '*.html,*.xhtml,*.js,*.jsx'
 let g:closetag_filetypes = 'html,xhtml,js,jsx'
 let g:closetag_xhtml_filenames = '*.xhtml,*.js,*.jsx'
 let g:closetag_xhtml_filetypes = 'xhtml,js,jsx'
 let g:closetag_emptyTags_caseSensitive = 1
 
+" MatchTagAlways
 let g:mta_filetypes = {
  \ 'javascript.jsx': 1,
  \ 'html' : 1,
@@ -192,9 +200,17 @@ let g:mta_filetypes = {
  \ 'xml' : 1
 \ }
 
+" Emmet
+let g:user_emmet_settings = {
+  \  'javascript.jsx' : {
+    \      'extends' : 'jsx',
+    \  },
+\}
+
+" Stuff that likes to be at the bottom
 filetype plugin on
 filetype indent on
 filetype plugin indent on                 " auto detect filetypes
 syntax on                                 " syntax highlighting
 hi CursorLineNr ctermbg=0 ctermfg=14
-hi MatchParen term=bold cterm=bold ctermfg=15 ctermbg=10 guibg=DarkCyan
+hi MatchParen cterm=bold ctermfg=15 ctermbg=10

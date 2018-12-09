@@ -61,3 +61,6 @@
 [submodule ".vim/pack/joshfrench/start/MatchTagAlways"]
 	path = .vim/pack/joshfrench/start/MatchTagAlways
 	url = https://github.com/Valloric/MatchTagAlways.git
+[submodule ".vim/pack/joshfrench/start/emmet-vim"]
+	path = .vim/pack/joshfrench/start/emmet-vim
+	url = https://github.com/mattn/emmet-vim.git
