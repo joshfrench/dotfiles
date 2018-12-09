@@ -34,3 +34,6 @@
 [submodule ".vim/pack/joshfrench/start/vim-lightline"]
 	path = .vim/pack/joshfrench/start/vim-lightline
 	url = https://github.com/itchyny/lightline.vim.git
+[submodule ".vim/pack/joshfrench/start/supertab"]
+	path = .vim/pack/joshfrench/start/supertab
+	url = https://github.com/ervandew/supertab.git
