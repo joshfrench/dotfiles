@@ -31,3 +31,6 @@
 [submodule ".vim/pack/joshfrench/start/vim-gitgutter"]
 	path = .vim/pack/joshfrench/start/vim-gitgutter
 	url = https://github.com/airblade/vim-gitgutter.git
+[submodule ".vim/pack/joshfrench/start/vim-lightline"]
+	path = .vim/pack/joshfrench/start/vim-lightline
+	url = https://github.com/itchyny/lightline.vim.git

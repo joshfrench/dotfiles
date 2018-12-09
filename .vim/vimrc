@@ -114,12 +114,35 @@ let NERDTreeMinimalUI=1
 let NERDTreeChDirMode=1
 let NERDTreeQuitOnOpen=1
 let g:nerdtree_tabs_focus_on_files=1
-let g:fzf_layout = { 'down': '~21%' }
-map <C-p> :Files<CR>
+let g:fzf_layout = { 'down': '~20%' }
+map <C-t> :Files<CR>
 let g:ackprg = 'ag --vimgrep'
 
 " Remap to old TextMate binding
 let g:tcomment_mapleader1='<C-\>'
+
+let g:truncate = 90
+
+function! LightlineFilename()
+  return expand('%:t') =~ 'NERD_tree' ? '' : winwidth(0) > g:truncate ? expand('%') : expand('%:t')
+endfunction
+
+function! LightlinePWD()
+  return winwidth(0) > g:truncate ? fnamemodify(getcwd(), ':t') : ''
+endfunction
+
+let g:lightline = {
+      \ 'colorscheme': 'solarized',
+      \ 'active': {
+      \   'left':  [ ['mode', 'paste'], ['cwd', 'gitbranch', 'filename'] ],
+      \   'right': [ ['lineinfo'], ['percent'], ['filetype'] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head',
+      \   'cwd': 'LightlinePWD',
+      \   'filename': 'LightlineFilename'
+      \ }
+\ }
 
 set updatetime=250
 
