@@ -210,6 +210,12 @@ let g:user_emmet_settings = {
 " Markdown
 let g:vim_markdown_folding_disabled = 1
 
+" DelimitMate
+let delimitMate_excluded_ft = "clojure"
+let delimitMate_expand_cr = 2            " inside parens, <CR> expands to newlines (preserving text on current line)
+let delimitMate_expand_space = 1         " inside parens, <SPACE> expands
+let delimitMate_jump_expansion = 1       " if there's already a closing paren, jump over it rather than adding another
+
 " Stuff that likes to be at the bottom
 filetype plugin on
 filetype indent on
