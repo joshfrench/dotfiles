@@ -58,3 +58,6 @@
 [submodule ".vim/pack/joshfrench/start/vim-closetag"]
 	path = .vim/pack/joshfrench/start/vim-closetag
 	url = https://github.com/alvan/vim-closetag.git
+[submodule ".vim/pack/joshfrench/start/MatchTagAlways"]
+	path = .vim/pack/joshfrench/start/MatchTagAlways
+	url = https://github.com/Valloric/MatchTagAlways.git

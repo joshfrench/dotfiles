@@ -184,8 +184,16 @@ let g:closetag_xhtml_filenames = '*.xhtml,*.js,*.jsx'
 let g:closetag_xhtml_filetypes = 'xhtml,js,jsx'
 let g:closetag_emptyTags_caseSensitive = 1
 
+let g:mta_filetypes = {
+ \ 'javascript.jsx': 1,
+ \ 'html' : 1,
+ \ 'xhtml' : 1,
+ \ 'xml' : 1
+\ }
+
 filetype plugin on
 filetype indent on
 filetype plugin indent on                 " auto detect filetypes
 syntax on                                 " syntax highlighting
 hi CursorLineNr ctermbg=0 ctermfg=14
+hi MatchParen term=bold cterm=bold ctermfg=15 ctermbg=10 guibg=DarkCyan
