@@ -1,6 +1,7 @@
 set nocompatible                          " be vIMproved!
 
 set rtp+=/usr/local/opt/fzf
+runtime macros/matchit.vim
 
 " VIM UI
 scriptencoding utf-8
