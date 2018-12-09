@@ -134,15 +134,19 @@ endfunction
 let g:lightline = {
       \ 'colorscheme': 'solarized',
       \ 'active': {
-      \   'left':  [ ['mode', 'paste'], ['cwd', 'gitbranch', 'filename'] ],
+      \   'left':  [ ['mode', 'paste'], ['pwd', 'gitbranch', 'filename'] ],
       \   'right': [ ['lineinfo'], ['percent'], ['filetype'] ]
       \ },
       \ 'component_function': {
       \   'gitbranch': 'fugitive#head',
-      \   'cwd': 'LightlinePWD',
-      \   'filename': 'LightlineFilename'
+      \   'pwd': 'LightlinePWD',
+      \   'filename': 'LightlineFilename',
       \ }
 \ }
+
+let g:ale_linters = {
+      \ 'javascript': ['eslint']
+      \ }
 
 set updatetime=250
 

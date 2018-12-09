@@ -37,3 +37,9 @@
 [submodule ".vim/pack/joshfrench/start/supertab"]
 	path = .vim/pack/joshfrench/start/supertab
 	url = https://github.com/ervandew/supertab.git
+[submodule ".vim/pack/joshfrench/start/ale"]
+	path = .vim/pack/joshfrench/start/ale
+	url = https://github.com/w0rp/ale.git
+[submodule "lightline-ale"]
+	path = lightline-ale
+	url = https://github.com/maximbaz/lightline-ale.git
