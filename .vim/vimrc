@@ -207,6 +207,9 @@ let g:user_emmet_settings = {
     \  },
 \}
 
+" Markdown
+let g:vim_markdown_folding_disabled = 1
+
 " Stuff that likes to be at the bottom
 filetype plugin on
 filetype indent on

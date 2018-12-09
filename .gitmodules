@@ -73,3 +73,6 @@
 [submodule ".vim/pack/joshfrench/start/vim-rails"]
 	path = .vim/pack/joshfrench/start/vim-rails
 	url = https://github.com/tpope/vim-rails.git
+[submodule ".vim/pack/joshfrench/start/vim-markdown"]
+	path = .vim/pack/joshfrench/start/vim-markdown
+	url = https://github.com/plasticboy/vim-markdown.git
