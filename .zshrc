@@ -81,7 +81,7 @@ export FZF_DEFAULT_COMMAND='ag --nocolor -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_DEFAULT_OPTS='
 --no-bold
---color bg:8,hl:3,bg+:8,fg+:7,hl+:3,prompt:6,pointer:14
+--color bg:0,hl:3,bg+:0,fg+:7,hl+:3,prompt:6,pointer:14
 '
 
 
