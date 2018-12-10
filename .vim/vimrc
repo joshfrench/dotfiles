@@ -236,10 +236,21 @@ augroup rainbow_lisp
   autocmd FileType lisp,clojure,scheme RainbowParentheses
 augroup END
 
+" Clojure
+let g:clojure_fuzzy_indent = 1
+let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let',
+                                      \ '^fnk', '^dfnk',
+                                      \ '^query', '^render', '^params', '^ident'
+                                      \ ]
+"let g:clojure_fuzzy_indent_blacklist = ['-fn$', '^with-%(meta|out-str|loading-context)$']
+let g:clojure_align_multiline_strings = 1
+" add Om keywords
+let g:clojure_syntax_keywords = {
+      \ 'clojuremacro': ["defui"]
+\ }
+
 " Stuff that likes to be at the bottom
-filetype plugin on
-filetype indent on
-filetype plugin indent on                 " auto detect filetypes
 syntax on                                 " syntax highlighting
+filetype plugin indent on                 " auto detect filetypes
 hi CursorLineNr ctermbg=0 ctermfg=14
 hi MatchParen cterm=bold ctermfg=15 ctermbg=10

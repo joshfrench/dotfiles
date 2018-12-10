@@ -85,3 +85,6 @@
 [submodule ".vim/pack/joshfrench/start/vim-parinfer"]
 	path = .vim/pack/joshfrench/start/vim-parinfer
 	url = https://github.com/bhurlow/vim-parinfer.git
+[submodule ".vim/pack/joshfrench/start/vim-clojure-static"]
+	path = .vim/pack/joshfrench/start/vim-clojure-static
+	url = https://github.com/guns/vim-clojure-static.git
