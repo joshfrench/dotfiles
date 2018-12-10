@@ -79,3 +79,9 @@
 [submodule ".vim/pack/joshfrench/start/delimitMate"]
 	path = .vim/pack/joshfrench/start/delimitMate
 	url = https://github.com/Raimondi/delimitMate.git
+[submodule ".vim/pack/joshfrench/start/rainbow_parentheses"]
+	path = .vim/pack/joshfrench/start/rainbow_parentheses
+	url = https://github.com/junegunn/rainbow_parentheses.vim.git
+[submodule ".vim/pack/joshfrench/start/vim-parinfer"]
+	path = .vim/pack/joshfrench/start/vim-parinfer
+	url = https://github.com/bhurlow/vim-parinfer.git

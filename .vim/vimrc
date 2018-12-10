@@ -216,6 +216,26 @@ let delimitMate_expand_cr = 2            " inside parens, <CR> expands to newlin
 let delimitMate_expand_space = 1         " inside parens, <SPACE> expands
 let delimitMate_jump_expansion = 1       " if there's already a closing paren, jump over it rather than adding another
 
+" Rainbow Parentheses
+let g:rainbow#max_level = 16
+let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
+let g:rainbow#colors = {
+  \ 'dark': [
+  \   [4,'blue'],
+  \   [6,'cyan'],
+  \   [2,'green'],
+  \   [3,'yellow'],
+  \   [1,'red'],
+  \   [5,'darkmagenta'],
+  \   [13,'magenta'],
+  \ ]
+\}
+
+augroup rainbow_lisp
+  autocmd!
+  autocmd FileType lisp,clojure,scheme RainbowParentheses
+augroup END
+
 " Stuff that likes to be at the bottom
 filetype plugin on
 filetype indent on
