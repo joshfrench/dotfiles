@@ -127,14 +127,25 @@ let g:ackprg = 'ag --vimgrep'
 let g:tcomment_mapleader1='<C-\>'
 
 " Lightline
-let g:truncate = 90
+let s:medium = 120
+
+function! NoNerd(status)
+  let fname = expand('%:t')
+  return fname =~ 'NERD_tree' ? '' : a:status
+endfunction
 
 function! LightlineFilename()
-  return expand('%:t') =~ 'NERD_tree' ? '' : winwidth(0) > g:truncate ? expand('%') : expand('%:t')
+  let filename = winwidth(0) > s:medium ? expand('%') : expand('%:t')
+  return NoNerd(filename)
 endfunction
 
 function! LightlinePWD()
-  return winwidth(0) > g:truncate ? fnamemodify(getcwd(), ':t') : ''
+  let pwd = winwidth(0) > s:medium ? fnamemodify(getcwd(), ':t') : ''
+  return NoNerd(pwd)
+endfunction
+
+function LightlineBranch()
+  return NoNerd(fugitive#head())
 endfunction
 
 function! LightlineLinterWarnings() abort
@@ -150,6 +161,22 @@ function! LightlineLinterErrors() abort
   return l:all_errors == 0 ? '' : printf('<%d>', all_errors)
 endfunction
 
+function! LightlineMode()
+  return NoNerd(lightline#mode())
+endfunction
+
+function! LightlinePercent()
+  return NoNerd('%3p%%')
+endfunction
+
+function! LightlineFT()
+  return NoNerd('%{&ft!=#""?&ft:"no ft"}')
+endfunction
+
+function! LightlineLineInfo()
+  return NoNerd('%3l:%-2v')
+endfunction
+
 let g:lightline = {
       \ 'colorscheme': 'solarized',
       \ 'active': {
@@ -157,13 +184,17 @@ let g:lightline = {
       \   'right': [ ['linter_warnings', 'linter_errors', 'lineinfo'], ['percent'], ['filetype'] ]
       \ },
       \ 'component_function': {
-      \   'gitbranch': 'fugitive#head',
+      \   'mode': 'LightlineMode',
+      \   'gitbranch': 'LightlineBranch',
       \   'pwd': 'LightlinePWD',
       \   'filename': 'LightlineFilename',
       \ },
       \ 'component_expand': {
       \   'linter_warnings': 'LightlineLinterWarnings',
-      \   'linter_errors': 'LightlineLinterErrors'
+      \   'linter_errors': 'LightlineLinterErrors',
+      \   'percent': 'LightlinePercent',
+      \   'filetype': 'LightlineFT',
+      \   'lineinfo': 'LightlineLineInfo'
       \ },
       \ 'component_type': {
       \   'linter_warnings': 'warning',
