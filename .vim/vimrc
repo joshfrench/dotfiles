@@ -102,7 +102,7 @@ vnoremap . :normal .<CR>
 " search with regexps
 nnoremap / /\v
 vnoremap / /\v
-nnoremap <leader>A :Ack 
+nnoremap <leader>A :Ag 
 
 " PLUGINS
 " NERDtree
@@ -120,7 +120,6 @@ let g:nerdtree_tabs_focus_on_files=1
 " fzf
 let g:fzf_layout = { 'down': '~20%' }
 map <C-t> :Files<CR>
-let g:ackprg = 'ag --vimgrep'
 
 " TComment
 " Remap to old TextMate binding
