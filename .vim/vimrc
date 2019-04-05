@@ -279,6 +279,11 @@ let g:clojure_syntax_keywords = {
       \ 'clojuremacro': ["defui"]
 \ }
 
+" Slime
+let g:slime_target = "tmux"
+let g:slime_paste_file = tempname()
+let g:slime_default_config = {"socket_name": "default", "target_pane": "{right-of}"}
+
 " Stuff that likes to be at the bottom
 syntax on                                 " syntax highlighting
 filetype plugin indent on                 " auto detect filetypes
