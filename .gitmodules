@@ -73,9 +73,6 @@
 [submodule ".vim/pack/joshfrench/start/vim-markdown"]
 	path = .vim/pack/joshfrench/start/vim-markdown
 	url = https://github.com/plasticboy/vim-markdown.git
-[submodule ".vim/pack/joshfrench/start/delimitMate"]
-	path = .vim/pack/joshfrench/start/delimitMate
-	url = https://github.com/Raimondi/delimitMate.git
 [submodule ".vim/pack/joshfrench/start/rainbow_parentheses"]
 	path = .vim/pack/joshfrench/start/rainbow_parentheses
 	url = https://github.com/junegunn/rainbow_parentheses.vim.git
@@ -88,3 +85,6 @@
 [submodule ".vim/pack/joshfrench/start/vim-slime"]
 	path = .vim/pack/joshfrench/start/vim-slime
 	url = https://github.com/jpalardy/vim-slime.git
+[submodule ".vim/pack/joshfrench/start/auto-pairs"]
+	path = .vim/pack/joshfrench/start/auto-pairs
+	url = https://github.com/jiangmiao/auto-pairs.git
