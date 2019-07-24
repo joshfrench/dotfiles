@@ -203,7 +203,7 @@ let g:lightline = {
 
 " ALE
 let g:ale_linters = {
-      \ 'javascript': ['eslint']
+      \ 'javascript': ['eslint', 'flow-language-server']
       \ }
 
 let g:ale_sign_error = '>>'
