@@ -10,8 +10,6 @@ ZSH_THEME="joshfrench"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias fixaudio="sudo killall coreaudiod"
-alias hk=heroku
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -44,7 +42,7 @@ AUTO_PARAMS_SLASH=true
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(autojump brew bundler coffee colorize gem git github npm rails rake rbenv terminalapp)
+plugins=(autojump brew colorize gem git github npm terminalapp yarn)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -53,11 +51,6 @@ export EDITOR=vim
 
 export PATH="/usr/local/bin:$PATH"
 export NODE_PATH="/usr/local/lib/node"
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-
-eval "$(rbenv init - --no-rehash)"
-# eval "$(nodenv init -)"
 
 foreground-vi() {
   fg %vi
@@ -74,6 +67,8 @@ bindkey '^F' forward-word
 autoload -U zmv
 eval "$(direnv hook $0)"
 
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 source /usr/local/opt/fzf/shell/key-bindings.zsh
 source /usr/local/opt/fzf/shell/completion.zsh
@@ -83,5 +78,7 @@ export FZF_DEFAULT_OPTS='
 --no-bold
 --color bg:0,hl:3,bg+:0,fg+:7,hl+:3,prompt:6,pointer:14
 '
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
-
+# Load the Medium environment
+[[ -f /opt/medium/env ]] && source /opt/medium/env
