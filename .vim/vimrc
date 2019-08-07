@@ -104,6 +104,11 @@ nnoremap / /\v
 vnoremap / /\v
 nnoremap <leader>A :Ag 
 
+" typescript for dummies
+augroup typescript
+  au! BufRead,BufNewFile *.ts set filetype=javascript | set syntax=typescript
+augroup END
+
 " PLUGINS
 " NERDtree
 map <C-e> :NERDTreeTabsToggle<CR>
@@ -205,6 +210,12 @@ let g:lightline = {
 let g:ale_linters = {
       \ 'javascript': ['eslint', 'flow-language-server']
       \ }
+let g:ale_fixers = {
+     \ 'javascript': ['prettier'],
+     \ 'typescript': ['prettier']
+     \ }
+let g:ale_javascript_prettier_use_local_config = 1
+let g:ale_fix_on_save = 1
 
 let g:ale_sign_error = '>>'
 let g:ale_sign_warning = '<>'
