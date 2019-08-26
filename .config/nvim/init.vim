@@ -1,5 +1,6 @@
 " ~/.config/nvim/init.vim
 
+"{{{ Basic behavior
 scriptencoding utf-8
 set nobackup                              " stop with this nonsense
 set noswapfile
@@ -9,6 +10,7 @@ set undolevels=1000
 set undoreload=10000
 set ttimeoutlen=0                         " no delay when <esc> exits imode
 runtime macros/matchit.vim
+"}}}
 
 "{{{ VIM UI
 set background=dark                       " assume dark BG
@@ -201,8 +203,8 @@ let g:mta_filetypes = {
 "{{{ fzf
 let g:fzf_layout = { 'down': '~20%' }
 map <C-t> :Files<CR>
-command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --glob "!build/*" --glob "!node_modules/*" --color "always" --colors "match:fg:7" --colors "path:fg:3" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
-map <leader>f :Find<CR>
+command! -bang -nargs=* FuzzyFind call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --glob "!build/*" --glob "!node_modules/*" --color "always" --colors "match:fg:7" --colors "path:fg:3" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+map <leader>f :FuzzyFind<CR>
 "}}}
 
 "{{{ TComment
@@ -340,6 +342,7 @@ endfunction
 nmap <leader>rn <Plug>(coc-rename)
 "}}}
 
+"{{{ Stuff that needs to go last
 syntax on
 filetype plugin indent on
 
@@ -352,3 +355,4 @@ hi WildMenu ctermfg=4 ctermbg=9999
 hi CocErrorSign ctermfg=1
 hi CocWarningSign ctermfg=3
 hi CocHighlightText ctermbg=9999
+"}}}
