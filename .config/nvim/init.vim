@@ -152,7 +152,7 @@ call plug#end()
 "{{{ Colorscheme
 colorscheme solarized
 let g:solarized_termtrans=1
-let g:solarized_contrast="high"
+let g:solarized_contrast="normal"
 let g:solarized_visibility="low"
 "}}}
 
@@ -346,13 +346,10 @@ nmap <leader>rn <Plug>(coc-rename)
 syntax on
 filetype plugin indent on
 
-hi Normal ctermbg=0
-hi CursorLineNr ctermbg=0 ctermfg=14
-hi CursorLine ctermbg=9999
-hi clear MatchParen
-hi MatchParen ctermbg=9999
-hi WildMenu ctermfg=4 ctermbg=9999
+hi MatchParen cterm=reverse
+hi WildMenu ctermfg=4 ctermbg=NONE  
+hi CocHighlightText cterm=reverse
 hi CocErrorSign ctermfg=1
 hi CocWarningSign ctermfg=3
-hi CocHighlightText ctermbg=9999
+hi CocHighlightText cterm=reverse
 "}}}
