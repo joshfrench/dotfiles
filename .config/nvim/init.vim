@@ -346,6 +346,7 @@ nmap <leader>rn <Plug>(coc-rename)
 syntax on
 filetype plugin indent on
 
+hi clear MatchParen
 hi MatchParen cterm=reverse
 hi WildMenu ctermfg=4 ctermbg=NONE  
 hi CocHighlightText cterm=reverse
