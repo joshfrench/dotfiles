@@ -361,4 +361,5 @@ hi CocHighlightText cterm=reverse
 hi CocErrorSign ctermfg=1
 hi CocWarningSign ctermfg=3
 hi CocHighlightText cterm=reverse
+hi PMenuSel ctermfg=4
 "}}}
