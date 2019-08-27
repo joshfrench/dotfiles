@@ -106,7 +106,7 @@ vnoremap . :normal .<CR>
 " search with regexps
 nnoremap / /\v
 vnoremap / /\v
-nnoremap <leader>A :Ag                    " TODO: ripgrep/fzf
+nnoremap <leader>A :Rg 
 
 vmap <bs> x
 "}}}
@@ -203,8 +203,16 @@ let g:mta_filetypes = {
 "{{{ fzf
 let g:fzf_layout = { 'down': '~20%' }
 map <C-t> :Files<CR>
+
 command! -bang -nargs=* FuzzyFind call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --glob "!build/*" --glob "!node_modules/*" --color "always" --colors "match:fg:7" --colors "path:fg:3" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 map <leader>f :FuzzyFind<CR>
+
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case --colors "path:fg:4" --colors "line:fg:2" --colors "match:fg:7" '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
 "}}}
 
 "{{{ TComment
