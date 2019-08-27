@@ -20,8 +20,7 @@
   "tsserver.formatOnType": true,
   "tslint.autoFixOnSave": true,
   "eslint.filetypes": ["javascript", "javascriptreact", "javascript.jsx"],
-  "eslint.autofixOnSave": true,
-  "eslint.codeAction.showDocumentation": true
+  "eslint.autoFixOnSave": true,
   // "diagnostic.virtualText": true,
   // "diagnostic.virtualTextPrefix": " "
 }
