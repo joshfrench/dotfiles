@@ -47,7 +47,7 @@ plugins=(autojump brew colorize gem git github npm terminalapp yarn)
 source $ZSH/oh-my-zsh.sh
 
 # Customize...
-export EDITOR=vim
+export EDITOR=nvim
 
 export PATH="/usr/local/bin:$PATH"
 export NODE_PATH="/usr/local/lib/node"
