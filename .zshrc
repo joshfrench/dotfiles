@@ -84,6 +84,7 @@ RIPGREP_CONFIG_PATH=~/dotfiles/.ripgreprc
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
 alias diff=colordiff
+alias cat=bat
 
 # Load the Medium environment
 [[ -f /opt/medium/env ]] && source /opt/medium/env
