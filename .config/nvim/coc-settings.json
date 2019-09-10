@@ -18,7 +18,6 @@
     "json",
     "graphql"],
   "tsserver.formatOnType": true,
-  "tslint.autoFixOnSave": true,
   "eslint.filetypes": ["javascript", "javascriptreact", "javascript.jsx"],
   "eslint.autoFixOnSave": true,
   // "diagnostic.virtualText": true,
