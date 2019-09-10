@@ -333,8 +333,7 @@ let g:slime_default_config = {"socket_name": "default", "target_pane": "{right-o
 "{{{ CoC
 autocmd CursorHold * silent call CocActionAsync('highlight')                                                                                                                                                                                                                                                 
 
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <Tab> pumvisible() ? coc#_select_confirm() : "\<Tab>"
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 nmap <silent> gd :call CocAction('jumpDefinition', 'tab drop')<CR>
