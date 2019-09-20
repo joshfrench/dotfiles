@@ -121,6 +121,7 @@ Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
+Plug 'amiralies/coc-flow', {'do': 'yarn install --frozen-lockfile'}
 Plug 'altercation/vim-colors-solarized'
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
@@ -331,6 +332,7 @@ let g:slime_default_config = {"socket_name": "default", "target_pane": "{right-o
 "}}}
 
 "{{{ CoC
+let g:javascript_plugin_flow = 1
 autocmd CursorHold * silent call CocActionAsync('highlight')                                                                                                                                                                                                                                                 
 
 inoremap <expr> <Tab> pumvisible() ? coc#_select_confirm() : "\<Tab>"
@@ -350,6 +352,8 @@ endfunction
 
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
+
+autocmd BufRead,BufNewFile */medium2/* let b:coc_root_patterns = [".vim"]
 "}}}
 
 "{{{ Stuff that needs to go last
