@@ -42,7 +42,7 @@ AUTO_PARAMS_SLASH=true
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(autojump brew colorize gem git github npm terminalapp yarn)
+plugins=(autojump brew colorize fzf gem git github npm terminalapp yarn)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -51,6 +51,7 @@ export EDITOR=nvim
 
 export PATH="/usr/local/bin:$PATH"
 export NODE_PATH="/usr/local/lib/node"
+export USE_FUZZY_SELECT=1
 
 alias vim=nvim
 foreground-vi() {
