@@ -20,7 +20,7 @@ set virtualedit=onemore                   " allow cursor past EOL
 set history=1000
 set spell
 set hidden                                " switch buffers w/out save
-set switchbuf=usetab,newtab               " open buffers in tabs
+set switchbuf=useopen,usetab              " use existing tabs but don't open new ones
 set splitright
 set splitbelow
 set cursorline
@@ -109,6 +109,9 @@ vnoremap / /\v
 nnoremap <leader>A :FuzzyFind<CR>
 
 vmap <bs> x
+
+nnoremap <leader>b :ls<CR>:b
+nnoremap <leader>B :Buffers<CR>
 "}}}
 
 "{{{ Plugins
