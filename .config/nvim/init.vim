@@ -127,7 +127,6 @@ Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
 Plug 'amiralies/coc-flow', {'do': 'yarn install --frozen-lockfile'}
 Plug 'altercation/vim-colors-solarized'
 Plug 'scrooloose/nerdtree'
-Plug 'jistr/vim-nerdtree-tabs'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'Valloric/MatchTagAlways'
@@ -161,7 +160,7 @@ let g:solarized_visibility="low"
 "}}}
 
 "{{{ NERDTree
-map <C-e> :NERDTreeTabsToggle<CR>
+map <C-e> :NERDTreeToggle<CR>
 map <leader>e :NERDTreeFind<CR>
 
 let NERDTreeIgnore=['\~$', '\.swo$', '\.swp$', '\.git']
@@ -170,7 +169,6 @@ let NERDTreeKeepTreeInNewTab=0
 let NERDTreeMinimalUI=1
 let NERDTreeChDirMode=1
 let NERDTreeQuitOnOpen=1
-let g:nerdtree_tabs_focus_on_files=1
 function! SetNerdWidth()
   let width = winwidth(0) > s:medium ? 44 : 32
   let g:NERDTreeWinSize=width
