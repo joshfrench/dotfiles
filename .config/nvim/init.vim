@@ -106,7 +106,7 @@ vnoremap . :normal .<CR>
 " search with regexps
 nnoremap / /\v
 vnoremap / /\v
-nnoremap <leader>A :FuzzyFind<CR>
+nnoremap <leader>A :Rg<CR>
 
 vmap <bs> x
 
