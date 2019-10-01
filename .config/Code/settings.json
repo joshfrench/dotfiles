@@ -1,0 +1,37 @@
+{
+    "workbench.colorTheme": "Solarized Dark",
+    "window.zoomLevel": 1,
+    "editor.rulers": [78],
+    "editor.minimap.enabled": false,
+    "terminal.integrated.shell.osx": "zsh",
+    "terminal.integrated.shellArgs.osx": [
+        "-c",
+        "/Users/jfrench/dotfiles/code-shell"
+    ],
+    "workbench.editor.showTabs": false,
+    "vim.normalModeKeyBindings": [
+        {
+            "before": ["<leader>", "B"],
+            "commands": [
+                "workbench.action.showEditorsInActiveGroup"
+            ]
+        },
+        {
+            "before": ["<leader>", "b"],
+            "commands": [
+                "workbench.files.action.focusOpenEditorsView"
+            ]
+        },
+        {
+            "before": ["<leader>", "e"],
+            "commands": [
+                "revealInExplorer"
+            ]
+        },
+        {
+            "before": [":", "c", "o", "p", "e"],
+            "commands": ["workbench.actions.view.problems"]
+        }
+    ],
+    "workbench.activityBar.visible": true
+}

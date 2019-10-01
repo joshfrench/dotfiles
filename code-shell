@@ -1,0 +1,3 @@
+#!/bin/sh
+SESSION="VS`pwd|md5|cut -c1-3`"
+tmux attach-session -d -t $SESSION || tmux new-session -s $SESSION
