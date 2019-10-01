@@ -1,11 +1,6 @@
 // Place your key bindings in this file to override the defaultsauto[]
 [
     {
-        "key": "shift+;",
-        "command": "workbench.action.showCommands",
-        "when": "vim.active && !inDebugRepl && vim.mode != 'Insert'"
-    },
-    {
         "key": "shift+cmd+p",
         "command": "-workbench.action.showCommands"
     },
@@ -36,7 +31,18 @@
     },
     {
         "key": "ctrl+e",
-        "command": "workbench.action.toggleSidebarVisibility",
- 
+        "command": "workbench.action.toggleSidebarVisibility"
+    },
+    {
+        "key": "ctrl+t",
+        "command": "workbench.action.quickOpen"
+    },
+    {
+        "key": "ctrl+\\ ctrl+\\",
+        "command": "editor.action.commentLine"
+    },
+    {
+        "key": "ctrl+c ctrl+c",
+        "command": "workbench.action.terminal.runSelectedText"
     }
 ]

@@ -11,6 +11,12 @@
     "workbench.editor.showTabs": false,
     "vim.normalModeKeyBindings": [
         {
+            "before": [" "],
+            "commands": [
+                "workbench.action.showCommands",
+            ]
+        },
+        {
             "before": ["<leader>", "B"],
             "commands": [
                 "workbench.action.showEditorsInActiveGroup"
@@ -29,9 +35,36 @@
             ]
         },
         {
-            "before": [":", "c", "o", "p", "e"],
-            "commands": ["workbench.actions.view.problems"]
+            "before": ["<leader>", "A"],
+            "commands": [
+                "workbench.action.findInFiles"
+            ]
+        },
+        {
+            "before": ["<leader>", "l"],
+            "commands": [
+                "workbench.actions.view.toggleProblems"
+            ]
         }
     ],
-    "workbench.activityBar.visible": true
+    "vim.visualModeKeyBindings": [
+        {
+            "before": ["<"],
+            "commands": [
+                "editor.action.outdentLines"
+            ]
+        },
+        {
+            "before": [">"],
+            "commands": [
+                "editor.action.indentLines"
+            ]
+        },
+        {
+            "before": ["<BS>"],
+            "after": ["x"]
+        }
+    ],
+    "workbench.activityBar.visible": true,
+    "editor.lineNumbers": "relative"
 }
