@@ -1,7 +1,6 @@
 {
     "workbench.colorTheme": "Solarized Dark",
     "window.zoomLevel": 1,
-    "editor.rulers": [78],
     "editor.minimap.enabled": false,
     "terminal.integrated.shell.osx": "zsh",
     "terminal.integrated.shellArgs.osx": [
@@ -11,60 +10,125 @@
     "workbench.editor.showTabs": false,
     "vim.normalModeKeyBindings": [
         {
-            "before": [" "],
+            "before": [
+                " "
+            ],
             "commands": [
                 "workbench.action.showCommands",
             ]
         },
         {
-            "before": ["<leader>", "B"],
+            "before": [
+                "<leader>",
+                "B"
+            ],
             "commands": [
                 "workbench.action.showEditorsInActiveGroup"
             ]
         },
         {
-            "before": ["<leader>", "b"],
+            "before": [
+                "<leader>",
+                "b"
+            ],
             "commands": [
                 "workbench.files.action.focusOpenEditorsView"
             ]
         },
         {
-            "before": ["<leader>", "e"],
+            "before": [
+                "<leader>",
+                "e"
+            ],
             "commands": [
                 "revealInExplorer"
             ]
         },
         {
-            "before": ["<leader>", "A"],
+            "before": [
+                "<leader>",
+                "A"
+            ],
             "commands": [
                 "workbench.action.findInFiles"
             ]
         },
         {
-            "before": ["<leader>", "l"],
+            "before": [
+                "<leader>",
+                "l"
+            ],
             "commands": [
                 "workbench.actions.view.toggleProblems"
             ]
+        },
+        {
+            "before": [
+                "K"
+            ],
+            "commands": [
+                "editor.action.showHover"
+            ]
+        },
+        {
+            "before": [
+                "g",
+                "r"
+            ],
+            "commands": [
+                "editor.action.referenceSearch.trigger"
+            ],
+            "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
         }
     ],
     "vim.visualModeKeyBindings": [
         {
-            "before": ["<"],
+            "before": [
+                "<"
+            ],
             "commands": [
                 "editor.action.outdentLines"
             ]
         },
         {
-            "before": [">"],
+            "before": [
+                ">"
+            ],
             "commands": [
                 "editor.action.indentLines"
             ]
         },
         {
-            "before": ["<BS>"],
-            "after": ["x"]
+            "before": [
+                "<BS>"
+            ],
+            "after": [
+                "x"
+            ]
         }
     ],
     "workbench.activityBar.visible": true,
-    "editor.lineNumbers": "relative"
+    "editor.lineNumbers": "relative",
+    "editor.acceptSuggestionOnEnter": "smart",
+    "editor.tabCompletion": "on",
+    "vim.hlsearch": true,
+    "vim.whichwrap": "b,s,h,l,<,>,[,]",
+    "vim.useSystemClipboard": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.formatOnPaste": true,
+    "editor.renderIndentGuides": false,
+    "editor.matchBrackets": false,
+    "workbench.colorCustomizations": {
+        "editorCursor.foreground": "#657B83",
+        "editorCursor.background": "#10303C"
+    },
+    "editor.fontFamily": "Inconsolata, Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontSize": 14,
+    "subtleBrackets.style": {
+        "borderWidth": "1px",
+        "borderStyle": "none none solid none",
+        "fontWeight": "bold"
+    },
+    "editor.lineHeight": 17
 }
