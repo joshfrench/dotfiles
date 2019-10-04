@@ -1,12 +1,13 @@
 {
-    "workbench.colorTheme": "Solarized Dark",
+    "workbench.colorTheme": "One Monokai",
     "window.zoomLevel": 1,
     "editor.minimap.enabled": false,
     "terminal.integrated.shell.osx": "zsh",
-    "terminal.integrated.shellArgs.osx": [
-        "-c",
-        "/Users/jfrench/dotfiles/code-shell"
-    ],
+    // "terminal.integrated.shellArgs.osx": [
+    //     "-c",
+    //     "/Users/jfrench/dotfiles/code-shell"
+    // ],
+    "terminal.integrated.fontSize": 16,
     "workbench.editor.showTabs": false,
     "vim.normalModeKeyBindings": [
         {
@@ -20,7 +21,7 @@
         {
             "before": [
                 "<leader>",
-                "B"
+                "b"
             ],
             "commands": [
                 "workbench.action.showEditorsInActiveGroup"
@@ -29,7 +30,7 @@
         {
             "before": [
                 "<leader>",
-                "b"
+                "B"
             ],
             "commands": [
                 "workbench.files.action.focusOpenEditorsView"
@@ -79,7 +80,16 @@
                 "editor.action.referenceSearch.trigger"
             ],
             "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
-        }
+        },
+        {
+            "before": [
+                "<leader>",
+                "<space>"
+            ],
+            "commands": [
+                ":nohl"
+            ]
+        },
     ],
     "vim.visualModeKeyBindings": [
         {
@@ -105,7 +115,7 @@
             "after": [
                 "x"
             ]
-        }
+        },
     ],
     "workbench.activityBar.visible": true,
     "editor.lineNumbers": "relative",
@@ -130,5 +140,12 @@
         "borderStyle": "none none solid none",
         "fontWeight": "bold"
     },
-    "editor.lineHeight": 17
+    "editor.lineHeight": 17,
+    "workbench.editor.enablePreview": false,
+    "workbench.editor.enablePreviewFromQuickOpen": false,
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "workbench.sideBar.location": "right",
+    "diffEditor.renderSideBySide": false
 }

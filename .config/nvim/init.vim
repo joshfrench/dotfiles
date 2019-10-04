@@ -110,8 +110,10 @@ nnoremap <leader>A :Rg<CR>
 
 vmap <bs> x
 
-nnoremap <leader>b :ls<CR>:b
-nnoremap <leader>B :Buffers<CR>
+nnoremap <leader>B :ls<CR>:b
+nnoremap <leader>b :Buffers<CR>
+
+nnoremap <C-tab>:b#<CR>
 "}}}
 
 "{{{ Plugins
