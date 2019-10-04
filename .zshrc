@@ -89,3 +89,25 @@ alias cat=bat
 
 # Load the Medium environment
 [[ -f /opt/medium/env ]] && source /opt/medium/env
+
+# Activate antibody, a zsh plugin manager (https://getantibody.github.io)
+source <(antibody init)
+
+# Enable plugins
+antibody bundle caarlos0/zsh-mkc
+antibody bundle mafredri/zsh-async
+antibody bundle rupa/z
+antibody bundle Tarrasch/zsh-bd
+antibody bundle zsh-users/zsh-completions
+antibody bundle zsh-users/zsh-autosuggestions
+
+antibody bundle silverlyra/pure
+antibody bundle zsh-users/zsh-syntax-highlighting
+antibody bundle zsh-users/zsh-history-substring-search
+
+antibody bundle "${MONO_HOME}/script/zsh/modules/aliases"
+antibody bundle "${MONO_HOME}/script/zsh/modules/fzf"
+antibody bundle "${MONO_HOME}/script/zsh/modules/history"
+antibody bundle "${MONO_HOME}/script/zsh/modules/navigation"
+antibody bundle "${MONO_HOME}/script/zsh/modules/okta"
+antibody bundle "${MONO_HOME}/script/zsh/modules/paths"
