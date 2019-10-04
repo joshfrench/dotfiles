@@ -162,9 +162,14 @@ let g:solarized_visibility="low"
 "}}}
 
 "{{{ NERDTree
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
 map <C-e> :NERDTreeToggle<CR>
 map <leader>e :NERDTreeFind<CR>
 
+let g:NERDTreeWinPos = "right"
 let NERDTreeIgnore=['\~$', '\.swo$', '\.swp$', '\.git']
 let NERDTreeShowHidden=1
 let NERDTreeKeepTreeInNewTab=0
