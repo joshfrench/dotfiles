@@ -1,12 +1,3 @@
-# Path to your oh-my-zsh configuration.
-ZSH=$HOME/.oh-my-zsh
-
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="joshfrench"
-
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
@@ -39,13 +30,6 @@ ZSH_THEME="joshfrench"
 
 AUTO_PARAMS_SLASH=true
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(autojump brew colorize fzf gem git github npm terminalapp yarn)
-
-source $ZSH/oh-my-zsh.sh
-
 # Customize...
 export EDITOR=nvim
 
@@ -69,11 +53,6 @@ bindkey '^F' forward-word
 autoload -U zmv
 eval "$(direnv hook $0)"
 
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-source /usr/local/opt/fzf/shell/key-bindings.zsh
-source /usr/local/opt/fzf/shell/completion.zsh
 export FZF_DEFAULT_COMMAND='rg --files --hidden --colors "path:fg:3"'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_DEFAULT_OPTS='
@@ -81,8 +60,6 @@ export FZF_DEFAULT_OPTS='
 --color bg:0,hl:3,bg+:0,fg+:7,hl+:3,prompt:6,pointer:14
 '
 RIPGREP_CONFIG_PATH=~/dotfiles/.ripgreprc
-
-[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
 alias diff=colordiff
 alias cat=bat
@@ -111,3 +88,4 @@ antibody bundle "${MONO_HOME}/script/zsh/modules/history"
 antibody bundle "${MONO_HOME}/script/zsh/modules/navigation"
 antibody bundle "${MONO_HOME}/script/zsh/modules/okta"
 antibody bundle "${MONO_HOME}/script/zsh/modules/paths"
+antibody bundle "${MONO_HOME}/script/zsh/modules/prompt"
