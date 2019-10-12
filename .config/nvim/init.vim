@@ -13,6 +13,9 @@ runtime macros/matchit.vim
 "}}}
 
 "{{{ VIM UI
+set termguicolors
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set background=dark                       " assume dark BG
 set shortmess+=filmnrxoOtTc               " shorter messages & prompts
 set viewoptions=folds,options,cursor,unix,slash " unix compat
@@ -112,8 +115,6 @@ vmap <bs> x
 
 nnoremap <leader>B :ls<CR>:b
 nnoremap <leader>b :Buffers<CR>
-
-nnoremap <C-tab>:b#<CR>
 "}}}
 
 "{{{ Plugins
@@ -127,7 +128,8 @@ Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
 Plug 'amiralies/coc-flow', {'do': 'yarn install --frozen-lockfile'}
-Plug 'altercation/vim-colors-solarized'
+Plug 'lifepillar/vim-solarized8'
+Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'christoomey/vim-tmux-navigator'
@@ -155,7 +157,7 @@ call plug#end()
 "}}}
 
 "{{{ Colorscheme
-colorscheme solarized
+colorscheme solarized8
 let g:solarized_termtrans=1
 let g:solarized_contrast="normal"
 let g:solarized_visibility="low"
@@ -341,14 +343,16 @@ let g:slime_default_config = {"socket_name": "default", "target_pane": "{right-o
 
 "{{{ CoC
 let g:javascript_plugin_flow = 1
-autocmd CursorHold * silent call CocActionAsync('highlight')                                                                                                                                                                                                                                                 
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
 inoremap <expr> <Tab> pumvisible() ? coc#_select_confirm() : "\<Tab>"
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
-nmap <silent> gd :call CocAction('jumpDefinition', 'tab drop')<CR>
+nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
 nnoremap <silent> K :call <SID>show_documentation()<CR>
+nnoremap <silent> gh :call <SID>show_documentation()<CR>
+nnoremap <silent><leader>. :CocList actions<CR>
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -369,11 +373,10 @@ syntax on
 filetype plugin indent on
 
 hi clear MatchParen
-hi MatchParen cterm=reverse
-hi WildMenu ctermfg=4 ctermbg=NONE  
-hi CocHighlightText cterm=reverse
-hi CocErrorSign ctermfg=1
-hi CocWarningSign ctermfg=3
-hi CocHighlightText cterm=reverse
-hi PMenuSel ctermfg=4
+hi MatchParen cterm=reverse gui=reverse
+" hi WildMenu ctermfg=4 ctermbg=NONE
+hi CocHighlightText cterm=reverse gui=reverse
+" hi CocErrorSign ctermfg=1
+" hi CocWarningSign ctermfg=3
+" hi PMenuSel ctermfg=4
 "}}}
