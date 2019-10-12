@@ -346,7 +346,6 @@ let g:javascript_plugin_flow = 1
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 inoremap <expr> <Tab> pumvisible() ? coc#_select_confirm() : "\<Tab>"
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
@@ -374,9 +373,5 @@ filetype plugin indent on
 
 hi clear MatchParen
 hi MatchParen cterm=reverse gui=reverse
-" hi WildMenu ctermfg=4 ctermbg=NONE
 hi CocHighlightText cterm=reverse gui=reverse
-" hi CocErrorSign ctermfg=1
-" hi CocWarningSign ctermfg=3
-" hi PMenuSel ctermfg=4
 "}}}
