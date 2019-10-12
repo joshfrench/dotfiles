@@ -29,7 +29,6 @@
       "settings": {},
     }
   },
-  "prettier.formatterPriority": -1,
   "prettier.requireConfig": true,
   "suggest.enablePreselect": true,
   "suggest.enablePreview": true,
