@@ -53,11 +53,11 @@ bindkey '^F' forward-word
 autoload -U zmv
 eval "$(direnv hook $0)"
 
-export FZF_DEFAULT_COMMAND='rg --files --hidden --colors "path:fg:3"'
+export FZF_DEFAULT_COMMAND='rg --files --hidden --colors "path:fg:blue"'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_DEFAULT_OPTS='
 --no-bold
---color bg:0,hl:3,bg+:0,fg+:7,hl+:3,prompt:6,pointer:14
+--color hl:3,hl+:3,bg+:8,prompt:6,pointer:4
 '
 RIPGREP_CONFIG_PATH=~/dotfiles/.ripgreprc
 
@@ -78,7 +78,7 @@ antibody bundle Tarrasch/zsh-bd
 antibody bundle zsh-users/zsh-completions
 antibody bundle zsh-users/zsh-autosuggestions
 
-antibody bundle silverlyra/pure
+# antibody bundle silverlyra/pure
 antibody bundle zsh-users/zsh-syntax-highlighting
 antibody bundle zsh-users/zsh-history-substring-search
 
@@ -88,4 +88,3 @@ antibody bundle "${MONO_HOME}/script/zsh/modules/history"
 antibody bundle "${MONO_HOME}/script/zsh/modules/navigation"
 antibody bundle "${MONO_HOME}/script/zsh/modules/okta"
 antibody bundle "${MONO_HOME}/script/zsh/modules/paths"
-antibody bundle "${MONO_HOME}/script/zsh/modules/prompt"

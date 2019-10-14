@@ -159,8 +159,8 @@ call plug#end()
 "{{{ Colorscheme
 colorscheme solarized8
 let g:solarized_termtrans=1
-let g:solarized_contrast="normal"
 let g:solarized_visibility="low"
+let g:solarized_diffmode="low"
 "}}}
 
 "{{{ NERDTree
@@ -280,14 +280,14 @@ function! LightlineLinterErrors() abort
   let info = get(b:, 'coc_diagnostic_info', {})
   if empty(info) | return '' | endif
   let l:errors = get(info, 'error')
-  return errors ? printf('>>%d', errors) : ''
+  return errors ? printf('•%d', errors) : ''
 endfunction
 
 function! LightlineLinterWarnings() abort
   let info = get(b:, 'coc_diagnostic_info', {})
   if empty(info) | return '' | endif
   let l:warnings = get(info, 'warning')
-  return warnings ? printf('<%d>', warnings) : ''
+  return warnings ? printf('•%d', warnings) : ''
 endfunction
 
 function! LightlineMode()

@@ -10,17 +10,24 @@ prompt_medium_aws_profile() {
 
 +vi-git-untracked() {
   if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
-     git status --porcelain | grep -m 1 '^??' &>/dev/null
+    output=$(git status --porcelain) && \
+    [ ! -z $output ]
   then
-    hook_com[misc]='%F{red}●'
+    if [[ $(grep "^??" <<< $output) ]]
+    then
+     hook_com[unstaged]+='%F{red}●'
+    fi
+    hook_com[unstaged]+=' '
   fi
+
+  # echo hook_com[unstaged]
+  # hook_com[unstaged] && hook_com[unstaged]+=' '
 }
 
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
-zstyle ':vcs_info:git*' actionformats '%F{cyan}[%r@%b %u%c%m] (%a)%f'
-zstyle ':vcs_info:git*' formats '%F{cyan}[%r@%b %u%c%m%f%F{cyan}]%f'
+zstyle ':vcs_info:git*' formats "%F{cyan}%r%f%F{grey}@%f%F{cyan}%b %c%u"
 zstyle ':vcs_info:*' unstagedstr '%F{yellow}●'
 zstyle ':vcs_info:*' stagedstr '%F{green}●'
 
@@ -28,7 +35,7 @@ add-zsh-hook precmd prompt_medium_aws_profile
 add-zsh-hook precmd vcs_info
 
 RPROMPT='$(prompt_medium_aws_profile)%F{blue}%(5~<%-1~/.../%2~<%~)%f'
-PROMPT='${vcs_info_msg_0_}%(?.%F{green}.%F{red})%#%f '
+PROMPT='${vcs_info_msg_0_}%(?.%F{green}.%F{red})%_%#%f '
 SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
 
 export LSCOLORS="exgxBxdxcxegaxabagacad"
