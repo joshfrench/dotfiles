@@ -1,5 +1,5 @@
 {
-    "workbench.colorTheme": "One Monokai",
+    "workbench.colorTheme": "Solarized Dark",
     "window.zoomLevel": 1,
     "editor.minimap.enabled": false,
     "terminal.integrated.shell.osx": "zsh",
