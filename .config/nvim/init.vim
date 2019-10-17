@@ -110,6 +110,7 @@ vnoremap . :normal .<CR>
 " search with regexps
 nnoremap / /\v
 vnoremap / /\v
+
 nnoremap <leader>A :Rg<CR>
 
 vmap <bs> x
@@ -131,6 +132,7 @@ Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
 Plug 'amiralies/coc-flow', {'do': 'yarn install --frozen-lockfile'}
 Plug 'lifepillar/vim-solarized8'
 Plug 'mhartington/oceanic-next'
+Plug 'mhinz/vim-startify'
 Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -147,6 +149,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'pangloss/vim-javascript'
 Plug 'elzr/vim-json'
 Plug 'mxw/vim-jsx'
+Plug 'leafgarland/typescript-vim'
 Plug 'ianks/vim-tsx'
 Plug 'itchyny/lightline.vim'
 Plug 'plasticboy/vim-markdown'
@@ -154,7 +157,6 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'jpalardy/vim-slime'
-Plug 'leafgarland/typescript-vim'
 call plug#end()
 "}}}
 
@@ -167,8 +169,8 @@ let g:solarized_diffmode="low"
 
 "{{{ NERDTree
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" autocmd VimEnter * if !argc() | Startify | NERDTree | wincmd w | endif
 
 map <C-e> :NERDTreeToggle<CR>
 map <leader>e :NERDTreeFind<CR>
@@ -365,8 +367,27 @@ endfunction
 
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
+"}}}
 
-autocmd BufRead,BufNewFile */medium2/* let b:coc_root_patterns = [".vim"]
+"{{{ Startify
+let g:startify_bookmarks = [
+      \ {'l': "${MONO_HOME}/ts/lite"},
+      \ {'r': "${MONO_HOME}/ts/rito"},
+      \ {'m': "${MONO_HOME}/medium2"},
+      \ {'.': "~/dotfiles"}
+\ ]
+
+let g:startify_lists = [
+      \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+      \ { 'type': 'files',     'header': ['   MRU']            },
+      \ { 'type': 'sessions',  'header': ['   Sessions']       },
+      \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+      \ { 'type': 'commands',  'header': ['   Commands']       },
+\ ]
+
+let g:startify_change_to_dir = 0
+let g:startify_change_to_vcs_root = 1
+let g:startify_fortune_use_unicode = 1
 "}}}
 
 "{{{ Stuff that needs to go last
