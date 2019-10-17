@@ -14,7 +14,7 @@
   "diagnostic.errorSign": "•",
   "diagnostic.infoSign": "•",
   "diagnostic.warningSign": "•",
-  "diagnostic.maxWindowHeight": 10,
+  "diagnostic.maxWindowHeight": 20,
   "diagnostic.messageTarget": "float",
   "eslint.filetypes": ["javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx"],
   "eslint.autoFixOnSave": true,
@@ -26,12 +26,12 @@
       "filetypes": ["javascript", "javascriptreact"],
       "initializationOptions": {},
       "requireRootPattern": true,
-      "settings": {},
+      "settings": {}
     }
   },
   "prettier.requireConfig": true,
   "suggest.enablePreselect": true,
   "suggest.enablePreview": true,
   "suggest.minTriggerInputLength": 2,
-  "tsserver.formatOnType": true,
+  "tsserver.formatOnType": true
 }
