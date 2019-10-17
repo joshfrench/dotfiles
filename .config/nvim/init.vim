@@ -43,6 +43,7 @@ set scrolloff=3                           " keep X lines above/below cursor
 set list
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " highlight whitespace
 set foldmethod=marker
+set linebreak                             " softwrap at word boundaries
 "}}}
 
 "{{{ Relative numbers
@@ -68,7 +69,7 @@ set pastetoggle=<leader>v
 "}}}
 
 "{{{ Formatting
-set nowrap                                " don't soft-wrap text
+set wrap                                  " yes soft-wrap text
 set autoindent                            " match indentation of prev line
 set shiftwidth=2                          " tabstop to use when reindenting
 set shiftround                            " round to shiftwidth when realigning
