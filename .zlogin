@@ -36,7 +36,7 @@ add-zsh-hook precmd vcs_info
 
 RPROMPT='$(prompt_medium_aws_profile)%F{blue}%(5~<%-1~/.../%2~<%~)%f'
 PROMPT='${vcs_info_msg_0_}%(?.%F{green}.%F{red})%_%#%f '
-SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
+SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [y/n/a/e]? '
 
 export LSCOLORS="exgxBxdxcxegaxabagacad"
 export LS_COLORS='di=34;40:ln=36;40:so=1;;40:pi=33;40:ex=32;40:bd=34;46:cd=0;40:su=0;41:sg=0;46:tw=0;42:ow=0;43:'
