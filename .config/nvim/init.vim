@@ -165,6 +165,7 @@ colorscheme solarized8
 let g:solarized_termtrans=1
 let g:solarized_visibility="low"
 let g:solarized_diffmode="low"
+let g:solarized_extra_hi_groups = 1
 "}}}
 
 "{{{ NERDTree
@@ -397,4 +398,9 @@ filetype plugin indent on
 hi clear MatchParen
 hi MatchParen cterm=reverse gui=reverse
 hi CocHighlightText cterm=reverse gui=reverse
+
+augroup tsx_hi
+  autocmd FileType typescript.tsx,typescriptreact syn clear xmlError
+  autocmd FileType typescript.tsx,typescriptreact hi link xmlTagN Function " fix some schemes
+augroup end
 "}}}
