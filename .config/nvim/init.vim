@@ -63,9 +63,9 @@ set noshowmode                            " already displayed in statusline
 "{{{ Copy/Paste
 set clipboard=unnamed                     " use system clipboard
 set backspace=indent,eol,start            " backspace ALL the things!
-nmap <silent> <leader>v :set invpaste<CR> " Toggle paste with extra verbosity (since showcmd is off)
-imap <leader>v <C-O>:set paste<CR>
-set pastetoggle=<leader>v
+nnoremap <silent> <leader>p :set invpaste<CR> " Toggle paste with extra verbosity (since showcmd is off)
+inoremap <leader>p <C-O>:set paste<CR>
+set pastetoggle=<leader>p
 "}}}
 
 "{{{ Formatting
