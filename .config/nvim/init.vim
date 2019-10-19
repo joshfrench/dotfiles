@@ -38,7 +38,7 @@ set wildmenu                              " show list instead of autocomplete
 set wildmode=list:longest,full            " wildmenu completion options
 set wildignore+=*/tmp/*,*/sourcemaps/*,*/node_modules/*    " ignore some junk
 set whichwrap=b,s,h,l,<,>,[,]             " motion keys can wrap on line ends
-set scrolljump=5                          " how far to scroll when cursor leaves screen
+set scrolljump=3                          " how far to scroll when cursor leaves screen
 set scrolloff=3                           " keep X lines above/below cursor
 set list
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " highlight whitespace
@@ -89,6 +89,7 @@ command! -bang WA wa<bang>
 command! -bang Q q<bang>
 command! -bang QA qa<bang>
 command! -bang Qa qa<bang>
+command! -bang Bd bd<bang>
 cmap Tabe tabe
 "}}}
 
@@ -255,7 +256,7 @@ function! NoNerd(status)
 endfunction
 
 function! LightlineFilename()
-  let filename = winwidth(0) > s:medium ? expand('%') : expand('%:t')
+  let filename = winwidth(0) > s:medium ? expand('%:~:s?/src/medium-workspace/??') : expand('%:t')
   return NoNerd(filename)
 endfunction
 
@@ -387,7 +388,19 @@ let g:startify_lists = [
 \ ]
 
 let g:startify_change_to_dir = 0
-let g:startify_fortune_use_unicode = 1
+" let g:startify_fortune_use_unicode = 1
+let g:startify_files_number = 5
+let g:ascii = [
+      \'.+@@@@@+       #@@@@*:',
+      \'  .@@@@@=     *@@@@@  ',
+      \'   @+@@@@-   =#@@@@@  ',
+      \'   @ +@@@@: :% @@@@@  ',
+      \'   @  *@@@@-%: @@@@@  ',
+      \'   @   *@@@@-  @@@@@  ',
+      \'  -@-   #@@+  :@@@@@: ',
+      \'-#@@@#-  ##  =@@@@@@@='
+      \]
+let g:startify_custom_header= startify#pad(g:ascii)
 "}}}
 
 "{{{ Stuff that needs to go last
@@ -397,6 +410,8 @@ filetype plugin indent on
 hi clear MatchParen
 hi MatchParen cterm=reverse gui=reverse
 hi CocHighlightText cterm=reverse gui=reverse
+hi CocWarningSign guifg=#fab005
+hi CocInfoSign guifg=#268bd2
 
 augroup tsx_hi
   autocmd FileType typescript.tsx,typescriptreact syn clear xmlError
