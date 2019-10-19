@@ -133,7 +133,7 @@
         "editorCursor.foreground": "#657B83",
         "editorCursor.background": "#10303C"
     },
-    "editor.fontFamily": "Inconsolata, Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontFamily": "\"SauceCodePro Nerd Font\",Inconsolata, Menlo, Monaco, 'Courier New', monospace",
     "editor.fontSize": 14,
     "subtleBrackets.style": {
         "borderWidth": "1px",
