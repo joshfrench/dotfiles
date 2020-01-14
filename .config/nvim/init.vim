@@ -184,7 +184,7 @@ let NERDTreeIgnore=['\~$', '\.swo$', '\.swp$', '\.git']
 let NERDTreeShowHidden=1
 let NERDTreeKeepTreeInNewTab=0
 let NERDTreeMinimalUI=1
-let NERDTreeChDirMode=1
+let NERDTreeChDirMode=3
 let NERDTreeQuitOnOpen=1
 function! SetNerdWidth()
   let width = winwidth(0) > s:medium ? 44 : 32
@@ -206,6 +206,7 @@ let g:NERDTreeIndicatorMapCustom = {
     \ 'Ignored'   : '☒',
     \ "Unknown"   : "?"
     \ }
+let g:webdevicons_conceal_nerdtree_brackets=1
 "}}}
 
 "{{{ MatchTagAlways
@@ -258,7 +259,7 @@ function! NoNerd(status)
 endfunction
 
 function! LightlineFilename()
-  let filename = winwidth(0) > s:medium ? expand('%:~:s?/src/medium-workspace/??') : expand('%:t')
+  let filename = winwidth(0) > s:medium ? expand('%:~:s?/src/medium/??') : expand('%:t')
   return NoNerd(filename)
 endfunction
 
@@ -378,7 +379,8 @@ let g:startify_lists = [
 
 let g:startify_change_to_dir = 0
 " let g:startify_fortune_use_unicode = 1
-let g:startify_files_number = 5
+let lines = winheight(0) > 38 ? 10 : 5
+let g:startify_files_number = lines
 let g:ascii = [
       \'.+@@@@@+       #@@@@*:',
       \'  .@@@@@=     *@@@@@  ',
