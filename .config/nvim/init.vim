@@ -244,11 +244,17 @@ let g:tcomment_mapleader1='<C-\>'
 "}}}
 
 "{{{ Closetag
-let g:closetag_filenames = '*.html,*.xhtml,*.js,*.jsx,*.ts,*.tsx'
-let g:closetag_filetypes = 'html,xhtml,javascript,javascriptreact,jsx,typescript,typescriptreact'
-let g:closetag_xhtml_filenames = '*.xhtml,*.js,*.jsx,*.ts,*.tsx'
-let g:closetag_xhtml_filetypes = 'xhtml,js,jsx,ts,tsx'
+let g:closetag_filenames = '*.html,*.xhtml,*.js,*.jsx,*.tsx'
+let g:closetag_filetypes = 'html,xhtml,javascript,javascriptreact,jsx,typescriptreact'
+let g:closetag_xhtml_filenames = '*.xhtml,*.js,*.jsx,*.tsx'
+let g:closetag_xhtml_filetypes = 'xhtml,js,jsx,tsx'
 let g:closetag_emptyTags_caseSensitive = 1
+"}}}
+
+"{{{ AutoPairs
+augroup ts_pairs
+  autocmd FileType typescript let b:AutoPairs = AutoPairsDefine({'\w\zs<' : '>'})
+augroup end
 "}}}
 
 "{{{ LightLine
