@@ -144,5 +144,11 @@
     },
     "workbench.sideBar.location": "right",
     "diffEditor.renderSideBySide": false,
-    "workbench.startupEditor": "newUntitledFile"
+    "workbench.startupEditor": "newUntitledFile",
+    "go.gopath": "/Users/jfrench/src/medium/mono/bazel-out/darwin-fastbuild/bin/darwin_amd64_stripped/go_path~:/Users/jfrench/go",
+    "go.formatTool": "goimports",
+    "go.liveErrors": {
+        "enabled": true,
+        "delay": 500
+    }
 }
