@@ -21,7 +21,6 @@ set shortmess+=filmnrxoOtTc               " shorter messages & prompts
 set viewoptions=folds,options,cursor,unix,slash " unix compat
 set virtualedit=onemore                   " allow cursor past EOL
 set history=1000
-set spell
 set hidden                                " switch buffers w/out save
 set switchbuf=useopen,usetab              " use existing tabs but don't open new ones
 set splitright
@@ -170,6 +169,13 @@ let g:solarized_termtrans=1
 let g:solarized_visibility="low"
 let g:solarized_diffmode="low"
 let g:solarized_extra_hi_groups = 1
+"}}}
+
+"{{{ Spelling
+augroup spelling
+    autocmd FileType markdown,md,txt setlocal spell
+    autocmd BufRead,BufNewFile *.md,*.txt setlocal spell
+augroup END
 "}}}
 
 "{{{ NERDTree
