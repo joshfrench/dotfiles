@@ -131,6 +131,7 @@ Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
 Plug 'amiralies/coc-flow', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'}
 Plug 'lifepillar/vim-solarized8'
 Plug 'mhartington/oceanic-next'
 Plug 'mhinz/vim-startify'
