@@ -3,10 +3,6 @@
     "window.zoomLevel": 1,
     "editor.minimap.enabled": false,
     "terminal.integrated.shell.osx": "zsh",
-    // "terminal.integrated.shellArgs.osx": [
-    //     "-c",
-    //     "/Users/jfrench/dotfiles/code-shell"
-    // ],
     "terminal.integrated.fontSize": 16,
     "workbench.editor.showTabs": false,
     "vim.normalModeKeyBindings": [
