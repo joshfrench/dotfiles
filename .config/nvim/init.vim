@@ -122,7 +122,6 @@ nnoremap <leader>b :Buffers<CR>
 "{{{ Plugins
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': { -> coc#util#install()}}
-Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
@@ -132,7 +131,6 @@ Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
 Plug 'amiralies/coc-flow', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'}
 Plug 'lifepillar/vim-solarized8'
-Plug 'mhartington/oceanic-next'
 Plug 'mhinz/vim-startify'
 Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdtree'
@@ -140,8 +138,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'Valloric/MatchTagAlways'
 Plug 'jiangmiao/auto-pairs'
-Plug '/usr/local/opt/fzf'
-Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf.vim', { 'dir': '/usr/local/bin/fzf' }
 Plug 'tomtom/tcomment_vim'
 Plug 'alvan/vim-closetag'
 Plug 'hail2u/vim-css3-syntax'
