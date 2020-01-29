@@ -472,7 +472,7 @@ hi CocWarningSign guifg=#fab005
 hi CocInfoSign guifg=#268bd2
 
 augroup tsx_hi
-  autocmd FileType typescript.tsx,typescriptreact syn clear xmlError
-  autocmd FileType typescript.tsx,typescriptreact hi link xmlTagN Function " fix some schemes
+  autocmd FileType typescript.tsx syn clear xmlError
+  autocmd FileType typescript.tsx hi link xmlTagN Function " fix some schemes
 augroup end
 "}}}
