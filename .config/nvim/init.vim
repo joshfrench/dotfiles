@@ -153,8 +153,7 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'itchyny/lightline.vim'
 Plug 'plasticboy/vim-markdown'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-surround'
+Plug 'machakann/vim-sandwich'
 Plug 'tpope/vim-unimpaired'
 Plug 'jpalardy/vim-slime'
 call plug#end()
@@ -417,6 +416,48 @@ let g:go_doc_popup_window = 1
 augroup go_path
   autocmd FileType go GoPath $MONO_HOME/bazel-out/darwin-fastbuild/bin/darwin_amd64_stripped/go_path~:$GOPATH
 augroup end
+"}}}
+
+"{{{ Sandwich
+  " RIP substitution
+  nmap s <Nop>
+	xmap s <Nop>
+
+  " enable text selections (mainly for visual mode)
+	xmap is <Plug>(textobj-sandwich-query-i)
+	xmap as <Plug>(textobj-sandwich-query-a)
+	omap is <Plug>(textobj-sandwich-query-i)
+	omap as <Plug>(textobj-sandwich-query-a)
+
+	xmap iss <Plug>(textobj-sandwich-auto-i)
+	xmap ass <Plug>(textobj-sandwich-auto-a)
+	omap iss <Plug>(textobj-sandwich-auto-i)
+	omap ass <Plug>(textobj-sandwich-auto-a)
+
+  " surround.vim-like brackets
+	let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
+  let g:sandwich#recipes += [
+	\   {'buns': ['{ ', ' }'], 'nesting': 1, 'match_syntax': 1,
+	\    'kind': ['add', 'replace'], 'action': ['add'], 'input': ['{']},
+	\
+	\   {'buns': ['[ ', ' ]'], 'nesting': 1, 'match_syntax': 1,
+	\    'kind': ['add', 'replace'], 'action': ['add'], 'input': ['[']},
+	\
+	\   {'buns': ['( ', ' )'], 'nesting': 1, 'match_syntax': 1,
+	\    'kind': ['add', 'replace'], 'action': ['add'], 'input': ['(']},
+	\
+	\   {'buns': ['{\s*', '\s*}'],   'nesting': 1, 'regex': 1,
+	\    'match_syntax': 1, 'kind': ['delete', 'replace', 'textobj'],
+	\    'action': ['delete'], 'input': ['{']},
+	\
+	\   {'buns': ['\[\s*', '\s*\]'], 'nesting': 1, 'regex': 1,
+	\    'match_syntax': 1, 'kind': ['delete', 'replace', 'textobj'],
+	\    'action': ['delete'], 'input': ['[']},
+	\
+	\   {'buns': ['(\s*', '\s*)'],   'nesting': 1, 'regex': 1,
+	\    'match_syntax': 1, 'kind': ['delete', 'replace', 'textobj'],
+	\    'action': ['delete'], 'input': ['(']},
+	\ ]
 "}}}
 
 "{{{ Stuff that needs to go last
