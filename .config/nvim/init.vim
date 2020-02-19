@@ -231,14 +231,13 @@ map <C-t> :Files<CR>
 
 command! -bang -nargs=* FuzzyFind
   \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --smart-case --hidden --follow --color "always" --colors "path:fg:4" --colors "line:fg:2" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+  \   'rg --column --line-number --no-heading --smart-case --color=always --colors "path:fg:4" --colors "line:fg:2"  --hidden --follow'.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 map <leader>F :FuzzyFind<CR>
 
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case --colors "path:fg:4" --colors "line:fg:2" '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview('up:60%')
-  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   'rg --column --line-number --no-heading --smart-case --color=always --colors "path:fg:4" --colors "line:fg:2" '.shellescape(<q-args>), 1,
+  \   fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%:hidden', '?'),
   \   <bang>0)
 "}}}
 
