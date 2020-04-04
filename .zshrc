@@ -31,6 +31,8 @@ alias hk=heroku
 # Uncomment following line if you want to disable command autocorrection
 # DISABLE_CORRECTION="true"
 
+setopt correct
+setopt +o nomatch
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 # COMPLETION_WAITING_DOTS="true"
 
@@ -83,5 +85,36 @@ export FZF_DEFAULT_OPTS='
 --no-bold
 --color bg:0,hl:3,bg+:0,fg+:7,hl+:3,prompt:6,pointer:14
 '
+<<<<<<< Updated upstream
 
 
+=======
+RIPGREP_CONFIG_PATH=~/dotfiles/.ripgreprc
+
+alias diff=colordiff
+alias cat=bat
+
+# Activate antibody, a zsh plugin manager (https://getantibody.github.io)
+source <(antibody init)
+
+# Enable plugins
+antibody bundle caarlos0/zsh-mkc
+antibody bundle mafredri/zsh-async
+antibody bundle rupa/z
+antibody bundle Tarrasch/zsh-bd
+antibody bundle zsh-users/zsh-completions
+antibody bundle zsh-users/zsh-autosuggestions
+
+# antibody bundle silverlyra/pure
+antibody bundle zsh-users/zsh-syntax-highlighting
+antibody bundle zsh-users/zsh-history-substring-search
+
+# antibody bundle "${MONO_HOME}/script/zsh/modules/aliases"
+# antibody bundle "${MONO_HOME}/script/zsh/modules/fzf"
+# antibody bundle "${MONO_HOME}/script/zsh/modules/history"
+# antibody bundle "${MONO_HOME}/script/zsh/modules/navigation"
+# antibody bundle "${MONO_HOME}/script/zsh/modules/okta"
+# antibody bundle "${MONO_HOME}/script/zsh/modules/paths"
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+>>>>>>> Stashed changes
