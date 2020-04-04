@@ -165,6 +165,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'machakann/vim-sandwich'
 Plug 'tpope/vim-unimpaired'
 Plug 'jpalardy/vim-slime'
+Plug 'frazrepo/vim-rainbow'
 call plug#end()
 "}}}
 
