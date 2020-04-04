@@ -165,7 +165,8 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'machakann/vim-sandwich'
 Plug 'tpope/vim-unimpaired'
 Plug 'jpalardy/vim-slime'
-Plug 'frazrepo/vim-rainbow'
+" Plug 'frazrepo/vim-rainbow'
+Plug 'luochen1990/rainbow'
 call plug#end()
 "}}}
 
@@ -460,6 +461,11 @@ augroup end
 	\    'match_syntax': 1, 'kind': ['delete', 'replace', 'textobj'],
 	\    'action': ['delete'], 'input': ['(']},
 	\ ]
+"}}}
+
+"{{{ Rainbow Parens
+let g:rainbow_active = 1
+let g:rainbow_conf = { 'guifgs': ['#268bd2', '#2aa198', '#859900', '#b58900', '#cb4b16', '#dc322f', '#6c71c4'], }
 "}}}
 
 "{{{ Stuff that needs to go last
