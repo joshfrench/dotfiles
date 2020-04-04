@@ -1,0 +1,43 @@
+{
+  "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "graphql",
+    "javascript",
+    "javascriptreact",
+    "javascript.jsx",
+    "json",
+    "markdown",
+    "typescript",
+    "typescriptreact",
+    "typescript.jsx"],
+  "coc.preferences.formatOnType": true,
+  "diagnostic.errorSign": "●",
+  "diagnostic.infoSign": "●",
+  "diagnostic.warningSign": "●",
+  "diagnostic.maxWindowHeight": 20,
+  "diagnostic.messageTarget": "float",
+  "eslint.filetypes": ["javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx"],
+  "eslint.autoFixOnSave": true,
+  "javascript.validate.enable": false,
+  "languageserver": {
+    "flow": {
+      "command": "flow",
+      "args": ["lsp"],
+      "filetypes": ["javascript", "javascriptreact"],
+      "initializationOptions": {},
+      "requireRootPattern": true,
+      "settings": {}
+    },
+    "golang": {
+      "command": "gopls",
+      "args": ["serve", "-debug", "0.0.0.0:8484", "-rpc.trace"],
+      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+      "filetypes": ["go"]
+    }
+  },
+  "prettier.requireConfig": true,
+  "suggest.enablePreselect": true,
+  "suggest.enablePreview": true,
+  "suggest.minTriggerInputLength": 2,
+  "tsserver.formatOnType": true
+}

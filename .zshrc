@@ -1,18 +1,3 @@
-# Path to your oh-my-zsh configuration.
-ZSH=$HOME/.oh-my-zsh
-
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="joshfrench"
-
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-alias fixaudio="sudo killall coreaudiod"
-alias hk=heroku
-
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
 
@@ -43,23 +28,14 @@ setopt +o nomatch
 
 AUTO_PARAMS_SLASH=true
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(autojump brew bundler coffee colorize gem git github npm rails rake rbenv terminalapp)
-
-source $ZSH/oh-my-zsh.sh
-
 # Customize...
-export EDITOR=vim
+export EDITOR=nvim
 
 export PATH="/usr/local/bin:$PATH"
 export NODE_PATH="/usr/local/lib/node"
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
+export USE_FUZZY_SELECT=1
 
-eval "$(rbenv init - --no-rehash)"
-# eval "$(nodenv init -)"
+alias vim=nvim
 
 foreground-vi() {
   fg %vi
@@ -76,19 +52,12 @@ bindkey '^F' forward-word
 autoload -U zmv
 eval "$(direnv hook $0)"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-source /usr/local/opt/fzf/shell/key-bindings.zsh
-source /usr/local/opt/fzf/shell/completion.zsh
-export FZF_DEFAULT_COMMAND='ag --nocolor -g ""'
+export FZF_DEFAULT_COMMAND='rg --files --hidden --colors "path:fg:blue"'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_DEFAULT_OPTS='
 --no-bold
---color bg:0,hl:3,bg+:0,fg+:7,hl+:3,prompt:6,pointer:14
+--color hl:3,hl+:3,bg+:8,prompt:6,pointer:4
 '
-<<<<<<< Updated upstream
-
-
-=======
 RIPGREP_CONFIG_PATH=~/dotfiles/.ripgreprc
 
 alias diff=colordiff
@@ -116,5 +85,4 @@ antibody bundle zsh-users/zsh-history-substring-search
 # antibody bundle "${MONO_HOME}/script/zsh/modules/okta"
 # antibody bundle "${MONO_HOME}/script/zsh/modules/paths"
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
->>>>>>> Stashed changes
+# export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
