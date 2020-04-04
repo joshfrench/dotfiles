@@ -43,6 +43,8 @@ set list
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " highlight whitespace
 set foldmethod=marker
 set linebreak                             " softwrap at word boundaries
+
+let s:medium = 142                        " used for laptop/desktop UI tweaks
 "}}}
 
 "{{{ Relative numbers
@@ -176,11 +178,13 @@ augroup END
 "}}}
 
 "{{{ NERDTree
-autocmd StdinReadPre * let s:std_in=1
+" Quit vim if NERDTree is the last buffer
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-" autocmd VimEnter * if !argc() | Startify | NERDTree | wincmd w | endif
+" Open NERDTree if vim is started with no args
+" autocmd VimEnter * if !argc() | NERDTree | wincmd w | endif
 
-map <C-e> :NERDTreeToggle<CR>
+command! NERDTreeToggleRefresh :NERDTreeToggle<cr> | call nerdtree#ui_glue#invokeKeyMap('R')
+map <C-e> :NERDTreeToggleRefresh<CR>
 map <leader>e :NERDTreeFind<CR>
 
 let g:NERDTreeWinPos = "right"
@@ -190,6 +194,7 @@ let NERDTreeKeepTreeInNewTab=0
 let NERDTreeMinimalUI=1
 let NERDTreeChDirMode=3
 let NERDTreeQuitOnOpen=1
+let NERDTreeAutoDeleteBuffer = 1
 function! SetNerdWidth()
   let width = winwidth(0) > s:medium ? 44 : 32
   let g:NERDTreeWinSize=width
@@ -234,10 +239,16 @@ command! -bang -nargs=* FuzzyFind
   \   'rg --column --line-number --no-heading --smart-case --color=always --colors "path:fg:4" --colors "line:fg:2"  --hidden --follow'.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 map <leader>F :FuzzyFind<CR>
 
+let s:rgPreview = 'right:50%'
+
+if winwidth(0) <= s:medium
+  let s:rgPreview = s:rgPreview.':hidden'
+endif
+
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
   \   'rg --column --line-number --no-heading --smart-case --color=always --colors "path:fg:4" --colors "line:fg:2" '.shellescape(<q-args>), 1,
-  \   fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%:hidden', '?'),
+  \   fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, s:rgPreview, '?'),
   \   <bang>0)
 "}}}
 
@@ -260,8 +271,6 @@ augroup end
 "}}}
 
 "{{{ LightLine
-let s:medium = 120
-
 function! NoNerd(status)
   let fname = expand('%:t')
   return fname =~ 'NERD_tree' ? '' : a:status

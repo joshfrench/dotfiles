@@ -72,7 +72,7 @@ source <(antibody init)
 # Enable plugins
 antibody bundle caarlos0/zsh-mkc
 antibody bundle mafredri/zsh-async
-antibody bundle rupa/z
+antibody bundle agkozak/zsh-z
 antibody bundle Tarrasch/zsh-bd
 antibody bundle zsh-users/zsh-completions
 antibody bundle zsh-users/zsh-autosuggestions
