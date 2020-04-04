@@ -18,6 +18,7 @@
 # DISABLE_AUTO_TITLE="true"
 
 setopt correct
+setopt +o nomatch
 
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 # COMPLETION_WAITING_DOTS="true"
