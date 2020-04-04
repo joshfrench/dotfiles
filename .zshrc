@@ -78,11 +78,9 @@ antibody bundle zsh-users/zsh-autosuggestions
 antibody bundle zsh-users/zsh-syntax-highlighting
 antibody bundle zsh-users/zsh-history-substring-search
 
-# antibody bundle "${MONO_HOME}/script/zsh/modules/aliases"
-# antibody bundle "${MONO_HOME}/script/zsh/modules/fzf"
-# antibody bundle "${MONO_HOME}/script/zsh/modules/history"
-# antibody bundle "${MONO_HOME}/script/zsh/modules/navigation"
-# antibody bundle "${MONO_HOME}/script/zsh/modules/okta"
-# antibody bundle "${MONO_HOME}/script/zsh/modules/paths"
+antibody bundle "~/.dotfiles/zsh/modules/aliases"
+antibody bundle "~/.dotfiles/zsh/modules/fzf"
+antibody bundle "~/.dotfiles/zsh/modules/history"
+antibody bundle "~/.dotfiles/zsh/modules/navigation"
 
 # export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
