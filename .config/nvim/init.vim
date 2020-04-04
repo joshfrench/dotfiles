@@ -387,9 +387,6 @@ nmap <leader>rn <Plug>(coc-rename)
 
 "{{{ Startify
 let g:startify_bookmarks = [
-      \ {'l': "${MONO_HOME}/ts/lite"},
-      \ {'r': "${MONO_HOME}/ts/rito"},
-      \ {'m': "${MONO_HOME}/medium2"},
       \ {'.': "~/dotfiles"}
 \ ]
 
@@ -402,20 +399,9 @@ let g:startify_lists = [
 \ ]
 
 let g:startify_change_to_dir = 0
-" let g:startify_fortune_use_unicode = 1
 let lines = winheight(0) > 38 ? 10 : 5
 let g:startify_files_number = lines
-let g:ascii = [
-      \'.+@@@@@+       #@@@@*:',
-      \'  .@@@@@=     *@@@@@  ',
-      \'   @+@@@@-   =#@@@@@  ',
-      \'   @ +@@@@: :% @@@@@  ',
-      \'   @  *@@@@-%: @@@@@  ',
-      \'   @   *@@@@-  @@@@@  ',
-      \'  -@-   #@@+  :@@@@@: ',
-      \'-#@@@#-  ##  =@@@@@@@='
-      \]
-let g:startify_custom_header= startify#pad(g:ascii)
+let g:startify_custom_header= ''
 "}}}
 
 "{{{ Go
