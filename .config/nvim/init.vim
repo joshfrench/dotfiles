@@ -471,7 +471,6 @@ augroup end
 "}}}
 
 "{{{ Rainbow Parens
-let g:rainbow_active = 1
 let g:rainbow_conf = { 'guifgs': ['#268bd2', '#2aa198', '#859900', '#b58900', '#cb4b16', '#dc322f', '#6c71c4'], }
 "}}}
 
@@ -489,4 +488,9 @@ augroup tsx_hi
   autocmd FileType typescript.tsx syn clear xmlError
   autocmd FileType typescript.tsx hi link xmlTagN Function " fix some schemes
 augroup end
+
+let g:rainbow_active = 0
+augroup rainbows
+  autocmd FileType lisp,clojure,schema RainbowToggleOn
+augroup END
 "}}}
