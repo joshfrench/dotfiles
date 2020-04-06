@@ -389,7 +389,7 @@ nmap <leader>rn <Plug>(coc-rename)
 
 "{{{ Startify
 let g:startify_bookmarks = [
-      \ {'.': "~/dotfiles"}
+      \ {'.': "~/.dotfiles"}
 \ ]
 
 let g:startify_lists = [
