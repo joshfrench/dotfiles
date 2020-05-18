@@ -423,9 +423,9 @@ let g:go_echo_go_info = 0
 let g:go_test_show_name = 1
 let g:go_doc_popup_window = 1
 
-augroup go_path
-  autocmd FileType go GoPath $MONO_HOME/bazel-out/darwin-fastbuild/bin/darwin_amd64_stripped/go_path~:$GOPATH
-augroup end
+" augroup go_path
+"   autocmd FileType go GoPath $MONO_HOME/bazel-out/darwin-fastbuild/bin/darwin_amd64_stripped/go_path~:$GOPATH
+" augroup end
 "}}}
 
 "{{{ Sandwich
