@@ -36,6 +36,7 @@
     }
   },
   "prettier.requireConfig": true,
+  "prettier.disableSuccessMessage": true,
   "suggest.enablePreselect": true,
   "suggest.enablePreview": true,
   "suggest.minTriggerInputLength": 2,

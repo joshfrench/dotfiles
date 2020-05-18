@@ -4,7 +4,7 @@
     "editor.minimap.enabled": false,
     "terminal.integrated.shell.osx": "zsh",
     "terminal.integrated.fontSize": 16,
-    "workbench.editor.showTabs": false,
+    "workbench.editor.showTabs": true,
     "vim.normalModeKeyBindings": [
         {
             "before": [
@@ -150,5 +150,6 @@
     "go.liveErrors": {
         "enabled": true,
         "delay": 500
-    }
+    },
+    "go.useLanguageServer": true
 }
