@@ -194,7 +194,7 @@ let NERDTreeShowHidden=1
 let NERDTreeKeepTreeInNewTab=0
 let NERDTreeMinimalUI=1
 let NERDTreeChDirMode=3
-let NERDTreeQuitOnOpen=1
+let NERDTreeQuitOnOpen=0
 let NERDTreeAutoDeleteBuffer = 1
 function! SetNerdWidth()
   let width = winwidth(0) > s:medium ? 44 : 32
