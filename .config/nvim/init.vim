@@ -123,7 +123,7 @@ nnoremap <leader>b :Buffers<CR>
 
 "{{{ Plugins
 call plug#begin('~/.local/share/nvim/plugged')
-Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': { -> coc#util#install()}}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
@@ -373,7 +373,7 @@ function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
   else
-    call CocAction('doHover')
+    call CocActionAsync('doHover')
   endif
 endfunction
 
