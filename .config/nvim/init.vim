@@ -153,6 +153,7 @@ Plug 'mxw/vim-jsx'
 Plug 'leafgarland/typescript-vim'
 Plug 'ianks/vim-tsx'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'Alloyed/lua-lsp'
 Plug 'itchyny/lightline.vim'
 Plug 'plasticboy/vim-markdown'
 Plug 'terryma/vim-multiple-cursors'
