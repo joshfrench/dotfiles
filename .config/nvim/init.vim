@@ -132,6 +132,7 @@ Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
 Plug 'amiralies/coc-flow', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'}
+"Plug 'josa42/coc-go', {'do': 'yarn install --frozen-lockfile'}
 Plug 'lifepillar/vim-solarized8'
 Plug 'mhinz/vim-startify'
 Plug 'ryanoasis/vim-devicons'
@@ -161,6 +162,7 @@ Plug 'machakann/vim-sandwich'
 Plug 'tpope/vim-unimpaired'
 Plug 'jpalardy/vim-slime'
 Plug 'luochen1990/rainbow'
+Plug 'joshfrench/spacetoggle'
 call plug#end()
 "}}}
 
@@ -359,6 +361,7 @@ let g:slime_default_config = {"socket_name": "default", "target_pane": "{right-o
 
 "{{{ CoC
 let g:javascript_plugin_flow = 1
+let g:coc_disable_startup_warning = 1
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 inoremap <expr> <Tab> pumvisible() ? coc#_select_confirm() : "\<Tab>"
