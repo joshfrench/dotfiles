@@ -38,6 +38,9 @@
   },
   "go.goplsPath": "~/go/bin/gopls",
   "go.goplsArgs": ["-remote=auto"],
+  "go.goplsOptions": {
+    "local": "github.com/Medium/"
+  },
   "prettier.requireConfig": true,
   "prettier.disableSuccessMessage": true,
   "suggest.enablePreselect": true,
