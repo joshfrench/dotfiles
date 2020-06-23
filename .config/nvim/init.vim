@@ -153,7 +153,7 @@ Plug 'elzr/vim-json'
 Plug 'mxw/vim-jsx'
 Plug 'leafgarland/typescript-vim'
 Plug 'ianks/vim-tsx'
-" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'fatih/vim-go'
 Plug 'Alloyed/lua-lsp'
 Plug 'itchyny/lightline.vim'
 Plug 'plasticboy/vim-markdown'
@@ -418,20 +418,18 @@ let g:startify_custom_header= startify#pad(g:ascii)
 "}}}
 
 "{{{ Go
-" let g:go_gopls_options = ["-remote=auto"]
-" let g:go_gopls_enabled = 1
-" let g:go_def_mapping_enabled = 0 " let LSP handle this
-" let g:go_highlight_functions = 1
-" let g:go_highlight_methods = 1
-" let g:go_highlight_extra_types = 1
-" let g:go_highlight_types = 1
-" let g:go_echo_go_info = 0
-" let g:go_test_show_name = 1
-" let g:go_doc_popup_window = 1
-
-" augroup go_path
-"   autocmd FileType go GoPath $MONO_HOME/bazel-out/darwin-fastbuild/bin/darwin_amd64_stripped/go_path~:$GOPATH
-" augroup end
+" vim-go for highlighting, coc-go for LSP.
+let g:go_gopls_enabled = 0
+let g:go_code_completion_enabled = 0
+let g:go_def_mapping_enabled = 0
+let g:go_echo_go_info = 0
+let g:go_fmt_autosave = 0
+let g:go_mod_fmt_autosave = 0
+let g:go_doc_keywordprg_enabled = 0
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_types = 1
 "}}}
 
 "{{{ Sandwich
