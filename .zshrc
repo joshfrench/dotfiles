@@ -73,7 +73,7 @@ source <(antibody init)
 
 # Enable plugins
 antibody bundle mafredri/zsh-async
-antibody bundle agkozak/zsh-z
+# antibody bundle agkozak/zsh-z
 antibody bundle zsh-users/zsh-completions
 antibody bundle zsh-users/zsh-autosuggestions
 
@@ -87,3 +87,4 @@ antibody bundle "${MONO_HOME}/script/zsh/modules/history"
 antibody bundle "${MONO_HOME}/script/zsh/modules/navigation"
 antibody bundle "${MONO_HOME}/script/zsh/modules/okta"
 # antibody bundle "${MONO_HOME}/script/zsh/modules/paths"
+antibody bundle "~/dotfiles/zsh/modules/autojump"
