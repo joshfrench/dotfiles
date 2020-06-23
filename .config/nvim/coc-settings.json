@@ -1,6 +1,7 @@
 {
   "coc.preferences.formatOnSaveFiletypes": [
     "css",
+    "go",
     "graphql",
     "javascript",
     "javascriptreact",
@@ -11,11 +12,13 @@
     "typescriptreact",
     "typescript.jsx"],
   "coc.preferences.formatOnType": true,
+  "coc.preferences.formatOnInsertLeave": true,
   "diagnostic.errorSign": "●",
   "diagnostic.infoSign": "●",
   "diagnostic.warningSign": "●",
   "diagnostic.maxWindowHeight": 20,
   "diagnostic.messageTarget": "float",
+  "diagnostic.checkCurrentLine": true,
   "eslint.filetypes": ["javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx"],
   "eslint.autoFixOnSave": true,
   "javascript.validate.enable": false,
@@ -28,17 +31,13 @@
       "requireRootPattern": true,
       "settings": {}
     },
-    "golang": {
-      "command": "gopls",
-      "args": ["serve", "-debug", "0.0.0.0:8484", "-rpc.trace"],
-      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
-      "filetypes": ["go"]
-    },
     "lua": {
       "command": "lua-lsp",
       "filetypes": ["lua"]
     }
   },
+  "go.goplsPath": "~/go/bin/gopls",
+  "go.goplsArgs": ["-remote=auto"],
   "prettier.requireConfig": true,
   "prettier.disableSuccessMessage": true,
   "suggest.enablePreselect": true,
