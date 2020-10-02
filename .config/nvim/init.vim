@@ -135,7 +135,6 @@ Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'}
 Plug 'josa42/coc-go', {'do': 'yarn install --frozen-lockfile'}
 Plug 'lifepillar/vim-solarized8'
 Plug 'mhinz/vim-startify'
-Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'christoomey/vim-tmux-navigator'
@@ -155,6 +154,8 @@ Plug 'leafgarland/typescript-vim'
 Plug 'ianks/vim-tsx'
 Plug 'fatih/vim-go'
 Plug 'Alloyed/lua-lsp'
+Plug 'chr4/nginx.vim'
+Plug 'lepture/vim-jinja'
 Plug 'itchyny/lightline.vim'
 Plug 'plasticboy/vim-markdown'
 Plug 'terryma/vim-multiple-cursors'
@@ -162,7 +163,8 @@ Plug 'machakann/vim-sandwich'
 Plug 'tpope/vim-unimpaired'
 Plug 'jpalardy/vim-slime'
 Plug 'luochen1990/rainbow'
-Plug 'joshfrench/spacetoggle'
+Plug expand('~/dotfiles/spacetoggle')
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 "}}}
 
@@ -220,6 +222,7 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Unknown"   : "?"
     \ }
 let g:webdevicons_conceal_nerdtree_brackets=1
+let g:DevIconsEnableFoldersOpenClose = 1
 "}}}
 
 "{{{ MatchTagAlways
@@ -431,7 +434,7 @@ let g:go_highlight_methods = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_types = 1
 
-autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
+autocmd BufWritePre *.go :call CocActionAsync('runCommand', 'editor.action.organizeImport')
 "}}}
 
 "{{{ Sandwich
@@ -478,6 +481,20 @@ autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeIm
 
 "{{{ Rainbow Parens
 let g:rainbow_conf = { 'guifgs': ['#268bd2', '#2aa198', '#859900', '#b58900', '#cb4b16', '#6c71c4'], }
+"}}}
+
+"{{{ Search & Replace
+set inccommand=nosplit
+nnoremap <Leader>s :let @s='\<'.expand('<cword>').'\>'<CR>:%s/<C-r>s//c<Left><Left>
+xnoremap <Leader>s "sy:%s/<C-r>s//c<Left>
+
+nnoremap <silent> <Leader>c :let @/='\<'.expand('<cword>').'\>'<CR>cgn
+xnoremap <silent> <Leader>c "sy:let @/=@s<CR>cgn
+nnoremap <CR> gnzz
+xmap <CR> .<Esc>gnzz
+xnoremap ! <Esc>ngnzz
+autocmd! BufReadPost quickfix nnoremap <buffer> <CR> <CR>
+autocmd! CmdwinEnter *        nnoremap <buffer> <CR> <CR>
 "}}}
 
 "{{{ Stuff that needs to go last

@@ -64,6 +64,7 @@ RIPGREP_CONFIG_PATH=~/dotfiles/.ripgreprc
 alias diff=colordiff
 alias cat=bat
 alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
+alias bs='bootstrap --sync'
 
 # Load the Medium environment
 [[ -f /opt/medium/env ]] && source /opt/medium/env
