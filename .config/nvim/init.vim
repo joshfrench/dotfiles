@@ -156,6 +156,8 @@ Plug 'fatih/vim-go'
 Plug 'Alloyed/lua-lsp'
 Plug 'chr4/nginx.vim'
 Plug 'lepture/vim-jinja'
+Plug 'preservim/tagbar'
+" Plug expand('~/src/tagbar')
 Plug 'itchyny/lightline.vim'
 Plug 'plasticboy/vim-markdown'
 Plug 'terryma/vim-multiple-cursors'
@@ -327,10 +329,14 @@ function! LightlineLineInfo()
   return NoNerd('%3l:%-2v')
 endfunction
 
+function! LightlineTagbar()
+  return NoNerd(tagbar#currenttag('%s','','f'))
+endfunction
+
 let g:lightline = {
       \ 'colorscheme': 'solarized',
       \ 'active': {
-      \   'left':  [ ['mode', 'paste'], ['pwd', 'gitbranch', 'filename'] ],
+      \   'left':  [ ['mode', 'paste'], ['pwd', 'gitbranch', 'filename', 'tagbar'] ],
       \   'right': [ ['linter_warnings'], ['linter_errors'], ['lineinfo'], ['percent'], ['filetype'] ]
       \ },
       \ 'component_function': {
@@ -338,6 +344,7 @@ let g:lightline = {
       \   'gitbranch': 'LightlineBranch',
       \   'pwd': 'LightlinePWD',
       \   'filename': 'LightlineFilename',
+      \   'tagbar': 'LightlineTagbar',
       \ },
       \ 'component_expand': {
       \   'percent': 'LightlinePercent',
@@ -353,7 +360,6 @@ let g:lightline = {
 \ }
 
 autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
-
 "}}}
 
 "{{{ Slime
