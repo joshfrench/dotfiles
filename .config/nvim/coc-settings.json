@@ -42,7 +42,7 @@
     "local": "github.com/Medium/"
   },
   "prettier.disableSuccessMessage": true,
-  "prettier.ignorePath": "$MONO_HOME/../.prettierignore",
+  "prettier.ignorePath": "/Users/jfrench/src/medium/.prettierignore",
   "prettier.requireConfig": true,
   "suggest.enablePreselect": true,
   "suggest.enablePreview": true,
