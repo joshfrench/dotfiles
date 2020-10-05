@@ -503,6 +503,41 @@ autocmd! BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 autocmd! CmdwinEnter *        nnoremap <buffer> <CR> <CR>
 "}}}
 
+"{{{ Tagbar
+let g:tagbar_type_go = {
+    \ 'kinds' : [
+        \ 'p:package:0:0',
+        \ 'i:imports:1:0',
+        \ 'c:constants:0:0',
+        \ 'v:variables:0:0',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields:0:0',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructors',
+        \ 'f:functions',
+        \ '?:unknown',
+    \ ],
+\ }
+
+let g:tagbar_type_typescript = {
+    \ 'kinds' : [
+        \ 'n:namespaces',
+        \ 'i:interfaces',
+        \ 'g:enums',
+        \ 'e:enumerations:0:0',
+        \ 'c:classes',
+        \ 'C:constants:0:0',
+        \ 'f:functions',
+        \ 'p:properties:0:0',
+        \ 'v:variables:0:0',
+        \ 'm:methods',
+        \ '?:unknown',
+    \ ],
+\ }
+"}}}
+
 "{{{ Stuff that needs to go last
 syntax on
 filetype plugin indent on
