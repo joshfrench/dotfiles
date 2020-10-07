@@ -504,6 +504,7 @@ autocmd! CmdwinEnter *        nnoremap <buffer> <CR> <CR>
 "}}}
 
 "{{{ Tagbar
+" Customize STL display of some symbols
 let g:tagbar_type_go = {
     \ 'kinds' : [
         \ 'p:package:0:0',
