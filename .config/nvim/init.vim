@@ -22,7 +22,7 @@ set viewoptions=folds,options,cursor,unix,slash " unix compat
 set virtualedit=onemore                   " allow cursor past EOL
 set history=1000
 set hidden                                " switch buffers w/out save
-set switchbuf=useopen,usetab              " use existing tabs but don't open new ones
+set switchbuf=useopen,usetab,uselast      " use existing tabs but don't open new ones; open QF in last focused win
 set splitright
 set splitbelow
 set cursorline
