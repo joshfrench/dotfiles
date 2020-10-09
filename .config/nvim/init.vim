@@ -42,8 +42,10 @@ set scrolljump=3                          " how far to scroll when cursor leaves
 set scrolloff=3                           " keep X lines above/below cursor
 set list
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " highlight whitespace
-set foldmethod=marker
+" set foldmethod=marker
+set foldlevelstart=99
 set linebreak                             " softwrap at word boundaries
+set completeopt=menuone,noinsert          " never autocomplete
 
 let s:medium = 142                        " used for laptop/desktop UI tweaks
 "}}}
@@ -124,16 +126,20 @@ nnoremap <leader>b :Buffers<CR>
 
 "{{{ Plugins
 call plug#begin('~/.local/share/nvim/plugged')
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
-Plug 'amiralies/coc-flow', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'}
-Plug 'josa42/coc-go', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'amiralies/coc-flow', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'josa42/coc-go', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/diagnostic-nvim'
+Plug 'nvim-lua/completion-nvim'
+Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'lifepillar/vim-solarized8'
 Plug 'mhinz/vim-startify'
 Plug 'scrooloose/nerdtree'
@@ -154,7 +160,6 @@ Plug 'mxw/vim-jsx'
 Plug 'leafgarland/typescript-vim'
 Plug 'ianks/vim-tsx'
 Plug 'fatih/vim-go'
-Plug 'Alloyed/lua-lsp'
 Plug 'chr4/nginx.vim'
 Plug 'lepture/vim-jinja'
 Plug 'preservim/tagbar'
@@ -324,17 +329,19 @@ function! LightlineBranch()
 endfunction
 
 function! LightlineLinterErrors() abort
-  let info = get(b:, 'coc_diagnostic_info', {})
-  if empty(info) | return '' | endif
-  let l:errors = get(info, 'error')
-  return errors ? printf('%d', errors) : ''
+  let e=''
+  if luaeval('vim.lsp.buf.server_ready()')
+    let e.=luaeval('vim.lsp.util.buf_diagnostics_count("Error")')
+  endif
+  return e
 endfunction
 
 function! LightlineLinterWarnings() abort
-  let info = get(b:, 'coc_diagnostic_info', {})
-  if empty(info) | return '' | endif
-  let l:warnings = get(info, 'warning')
-  return warnings ? printf('%d', warnings) : ''
+  let e=''
+  if luaeval('vim.lsp.buf.server_ready()')
+    let e.=luaeval('vim.lsp.util.buf_diagnostics_count("Warning")')
+  endif
+  return e
 endfunction
 
 function! LightlineMode()
@@ -393,28 +400,28 @@ let g:slime_default_config = {"socket_name": "default", "target_pane": "{right-o
 "}}}
 
 "{{{ CoC
-let g:javascript_plugin_flow = 1
-let g:coc_disable_startup_warning = 1
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-inoremap <expr> <Tab> pumvisible() ? coc#_select_confirm() : "\<Tab>"
-autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gr <Plug>(coc-references)
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-nnoremap <silent> gh :call <SID>show_documentation()<CR>
-nnoremap <silent><leader>. :CocList actions<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocActionAsync('doHover')
-  endif
-endfunction
-
-" Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
+" let g:javascript_plugin_flow = 1
+" let g:coc_disable_startup_warning = 1
+" autocmd CursorHold * silent call CocActionAsync('highlight')
+"
+" inoremap <expr> <Tab> pumvisible() ? coc#_select_confirm() : "\<Tab>"
+" autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+" nmap <silent> gd <Plug>(coc-definition)
+" nmap <silent> gr <Plug>(coc-references)
+" nnoremap <silent> K :call <SID>show_documentation()<CR>
+" nnoremap <silent> gh :call <SID>show_documentation()<CR>
+" nnoremap <silent><leader>. :CocList actions<CR>
+"
+" function! s:show_documentation()
+"   if (index(['vim','help'], &filetype) >= 0)
+"     execute 'h '.expand('<cword>')
+"   else
+"     call CocActionAsync('doHover')
+"   endif
+" endfunction
+"
+" " Remap for rename current word
+" nmap <leader>rn <Plug>(coc-rename)
 "}}}
 
 "{{{ Startify
@@ -563,15 +570,70 @@ let g:tagbar_type_typescript = {
 \ }
 "}}}
 
+"{{{ LSP
+let g:diagnostic_enable_virtual_text = 0
+let g:diagnostic_auto_popup_while_jump = 1
+let g:diagnostic_insert_delay = 1
+let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+let g:completion_trigger_keyword_length = 3
+call sign_define("LspDiagnosticsErrorSign", {"text" : "●", "texthl" : "LspDiagnosticsError"})
+call sign_define("LspDiagnosticsWarningSign", {"text" : "●", "texthl" : "LspDiagnosticsWarning"})
+call sign_define("LspDiagnosticsInformationSign", {"text" : "●", "texthl" : "LspDiagnosticsInformation"})
+autocmd CursorHold * silent lua vim.lsp.buf.document_highlight()
+autocmd CursorHold * silent lua vim.lsp.util.show_line_diagnostics()
+autocmd CursorMoved * silent lua vim.lsp.buf.clear_references()
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
+nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+nnoremap <silent><leader>. <cmd>lua vim.lsp.buf.code_action()<CR>
+autocmd Filetype ts,go setlocal omnifunc=v:lua.vim.lsp.omnifunc
+inoremap <expr> <Tab>   pumvisible() ? "\<CR>" : "\<Tab>"
+lua << EOF
+local on_attach_vim = function(client)
+  require'completion'.on_attach(client)
+  require'diagnostic'.on_attach(client)
+end
+require'nvim_lsp'.tsserver.setup{on_attach=on_attach_vim}
+require'nvim_lsp'.gopls.setup{on_attach=on_attach_vim}
+EOF
+"}}}
+
+"{{{ TreeSitter
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = false,       -- i hate it
+  },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "gnn",
+      node_incremental = "grn",
+      scope_incremental = "grc",
+      node_decremental = "grm",
+    },
+  },
+}
+EOF
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+"}}}
+
 "{{{ Stuff that needs to go last
 syntax on
 filetype plugin indent on
 
+hi LspDiagnosticsError guifg=#fb4934
+hi LspDiagnosticsInformation guifg=#268bd2
+hi LspDiagnosticsWarning guifg=#fab005
+hi LspDiagnosticsUnderline gui=undercurl cterm=undercurl guisp=#fb4934
 hi clear MatchParen
 hi MatchParen cterm=reverse gui=reverse
-hi CocHighlightText cterm=reverse gui=reverse
-hi CocWarningSign guifg=#fab005
-hi CocInfoSign guifg=#268bd2
 
 augroup tsx_hi
   autocmd FileType typescript.tsx syn clear xmlError
