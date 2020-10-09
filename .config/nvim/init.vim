@@ -572,6 +572,7 @@ hi MatchParen cterm=reverse gui=reverse
 hi CocHighlightText cterm=reverse gui=reverse
 hi CocWarningSign guifg=#fab005
 hi CocInfoSign guifg=#268bd2
+hi CocUnderline cterm=undercurl gui=undercurl
 
 augroup tsx_hi
   autocmd FileType typescript.tsx syn clear xmlError
