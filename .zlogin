@@ -60,9 +60,11 @@ _gen_fzf_default_opts() {
   local color0F='#d33682'
 
   export FZF_DEFAULT_OPTS="
-    --color=bg+:$color01,bg:$color00,spinner:$color0C,hl:$color0D
+    --color=bg+:$color01,bg:$color00,spinner:$color0B,hl:$color0D
     --color=fg:$color04,header:$color0D,info:$color0A,pointer:$color0C
     --color=marker:$color0C,fg+:$color06,prompt:$color0A,hl+:$color0D
+    --color=gutter:$color00
+    --border=rounded
   "
 }
 

@@ -53,13 +53,7 @@ bindkey '^F' forward-word
 autoload -U zmv
 eval "$(direnv hook $0)"
 
-export FZF_DEFAULT_COMMAND='rg --files --hidden --colors "path:fg:blue"'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_DEFAULT_OPTS='
---no-bold
---color hl:3,hl+:3,bg+:8,prompt:6,pointer:4
-'
-RIPGREP_CONFIG_PATH=~/dotfiles/.ripgreprc
+# RIPGREP_CONFIG_PATH=~/dotfiles/.ripgreprc
 
 alias diff=colordiff
 alias cat=bat

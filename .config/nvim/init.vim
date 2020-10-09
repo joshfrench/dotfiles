@@ -17,6 +17,7 @@ set termguicolors
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set background=dark                       " assume dark BG
+set winblend=0                            " no transparency on floating windows
 set shortmess+=filmnrxoOtTc               " shorter messages & prompts
 set viewoptions=folds,options,cursor,unix,slash " unix compat
 set virtualedit=onemore                   " allow cursor past EOL
@@ -240,32 +241,29 @@ let g:mta_filetypes = {
 "}}}
 
 "{{{ fzf
-set winblend=0
-let g:height = float2nr(&lines * 0.9)
-let g:width = float2nr(&columns * 0.95)
-let g:preview_width = float2nr(&columns * 0.7)
 let g:fzf_buffers_jump = 1
-let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
-let $FZF_DEFAULT_OPTS=" --color=dark --color=fg:15,bg:-1,hl:1,fg+:#ffffff,bg+:0,hl+:1 --color=info:0,prompt:0,pointer:12,marker:4,spinner:11,header:-1 --layout=reverse  --margin=1,4 --preview 'if file -i {}|grep -q binary; then file -b {}; else bat --style=changes --color always --line-range :40 {}; fi' --preview-window right:" . g:preview_width
-let g:fzf_layout = { 'window': 'call FloatingFZF(' . g:width . ',' . g:height . ')' }
-" let g:fzf_layout = { 'window' : 'call FloatingFZF()' }
-let g:fzf_buffers_jump = 1
+if winwidth(0) <= s:medium
+  let g:fzf_layout = { 'down' : '~20%' }
+else
+  let g:fzf_layout = { 'window': 'call FloatingFZF()' }
+endif
 
-function! FloatingFZF(w, h)
+function! FloatingFZF()
   let buf = nvim_create_buf(v:false, v:true)
   call setbufvar(buf, '&signcolumn', 'no')
 
-  let height = float2nr(10)
-  let width = float2nr(80)
+  let height = float2nr(&lines * 0.8)
+  let width = float2nr(&columns * 0.8)
+  let preview_width = float2nr(&columns * 0.7)
   let horizontal = float2nr((&columns - width) / 2)
-  let vertical = 1
+  let vertical = float2nr((&lines - height) / 2)
 
   let opts = {
         \ 'relative': 'editor',
         \ 'row': vertical,
         \ 'col': horizontal,
-        \ 'width': a:w,
-        \ 'height': a:h,
+        \ 'width': width,
+        \ 'height': height,
         \ 'style': 'minimal'
         \ }
 
@@ -274,20 +272,15 @@ endfunction
 
 map <C-t> :Files<CR>
 
-command! -bang -nargs=* FuzzyFind
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --smart-case --color=always --colors "path:fg:4" --colors "line:fg:2"  --hidden --follow'.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
-map <leader>F :FuzzyFind<CR>
-
 let s:rgPreview = 'right:50%'
-
 if winwidth(0) <= s:medium
   let s:rgPreview = s:rgPreview.':hidden'
 endif
 
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --smart-case --color=always --colors "path:fg:4" --colors "line:fg:2" '.shellescape(<q-args>), 1,
+  \   'rg --column --line-number --no-heading --smart-case --color=always --colors "path:fg:4" --colors "line:fg:2" '.shellescape(<q-args>),
+  \   1,
   \   fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, s:rgPreview, '?'),
   \   <bang>0)
 "}}}
