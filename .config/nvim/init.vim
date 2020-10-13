@@ -287,7 +287,7 @@ command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
   \   'rg --column --line-number --no-heading --smart-case --color=always --colors "path:fg:4" --colors "line:fg:2" '.shellescape(<q-args>),
   \   1,
-  \   fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, s:rgPreview, '?'),
+  \   fzf#vim#with_preview({'options': '--delimiter : --nth 4.. --margin=1 --color=bg:0,gutter:0'}, s:rgPreview, '?'),
   \   <bang>0)
 "}}}
 
@@ -634,6 +634,9 @@ hi LspDiagnosticsError guifg=#fb4934
 hi LspDiagnosticsInformation guifg=#268bd2
 hi LspDiagnosticsWarning guifg=#fab005
 hi LspDiagnosticsUnderline gui=undercurl cterm=undercurl guisp=#fb4934
+hi LspReferenceText cterm=reverse gui=reverse
+hi LspReferenceRead cterm=reverse gui=reverse
+hi LspReferenceWrite cterm=reverse gui=reverse
 hi clear MatchParen
 hi MatchParen cterm=reverse gui=reverse
 
