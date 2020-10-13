@@ -247,12 +247,14 @@ let g:mta_filetypes = {
 "}}}
 
 "{{{ fzf
+let $FZF_DEFAULT_OPTS = $FZF_DEFAULT_OPTS.' --margin=1,2'
+let g:fzf_colors={'bg': ['bg', 'ColorColumn'], 'gutter': ['bg', 'ColorColumn']}
 let g:fzf_buffers_jump = 1
-if winwidth(0) <= s:medium
   let g:fzf_layout = { 'window': 'call FloatingFZF()' }
-else
-  let g:fzf_layout = { 'down' : '~30%' }
-endif
+" if winwidth(0) <= s:medium
+" else
+"   let g:fzf_layout = { 'down' : '~30%' }
+" endif
 
 function! FloatingFZF()
   let buf = nvim_create_buf(v:false, v:true)
@@ -279,15 +281,15 @@ endfunction
 map <C-t> :Files<CR>
 
 let s:rgPreview = 'right:50%'
-if winwidth(0) <= s:medium
-  let s:rgPreview = s:rgPreview.':hidden'
-endif
+" if winwidth(0) <= s:medium
+"   let s:rgPreview = s:rgPreview.':hidden'
+" endif
 
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
   \   'rg --column --line-number --no-heading --smart-case --color=always --colors "path:fg:4" --colors "line:fg:2" '.shellescape(<q-args>),
   \   1,
-  \   fzf#vim#with_preview({'options': '--delimiter : --nth 4.. --margin=1 --color=bg:0,gutter:0'}, s:rgPreview, '?'),
+  \   fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, s:rgPreview, '?'),
   \   <bang>0)
 "}}}
 
