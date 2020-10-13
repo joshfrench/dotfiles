@@ -4,7 +4,12 @@ local M = {}
 
 
 local function create_source(item)
-  return table.concat({item.filename, item.lnum, item.col}, ':')
+  local fname = item.filename
+  local prefix = vim.api.nvim_call_function('getcwd', {})
+  if prefix then
+    fname = string.gsub(fname, prefix..'/', '')
+  end
+  return table.concat({fname, item.lnum}, ':')
 end
 
 function M.modifyCallback()
@@ -17,7 +22,8 @@ function M.modifyCallback()
      table.insert(sources, create_source(item))
    end
    local fzf_opts={[vim.type_idx]=vim.types.dictionary, ['source']=sources}
-   vim.api.nvim_call_function('fzf#run', {[vim.type_idx]=vim.types.array, fzf_opts})
+   local wrapped = vim.api.nvim_call_function('fzf#vim#with_preview', {[vim.type_idx]=vim.types.array, fzf_opts})
+   vim.api.nvim_call_function('fzf#vim#grep', {[vim.type_idx]=vim.types.array, "rg", 0, wrapped})
   end
 end
 

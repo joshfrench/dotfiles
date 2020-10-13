@@ -43,7 +43,7 @@ set scrolloff=3                           " keep X lines above/below cursor
 set list
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " highlight whitespace
 " set foldmethod=marker
-set foldlevelstart=99
+" set foldlevelstart=99
 set linebreak                             " softwrap at word boundaries
 set completeopt=menuone,noinsert          " never autocomplete
 
@@ -249,9 +249,9 @@ let g:mta_filetypes = {
 "{{{ fzf
 let g:fzf_buffers_jump = 1
 if winwidth(0) <= s:medium
-  let g:fzf_layout = { 'down' : '~20%' }
-else
   let g:fzf_layout = { 'window': 'call FloatingFZF()' }
+else
+  let g:fzf_layout = { 'down' : '~30%' }
 endif
 
 function! FloatingFZF()
