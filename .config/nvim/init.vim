@@ -140,6 +140,7 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/diagnostic-nvim'
 Plug 'nvim-lua/completion-nvim'
 Plug expand('~/dotfiles/lsp-fzf')
+Plug 'dense-analysis/ale'
 " Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'lifepillar/vim-solarized8'
 Plug 'mhinz/vim-startify'
@@ -628,19 +629,56 @@ EOF
 " set foldexpr=nvim_treesitter#foldexpr()
 "}}}
 
+"{{{ Ale
+let g:ale_linters = {
+\   'javascript': ['eslint', 'prettier'],
+\   'typescript': ['eslint'],
+\   'go': ['gopls']
+\}
+
+let g:ale_fixers = {
+\   'javascript': ['eslint'],
+\   'typescript': ['eslint'],
+\   'go': ['goimports', 'gofmt']
+\}
+
+au InsertLeave * silent ALEFix
+let g:ale_enabled = 1
+let g:ale_fix_on_save = 1
+let g:ale_disable_lsp = 1
+let g:ale_completion_enabled = 0
+let g:ale_update_tagstack = 0
+let g:ale_hover_cursor = 0
+let g:ale_set_balloons = 0
+let g:ale_virtualtext_cursor = 1
+let g:ale_echo_cursor = 0
+let g:ale_linters_explicit = 1
+let g:ale_sign_error = "●"
+let g:ale_sign_warning = "●"
+let g:ale_sign_info = "●"
+let g:ale_virtualtext_prefix = '■ '
+"}}}
+
 "{{{ Stuff that needs to go last
 syntax on
 filetype plugin indent on
 
-hi LspDiagnosticsError guifg=#fb4934
+hi LspDiagnosticsError guifg=#dc322f
 hi LspDiagnosticsInformation guifg=#268bd2
-hi LspDiagnosticsWarning guifg=#fab005
-hi LspDiagnosticsUnderline gui=undercurl cterm=undercurl guisp=#fb4934
+hi LspDiagnosticsWarning guifg=#b58900
+hi LspDiagnosticsUnderline gui=undercurl cterm=undercurl guisp=#dc322f
 hi LspReferenceText cterm=reverse gui=reverse
 hi LspReferenceRead cterm=reverse gui=reverse
 hi LspReferenceWrite cterm=reverse gui=reverse
 hi clear MatchParen
 hi MatchParen cterm=reverse gui=reverse
+hi clear ALEError
+hi ALEError cterm=undercurl gui=undercurl guisp=#dc322f
+hi! link ALEErrorSign LspDiagnosticsError
+hi! link ALEVirtualTextError ALEErrorSign
+hi! link ALEErrorSignLineNr ALEErrorSign
+hi! link ALEWarningSign LspDiagnosticsWarning
+hi! link ALEInfoSogn LspDiagnosticsInformation
 
 augroup tsx_hi
   autocmd FileType typescript.tsx syn clear xmlError
