@@ -64,7 +64,6 @@ _gen_fzf_default_opts() {
     --color=fg:$color04,header:$color0D,info:$color0A,pointer:$color0C
     --color=marker:$color0C,fg+:$color06,prompt:$color0A,hl+:$color0D
     --color=gutter:$color00
-    --border=rounded
   "
 }
 

@@ -43,7 +43,9 @@ set scrolloff=3                           " keep X lines above/below cursor
 set list
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " highlight whitespace
 set foldmethod=marker
+" set foldlevelstart=99
 set linebreak                             " softwrap at word boundaries
+set completeopt=menuone,noinsert          " never autocomplete
 
 let s:medium = 142                        " used for laptop/desktop UI tweaks
 "}}}
@@ -114,8 +116,6 @@ vnoremap . :normal .<CR>
 nnoremap / /\v
 vnoremap / /\v
 
-nnoremap <leader>A :Rg<CR>
-
 vmap <bs> x
 
 nnoremap <leader>B :ls<CR>:b
@@ -124,16 +124,15 @@ nnoremap <leader>b :Buffers<CR>
 
 "{{{ Plugins
 call plug#begin('~/.local/share/nvim/plugged')
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
-Plug 'amiralies/coc-flow', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'}
-Plug 'josa42/coc-go', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/diagnostic-nvim'
+Plug 'nvim-lua/completion-nvim'
+" Plug expand('~/dotfiles/lsp-fzf')
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-lua/telescope.nvim'
+" Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'dense-analysis/ale'
 Plug 'lifepillar/vim-solarized8'
 Plug 'mhinz/vim-startify'
 Plug 'scrooloose/nerdtree'
@@ -152,15 +151,15 @@ Plug 'pangloss/vim-javascript'
 Plug 'elzr/vim-json'
 Plug 'mxw/vim-jsx'
 Plug 'leafgarland/typescript-vim'
+" Plug 'HerringtonDarkholme/yats.vim'
 Plug 'ianks/vim-tsx'
 Plug 'fatih/vim-go'
-Plug 'Alloyed/lua-lsp'
 Plug 'chr4/nginx.vim'
 Plug 'lepture/vim-jinja'
-Plug 'preservim/tagbar'
-Plug 'itchyny/lightline.vim'
 Plug 'plasticboy/vim-markdown'
 Plug 'corriander/vim-markdown-indent'
+Plug 'preservim/tagbar'
+Plug 'itchyny/lightline.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'machakann/vim-sandwich'
 Plug 'tpope/vim-unimpaired'
@@ -240,49 +239,17 @@ let g:mta_filetypes = {
 \ }
 "}}}
 
-"{{{ fzf
-let g:fzf_buffers_jump = 1
-if winwidth(0) <= s:medium
-  let g:fzf_layout = { 'down' : '~20%' }
-else
-  let g:fzf_layout = { 'window': 'call FloatingFZF()' }
-endif
-
-function! FloatingFZF()
-  let buf = nvim_create_buf(v:false, v:true)
-  call setbufvar(buf, '&signcolumn', 'no')
-
-  let height = float2nr(&lines * 0.8)
-  let width = float2nr(&columns * 0.8)
-  let preview_width = float2nr(&columns * 0.7)
-  let horizontal = float2nr((&columns - width) / 2)
-  let vertical = float2nr((&lines - height) / 2)
-
-  let opts = {
-        \ 'relative': 'editor',
-        \ 'row': vertical,
-        \ 'col': horizontal,
-        \ 'width': width,
-        \ 'height': height,
-        \ 'style': 'minimal'
-        \ }
-
-  call nvim_open_win(buf, v:true, opts)
-endfunction
-
-map <C-t> :Files<CR>
-
-let s:rgPreview = 'right:50%'
-if winwidth(0) <= s:medium
-  let s:rgPreview = s:rgPreview.':hidden'
-endif
-
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --smart-case --color=always --colors "path:fg:4" --colors "line:fg:2" '.shellescape(<q-args>),
-  \   1,
-  \   fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, s:rgPreview, '?'),
-  \   <bang>0)
+"{{{ Telescope
+lua <<EOF
+require'telescope'.setup{
+  defaults = {
+    shorten_path = true
+  }
+}
+EOF
+map <leader>A <cmd>lua require'telescope.builtin'.live_grep()<CR>
+nnoremap <C-t> <cmd>lua require'telescope.builtin'.find_files()<CR>
+nnoremap <silent> gr <cmd>lua require'telescope.builtin'.lsp_references()<CR>
 "}}}
 
 "{{{ TComment
@@ -324,17 +291,19 @@ function! LightlineBranch()
 endfunction
 
 function! LightlineLinterErrors() abort
-  let info = get(b:, 'coc_diagnostic_info', {})
-  if empty(info) | return '' | endif
-  let l:errors = get(info, 'error')
-  return errors ? printf('%d', errors) : ''
+  let e=''
+  if luaeval('vim.lsp.buf.server_ready()')
+    let e.=luaeval('vim.lsp.util.buf_diagnostics_count("Error")')
+  endif
+  return e
 endfunction
 
 function! LightlineLinterWarnings() abort
-  let info = get(b:, 'coc_diagnostic_info', {})
-  if empty(info) | return '' | endif
-  let l:warnings = get(info, 'warning')
-  return warnings ? printf('%d', warnings) : ''
+  let e=''
+  if luaeval('vim.lsp.buf.server_ready()')
+    let e.=luaeval('vim.lsp.util.buf_diagnostics_count("Warning")')
+  endif
+  return e
 endfunction
 
 function! LightlineMode()
@@ -383,38 +352,13 @@ let g:lightline = {
       \ }
 \ }
 
-autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
+" autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 "}}}
 
 "{{{ Slime
 let g:slime_target="tmux"
 let g:slime_paste_file = tempname()
 let g:slime_default_config = {"socket_name": "default", "target_pane": "{right-of}"}
-"}}}
-
-"{{{ CoC
-let g:javascript_plugin_flow = 1
-let g:coc_disable_startup_warning = 1
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-inoremap <expr> <Tab> pumvisible() ? coc#_select_confirm() : "\<Tab>"
-autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gr <Plug>(coc-references)
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-nnoremap <silent> gh :call <SID>show_documentation()<CR>
-nnoremap <silent><leader>. :CocList actions<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocActionAsync('doHover')
-  endif
-endfunction
-
-" Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
 "}}}
 
 "{{{ Startify
@@ -464,7 +408,7 @@ let g:go_highlight_methods = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_types = 1
 
-autocmd BufWritePre *.go :call CocActionAsync('runCommand', 'editor.action.organizeImport')
+" autocmd BufWritePre *.go :call CocActionAsync('runCommand', 'editor.action.organizeImport')
 "}}}
 
 "{{{ Sandwich
@@ -563,16 +507,109 @@ let g:tagbar_type_typescript = {
 \ }
 "}}}
 
+"{{{ LSP
+let g:diagnostic_enable_virtual_text = 0
+let g:diagnostic_auto_popup_while_jump = 1
+let g:diagnostic_insert_delay = 1
+let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+let g:completion_trigger_keyword_length = 3
+call sign_define("LspDiagnosticsErrorSign", {"text" : "●", "texthl" : "LspDiagnosticsError"})
+call sign_define("LspDiagnosticsWarningSign", {"text" : "●", "texthl" : "LspDiagnosticsWarning"})
+call sign_define("LspDiagnosticsInformationSign", {"text" : "●", "texthl" : "LspDiagnosticsInformation"})
+autocmd CursorHold * silent lua vim.lsp.buf.document_highlight()
+autocmd CursorHold * silent lua vim.lsp.util.show_line_diagnostics()
+autocmd CursorMoved * silent lua vim.lsp.buf.clear_references()
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
+nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+nnoremap <silent><leader>. <cmd>lua vim.lsp.buf.code_action()<CR>
+autocmd Filetype ts,go setlocal omnifunc=v:lua.vim.lsp.omnifunc
+inoremap <expr> <Tab>   pumvisible() ? "\<CR>" : "\<Tab>"
+lua << EOF
+local on_attach_vim = function(client)
+  require'completion'.on_attach(client)
+  require'diagnostic'.on_attach(client)
+end
+require'nvim_lsp'.tsserver.setup{on_attach=on_attach_vim}
+require'nvim_lsp'.gopls.setup{on_attach=on_attach_vim}
+EOF
+"}}}
+
+"{{{ TreeSitter
+" lua <<EOF
+" require'nvim-treesitter.configs'.setup {
+"   highlight = {
+"     enable = true,
+"   },
+"   incremental_selection = {
+"     enable = true,
+"     keymaps = {
+"       init_selection = "gnn",
+"       node_incremental = "grn",
+"       scope_incremental = "grc",
+"       node_decremental = "grm",
+"     },
+"   },
+" }
+" EOF
+" set foldmethod=expr
+" set foldexpr=nvim_treesitter#foldexpr()
+"}}}
+
+"{{{ Ale
+let g:ale_linters = {
+\   'javascript': ['eslint', 'prettier'],
+\   'typescript': ['eslint'],
+\   'go': ['gopls']
+\}
+
+let g:ale_fixers = {
+\   'javascript': ['eslint'],
+\   'typescript': ['eslint'],
+\   'go': ['goimports', 'gofmt']
+\}
+
+au InsertLeave * silent ALEFix
+let g:ale_enabled = 1
+let g:ale_fix_on_save = 1
+let g:ale_disable_lsp = 1
+let g:ale_completion_enabled = 0
+let g:ale_update_tagstack = 0
+let g:ale_hover_cursor = 0
+let g:ale_set_balloons = 0
+let g:ale_virtualtext_cursor = 1
+let g:ale_echo_cursor = 0
+let g:ale_linters_explicit = 1
+let g:ale_sign_error = "●"
+let g:ale_sign_warning = "●"
+let g:ale_sign_info = "●"
+let g:ale_virtualtext_prefix = '■ '
+"}}}
+
 "{{{ Stuff that needs to go last
 syntax on
 filetype plugin indent on
 
+hi LspDiagnosticsError guifg=#dc322f
+hi LspDiagnosticsInformation guifg=#268bd2
+hi LspDiagnosticsWarning guifg=#b58900
+hi LspDiagnosticsUnderline gui=undercurl cterm=undercurl guisp=#dc322f
+hi LspReferenceText cterm=reverse gui=reverse
+hi LspReferenceRead cterm=reverse gui=reverse
+hi LspReferenceWrite cterm=reverse gui=reverse
 hi clear MatchParen
 hi MatchParen cterm=reverse gui=reverse
-hi CocHighlightText cterm=reverse gui=reverse
-hi CocWarningSign guifg=#fab005
-hi CocInfoSign guifg=#268bd2
-hi CocUnderline cterm=undercurl gui=undercurl
+hi clear ALEError
+hi ALEError cterm=undercurl gui=undercurl guisp=#dc322f
+hi! link ALEErrorSign LspDiagnosticsError
+hi! link ALEVirtualTextError ALEErrorSign
+hi! link ALEErrorSignLineNr ALEErrorSign
+hi! link ALEWarningSign LspDiagnosticsWarning
+hi! link ALEInfoSogn LspDiagnosticsInformation
 
 augroup tsx_hi
   autocmd FileType typescript.tsx syn clear xmlError

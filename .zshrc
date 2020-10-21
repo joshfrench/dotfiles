@@ -37,6 +37,7 @@ export PATH="/usr/local/bin:$PATH"
 export NODE_PATH="/usr/local/lib/node"
 export USE_FUZZY_SELECT=1
 
+alias tmux='env TERM=screen-256color tmux'
 alias vim=nvim
 foreground-vi() {
   fg %vi
