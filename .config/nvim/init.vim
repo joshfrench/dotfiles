@@ -116,8 +116,6 @@ vnoremap . :normal .<CR>
 nnoremap / /\v
 vnoremap / /\v
 
-nnoremap <leader>A :Rg<CR>
-
 vmap <bs> x
 
 nnoremap <leader>B :ls<CR>:b
@@ -139,8 +137,10 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/diagnostic-nvim'
 Plug 'nvim-lua/completion-nvim'
-Plug expand('~/dotfiles/lsp-fzf')
-Plug 'dense-analysis/ale'
+" Plug expand('~/dotfiles/lsp-fzf')
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-lua/telescope.nvim'
 " Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'lifepillar/vim-solarized8'
 Plug 'mhinz/vim-startify'
@@ -160,14 +160,15 @@ Plug 'pangloss/vim-javascript'
 Plug 'elzr/vim-json'
 Plug 'mxw/vim-jsx'
 Plug 'leafgarland/typescript-vim'
+" Plug 'HerringtonDarkholme/yats.vim'
 Plug 'ianks/vim-tsx'
 Plug 'fatih/vim-go'
 Plug 'chr4/nginx.vim'
 Plug 'lepture/vim-jinja'
-Plug 'preservim/tagbar'
-Plug 'itchyny/lightline.vim'
 Plug 'plasticboy/vim-markdown'
 Plug 'corriander/vim-markdown-indent'
+Plug 'preservim/tagbar'
+Plug 'itchyny/lightline.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'machakann/vim-sandwich'
 Plug 'tpope/vim-unimpaired'
@@ -247,51 +248,17 @@ let g:mta_filetypes = {
 \ }
 "}}}
 
-"{{{ fzf
-let $FZF_DEFAULT_OPTS = $FZF_DEFAULT_OPTS.' --margin=1,2'
-let g:fzf_colors={'bg': ['bg', 'ColorColumn'], 'gutter': ['bg', 'ColorColumn']}
-let g:fzf_buffers_jump = 1
-  let g:fzf_layout = { 'window': 'call FloatingFZF()' }
-" if winwidth(0) <= s:medium
-" else
-"   let g:fzf_layout = { 'down' : '~30%' }
-" endif
-
-function! FloatingFZF()
-  let buf = nvim_create_buf(v:false, v:true)
-  call setbufvar(buf, '&signcolumn', 'no')
-
-  let height = float2nr(&lines * 0.8)
-  let width = float2nr(&columns * 0.8)
-  let preview_width = float2nr(&columns * 0.7)
-  let horizontal = float2nr((&columns - width) / 2)
-  let vertical = float2nr((&lines - height) / 2)
-
-  let opts = {
-        \ 'relative': 'editor',
-        \ 'row': vertical,
-        \ 'col': horizontal,
-        \ 'width': width,
-        \ 'height': height,
-        \ 'style': 'minimal'
-        \ }
-
-  call nvim_open_win(buf, v:true, opts)
-endfunction
-
-map <C-t> :Files<CR>
-
-let s:rgPreview = 'right:50%'
-" if winwidth(0) <= s:medium
-"   let s:rgPreview = s:rgPreview.':hidden'
-" endif
-
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --smart-case --color=always --colors "path:fg:4" --colors "line:fg:2" '.shellescape(<q-args>),
-  \   1,
-  \   fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, s:rgPreview, '?'),
-  \   <bang>0)
+"{{{ Telescope
+lua <<EOF
+require'telescope'.setup{
+  defaults = {
+    shorten_path = true
+  }
+}
+EOF
+map <leader>A <cmd>lua require'telescope.builtin'.live_grep()<CR>
+nnoremap <C-t> <cmd>lua require'telescope.builtin'.find_files()<CR>
+nnoremap <silent> gr <cmd>lua require'telescope.builtin'.lsp_references()<CR>
 "}}}
 
 "{{{ TComment
@@ -591,7 +558,6 @@ nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
 nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
-nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
 nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 nnoremap <silent><leader>. <cmd>lua vim.lsp.buf.code_action()<CR>
@@ -601,7 +567,6 @@ lua << EOF
 local on_attach_vim = function(client)
   require'completion'.on_attach(client)
   require'diagnostic'.on_attach(client)
-  require'lsp-fzf'.on_attach(client)
 end
 require'nvim_lsp'.tsserver.setup{on_attach=on_attach_vim}
 require'nvim_lsp'.gopls.setup{on_attach=on_attach_vim}
