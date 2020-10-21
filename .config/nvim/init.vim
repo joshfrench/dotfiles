@@ -124,16 +124,6 @@ nnoremap <leader>b :Buffers<CR>
 
 "{{{ Plugins
 call plug#begin('~/.local/share/nvim/plugged')
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}
-" Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
-" Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
-" Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
-" Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
-" Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
-" Plug 'amiralies/coc-flow', {'do': 'yarn install --frozen-lockfile'}
-" Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'}
-" Plug 'josa42/coc-go', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/diagnostic-nvim'
 Plug 'nvim-lua/completion-nvim'
@@ -142,6 +132,7 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/telescope.nvim'
 " Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'dense-analysis/ale'
 Plug 'lifepillar/vim-solarized8'
 Plug 'mhinz/vim-startify'
 Plug 'scrooloose/nerdtree'
@@ -361,38 +352,13 @@ let g:lightline = {
       \ }
 \ }
 
-autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
+" autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 "}}}
 
 "{{{ Slime
 let g:slime_target="tmux"
 let g:slime_paste_file = tempname()
 let g:slime_default_config = {"socket_name": "default", "target_pane": "{right-of}"}
-"}}}
-
-"{{{ CoC
-" let g:javascript_plugin_flow = 1
-" let g:coc_disable_startup_warning = 1
-" autocmd CursorHold * silent call CocActionAsync('highlight')
-"
-" inoremap <expr> <Tab> pumvisible() ? coc#_select_confirm() : "\<Tab>"
-" autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
-" nmap <silent> gd <Plug>(coc-definition)
-" nmap <silent> gr <Plug>(coc-references)
-" nnoremap <silent> K :call <SID>show_documentation()<CR>
-" nnoremap <silent> gh :call <SID>show_documentation()<CR>
-" nnoremap <silent><leader>. :CocList actions<CR>
-"
-" function! s:show_documentation()
-"   if (index(['vim','help'], &filetype) >= 0)
-"     execute 'h '.expand('<cword>')
-"   else
-"     call CocActionAsync('doHover')
-"   endif
-" endfunction
-"
-" " Remap for rename current word
-" nmap <leader>rn <Plug>(coc-rename)
 "}}}
 
 "{{{ Startify
@@ -442,7 +408,7 @@ let g:go_highlight_methods = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_types = 1
 
-autocmd BufWritePre *.go :call CocActionAsync('runCommand', 'editor.action.organizeImport')
+" autocmd BufWritePre *.go :call CocActionAsync('runCommand', 'editor.action.organizeImport')
 "}}}
 
 "{{{ Sandwich
