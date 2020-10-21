@@ -382,15 +382,16 @@ let g:startify_change_to_dir = 0
 let lines = winheight(0) > 38 ? 10 : 5
 let g:startify_files_number = lines
 let g:ascii = [
-      \'.+@@@@@+       #@@@@*:',
-      \'  .@@@@@=     *@@@@@  ',
-      \'   @+@@@@-   =#@@@@@  ',
-      \'   @ +@@@@: :% @@@@@  ',
-      \'   @  *@@@@-%: @@@@@  ',
-      \'   @   *@@@@-  @@@@@  ',
-      \'  -@-   #@@+  :@@@@@: ',
-      \'-#@@@#-  ##  =@@@@@@@='
-      \]
+  \'      ...                   ',
+  \'  .,ok000Oxc.     ''oxo,  .'' ',
+  \' ,kWMMMMMMMMXo;. ;KMWMX: lK,',
+  \',0MMMMMMMMMMMWNd''xMMMMMO;xWl',
+  \'lWMMMMMMMMMMMMM0lOMMMMMKoOMo',
+  \'cNMMMMMMMMMMMMMk:OMMMMM0lkWl',
+  \'.dNMMMMMMMMMMKx; lWMMMWd.dN:',
+  \'  ;kXWMMMMWKd''   .oXWXx. ;o.',
+  \'    .;ccc:,.       .,.      '
+\]
 let g:startify_custom_header= startify#pad(g:ascii)
 "}}}
 
