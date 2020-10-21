@@ -42,7 +42,7 @@ set scrolljump=3                          " how far to scroll when cursor leaves
 set scrolloff=3                           " keep X lines above/below cursor
 set list
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " highlight whitespace
-" set foldmethod=marker
+set foldmethod=marker
 " set foldlevelstart=99
 set linebreak                             " softwrap at word boundaries
 set completeopt=menuone,noinsert          " never autocomplete
