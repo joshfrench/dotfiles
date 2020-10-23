@@ -42,8 +42,7 @@ set scrolljump=3                          " how far to scroll when cursor leaves
 set scrolloff=3                           " keep X lines above/below cursor
 set list
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " highlight whitespace
-set foldmethod=marker
-" set foldlevelstart=99
+" set foldmethod=marker
 set linebreak                             " softwrap at word boundaries
 set completeopt=menuone,noinsert          " never autocomplete
 
@@ -127,11 +126,10 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/diagnostic-nvim'
 Plug 'nvim-lua/completion-nvim'
-" Plug expand('~/dotfiles/lsp-fzf')
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/telescope.nvim'
-" Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'dense-analysis/ale'
 Plug 'lifepillar/vim-solarized8'
 Plug 'mhinz/vim-startify'
@@ -541,24 +539,31 @@ EOF
 "}}}
 
 "{{{ TreeSitter
-" lua <<EOF
-" require'nvim-treesitter.configs'.setup {
-"   highlight = {
-"     enable = true,
-"   },
-"   incremental_selection = {
-"     enable = true,
-"     keymaps = {
-"       init_selection = "gnn",
-"       node_incremental = "grn",
-"       scope_incremental = "grc",
-"       node_decremental = "grm",
-"     },
-"   },
-" }
-" EOF
-" set foldmethod=expr
-" set foldexpr=nvim_treesitter#foldexpr()
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = false, -- frequently broken on master
+  },
+  indent = {
+    enable = true
+  },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "gnn",
+      node_incremental = "grn",
+      scope_incremental = "grc",
+      node_decremental = "grm",
+    },
+  },
+}
+EOF
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+set foldlevelstart=2
+" Space toggles folds, if one is present
+nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+vnoremap <Space> zf
 "}}}
 
 "{{{ Ale
