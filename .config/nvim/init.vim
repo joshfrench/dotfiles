@@ -517,6 +517,7 @@ let g:completion_trigger_keyword_length = 3
 call sign_define("LspDiagnosticsErrorSign", {"text" : "●", "texthl" : "LspDiagnosticsError"})
 call sign_define("LspDiagnosticsWarningSign", {"text" : "●", "texthl" : "LspDiagnosticsWarning"})
 call sign_define("LspDiagnosticsInformationSign", {"text" : "●", "texthl" : "LspDiagnosticsInformation"})
+call sign_define("LspDiagnosticsHintSign", {"text": "●", "texthl" : "LspDiagnosticsHint"})
 autocmd CursorHold * silent lua vim.lsp.buf.document_highlight()
 autocmd CursorHold * silent lua vim.lsp.util.show_line_diagnostics()
 autocmd CursorMoved * silent lua vim.lsp.buf.clear_references()
@@ -546,6 +547,8 @@ EOF
 "   highlight = {
 "     enable = true,
 "   },
+" }
+" EOF
 "   incremental_selection = {
 "     enable = true,
 "     keymaps = {
@@ -555,8 +558,6 @@ EOF
 "       node_decremental = "grm",
 "     },
 "   },
-" }
-" EOF
 " set foldmethod=expr
 " set foldexpr=nvim_treesitter#foldexpr()
 "}}}
@@ -598,6 +599,7 @@ filetype plugin indent on
 hi LspDiagnosticsError guifg=#dc322f
 hi LspDiagnosticsInformation guifg=#268bd2
 hi LspDiagnosticsWarning guifg=#b58900
+hi LspDiagnosticsHint guifg=#268bd2
 hi LspDiagnosticsUnderline gui=undercurl cterm=undercurl guisp=#dc322f
 hi LspReferenceText cterm=reverse gui=reverse
 hi LspReferenceRead cterm=reverse gui=reverse
