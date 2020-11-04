@@ -212,7 +212,7 @@ augroup nerdwidth
   au! VimEnter,VimResized * call SetNerdWidth()
 augroup END
 
-let g:NERDTreeIndicatorMapCustom = {
+let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ "Modified"  : "•",
     \ "Staged"    : "+",
     \ "Untracked" : "?",
