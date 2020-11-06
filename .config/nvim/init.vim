@@ -124,7 +124,7 @@ nnoremap <leader>b :Buffers<CR>
 
 "{{{ Plugins
 call plug#begin('~/.local/share/nvim/plugged')
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim'
 Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
