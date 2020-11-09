@@ -211,7 +211,7 @@ augroup nerdwidth
   au! VimEnter,VimResized * call SetNerdWidth()
 augroup END
 
-let g:NERDTreeIndicatorMapCustom = {
+let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ "Modified"  : "•",
     \ "Staged"    : "+",
     \ "Untracked" : "?",
@@ -518,10 +518,10 @@ call sign_define("LspDiagnosticsErrorSign", {"text" : "●", "texthl" : "LspDiag
 call sign_define("LspDiagnosticsWarningSign", {"text" : "●", "texthl" : "LspDiagnosticsWarning"})
 call sign_define("LspDiagnosticsInformationSign", {"text" : "●", "texthl" : "LspDiagnosticsInformation"})
 call sign_define("LspDiagnosticsHintSign", {"text": "●", "texthl" : "LspDiagnosticsHint"})
-autocmd CursorHold * silent lua vim.lsp.buf.document_highlight()
+autocmd CursorHold ts,tsx,go silent lua vim.lsp.buf.document_highlight()
 autocmd CursorHold * silent lua vim.lsp.util.show_line_diagnostics()
 autocmd CursorMoved * silent lua vim.lsp.buf.clear_references()
-nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
 nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
@@ -613,6 +613,7 @@ hi! link ALEVirtualTextError ALEErrorSign
 hi! link ALEErrorSignLineNr ALEErrorSign
 hi! link ALEWarningSign LspDiagnosticsWarning
 hi! link ALEInfoSogn LspDiagnosticsInformation
+hi! link typescriptReserved Keyword
 
 augroup tsx_hi
   autocmd FileType typescript.tsx syn clear xmlError
