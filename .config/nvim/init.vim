@@ -125,7 +125,6 @@ nnoremap <leader>b :Buffers<CR>
 "{{{ Plugins
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/diagnostic-nvim'
 Plug 'nvim-lua/completion-nvim'
 " Plug expand('~/dotfiles/lsp-fzf')
 Plug 'nvim-lua/popup.nvim'
@@ -509,17 +508,15 @@ let g:tagbar_type_typescript = {
 "}}}
 
 "{{{ LSP
-let g:diagnostic_enable_virtual_text = 0
 let g:diagnostic_auto_popup_while_jump = 1
-let g:diagnostic_insert_delay = 1
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 let g:completion_trigger_keyword_length = 3
-call sign_define("LspDiagnosticsErrorSign", {"text" : "●", "texthl" : "LspDiagnosticsError"})
-call sign_define("LspDiagnosticsWarningSign", {"text" : "●", "texthl" : "LspDiagnosticsWarning"})
-call sign_define("LspDiagnosticsInformationSign", {"text" : "●", "texthl" : "LspDiagnosticsInformation"})
-call sign_define("LspDiagnosticsHintSign", {"text": "●", "texthl" : "LspDiagnosticsHint"})
-autocmd CursorHold ts,tsx,go silent lua vim.lsp.buf.document_highlight()
-autocmd CursorHold * silent lua vim.lsp.util.show_line_diagnostics()
+sign define LspDiagnosticsSignError text=● texthl=LspDiagnosticsSignError linehl= numhl=
+sign define LspDiagnosticsSignWarning text=● texthl=LspDiagnosticsSignWarning linehl= numhl=
+sign define LspDiagnosticsSignInformation text=● texthl=LspDiagnosticsSignInformation linehl= numhl=
+sign define LspDiagnosticsSignHint text=● texthl=LspDiagnosticsSignHint linehl= numhl=
+autocmd CursorHold * silent lua vim.lsp.buf.document_highlight()
+autocmd CursorHold * silent lua vim.lsp.diagnostic.show_line_diagnostics()
 autocmd CursorMoved * silent lua vim.lsp.buf.clear_references()
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
@@ -534,10 +531,26 @@ inoremap <expr> <Tab>   pumvisible() ? "\<CR>" : "\<Tab>"
 lua << EOF
 local on_attach_vim = function(client)
   require'completion'.on_attach(client)
-  require'diagnostic'.on_attach(client)
 end
-require'nvim_lsp'.tsserver.setup{on_attach=on_attach_vim}
-require'nvim_lsp'.gopls.setup{on_attach=on_attach_vim}
+require'lspconfig'.tsserver.setup{on_attach=on_attach_vim}
+require'lspconfig'.gopls.setup{on_attach=on_attach_vim}
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    -- This will disable virtual text, like doing:
+    -- let g:diagnostic_enable_virtual_text = 0
+    virtual_text = false,
+
+    -- This is similar to:
+    -- let g:diagnostic_show_sign = 1
+    -- To configure sign display,
+    --  see: ":help vim.lsp.diagnostic.set_signs()"
+    signs = true,
+
+    -- This is similar to:
+    -- "let g:diagnostic_insert_delay = 1"
+    update_in_insert = false,
+  }
+)
 EOF
 "}}}
 
@@ -596,11 +609,13 @@ let g:ale_virtualtext_prefix = '■ '
 syntax on
 filetype plugin indent on
 
-hi LspDiagnosticsError guifg=#dc322f
-hi LspDiagnosticsInformation guifg=#268bd2
-hi LspDiagnosticsWarning guifg=#b58900
-hi LspDiagnosticsHint guifg=#268bd2
-hi LspDiagnosticsUnderline gui=undercurl cterm=undercurl guisp=#dc322f
+hi LspDiagnosticsDefaultError guifg=#dc322f
+hi LspDiagnosticsDefaultInformation guifg=#268bd2
+hi LspDiagnosticsDefaultWarning guifg=#b58900
+hi LspDiagnosticsDefaultHint guifg=#268bd2
+hi LspDiagnosticsUnderlineError gui=undercurl cterm=undercurl guisp=#dc322f
+hi LspDiagnosticsUnderlineWarning gui=undercurl cterm=undercurl guisp=#b58900
+hi LspDiagnosticsUnderlineHint gui=undercurl cterm=undercurl guisp=#268bd2
 hi LspReferenceText cterm=reverse gui=reverse
 hi LspReferenceRead cterm=reverse gui=reverse
 hi LspReferenceWrite cterm=reverse gui=reverse
@@ -608,11 +623,11 @@ hi clear MatchParen
 hi MatchParen cterm=reverse gui=reverse
 hi clear ALEError
 hi ALEError cterm=undercurl gui=undercurl guisp=#dc322f
-hi! link ALEErrorSign LspDiagnosticsError
+hi! link ALEErrorSign LspDiagnosticsDefaultError
 hi! link ALEVirtualTextError ALEErrorSign
 hi! link ALEErrorSignLineNr ALEErrorSign
-hi! link ALEWarningSign LspDiagnosticsWarning
-hi! link ALEInfoSogn LspDiagnosticsInformation
+hi! link ALEWarningSign LspDiagnosticsDefaultWarning
+hi! link ALEInfoSogn LspDiagnosticsDefaultInformation
 hi! link typescriptReserved Keyword
 
 augroup tsx_hi
