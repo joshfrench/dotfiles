@@ -515,9 +515,9 @@ sign define LspDiagnosticsSignError text=● texthl=LspDiagnosticsSignError line
 sign define LspDiagnosticsSignWarning text=● texthl=LspDiagnosticsSignWarning linehl= numhl=
 sign define LspDiagnosticsSignInformation text=● texthl=LspDiagnosticsSignInformation linehl= numhl=
 sign define LspDiagnosticsSignHint text=● texthl=LspDiagnosticsSignHint linehl= numhl=
-autocmd CursorHold * silent lua vim.lsp.buf.document_highlight()
-autocmd CursorHold * silent lua vim.lsp.diagnostic.show_line_diagnostics()
-autocmd CursorMoved * silent lua vim.lsp.buf.clear_references()
+autocmd CursorHold * lua vim.lsp.buf.document_highlight()
+" autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
+autocmd CursorMoved * lua vim.lsp.buf.clear_references()
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
@@ -538,7 +538,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
     -- This will disable virtual text, like doing:
     -- let g:diagnostic_enable_virtual_text = 0
-    virtual_text = false,
+    virtual_text = true,
 
     -- This is similar to:
     -- let g:diagnostic_show_sign = 1
