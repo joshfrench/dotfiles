@@ -289,20 +289,20 @@ function! LightlineBranch()
   return NoNerd(fugitive#head())
 endfunction
 
-function! LightlineLinterErrors() abort
+function! LightlineLSPErrors() abort
   let e=''
-  if luaeval('vim.lsp.buf.server_ready()')
-    let e.=luaeval('vim.lsp.util.buf_diagnostics_count("Error")')
+  if luaeval('not vim.tbl_isempty(vim.lsp.buf_get_clients(0))')
+    let e=luaeval("vim.lsp.diagnostic.get_count(vim.fn.bufnr('%'), [[Error]])")
   endif
-  return e
+  return e == '0' ? '' : e
 endfunction
 
-function! LightlineLinterWarnings() abort
-  let e=''
-  if luaeval('vim.lsp.buf.server_ready()')
-    let e.=luaeval('vim.lsp.util.buf_diagnostics_count("Warning")')
+function! LightlineLSPWarnings() abort
+  let w=''
+  if luaeval('not vim.tbl_isempty(vim.lsp.buf_get_clients(0))')
+    let w=luaeval("vim.lsp.diagnostic.get_count(vim.fn.bufnr('%'), [[Warning]])")
   endif
-  return e
+  return w == '0 '? '' : w
 endfunction
 
 function! LightlineMode()
@@ -329,7 +329,7 @@ let g:lightline = {
       \ 'colorscheme': 'solarized',
       \ 'active': {
       \   'left':  [ ['mode', 'paste'], ['pwd', 'gitbranch', 'filename', 'tagbar'] ],
-      \   'right': [ ['linter_warnings'], ['linter_errors'], ['lineinfo'], ['percent'], ['filetype'] ]
+      \   'right': [ ['lsp_warnings'], ['lsp_errors'], ['lineinfo'], ['percent'], ['filetype'] ]
       \ },
       \ 'component_function': {
       \   'mode': 'LightlineMode',
@@ -342,16 +342,16 @@ let g:lightline = {
       \   'percent': 'LightlinePercent',
       \   'filetype': 'LightlineFT',
       \   'lineinfo': 'LightlineLineInfo',
-      \   'linter_warnings': 'LightlineLinterWarnings',
-      \   'linter_errors': 'LightlineLinterErrors',
+      \   'lsp_warnings': 'LightlineLSPWarnings',
+      \   'lsp_errors': 'LightlineLSPErrors',
       \ },
       \ 'component_type': {
-      \   'linter_warnings': 'warning',
-      \   'linter_errors': 'error'
+      \   'lsp_warnings': 'warning',
+      \   'lsp_errors': 'error'
       \ }
 \ }
 
-" autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
+autocmd User LspDiagnosticsChanged call lightline#update()
 "}}}
 
 "{{{ Slime
@@ -407,8 +407,6 @@ let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_types = 1
-
-" autocmd BufWritePre *.go :call CocActionAsync('runCommand', 'editor.action.organizeImport')
 "}}}
 
 "{{{ Sandwich
@@ -571,18 +569,19 @@ EOF
 "       node_decremental = "grm",
 "     },
 "   },
-" set foldmethod=expr
-" set foldexpr=nvim_treesitter#foldexpr()
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
 "}}}
 
 "{{{ Ale
 let g:ale_linters = {
 \   'javascript': ['eslint', 'prettier'],
-\   'typescript': ['eslint'],
+\   'typescript': ['eslint', 'prettier'],
 \   'go': ['gopls']
 \}
 
 let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['eslint'],
 \   'typescript': ['eslint'],
 \   'go': ['goimports', 'gofmt']
