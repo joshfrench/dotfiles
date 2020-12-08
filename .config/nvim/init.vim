@@ -47,6 +47,7 @@ set foldmethod=marker
 " set foldlevelstart=99
 set linebreak                             " softwrap at word boundaries
 set completeopt=menuone,noinsert          " never autocomplete
+set signcolumn=yes:1
 
 let s:medium = 142                        " used for laptop/desktop UI tweaks
 "}}}
@@ -511,10 +512,10 @@ let g:tagbar_type_typescript = {
 let g:diagnostic_auto_popup_while_jump = 1
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 let g:completion_trigger_keyword_length = 3
-sign define LspDiagnosticsSignError text=● texthl=LspDiagnosticsSignError linehl= numhl=
-sign define LspDiagnosticsSignWarning text=● texthl=LspDiagnosticsSignWarning linehl= numhl=
-sign define LspDiagnosticsSignInformation text=● texthl=LspDiagnosticsSignInformation linehl= numhl=
-sign define LspDiagnosticsSignHint text=● texthl=LspDiagnosticsSignHint linehl= numhl=
+sign define LspDiagnosticsSignError text=● texthl=LspDiagnosticsSignError
+sign define LspDiagnosticsSignWarning text=● texthl=LspDiagnosticsSignWarning
+sign define LspDiagnosticsSignInformation text=● texthl=LspDiagnosticsSignInformation
+sign define LspDiagnosticsSignHint text=● texthl=LspDiagnosticsSignHint
 autocmd CursorHold * lua vim.lsp.buf.document_highlight()
 " autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
 autocmd CursorMoved * lua vim.lsp.buf.clear_references()
@@ -571,8 +572,27 @@ EOF
 "       node_decremental = "grm",
 "     },
 "   },
-set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
+" set foldmethod=expr
+" set foldexpr=nvim_treesitter#foldexpr()
+"}}}
+
+"{{{ Ale
+let g:ale_enabled=1
+let g:ale_disable_lsp=1
+let g:ale_linters={
+\ 'typescript': ['eslint'],
+\ 'javascript': ['eslint'],
+\ 'go': ['gopls'],
+\}
+let g:ale_linters_explicit=1
+let g:ale_shell='/bin/bash'
+let g:ale_hover_cursor=0
+let g:ale_echo_cursor=0
+let g:ale_sign_error="●"
+let g:ale_sign_warning="●"
+let g:ale_sign_info="●"
+let g:ale_virtualtext_prefix='■ '
+let g:ale_virtualtext_cursor=1
 "}}}
 
 "{{{ Neoformat
@@ -582,6 +602,9 @@ let g:neoformat_only_msg_on_error = 1
 au InsertLeave,Bufwritepre * silent! undojoin | Neoformat
 "}}}
 
+"{{{
+let g:gitgutter_sign_priority=0
+"}}}
 "{{{ Stuff that needs to go last
 syntax on
 filetype plugin indent on
