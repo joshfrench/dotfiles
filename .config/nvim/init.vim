@@ -10,6 +10,7 @@ set undolevels=1000
 set undoreload=10000
 set ttimeoutlen=0                         " no delay when <esc> exits imode
 runtime macros/matchit.vim
+set shell=/bin/bash\ -i
 "}}}
 
 "{{{ VIM UI
@@ -131,6 +132,7 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/telescope.nvim'
 " Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'sbdchd/neoformat'
 Plug 'dense-analysis/ale'
 Plug 'lifepillar/vim-solarized8'
 Plug 'mhinz/vim-startify'
@@ -573,35 +575,11 @@ set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
 "}}}
 
-"{{{ Ale
-let g:ale_linters = {
-\   'javascript': ['eslint', 'prettier'],
-\   'typescript': ['eslint', 'prettier'],
-\   'go': ['gopls']
-\}
-
-let g:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'javascript': ['eslint'],
-\   'typescript': ['eslint'],
-\   'go': ['goimports', 'gofmt']
-\}
-
-au InsertLeave * silent ALEFix
-let g:ale_enabled = 1
-let g:ale_fix_on_save = 1
-let g:ale_disable_lsp = 1
-let g:ale_completion_enabled = 0
-let g:ale_update_tagstack = 0
-let g:ale_hover_cursor = 0
-let g:ale_set_balloons = 0
-let g:ale_virtualtext_cursor = 1
-let g:ale_echo_cursor = 0
-let g:ale_linters_explicit = 1
-let g:ale_sign_error = "●"
-let g:ale_sign_warning = "●"
-let g:ale_sign_info = "●"
-let g:ale_virtualtext_prefix = '■ '
+"{{{ Neoformat
+let g:neoformat_basic_format_trim = 1
+let g:neoformat_run_all_formatters = 1
+let g:neoformat_only_msg_on_error = 1
+au InsertLeave,Bufwritepre * silent! undojoin | Neoformat
 "}}}
 
 "{{{ Stuff that needs to go last
