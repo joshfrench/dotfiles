@@ -134,7 +134,7 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/telescope.nvim'
 " Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'sbdchd/neoformat'
-Plug 'dense-analysis/ale'
+Plug 'iamcco/diagnostic-languageserver'
 Plug 'lifepillar/vim-solarized8'
 Plug 'mhinz/vim-startify'
 Plug 'scrooloose/nerdtree'
@@ -153,7 +153,6 @@ Plug 'pangloss/vim-javascript'
 Plug 'elzr/vim-json'
 Plug 'mxw/vim-jsx'
 Plug 'leafgarland/typescript-vim'
-" Plug 'HerringtonDarkholme/yats.vim'
 Plug 'ianks/vim-tsx'
 Plug 'fatih/vim-go'
 Plug 'chr4/nginx.vim'
@@ -552,6 +551,38 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     update_in_insert = false,
   }
 )
+require'lspconfig'.diagnosticls.setup{
+  filetypes = { "typescript.tsx"},
+  init_options = {
+    linters = {
+      eslint = {
+        sourceName = 'eslint',
+        rootPatterns = {".eslintrc.js"},
+        command = 'eslint',
+        args = {
+          "--stdin",
+          "--stdin-filename",
+          "whatever.tsx",
+          "--format",
+          "json",
+        },
+        parseJson = {
+          errorsRoot = "[0].messages",
+          line = "line",
+          column = "column",
+          endLine = "endLine",
+          endColumn = "endColumn",
+          message = "${message} [${ruleId}]",
+          security = "severity",
+        },
+        securities = {[2] = "error", [1] = "warning"},
+      },
+    },
+    filetypes = {
+      ['typescript.tsx'] = 'eslint',
+    },
+  },
+}
 EOF
 "}}}
 
@@ -576,25 +607,6 @@ EOF
 " set foldexpr=nvim_treesitter#foldexpr()
 "}}}
 
-"{{{ Ale
-let g:ale_enabled=1
-let g:ale_disable_lsp=1
-let g:ale_linters={
-\ 'typescript': ['eslint'],
-\ 'javascript': ['eslint'],
-\ 'go': ['gopls'],
-\}
-let g:ale_linters_explicit=1
-let g:ale_shell='/bin/bash'
-let g:ale_hover_cursor=0
-let g:ale_echo_cursor=0
-let g:ale_sign_error="●"
-let g:ale_sign_warning="●"
-let g:ale_sign_info="●"
-let g:ale_virtualtext_prefix='■ '
-let g:ale_virtualtext_cursor=1
-"}}}
-
 "{{{ Neoformat
 let g:neoformat_basic_format_trim = 1
 let g:neoformat_run_all_formatters = 1
@@ -602,9 +614,10 @@ let g:neoformat_only_msg_on_error = 1
 au InsertLeave,Bufwritepre * silent! undojoin | Neoformat
 "}}}
 
-"{{{
+"{{{ GitGutter
 let g:gitgutter_sign_priority=0
 "}}}
+"
 "{{{ Stuff that needs to go last
 syntax on
 filetype plugin indent on
