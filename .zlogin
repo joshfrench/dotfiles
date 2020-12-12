@@ -27,7 +27,7 @@ prompt_medium_aws_profile() {
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
-zstyle ':vcs_info:git*' formats "%F{cyan}%r%f%F{white}@%f%F{magenta}%b %c%u"
+zstyle ':vcs_info:git*' formats "%F{cyan}%r%f%F{white}@%f%F{blue}%b %c%u"
 zstyle ':vcs_info:*' unstagedstr '%F{yellow}●'
 zstyle ':vcs_info:*' stagedstr '%F{green}●'
 
