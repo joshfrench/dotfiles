@@ -19,9 +19,6 @@ prompt_medium_aws_profile() {
     fi
     hook_com[unstaged]+=' '
   fi
-
-  # echo hook_com[unstaged]
-  # hook_com[unstaged] && hook_com[unstaged]+=' '
 }
 
 zstyle ':vcs_info:*' enable git
@@ -35,7 +32,7 @@ add-zsh-hook precmd prompt_medium_aws_profile
 add-zsh-hook precmd vcs_info
 
 RPROMPT='$(prompt_medium_aws_profile)%F{blue}%(5~<%-1~/.../%2~<%~)%f'
-PROMPT='${vcs_info_msg_0_}%(?.%F{green}.%F{red})%_%#%f '
+PROMPT='${vcs_info_msg_0_}%(?.%F{green}.%B%F{red})%_%#%f%b '
 SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [y/n/a/e]? '
 
 export LSCOLORS="exgxBxdxcxegaxabagacad"
