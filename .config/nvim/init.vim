@@ -134,7 +134,8 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/telescope.nvim'
 " Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'sbdchd/neoformat'
-Plug 'dense-analysis/ale'
+" Plug 'dense-analysis/ale'
+Plug 'iamcco/diagnostic-languageserver'
 Plug 'lifepillar/vim-solarized8'
 Plug 'mhinz/vim-startify'
 Plug 'scrooloose/nerdtree'
@@ -506,16 +507,20 @@ let g:tagbar_type_typescript = {
         \ '?:unknown',
     \ ],
 \ }
+
+let g:tagbar_compact = 2
+
+nmap <silent> <leader>t :TagbarToggle<CR>
 "}}}
 
 "{{{ LSP
 let g:diagnostic_auto_popup_while_jump = 1
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 let g:completion_trigger_keyword_length = 3
-sign define LspDiagnosticsSignError text=● texthl=LspDiagnosticsSignError
-sign define LspDiagnosticsSignWarning text=● texthl=LspDiagnosticsSignWarning
-sign define LspDiagnosticsSignInformation text=● texthl=LspDiagnosticsSignInformation
-sign define LspDiagnosticsSignHint text=● texthl=LspDiagnosticsSignHint
+sign define LspDiagnosticsSignError text=■ texthl=LspDiagnosticsSignError
+sign define LspDiagnosticsSignWarning text=■ texthl=LspDiagnosticsSignWarning
+sign define LspDiagnosticsSignInformation text=■ texthl=LspDiagnosticsSignInformation
+sign define LspDiagnosticsSignHint text=■ texthl=LspDiagnosticsSignHint
 autocmd CursorHold * lua vim.lsp.buf.document_highlight()
 " autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
 autocmd CursorMoved * lua vim.lsp.buf.clear_references()
@@ -552,6 +557,38 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     update_in_insert = false,
   }
 )
+require'lspconfig'.diagnosticls.setup{
+  filetypes = { "typescript.tsx"},
+  init_options = {
+    linters = {
+      eslint = {
+        sourceName = 'eslint',
+        rootPatterns = {".eslintrc.js"},
+        command = 'eslint',
+        args = {
+          "--stdin",
+          "--stdin-filename",
+          "%filepath",
+          "--format",
+          "json",
+        },
+        parseJson = {
+          errorsRoot = "[0].messages",
+          line = "line",
+          column = "column",
+          endLine = "endLine",
+          endColumn = "endColumn",
+          message = "${message} [${ruleId}]",
+          security = "severity",
+        },
+        securities = {[2] = "error", [1] = "warning"},
+      },
+    },
+    filetypes = {
+      ['typescript.tsx'] = 'eslint',
+    },
+  },
+}
 EOF
 "}}}
 
@@ -576,7 +613,7 @@ EOF
 " set foldexpr=nvim_treesitter#foldexpr()
 "}}}
 
-"{{{ Ale
+"{{{ Ale (disabled)
 let g:ale_enabled=1
 let g:ale_disable_lsp=1
 let g:ale_linters={
@@ -591,7 +628,7 @@ let g:ale_echo_cursor=0
 let g:ale_sign_error="●"
 let g:ale_sign_warning="●"
 let g:ale_sign_info="●"
-let g:ale_virtualtext_prefix='■ '
+let g:ale_virtualtext_prefix='● '
 let g:ale_virtualtext_cursor=1
 "}}}
 
@@ -602,9 +639,10 @@ let g:neoformat_only_msg_on_error = 1
 au InsertLeave,Bufwritepre * silent! undojoin | Neoformat
 "}}}
 
-"{{{
+"{{{ Gitgutter
 let g:gitgutter_sign_priority=0
 "}}}
+
 "{{{ Stuff that needs to go last
 syntax on
 filetype plugin indent on
