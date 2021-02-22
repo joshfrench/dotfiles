@@ -1,6 +1,7 @@
 " ~/.config/nvim/init.vim
 
 "{{{ Basic behavior
+set nocompatible
 scriptencoding utf-8
 set nobackup                              " stop with this nonsense
 set noswapfile
@@ -156,6 +157,7 @@ Plug 'mxw/vim-jsx'
 Plug 'leafgarland/typescript-vim'
 " Plug 'HerringtonDarkholme/yats.vim'
 Plug 'ianks/vim-tsx'
+Plug 'jparise/vim-graphql'
 Plug 'fatih/vim-go'
 Plug 'chr4/nginx.vim'
 Plug 'lepture/vim-jinja'
@@ -251,7 +253,7 @@ require'telescope'.setup{
 }
 EOF
 map <leader>A <cmd>lua require'telescope.builtin'.live_grep()<CR>
-nnoremap <C-t> <cmd>lua require'telescope.builtin'.find_files()<CR>
+nnoremap <leader>t <cmd>lua require'telescope.builtin'.find_files()<CR>
 nnoremap <silent> gr <cmd>lua require'telescope.builtin'.lsp_references()<CR>
 "}}}
 
@@ -510,7 +512,7 @@ let g:tagbar_type_typescript = {
 
 let g:tagbar_compact = 2
 
-nmap <silent> <leader>t :TagbarToggle<CR>
+nmap <silent> <c-t> :TagbarToggle<CR>
 "}}}
 
 "{{{ LSP
@@ -522,7 +524,7 @@ sign define LspDiagnosticsSignWarning text=■ texthl=LspDiagnosticsSignWarning
 sign define LspDiagnosticsSignInformation text=■ texthl=LspDiagnosticsSignInformation
 sign define LspDiagnosticsSignHint text=■ texthl=LspDiagnosticsSignHint
 autocmd CursorHold * lua vim.lsp.buf.document_highlight()
-" autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
+autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
 autocmd CursorMoved * lua vim.lsp.buf.clear_references()
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
@@ -544,7 +546,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
     -- This will disable virtual text, like doing:
     -- let g:diagnostic_enable_virtual_text = 0
-    virtual_text = true,
+    virtual_text = false,
 
     -- This is similar to:
     -- let g:diagnostic_show_sign = 1
@@ -558,7 +560,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   }
 )
 require'lspconfig'.diagnosticls.setup{
-  filetypes = { "typescript.tsx"},
+  filetypes = {   "javascript", "javascriptreact", "typescript", "typescriptreact", "typescript.tsx"},
   init_options = {
     linters = {
       eslint = {
@@ -586,7 +588,10 @@ require'lspconfig'.diagnosticls.setup{
     },
     filetypes = {
       ['typescript.tsx'] = 'eslint',
-    },
+      javascript = 'eslint',
+      javascriptreact = 'eslint',
+      typescriptreact = 'eslint'
+      },
   },
 }
 EOF
@@ -637,6 +642,12 @@ let g:neoformat_basic_format_trim = 1
 let g:neoformat_run_all_formatters = 1
 let g:neoformat_only_msg_on_error = 1
 au InsertLeave,Bufwritepre * silent! undojoin | Neoformat
+let g:neoformat_typescript_prettier = {
+  \ 'exe': 'prettier',
+  \ 'args': ['--stdin', '--stdin-filepath', '"%:p"', '--parser', 'typescript'],
+  \ 'stdin': 1
+  \ }
+let g:neoformat_enabled_typescriptreact = ['prettier']
 "}}}
 
 "{{{ Gitgutter
