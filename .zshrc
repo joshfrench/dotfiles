@@ -63,6 +63,8 @@ RIPGREP_CONFIG_PATH=~/dotfiles/.ripgreprc
 alias diff=colordiff
 alias cat=bat
 
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+
 # Activate antibody, a zsh plugin manager (https://getantibody.github.io)
 source <(antibody init)
 
