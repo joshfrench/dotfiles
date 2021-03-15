@@ -1,155 +1,91 @@
 {
-    "workbench.colorTheme": "Solarized Dark",
-    "window.zoomLevel": 1,
+    // EDITOR
+    "editor.lineNumbers": "relative",
+    "editor.renderWhitespace": "none",
+    "editor.tabSize": 2,
+    "editor.cursorBlinking": "solid",
+    "editor.fontFamily": "'Sauce Code Pro Nerd Font', Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontSize": 13,
+    "editor.scrollBeyondLastLine": false,
     "editor.minimap.enabled": false,
-    "terminal.integrated.shell.osx": "zsh",
-    "terminal.integrated.fontSize": 16,
-    "workbench.editor.showTabs": true,
+    // FILES
+    "files.trimTrailingWhitespace": true,
+    // TERMINAL
+    "terminal.integrated.cursorBlinking": true,
+    "terminal.integrated.cursorStyle": "line",
+    // UI
+    // "window.titleBarStyle":"custom",
+    "workbench.colorTheme": "Solarized Dark",
+    "workbench.sideBar.location": "right",
+    "workbench.colorCustomizations": {
+        "statusBar.background": "#005f5f",
+        "statusBar.noFolderBackground": "#005f5f",
+        "statusBar.debuggingBackground": "#005f5f",
+        "editorCursor.foreground": "#eee8d5",
+        "statusBar.foreground": "#002b36"
+    },
+    // VIM
+    "vim.useSystemClipboard": true,
+    "vim.surround": true,
+    "vim.hlsearch": true,
+    "vim.statusBarColorControl": true,
+    "vim.statusBarColors.insert": ["#859900", "#002B36"],
+    "vim.statusBarColors.visual": ["#d33682", "#002b36"],
+    "vim.incsearch": true,
     "vim.normalModeKeyBindings": [
         {
-            "before": [
-                " "
-            ],
-            "commands": [
-                "workbench.action.showCommands",
-            ]
+            "before": ["<leader>", "<space>"],
+            "commands": [":nohl"]
         },
         {
-            "before": [
-                "<leader>",
-                "b"
-            ],
-            "commands": [
-                "workbench.action.showEditorsInActiveGroup"
-            ]
+            "before": ["K"],
+            "commands": ["editor.action.showHover"]
         },
         {
-            "before": [
-                "<leader>",
-                "B"
-            ],
-            "commands": [
-                "workbench.files.action.focusOpenEditorsView"
-            ]
+            "before": ["H"],
+            "commands": ["workbench.action.previousEditor"]
         },
         {
-            "before": [
-                "<leader>",
-                "e"
-            ],
-            "commands": [
-                "revealInExplorer"
-            ]
+            "before": ["L"],
+            "commands": ["workbench.action.nextEditor"]
         },
         {
-            "before": [
-                "<leader>",
-                "A"
-            ],
-            "commands": [
-                "workbench.action.findInFiles"
-            ]
+            "before": ["<leader>", "e"],
+            "commands": ["workbench.view.explorer"]
         },
         {
-            "before": [
-                "<leader>",
-                "l"
-            ],
-            "commands": [
-                "workbench.actions.view.toggleProblems"
-            ]
+            "before": ["<leader>", "b"],
+            "commands": ["workbench.files.action.focusOpenEditorsView"]
         },
         {
-            "before": [
-                "K"
-            ],
-            "commands": [
-                "editor.action.showHover"
-            ]
-        },
-        {
-            "before": [
-                "g",
-                "r"
-            ],
-            "commands": [
-                "editor.action.referenceSearch.trigger"
-            ],
-            "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
-        },
-        {
-            "before": [
-                "<leader>",
-                "<space>"
-            ],
-            "commands": [
-                ":nohl"
-            ]
-        },
+            "before": [":cope"],
+            "commands": ["workbench.actions.view.problems"]
+        }
+        // workbench.actions.view.problems
+        // - workbench.action.problems.focus
+        // - workbench.action.tasks.toggleProblems
+        // - workbench.actions.view.toggleProblems
     ],
     "vim.visualModeKeyBindings": [
         {
-            "before": [
-                "<"
-            ],
-            "commands": [
-                "editor.action.outdentLines"
-            ]
+            "before": [ ">" ], "commands": [ "editor.action.indentLines" ]
         },
         {
-            "before": [
-                ">"
-            ],
-            "commands": [
-                "editor.action.indentLines"
-            ]
+            "before": [ "<" ], "commands": [ "editor.action.outdentLines" ]
         },
         {
-            "before": [
-                "<BS>"
-            ],
-            "after": [
-                "x"
-            ]
-        },
+            "before": ["<backspace>"],
+            "after": ["x"]
+        }
     ],
-    "workbench.activityBar.visible": true,
-    "editor.lineNumbers": "relative",
-    "editor.acceptSuggestionOnEnter": "smart",
-    "editor.tabCompletion": "on",
-    "vim.hlsearch": true,
-    "vim.whichwrap": "b,s,h,l,<,>,[,]",
-    "vim.useSystemClipboard": true,
-    "editor.formatOnSave": true,
-    "editor.formatOnType": true,
-    "editor.formatOnPaste": true,
-    "editor.renderIndentGuides": false,
-    "editor.matchBrackets": false,
-    "workbench.colorCustomizations": {
-        "editorCursor.foreground": "#657B83",
-        "editorCursor.background": "#10303C"
-    },
-    "editor.fontFamily": "\"SauceCodePro Nerd Font\",Inconsolata, Menlo, Monaco, 'Courier New', monospace",
-    "editor.fontSize": 14,
+    // EXTENSIONS
+    // "customizeUI.titleBar":"frameless",
+    "customizeUI.activityBar": "bottom",
     "subtleBrackets.style": {
-        "borderWidth": "1px",
-        "borderStyle": "none none solid none",
         "fontWeight": "bold"
     },
-    "editor.lineHeight": 17,
-    "workbench.editor.enablePreview": false,
-    "workbench.editor.enablePreviewFromQuickOpen": false,
-    "[typescript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "workbench.sideBar.location": "right",
-    "diffEditor.renderSideBySide": false,
-    "workbench.startupEditor": "newUntitledFile",
-    "go.gopath": "/Users/jfrench/src/medium/mono/bazel-out/darwin-fastbuild/bin/darwin_amd64_stripped/go_path~:/Users/jfrench/go",
-    "go.formatTool": "goimports",
-    "go.liveErrors": {
-        "enabled": true,
-        "delay": 500
-    },
-    "go.useLanguageServer": true
+    "editor.matchBrackets": false,
+    "workbench.settings.editor": "json",
+    "debug.toolBarLocation": "docked",
+    "typescript.updateImportsOnFileMove.enabled": "always"
 }
