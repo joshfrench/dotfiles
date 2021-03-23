@@ -5,9 +5,13 @@
     "editor.tabSize": 2,
     "editor.cursorBlinking": "solid",
     "editor.fontFamily": "'Sauce Code Pro Nerd Font', Menlo, Monaco, 'Courier New', monospace",
-    "editor.fontSize": 13,
+    "editor.fontSize": 15,
     "editor.scrollBeyondLastLine": false,
     "editor.minimap.enabled": false,
+    "editor.acceptSuggestionOnEnter": "smart",
+    "editor.tabCompletion": "on",
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
     // FILES
     "files.trimTrailingWhitespace": true,
     // TERMINAL
@@ -22,45 +26,119 @@
         "statusBar.noFolderBackground": "#005f5f",
         "statusBar.debuggingBackground": "#005f5f",
         "editorCursor.foreground": "#eee8d5",
-        "statusBar.foreground": "#002b36"
+        "statusBar.foreground": "#002B36"
     },
     // VIM
     "vim.useSystemClipboard": true,
     "vim.surround": true,
     "vim.hlsearch": true,
     "vim.statusBarColorControl": true,
-    "vim.statusBarColors.insert": ["#859900", "#002B36"],
-    "vim.statusBarColors.visual": ["#d33682", "#002b36"],
+    "vim.statusBarColors.insert": [
+        "#859900",
+        "#002B36"
+    ],
+    "vim.statusBarColors.visual": [
+        "#d33682",
+        "#002b36"
+    ],
     "vim.incsearch": true,
     "vim.normalModeKeyBindings": [
         {
-            "before": ["<leader>", "<space>"],
-            "commands": [":nohl"]
+            "before": [
+                "<leader>",
+                "<space>"
+            ],
+            "commands": [
+                ":nohl"
+            ]
         },
         {
-            "before": ["K"],
-            "commands": ["editor.action.showHover"]
+            "before": [
+                "K"
+            ],
+            "commands": [
+                "editor.action.showHover"
+            ]
         },
         {
-            "before": ["H"],
-            "commands": ["workbench.action.previousEditor"]
+            "before": [
+                "H"
+            ],
+            "commands": [
+                "workbench.action.previousEditor"
+            ]
         },
         {
-            "before": ["L"],
-            "commands": ["workbench.action.nextEditor"]
+            "before": [
+                "L"
+            ],
+            "commands": [
+                "workbench.action.nextEditor"
+            ]
         },
         {
-            "before": ["<leader>", "e"],
-            "commands": ["workbench.view.explorer"]
+            "before": [
+                "<leader>",
+                "e"
+            ],
+            "commands": [
+                "revealInExplorer"
+            ]
         },
         {
-            "before": ["<leader>", "b"],
-            "commands": ["workbench.files.action.focusOpenEditorsView"]
+            "before": [
+                "<leader>",
+                "b"
+            ],
+            "commands": [
+                "workbench.action.showEditorsInActiveGroup"
+            ]
         },
         {
-            "before": [":cope"],
-            "commands": ["workbench.actions.view.problems"]
-        }
+            "before": [
+                "<leader>",
+                "B"
+            ],
+            "commands": [
+                "workbench.files.action.focusOpenEditorsView"
+            ]
+        },
+        {
+            "before": [
+                ":cope"
+            ],
+            "commands": [
+                "workbench.actions.view.problems"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "A"
+            ],
+            "commands": [
+                "workbench.action.findInFiles"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "t"
+            ],
+            "commands": [
+                "workbench.action.quickOpen"
+            ]
+        },
+        {
+            "before": [
+                "g",
+                "r"
+            ],
+            "commands": [
+                "editor.action.referenceSearch.trigger"
+            ],
+            "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
+        },
         // workbench.actions.view.problems
         // - workbench.action.problems.focus
         // - workbench.action.tasks.toggleProblems
@@ -68,14 +146,28 @@
     ],
     "vim.visualModeKeyBindings": [
         {
-            "before": [ ">" ], "commands": [ "editor.action.indentLines" ]
+            "before": [
+                ">"
+            ],
+            "commands": [
+                "editor.action.indentLines"
+            ]
         },
         {
-            "before": [ "<" ], "commands": [ "editor.action.outdentLines" ]
+            "before": [
+                "<"
+            ],
+            "commands": [
+                "editor.action.outdentLines"
+            ]
         },
         {
-            "before": ["<backspace>"],
-            "after": ["x"]
+            "before": [
+                "<backspace>"
+            ],
+            "after": [
+                "x"
+            ]
         }
     ],
     // EXTENSIONS
@@ -87,5 +179,6 @@
     "editor.matchBrackets": false,
     "workbench.settings.editor": "json",
     "debug.toolBarLocation": "docked",
-    "typescript.updateImportsOnFileMove.enabled": "always"
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "workbench.startupEditor": "newUntitledFile"
 }
