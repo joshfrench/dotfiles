@@ -144,7 +144,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'Valloric/MatchTagAlways'
 " Plug 'jiangmiao/auto-pairs'
-Plug 'lunarWatcher/auto-pairs', {'tag': '*'}
+Plug 'LunarWatcher/auto-pairs', {'tag': '*'}
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'tomtom/tcomment_vim'
@@ -426,6 +426,7 @@ let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_types = 1
+au BufWritepre *.go silent | GoImports
 "}}}
 
 "{{{ Sandwich
@@ -550,6 +551,12 @@ nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 nnoremap <silent><leader>. <cmd>lua vim.lsp.buf.code_action()<CR>
 autocmd Filetype ts,go setlocal omnifunc=v:lua.vim.lsp.omnifunc
 inoremap <expr> <Tab>   pumvisible() ? "\<CR>" : "\<Tab>"
+" don't clobber autopairs
+let g:completion_confirm_key = ""
+imap <expr> <cr>  pumvisible() ? complete_info()["selected"] != "-1" ?
+  \ "\<Plug>(completion_confirm_completion)"  :
+  \ "\<c-e>\<CR>" : "\<CR>"
+
 lua << EOF
 local on_attach_vim = function(client)
   require'completion'.on_attach(client)
@@ -655,13 +662,14 @@ let g:ale_virtualtext_cursor=1
 let g:neoformat_basic_format_trim = 1
 let g:neoformat_run_all_formatters = 1
 let g:neoformat_only_msg_on_error = 1
-au InsertLeave,Bufwritepre * silent! undojoin | Neoformat
+au InsertLeave,BufWritepre <buffer> silent! undojoin | Neoformat
 let g:neoformat_typescript_prettier = {
   \ 'exe': 'prettier',
   \ 'args': ['--stdin', '--stdin-filepath', '"%:p"', '--parser', 'typescript'],
   \ 'stdin': 1
   \ }
 let g:neoformat_enabled_typescriptreact = ['prettier']
+let g:neoformat_enabled_go = [] " let LSP handle go
 "}}}
 
 "{{{ Gitgutter
