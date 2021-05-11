@@ -143,7 +143,8 @@ Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'Valloric/MatchTagAlways'
-Plug 'jiangmiao/auto-pairs'
+" Plug 'jiangmiao/auto-pairs'
+Plug 'lunarWatcher/auto-pairs', {'tag': '*'}
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'tomtom/tcomment_vim'
@@ -159,6 +160,7 @@ Plug 'leafgarland/typescript-vim'
 Plug 'ianks/vim-tsx'
 Plug 'jparise/vim-graphql'
 Plug 'fatih/vim-go'
+Plug 'sebdah/vim-delve'
 Plug 'chr4/nginx.vim'
 Plug 'lepture/vim-jinja'
 Plug 'plasticboy/vim-markdown'
@@ -271,7 +273,12 @@ let g:closetag_emptyTags_caseSensitive = 1
 
 "{{{ AutoPairs
 augroup ts_pairs
-  autocmd FileType typescript let b:AutoPairs = AutoPairsDefine({'\w\zs<' : '>'})
+  let g:AutoPairsCompatibleMaps = 0
+  let g:AutoPairsMapBS = 1
+  let g:AutoPairsMultilineBackspace = 1
+  let g:AutoPairs = autopairs#AutoPairsDefine([
+        \ {"open":"\w\zs<", "close":">", "filetype":"typescript"}
+        \ ])
 augroup end
 "}}}
 
@@ -401,14 +408,20 @@ let g:startify_custom_header= startify#pad(g:ascii)
 "}}}
 
 "{{{ Go
-" vim-go for highlighting, coc-go for LSP.
+" vim-go for highlighting, nvim for LSP.
 let g:go_gopls_enabled = 0
 let g:go_code_completion_enabled = 0
 let g:go_def_mapping_enabled = 0
 let g:go_echo_go_info = 0
 let g:go_fmt_autosave = 0
 let g:go_mod_fmt_autosave = 0
+let g:go_imports_autosave = 0
+let g:go_gopls_local = 'medium.com'
 let g:go_doc_keywordprg_enabled = 0
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_structs = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_extra_types = 1
@@ -519,6 +532,7 @@ nmap <silent> <c-t> :TagbarToggle<CR>
 let g:diagnostic_auto_popup_while_jump = 1
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 let g:completion_trigger_keyword_length = 3
+let g:diagnostic_insert_delay = 1
 sign define LspDiagnosticsSignError text=■ texthl=LspDiagnosticsSignError
 sign define LspDiagnosticsSignWarning text=■ texthl=LspDiagnosticsSignWarning
 sign define LspDiagnosticsSignInformation text=■ texthl=LspDiagnosticsSignInformation

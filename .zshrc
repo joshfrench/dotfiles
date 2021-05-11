@@ -41,7 +41,7 @@ export CONFIDENT_JIRA_BRANCH=1
 alias tmux='env TERM=screen-256color tmux'
 alias vim=nvim
 foreground-vi() {
-  fg %vi
+  fg %nvi
 }
 zle -N foreground-vi
 bindkey '^Z' foreground-vi
