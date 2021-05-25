@@ -1,0 +1,11 @@
+set shell zsh
+
+set shellopts '-eu'
+
+set scrolloff 6
+
+set previewer ~/go/bin/pistol
+
+map <enter> shell
+map <esc> quit
+map i $pistol $f | less -R
