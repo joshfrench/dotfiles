@@ -53,6 +53,8 @@ bindkey '' backward-word
 bindkey '^F' forward-word
 
 autoload -U zmv
+autoload -Uz compinit
+compinit
 eval "$(direnv hook $0)"
 
 # RIPGREP_CONFIG_PATH=~/dotfiles/.ripgreprc
@@ -85,3 +87,5 @@ antibody bundle "${MONO_HOME}/script/zsh/modules/navigation"
 antibody bundle "${MONO_HOME}/script/zsh/modules/okta"
 # antibody bundle "${MONO_HOME}/script/zsh/modules/paths"
 antibody bundle "~/dotfiles/zsh/modules/autojump"
+
+source <(kubectl completion zsh)
