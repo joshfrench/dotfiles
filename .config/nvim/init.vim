@@ -159,6 +159,7 @@ Plug 'mxw/vim-jsx'
 Plug 'leafgarland/typescript-vim'
 Plug 'ianks/vim-tsx'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'hashivim/vim-terraform'
 Plug 'itchyny/lightline.vim'
 Plug 'plasticboy/vim-markdown'
 Plug 'terryma/vim-multiple-cursors'
@@ -461,6 +462,12 @@ augroup end
 	\    'match_syntax': 1, 'kind': ['delete', 'replace', 'textobj'],
 	\    'action': ['delete'], 'input': ['(']},
 	\ ]
+"}}}
+
+"{{{ Terraform
+let g:terraform_align=1
+let g:terraform_fold_sections=1
+let g:terraform_fmt_on_save=1
 "}}}
 
 "{{{ Rainbow Parens
