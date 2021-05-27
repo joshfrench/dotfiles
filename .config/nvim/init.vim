@@ -163,6 +163,7 @@ Plug 'fatih/vim-go'
 Plug 'sebdah/vim-delve'
 Plug 'chr4/nginx.vim'
 Plug 'lepture/vim-jinja'
+Plug 'hashivim/vim-terraform'
 Plug 'plasticboy/vim-markdown'
 Plug 'corriander/vim-markdown-indent'
 Plug 'preservim/tagbar'
@@ -469,6 +470,12 @@ au BufWritepre *.go silent | GoImports
 	\    'match_syntax': 1, 'kind': ['delete', 'replace', 'textobj'],
 	\    'action': ['delete'], 'input': ['(']},
 	\ ]
+"}}}
+
+"{{{ Terraform
+let g:terraform_align=1
+let g:terraform_fold_sections=1
+let g:terraform_fmt_on_save=1
 "}}}
 
 "{{{ Rainbow Parens
