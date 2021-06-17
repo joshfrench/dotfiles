@@ -40,6 +40,9 @@ export CONFIDENT_JIRA_BRANCH=1
 
 alias tmux='env TERM=screen-256color tmux'
 alias vim=nvim
+alias tf=terraform
+alias kubens='ok kubens'
+
 foreground-vi() {
   fg %nvi
 }
@@ -87,5 +90,6 @@ antibody bundle "${MONO_HOME}/script/zsh/modules/navigation"
 antibody bundle "${MONO_HOME}/script/zsh/modules/okta"
 # antibody bundle "${MONO_HOME}/script/zsh/modules/paths"
 antibody bundle "~/dotfiles/zsh/modules/autojump"
+antibody bundle "~/dotfiles/zsh/modules/kubeps"
 
 source <(kubectl completion zsh)

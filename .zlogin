@@ -3,8 +3,19 @@ setopt prompt_subst
 autoload -Uz add-zsh-hook
 autoload -Uz vcs-info
 
+awson() {
+  PROMPT_AWS_PROFILE=on
+}
+
+awsoff() {
+  PROMPT_AWS_PROFILE=off
+}
+
 prompt_medium_aws_profile() {
-  [[ -n ${AWS_PROFILE} ]] && print -n " %F{yellow}☁︎ ${AWS_PROFILE:t}%f "
+  [[ "${PROMPT_AWS_PROFILE}" == "off" ]] && return
+  local AWS_PS
+  [[ -n ${AWS_PROFILE} ]] && AWS_PS+="%F{yellow}☁️  ${AWS_PROFILE:t}%f "
+  print -n "${AWS_PS}"
 }
 
 
@@ -31,7 +42,14 @@ zstyle ':vcs_info:*' stagedstr '%F{green}●'
 add-zsh-hook precmd prompt_medium_aws_profile
 add-zsh-hook precmd vcs_info
 
-RPROMPT='$(prompt_medium_aws_profile)%F{blue}%(5~<%-1~/.../%2~<%~)%f'
+KUBE_PS1_SYMBOL_PADDING=false
+KUBE_PS1_SYMBOL_DEFAULT=☸️
+KUBE_PS1_PREFIX=
+KUBE_PS1_SUFFIX=
+KUBE_PS1_SEPARATOR='  '
+KUBE_PS1_CTX_COLOR="blue"
+
+RPROMPT='$(kube_ps1) $(prompt_medium_aws_profile)%F{blue}%(5~<%-1~/.../%2~<%~)%f'
 PROMPT='${vcs_info_msg_0_}%(?.%F{green}.%B%F{red})%_%#%f%b '
 SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [y/n/a/e]? '
 
