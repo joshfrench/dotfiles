@@ -1,7 +1,3 @@
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
 
@@ -38,10 +34,7 @@ export NODE_PATH="/usr/local/lib/node"
 export USE_FUZZY_SELECT=1
 export CONFIDENT_JIRA_BRANCH=1
 
-alias tmux='env TERM=screen-256color tmux'
-alias vim=nvim
-alias tf=terraform
-alias kubens='ok kubens'
+# aliases -> modules/aliases
 
 foreground-vi() {
   fg %nvi
@@ -61,11 +54,6 @@ compinit
 eval "$(direnv hook $0)"
 
 # RIPGREP_CONFIG_PATH=~/dotfiles/.ripgreprc
-
-alias diff=colordiff
-alias cat=bat
-alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
-alias bs='bootstrap --sync'
 
 # Load the Medium environment
 [[ -f /opt/medium/env ]] && source /opt/medium/env
@@ -91,5 +79,6 @@ antibody bundle "${MONO_HOME}/script/zsh/modules/okta"
 # antibody bundle "${MONO_HOME}/script/zsh/modules/paths"
 antibody bundle "~/dotfiles/zsh/modules/autojump"
 antibody bundle "~/dotfiles/zsh/modules/kubeps"
+antibody bundle "~/dotfiles/zsh/modules/aliases"
 
 source <(kubectl completion zsh)
