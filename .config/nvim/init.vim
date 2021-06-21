@@ -47,7 +47,7 @@ set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " highlight whitespace
 set foldmethod=marker
 " set foldlevelstart=99
 set linebreak                             " softwrap at word boundaries
-set completeopt=menuone,noinsert          " never autocomplete
+set completeopt=menuone,noselect          " never autocomplete
 set signcolumn=yes:1
 
 let s:medium = 142                        " used for laptop/desktop UI tweaks
@@ -138,7 +138,7 @@ vnoremap <M-k> :m '<-2<CR>gv=gv
 "{{{ Plugins
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/completion-nvim'
+Plug 'hrsh7th/nvim-compe'
 " Plug expand('~/dotfiles/lsp-fzf')
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
@@ -576,8 +576,6 @@ nmap <silent> <c-t> :TagbarToggle<CR>
 
 "{{{ LSP
 let g:diagnostic_auto_popup_while_jump = 1
-let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
-let g:completion_trigger_keyword_length = 3
 let g:diagnostic_insert_delay = 1
 sign define LspDiagnosticsSignError text=■ texthl=LspDiagnosticsSignError
 sign define LspDiagnosticsSignWarning text=■ texthl=LspDiagnosticsSignWarning
@@ -594,18 +592,37 @@ nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
 nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
 nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 nnoremap <silent><leader>. <cmd>lua vim.lsp.buf.code_action()<CR>
-autocmd Filetype ts,go setlocal omnifunc=v:lua.vim.lsp.omnifunc
-inoremap <expr> <Tab>   pumvisible() ? "\<CR>" : "\<Tab>"
-" don't clobber autopairs
-let g:completion_confirm_key = ""
-imap <expr> <cr>  pumvisible() ? complete_info()["selected"] != "-1" ?
-  \ "\<Plug>(completion_confirm_completion)"  :
-  \ "\<c-e>\<CR>" : "\<CR>"
+" autocmd Filetype ts,go setlocal omnifunc=v:lua.vim.lsp.omnifunc
+inoremap <silent><expr> <CR>      compe#confirm('<CR>')
+inoremap <silent><expr> <Tab>     compe#confirm('<Tab>')
+inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
+inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 
 lua << EOF
 local on_attach_vim = function(client)
-  require'completion'.on_attach(client)
 end
+require'compe'.setup{
+  enabled = true;
+  autocomplete = true;
+  debug = false;
+  min_length = 1;
+  preselect = 'enable';
+  throttle_time = 80;
+  source_timeout = 200;
+  resolve_timeout = 800;
+  incomplete_delay = 400;
+  max_abbr_width = 100;
+  max_kind_width = 100;
+  max_menu_width = 100;
+  documentation = true;
+
+  source={
+    path = true;
+    buffer = true;
+    nvim_lsp = true;
+    nvim_lua = true;
+  }
+}
 require'lspconfig'.tsserver.setup{on_attach=on_attach_vim}
 require'lspconfig'.gopls.setup{on_attach=on_attach_vim}
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
