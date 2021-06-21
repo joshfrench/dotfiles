@@ -632,7 +632,7 @@ require'lspconfig'.diagnosticls.setup{
       eslint = {
         sourceName = 'eslint',
         rootPatterns = {".eslintrc.js"},
-        command = 'eslint',
+        command = 'eslint_d',
         args = {
           "--stdin",
           "--stdin-filename",
