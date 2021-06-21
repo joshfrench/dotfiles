@@ -146,6 +146,7 @@ Plug 'nvim-lua/telescope.nvim'
 " Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'sbdchd/neoformat'
 " Plug 'dense-analysis/ale'
+Plug 'ray-x/lsp_signature.nvim'
 Plug 'iamcco/diagnostic-languageserver'
 Plug 'lifepillar/vim-solarized8'
 Plug 'mhinz/vim-startify'
@@ -583,11 +584,13 @@ sign define LspDiagnosticsSignInformation text=■ texthl=LspDiagnosticsSignInfo
 sign define LspDiagnosticsSignHint text=■ texthl=LspDiagnosticsSignHint
 autocmd CursorHold * lua vim.lsp.buf.document_highlight()
 autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
+autocmd CursorHold * lua require'lsp_signature'.signature()
 autocmd CursorMoved * lua vim.lsp.buf.clear_references()
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+" Todo: <c-k> conflicts with tmux nav
+nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
 nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
 nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
@@ -600,6 +603,15 @@ inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 
 lua << EOF
 local on_attach_vim = function(client)
+  require'lsp_signature'.on_attach({
+    bind = true,
+    hint_prefix = '',
+    -- hint_enable = false,
+    floating_window = false,
+    handler_opts = {
+      border = 'single',
+    },
+  })
 end
 require'compe'.setup{
   enabled = true;
