@@ -319,6 +319,7 @@ augroup ts_pairs
   let g:AutoPairs = autopairs#AutoPairsDefine([
         \ {"open":"\w\zs<", "close":">", "filetype":"typescript"}
         \ ])
+  let g:AutoPairsShortcutFastWrap = "<C-e>"
 augroup end
 "}}}
 
