@@ -585,8 +585,8 @@ sign define LspDiagnosticsSignInformation text=■ texthl=LspDiagnosticsSignInfo
 sign define LspDiagnosticsSignHint text=■ texthl=LspDiagnosticsSignHint
 autocmd CursorHold * lua vim.lsp.buf.document_highlight()
 autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
-autocmd CursorHold * lua require'lsp_signature'.signature()
 autocmd CursorMoved * lua vim.lsp.buf.clear_references()
+" autocmd InsertLeave <buffer> silent! lua vim.api.nvim_buf_clear_namespace(0, vim.api.nvim_create_namespace('lsp_signature'), 0, -1)
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
