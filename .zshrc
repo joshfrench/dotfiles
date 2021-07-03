@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
 
@@ -68,6 +75,7 @@ antibody bundle zsh-users/zsh-completions
 antibody bundle zsh-users/zsh-autosuggestions
 
 # antibody bundle silverlyra/pure
+antibody bundle romkatv/powerlevel10k
 antibody bundle zsh-users/zsh-syntax-highlighting
 antibody bundle zsh-users/zsh-history-substring-search
 
@@ -82,3 +90,6 @@ antibody bundle "~/dotfiles/zsh/modules/kubeps"
 antibody bundle "~/dotfiles/zsh/modules/aliases"
 
 source <(kubectl completion zsh)
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
