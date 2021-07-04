@@ -20,6 +20,8 @@ precmd() {
 }
 fi
 
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=11'
+
 _gen_fzf_default_opts() {
   local color00='#002b36'
   local color01='#073642'
