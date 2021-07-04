@@ -1,5 +1,6 @@
 setopt prompt_subst
 
+fpath+=~/src/pure
 autoload -Uz add-zsh-hook
 autoload -U promptinit; promptinit
 prompt pure
@@ -7,6 +8,7 @@ prompt pure
 PURE_GIT_PULL=0
 PURE_PROMPT_SYMBOL='%%'
 PURE_PROMPT_VICMD_SYMBOL=">"
+PURE_NEWLINE=1
 zstyle :prompt:pure:prompt:success color green
 
 export LSCOLORS="exgxBxdxcxegaxabagacad"
