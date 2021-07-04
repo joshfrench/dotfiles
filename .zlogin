@@ -2,6 +2,8 @@ setopt prompt_subst
 
 autoload -Uz add-zsh-hook
 
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=10'
+
 export LSCOLORS="exgxBxdxcxegaxabagacad"
 export LS_COLORS='di=34;40:ln=36;40:so=1;;40:pi=33;40:ex=32;40:bd=34;46:cd=0;40:su=0;41:sg=0;46:tw=0;42:ow=0;43:'
 
