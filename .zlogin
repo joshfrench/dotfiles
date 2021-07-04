@@ -14,6 +14,12 @@ zstyle :prompt:pure:prompt:success color green
 export LSCOLORS="exgxBxdxcxegaxabagacad"
 export LS_COLORS='di=34;40:ln=36;40:so=1;;40:pi=33;40:ex=32;40:bd=34;46:cd=0;40:su=0;41:sg=0;46:tw=0;42:ow=0;43:'
 
+if [ $ITERM_SESSION_ID ]; then
+precmd() {
+  echo -ne "\033]0;${PWD#*/*/*/*/*/}\007"
+}
+fi
+
 _gen_fzf_default_opts() {
   local color00='#002b36'
   local color01='#073642'
