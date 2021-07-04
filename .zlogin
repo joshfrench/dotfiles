@@ -39,6 +39,8 @@ zstyle ':vcs_info:git*' formats "%F{blue}%r%f%F{magenta}@%f%F{blue}%b %c%u"
 zstyle ':vcs_info:*' unstagedstr '%F{yellow}●'
 zstyle ':vcs_info:*' stagedstr '%F{green}●'
 
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=10'
+
 add-zsh-hook precmd prompt_medium_aws_profile
 add-zsh-hook precmd vcs_info
 
@@ -47,9 +49,8 @@ KUBE_PS1_SYMBOL_DEFAULT=
 KUBE_PS1_PREFIX=
 KUBE_PS1_SUFFIX=
 KUBE_PS1_SEPARATOR='  '
-KUBE_PS1_CTX_COLOR="magenta"
-KUBE_PS1_NS_COLOR="magenta"
-KUBE_PS1_SEPARATOR_COLOR="magenta"
+KUBE_PS1_CTX_COLOR='blue'
+KUBE_PS1_NS_COLOR='blue'
 
 RPROMPT='$(kube_ps1) $(prompt_medium_aws_profile)%F{blue}%(5~<%-1~/.../%2~<%~)%f'
 PROMPT='${vcs_info_msg_0_}%(?.%F{green}.%B%F{red})%_%#%f%b '
