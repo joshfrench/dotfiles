@@ -49,10 +49,8 @@ bindkey "^E" end-of-line
 bindkey '' backward-word
 bindkey '^F' forward-word
 
-autoload -U zmv
-autoload -Uz compinit
-compinit
-eval "$(direnv hook $0)"
+# disabled for speed; medium doesn't use
+# eval "$(direnv hook $0)"
 
 # RIPGREP_CONFIG_PATH=~/dotfiles/.ripgreprc
 
@@ -92,8 +90,6 @@ kubectl() {
 setopt prompt_subst
 
 autoload -Uz add-zsh-hook
-autoload -U promptinit; promptinit
-prompt pure
 
 PURE_GIT_PULL=0
 PURE_PROMPT_SYMBOL='%%'
