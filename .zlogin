@@ -1,6 +1,5 @@
 setopt prompt_subst
 
-fpath+=~/src/pure
 autoload -Uz add-zsh-hook
 autoload -U promptinit; promptinit
 prompt pure
