@@ -14,7 +14,7 @@
 # Uncomment following line if you want to disable autosetting terminal title.
 # DISABLE_AUTO_TITLE="true"
 
-setopt correct
+setopt correct extendedglob
 setopt +o nomatch
 
 # Uncomment following line if you want red dots to be displayed while waiting for completion
@@ -111,4 +111,11 @@ _gen_fzf_default_opts() {
 }
 
 _gen_fzf_default_opts
+
+autoload -Uz compinit
+if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
+	compinit;
+else
+	compinit -C;
+fi
 # zprof
