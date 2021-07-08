@@ -1,60 +1,16 @@
 setopt prompt_subst
 
 autoload -Uz add-zsh-hook
-autoload -Uz vcs-info
+autoload -U promptinit; promptinit
+prompt pure
 
-awson() {
-  PROMPT_AWS_PROFILE=on
-}
+PURE_GIT_PULL=0
+PURE_PROMPT_SYMBOL='%%'
+PURE_PROMPT_VICMD_SYMBOL=">"
+PURE_NEWLINE=1
+zstyle :prompt:pure:prompt:success color green
 
-awsoff() {
-  PROMPT_AWS_PROFILE=off
-}
-
-prompt_medium_aws_profile() {
-  [[ "${PROMPT_AWS_PROFILE}" == "off" ]] && return
-  local AWS_PS
-  [[ -n ${AWS_PROFILE} ]] && AWS_PS+="%F{yellow}${AWS_PROFILE:t}%f "
-  print -n "${AWS_PS}"
-}
-
-
-+vi-git-untracked() {
-  if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
-    output=$(git status --porcelain) && \
-    [ ! -z $output ]
-  then
-    if [[ $(grep "^??" <<< $output) ]]
-    then
-     hook_com[unstaged]+='%F{red}●'
-    fi
-    hook_com[unstaged]+=' '
-  fi
-}
-
-zstyle ':vcs_info:*' enable git
-zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
-zstyle ':vcs_info:git*' formats "%F{blue}%r%f%F{magenta}@%f%F{blue}%b %c%u"
-zstyle ':vcs_info:*' unstagedstr '%F{yellow}●'
-zstyle ':vcs_info:*' stagedstr '%F{green}●'
-
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=10'
-
-add-zsh-hook precmd prompt_medium_aws_profile
-add-zsh-hook precmd vcs_info
-
-KUBE_PS1_SYMBOL_PADDING=false
-KUBE_PS1_SYMBOL_DEFAULT=
-KUBE_PS1_PREFIX=
-KUBE_PS1_SUFFIX=
-KUBE_PS1_SEPARATOR='  '
-KUBE_PS1_CTX_COLOR='blue'
-KUBE_PS1_NS_COLOR='blue'
-
-RPROMPT='$(kube_ps1) $(prompt_medium_aws_profile)%F{blue}%(5~<%-1~/.../%2~<%~)%f'
-PROMPT='${vcs_info_msg_0_}%(?.%F{green}.%B%F{red})%_%#%f%b '
-SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [y/n/a/e]? '
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=11'
 
 export LSCOLORS="exgxBxdxcxegaxabagacad"
 export LS_COLORS='di=34;40:ln=36;40:so=1;;40:pi=33;40:ex=32;40:bd=34;46:cd=0;40:su=0;41:sg=0;46:tw=0;42:ow=0;43:'

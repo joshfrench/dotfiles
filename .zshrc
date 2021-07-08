@@ -67,7 +67,7 @@ antibody bundle mafredri/zsh-async
 antibody bundle zsh-users/zsh-completions
 antibody bundle zsh-users/zsh-autosuggestions
 
-# antibody bundle silverlyra/pure
+antibody bundle joshfrench/pure
 antibody bundle zsh-users/zsh-syntax-highlighting
 antibody bundle zsh-users/zsh-history-substring-search
 
