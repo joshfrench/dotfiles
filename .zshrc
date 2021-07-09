@@ -30,7 +30,7 @@ AUTO_PARAMS_SLASH=true
 # Customize...
 export EDITOR=nvim
 
-export PATH="/usr/local/bin:$PATH"
+export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 export NODE_PATH="/usr/local/lib/node"
 export USE_FUZZY_SELECT=1
 export CONFIDENT_JIRA_BRANCH=1
@@ -53,9 +53,6 @@ bindkey '^F' forward-word
 # eval "$(direnv hook $0)"
 
 # RIPGREP_CONFIG_PATH=~/dotfiles/.ripgreprc
-
-# Load the Medium environment
-[[ -f /opt/medium/env ]] && source /opt/medium/env
 
 # Activate antibody, a zsh plugin manager (https://getantibody.github.io)
 source ~/.zsh_plugins.sh

@@ -1,15 +1,15 @@
-# regen with antibody bundle < ./zsh_plugins.txt > ./zsh_plugins.sh
+# regen with antibody bundle < ./zsh_plugins.txt > ./.zsh_plugins.sh
 mafredri/zsh-async
 zsh-users/zsh-completions
 zsh-users/zsh-autosuggestions
 
-joshfrench/pure
+joshfrench/pure branch:main
 zsh-users/zsh-syntax-highlighting
 zsh-users/zsh-history-substring-search
 
-/Users/jfrench/src/medium/mono/script/zsh/modules/fzf
-/Users/jfrench/src/medium/mono/script/zsh/modules/history
-/Users/jfrench/src/medium/mono/script/zsh/modules/navigation
-/Users/jfrench/src/medium/mono/script/zsh/modules/okta
-/Users/jfrench/dotfiles/zsh/modules/autojump
-/Users/jfrench/dotfiles/zsh/modules/aliases
+# /Users/josh/src/medium/mono/script/zsh/modules/fzf
+# /Users/josh/src/medium/mono/script/zsh/modules/history
+# /Users/josh/src/medium/mono/script/zsh/modules/navigation
+# /Users/josh/src/medium/mono/script/zsh/modules/okta
+/Users/josh/dotfiles/zsh/modules/autojump
+/Users/josh/dotfiles/zsh/modules/aliases
