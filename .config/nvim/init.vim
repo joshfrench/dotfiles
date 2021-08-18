@@ -657,12 +657,12 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   }
 )
 require'lspconfig'.diagnosticls.setup{
-  filetypes = {   "javascript", "javascriptreact", "typescript", "typescriptreact", "typescript.tsx"},
+  filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "typescript.tsx", "javascript.jsx"},
   init_options = {
     linters = {
       eslint = {
         sourceName = 'eslint',
-        rootPatterns = {".eslintrc.js"},
+        rootPatterns = {".eslintrc.js", ".eslintrc.json"},
         command = 'eslint_d',
         args = {
           "--stdin",
@@ -685,6 +685,7 @@ require'lspconfig'.diagnosticls.setup{
     },
     filetypes = {
       ['typescript.tsx'] = 'eslint',
+      ['javascript.jsx'] = 'eslint',
       javascript = 'eslint',
       javascriptreact = 'eslint',
       typescriptreact = 'eslint'
