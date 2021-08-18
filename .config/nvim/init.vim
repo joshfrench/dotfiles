@@ -140,7 +140,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
 " Plug expand('~/dotfiles/lsp-fzf')
-Plug 'nvim-lua/popup.nvim'
+" Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/telescope.nvim'
 " Plug 'nvim-treesitter/nvim-treesitter'
@@ -276,7 +276,7 @@ function custom_actions.fzf_multi_select(prompt_bufnr)
 end
 require'telescope'.setup{
   defaults = {
-    shorten_path = true,
+    path_display = {"shorten"},
     mappings = {
             i = {
                 -- close on escape
@@ -634,6 +634,7 @@ require'compe'.setup{
     buffer = true;
     nvim_lsp = true;
     nvim_lua = true;
+    emoji = true;
   }
 }
 require'lspconfig'.tsserver.setup{on_attach=on_attach_vim}
