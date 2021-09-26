@@ -14,3 +14,9 @@ source /Users/josh/dotfiles/zsh/modules/autojump/autojump.plugin.zsh
 fpath+=( /Users/josh/dotfiles/zsh/modules/autojump )
 source /Users/josh/dotfiles/zsh/modules/aliases/aliases.plugin.zsh
 fpath+=( /Users/josh/dotfiles/zsh/modules/aliases )
+source /Users/josh/dotfiles/zsh/modules/fzf/fzf.plugin.zsh
+fpath+=( /Users/josh/dotfiles/zsh/modules/fzf )
+source /Users/josh/dotfiles/zsh/modules/history/history.plugin.zsh
+fpath+=( /Users/josh/dotfiles/zsh/modules/history )
+source /Users/josh/dotfiles/zsh/modules/navigation/navigation.plugin.zsh
+fpath+=( /Users/josh/dotfiles/zsh/modules/navigation )

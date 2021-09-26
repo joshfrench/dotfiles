@@ -13,3 +13,6 @@ zsh-users/zsh-history-substring-search
 # /Users/josh/src/medium/mono/script/zsh/modules/okta
 /Users/josh/dotfiles/zsh/modules/autojump
 /Users/josh/dotfiles/zsh/modules/aliases
+/Users/josh/dotfiles/zsh/modules/fzf
+/Users/josh/dotfiles/zsh/modules/history
+/Users/josh/dotfiles/zsh/modules/navigation
