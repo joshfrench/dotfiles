@@ -276,7 +276,9 @@ function custom_actions.fzf_multi_select(prompt_bufnr)
 end
 require'telescope'.setup{
   defaults = {
-    shorten_path = true,
+    path_display = {
+      "shorten"
+    },
     mappings = {
             i = {
                 -- close on escape
