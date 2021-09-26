@@ -30,10 +30,10 @@ AUTO_PARAMS_SLASH=true
 # Customize...
 export EDITOR=nvim
 
-export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 export NODE_PATH="/usr/local/lib/node"
-export USE_FUZZY_SELECT=1
-export CONFIDENT_JIRA_BRANCH=1
+export GOPATH=$HOME/go
+export GOROOT="$(brew --prefix golang)/libexec"
+export PATH="/usr/local/bin:/usr/local/sbin:$PATH:${GOPATH}/bin:${GOROOT}/bin"
 
 # aliases -> modules/aliases
 
@@ -48,9 +48,6 @@ bindkey "^A" beginning-of-line
 bindkey "^E" end-of-line
 bindkey '' backward-word
 bindkey '^F' forward-word
-
-# disabled for speed; medium doesn't use
-# eval "$(direnv hook $0)"
 
 # RIPGREP_CONFIG_PATH=~/dotfiles/.ripgreprc
 
