@@ -2,7 +2,8 @@
 # Configure fzf
 #
 
-brew_prefix=$(brew --prefix)
+# brew_prefix=$(brew --prefix)
+brew_prefix='/usr/local'
 
 # Auto-completion
 fzf_completion=$brew_prefix/opt/fzf/shell/completion.zsh
