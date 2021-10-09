@@ -12,3 +12,4 @@ zsh-users/zsh-history-substring-search
 /Users/josh/dotfiles/zsh/modules/fzf
 /Users/josh/dotfiles/zsh/modules/history
 /Users/josh/dotfiles/zsh/modules/navigation
+/Users/josh/dotfiles/zsh/modules/lazyload

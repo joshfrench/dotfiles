@@ -54,15 +54,6 @@ bindkey '^F' forward-word
 # Activate antibody, a zsh plugin manager (https://getantibody.github.io)
 source ~/.zsh_plugins.sh
 
-kubectl() {
-  unset -f kubectl
-  if ! type __start_kubectl >/dev/null 2>&1; then
-    source <(kubectl completion zsh)
-  fi
-
-  kubectl "$@"
-}
-
 autoload -Uz add-zsh-hook
 
 PURE_GIT_PULL=0
