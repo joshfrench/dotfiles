@@ -16,6 +16,7 @@
 
 setopt correct extendedglob
 setopt +o nomatch
+setopt prompt_subst
 
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 # COMPLETION_WAITING_DOTS="true"
@@ -63,8 +64,6 @@ kubectl() {
   kubectl "$@"
 }
 
-setopt prompt_subst
-
 autoload -Uz add-zsh-hook
 
 PURE_GIT_PULL=0
@@ -107,9 +106,10 @@ _gen_fzf_default_opts() {
 _gen_fzf_default_opts
 
 autoload -Uz compinit
-if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
-	compinit;
+if [[ -n ${ZDOTDIR:-${HOME}}/.zcompdump(#qN.m+1) ]]; then
+  compinit
+  touch ${ZDOTDIR:-${HOME}}/.zcompdump
 else
-	compinit -C;
+  compinit -C
 fi
 # zprof
