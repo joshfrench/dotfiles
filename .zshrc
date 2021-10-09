@@ -33,8 +33,7 @@ export EDITOR=nvim
 
 export NODE_PATH="/usr/local/lib/node"
 export GOPATH=$HOME/go
-export GOROOT="$(brew --prefix golang)/libexec"
-export PATH="/usr/local/bin:/usr/local/sbin:$PATH:${GOPATH}/bin:${GOROOT}/bin"
+export PATH="/usr/local/bin:/usr/local/sbin:$PATH:${GOROOT}/bin"
 
 # aliases -> modules/aliases
 
