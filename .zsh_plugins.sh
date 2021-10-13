@@ -20,5 +20,5 @@ source /Users/josh/dotfiles/zsh/modules/history/history.plugin.zsh
 fpath+=( /Users/josh/dotfiles/zsh/modules/history )
 source /Users/josh/dotfiles/zsh/modules/navigation/navigation.plugin.zsh
 fpath+=( /Users/josh/dotfiles/zsh/modules/navigation )
-# source /Users/josh/dotfiles/zsh/modules/lazyload/lazyload.plugin.zsh
-# fpath+=( /Users/josh/dotfiles/zsh/modules/lazyload )
+source /Users/josh/dotfiles/zsh/modules/lazyload/lazyload.plugin.zsh
+fpath+=( /Users/josh/dotfiles/zsh/modules/lazyload )
