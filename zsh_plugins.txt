@@ -3,7 +3,8 @@ mafredri/zsh-async
 zsh-users/zsh-completions
 zsh-users/zsh-autosuggestions
 
-joshfrench/pure branch:main
+# joshfrench/pure branch:main
+/Users/josh/src/joshfrench/pure
 zsh-users/zsh-syntax-highlighting
 zsh-users/zsh-history-substring-search
 
