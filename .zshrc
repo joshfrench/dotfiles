@@ -53,6 +53,8 @@ bindkey '^F' forward-word
 
 # Activate antibody, a zsh plugin manager (https://getantibody.github.io)
 source ~/.zsh_plugins.sh
+private=${HOME}/zsh/modules/private/private.zsh
+[ -f $private ] && source $private
 
 autoload -Uz add-zsh-hook
 

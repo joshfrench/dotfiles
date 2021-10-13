@@ -1,3 +1,4 @@
 .DS_STORE
 .vim/undo
 *.zwc
+zsh/modules/private
