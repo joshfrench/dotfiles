@@ -332,7 +332,7 @@ function! NoNerd(status)
 endfunction
 
 function! LightlineFilename()
-  let filename = winwidth(0) > s:medium ? expand('%:~:s?/src/medium/??') : expand('%:t')
+  let filename = winwidth(0) > s:medium ? expand('%:~:s?/src/rstudio/??') : expand('%:t')
   return NoNerd(filename)
 endfunction
 
@@ -418,9 +418,7 @@ let g:slime_default_config = {"socket_name": "default", "target_pane": "{right-o
 
 "{{{ Startify
 let g:startify_bookmarks = [
-      \ {'l': "${MONO_HOME}/ts/lite"},
-      \ {'r': "${MONO_HOME}/ts/rito"},
-      \ {'m': "${MONO_HOME}/medium2"},
+      \ {'c': "~/src/rstudio/connect"},
       \ {'.': "~/dotfiles"}
 \ ]
 
@@ -449,7 +447,6 @@ let g:go_echo_go_info = 0
 let g:go_fmt_autosave = 0
 let g:go_mod_fmt_autosave = 0
 let g:go_imports_autosave = 0
-let g:go_gopls_local = 'medium.com'
 let g:go_doc_keywordprg_enabled = 0
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_fields = 1
