@@ -624,6 +624,7 @@ require'compe'.setup{
     buffer = true;
     nvim_lsp = true;
     nvim_lua = true;
+    emoji = true;
   }
 }
 require'lspconfig'.tsserver.setup{on_attach=on_attach_vim}
