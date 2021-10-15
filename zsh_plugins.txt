@@ -3,8 +3,6 @@ mafredri/zsh-async
 zsh-users/zsh-completions
 zsh-users/zsh-autosuggestions
 
-# joshfrench/pure branch:main
-/Users/josh/src/joshfrench/pure
 zsh-users/zsh-syntax-highlighting
 zsh-users/zsh-history-substring-search
 
@@ -14,3 +12,4 @@ zsh-users/zsh-history-substring-search
 /Users/josh/dotfiles/zsh/modules/fzf
 /Users/josh/dotfiles/zsh/modules/history
 /Users/josh/dotfiles/zsh/modules/navigation
+/Users/josh/dotfiles/zsh/modules/pure # symlink me!

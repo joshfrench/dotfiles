@@ -2,3 +2,5 @@
 .vim/undo
 *.zwc
 zsh/modules/env/private.*
+karabiner/automatic_backups/
+zsh/modules/pure
