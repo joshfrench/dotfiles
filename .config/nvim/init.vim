@@ -627,7 +627,14 @@ require'compe'.setup{
   }
 }
 require'lspconfig'.tsserver.setup{on_attach=on_attach_vim}
-require'lspconfig'.gopls.setup{on_attach=on_attach_vim}
+require'lspconfig'.gopls.setup{
+  on_attach = on_attach_vim;
+  -- settings = {
+  --   gopls = {
+      -- env = {GOFLAGS="-tags=linux"}
+  --   }
+  -- }
+}
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
     -- This will disable virtual text, like doing:
