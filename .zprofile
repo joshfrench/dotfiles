@@ -6,9 +6,7 @@
     fi
   }
 
-
   zcompare ${ZDOTDIR:-${HOME}}/.{zcompdump,zshrc}
-  # zcompare ${ZDOTDIR:-${HOME}}/.zshrc
 
   for file in ~/dotfiles/zsh/modules/**/*.zsh; do
     zcompare ${file}
