@@ -6,6 +6,7 @@ alias tf=terraform
 alias diff=colordiff
 alias cat=bat
 alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
+alias koff='kubectl config unset current-context'
 
 # git branch (interactive)
 function gb() {
