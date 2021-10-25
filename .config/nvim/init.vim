@@ -636,6 +636,7 @@ require'lspconfig'.gopls.setup{
   --   }
   -- }
 }
+require'lspconfig'.r_language_server.setup{on_attach=on_attach_vim}
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
     -- This will disable virtual text, like doing:
