@@ -378,7 +378,7 @@ function! LightlineLineInfo()
 endfunction
 
 function! LightlineTagbar()
-  return NoNerd(tagbar#currenttag('%s','','f'))
+  return NoNerd(tagbar#currenttag('%s','','f', 'nearest-stl'))
 endfunction
 
 let g:lightline = {
@@ -526,22 +526,26 @@ autocmd! CmdwinEnter *        nnoremap <buffer> <CR> <CR>
 "}}}
 
 "{{{ Tagbar
-" Customize STL display of some symbols
+" ctags_identifier:tagbar_display_name:fold:show_in_statusline
+" ctags --list-kinds-full=<lang>
 let g:tagbar_type_go = {
     \ 'kinds' : [
-        \ 'p:package:0:0',
-        \ 'i:imports:1:0',
-        \ 'c:constants:0:0',
+        \ 'p:package:0:1',
+        \ 'i:interfaces',
+        \ 'c:constants:1:0',
         \ 'v:variables:0:0',
-        \ 't:types',
-        \ 'n:interfaces',
-        \ 'w:fields:0:0',
-        \ 'e:embedded',
-        \ 'm:methods',
-        \ 'r:constructors',
+        \ 't:types:1',
+        \ 'n:methods:1',
+        \ 'm:members',
         \ 'f:functions',
-        \ '?:unknown',
+        \ 's:structs',
+        \ 'u:unknown',
     \ ],
+    \ 'kind2scope': {
+       \ 'p': 'package',
+       \ 's': 'struct',
+       \ 'i': 'interface',
+    \ },
 \ }
 
 let g:tagbar_type_typescript = {
