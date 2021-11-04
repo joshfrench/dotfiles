@@ -278,7 +278,7 @@ end
 require'telescope'.setup{
   defaults = {
     path_display = {
-      "shorten"
+      -- "shorten"
     },
     mappings = {
             i = {
