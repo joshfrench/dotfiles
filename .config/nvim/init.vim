@@ -146,6 +146,7 @@ Plug 'nvim-lua/telescope.nvim'
 " Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'sbdchd/neoformat'
 " Plug 'dense-analysis/ale'
+Plug 'machakann/vim-highlightedyank'
 Plug 'ray-x/lsp_signature.nvim'
 Plug 'iamcco/diagnostic-languageserver'
 Plug 'lifepillar/vim-solarized8'
@@ -754,6 +755,10 @@ let g:neoformat_enabled_go = [] " let LSP handle go
 let g:gitgutter_sign_priority=0
 "}}}
 
+"{{{ HighlightedYank
+  let g:highlightedyank_highlight_duration=500
+"}}}
+
 "{{{ Stuff that needs to go last
 syntax on
 filetype plugin indent on
@@ -778,6 +783,7 @@ hi! link ALEErrorSignLineNr ALEErrorSign
 hi! link ALEWarningSign LspDiagnosticsDefaultWarning
 hi! link ALEInfoSogn LspDiagnosticsDefaultInformation
 hi! link typescriptReserved Keyword
+hi HighlightedyankRegion gui=standout guibg=#073642 guifg=#b58900
 
 augroup tsx_hi
   autocmd FileType typescript.tsx syn clear xmlError
