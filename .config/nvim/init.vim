@@ -153,6 +153,8 @@ Plug 'nvim-lua/telescope.nvim'
 " Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'sbdchd/neoformat'
 " Plug 'dense-analysis/ale'
+Plug 'weilbith/nvim-code-action-menu'
+Plug 'kosayoda/nvim-lightbulb'
 Plug 'machakann/vim-highlightedyank'
 Plug 'ray-x/lsp_signature.nvim'
 Plug 'iamcco/diagnostic-languageserver'
@@ -307,6 +309,7 @@ EOF
 map <leader>A <cmd>lua require'telescope.builtin'.live_grep()<CR>
 nnoremap <leader>t <cmd>lua require'telescope.builtin'.find_files()<CR>
 nnoremap <silent> gr <cmd>lua require'telescope.builtin'.lsp_references()<CR>
+nnoremap <leader>. <cmd>lua require'telescope.builtin'.lsp_code_actions({layout_config={width=0.25,height=0.25},layout_strategy='cursor'})<CR>
 "}}}
 
 "{{{ TComment
@@ -597,7 +600,7 @@ nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
 nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
 nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
-nnoremap <silent><leader>. <cmd>lua vim.lsp.buf.code_action()<CR>
+" nnoremap <silent><leader>. <cmd>lua vim.lsp.buf.code_action()<CR>
 " autocmd Filetype ts,go setlocal omnifunc=v:lua.vim.lsp.omnifunc
 inoremap <silent><expr> <CR>      compe#confirm('<CR>')
 inoremap <silent><expr> <Tab>     compe#confirm('<Tab>')
@@ -766,6 +769,13 @@ let g:gitgutter_sign_priority=0
   let g:highlightedyank_highlight_duration=500
 "}}}
 
+"{{{ lightbulb
+lua << EOF
+vim.fn.sign_define('LightBulbSign', { text = "■", texthl = "LightBulbSign", linehl="", numhl="" })
+vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]
+EOF
+"}}}
+
 "{{{ Stuff that needs to go last
 syntax on
 filetype plugin indent on
@@ -791,6 +801,7 @@ hi! link ALEWarningSign LspDiagnosticsDefaultWarning
 hi! link ALEInfoSogn LspDiagnosticsDefaultInformation
 hi! link typescriptReserved Keyword
 hi HighlightedyankRegion gui=standout guibg=#073642 guifg=#b58900
+hi LightBulbSign guifg=#fdf6e3
 
 augroup tsx_hi
   autocmd FileType typescript.tsx syn clear xmlError
