@@ -53,6 +53,13 @@ set signcolumn=yes:1
 let s:medium = 142                        " used for laptop/desktop UI tweaks
 "}}}
 
+"{{{ mouse
+set mouse=a
+set mousefocus
+set mousehide
+set mousemodel=popup
+"}}}
+
 "{{{ Relative numbers
 set rnu
 set nu
