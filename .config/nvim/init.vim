@@ -333,6 +333,7 @@ augroup ts_pairs
         \ {"open":"\w\zs<", "close":">", "filetype":"typescript"}
         \ ])
   let g:AutoPairsShortcutFastWrap = "<C-e>"
+  let g:AutoPairsFiletypeBlacklist = ['TelescopePrompt']
 augroup end
 "}}}
 
