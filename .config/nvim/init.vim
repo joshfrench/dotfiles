@@ -803,6 +803,7 @@ hi! link ALEInfoSogn LspDiagnosticsDefaultInformation
 hi! link typescriptReserved Keyword
 hi HighlightedyankRegion gui=standout guibg=#073642 guifg=#b58900
 hi LightBulbSign guifg=#fdf6e3
+hi link TagbarSignature Comment
 
 augroup tsx_hi
   autocmd FileType typescript.tsx syn clear xmlError
