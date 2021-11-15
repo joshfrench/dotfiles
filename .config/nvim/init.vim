@@ -284,32 +284,55 @@ function custom_actions.fzf_multi_select(prompt_bufnr)
         actions.file_edit(prompt_bufnr)
     end
 end
+local multi_select = {
+    i = {
+        -- close on escape
+        ["<esc>"] = actions.close,
+        ["<tab>"] = actions.toggle_selection + actions.move_selection_previous,
+        ["<s-tab>"] = actions.toggle_selection + actions.move_selection_next,
+        ["<cr>"] = custom_actions.fzf_multi_select
+    },
+    n = {
+        ["<tab>"] = actions.toggle_selection + actions.move_selection_previous,
+        ["<s-tab>"] = actions.toggle_selection + actions.move_selection_next,
+        ["<cr>"] = custom_actions.fzf_multi_select
+    }
+  }
 require'telescope'.setup{
   defaults = {
     path_display = {
       -- "shorten"
     },
-    mappings = {
-            i = {
-                -- close on escape
-                ["<esc>"] = actions.close,
-                ["<tab>"] = actions.toggle_selection + actions.move_selection_previous,
-                ["<s-tab>"] = actions.toggle_selection + actions.move_selection_next,
-                ["<cr>"] = custom_actions.fzf_multi_select
-            },
-            n = {
-                ["<tab>"] = actions.toggle_selection + actions.move_selection_previous,
-                ["<s-tab>"] = actions.toggle_selection + actions.move_selection_next,
-                ["<cr>"] = custom_actions.fzf_multi_select
-            }
-        }
+  },
+  pickers = {
+    find_files = {
+      mappings = multi_select
+    },
+    live_grep = {
+      mappings = multi_select
+    },
+    lsp_references = {
+      mappings = multi_select
+    },
+    lsp_code_actions = {
+      layout_config={
+        width=0.25,
+        height=0.25
+      },
+      layout_strategy='cursor'
+    }
   }
 }
 EOF
 map <leader>A <cmd>lua require'telescope.builtin'.live_grep()<CR>
 nnoremap <leader>t <cmd>lua require'telescope.builtin'.find_files()<CR>
 nnoremap <silent> gr <cmd>lua require'telescope.builtin'.lsp_references()<CR>
-nnoremap <leader>. <cmd>lua require'telescope.builtin'.lsp_code_actions({layout_config={width=0.25,height=0.25},layout_strategy='cursor'})<CR>
+" nnoremap <leader>. <cmd>lua require'telescope.builtin'.lsp_code_actions()<CR>
+"}}}
+
+"{{{ CodeActionMenu
+nnoremap <leader>. <cmd>CodeActionMenu<CR>
+let g:code_action_menu_show_details = v:false
 "}}}
 
 "{{{ TComment
