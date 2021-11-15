@@ -332,6 +332,7 @@ nnoremap <silent> gr <cmd>lua require'telescope.builtin'.lsp_references()<CR>
 
 "{{{ CodeActionMenu
 nnoremap <leader>. <cmd>CodeActionMenu<CR>
+vnoremap <leader>. <cmd>CodeActionMenu<CR>
 let g:code_action_menu_show_details = v:false
 "}}}
 
