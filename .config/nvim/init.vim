@@ -617,9 +617,9 @@ autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics({focusable=fal
 autocmd CursorMoved * lua vim.lsp.buf.clear_references()
 " autocmd InsertLeave <buffer> silent! lua vim.api.nvim_buf_clear_namespace(0, vim.api.nvim_create_namespace('lsp_signature'), 0, -1)
 autocmd InsertLeave,BufWritePre *.go lua vim.lsp.buf.formatting()
-nnoremap <silent> gD    <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> gd    <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
 " Todo: <c-k> conflicts with tmux nav
 nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> 1gd   <cmd>lua vim.lsp.buf.type_definition()<CR>
