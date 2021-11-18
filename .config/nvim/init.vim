@@ -51,6 +51,7 @@ set completeopt=menuone,noselect          " never autocomplete
 set signcolumn=yes:1
 
 let s:medium = 142                        " used for laptop/desktop UI tweaks
+autocmd FileType qf wincmd J
 "}}}
 
 "{{{ mouse
