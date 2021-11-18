@@ -601,7 +601,11 @@ let g:tagbar_type_typescript = {
     \ ],
 \ }
 
+let g:tagbar_autofocus = 1
 let g:tagbar_compact = 2
+let g:tagbar_map_showproto = ''
+let g:tagbar_map_togglefold = '<Space>'
+" let g:tagbar_show_data_type = 1
 
 nmap <silent> <c-t> :TagbarToggle<CR>
 "}}}
