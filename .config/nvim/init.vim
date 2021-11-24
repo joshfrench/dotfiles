@@ -106,6 +106,7 @@ command! -bang QA qa<bang>
 command! -bang Qa qa<bang>
 command! -bang Bd bd<bang>
 cmap Tabe tabe
+cnoreabbrev git Git
 "}}}
 
 "{{{ Keymapping
