@@ -189,6 +189,7 @@ Plug 'lepture/vim-jinja'
 Plug 'hashivim/vim-terraform'
 Plug 'plasticboy/vim-markdown'
 Plug 'corriander/vim-markdown-indent'
+Plug 'leafOfTree/vim-vue-plugin'
 Plug 'preservim/tagbar'
 Plug 'itchyny/lightline.vim'
 Plug 'terryma/vim-multiple-cursors'
@@ -265,6 +266,7 @@ let g:mta_filetypes = {
  \ 'typescript': 1,
  \ 'typescript.tsx': 1,
  \ 'html' : 1,
+ \ 'vue': 1,
  \ 'xhtml' : 1,
  \ 'xml' : 1
 \ }
@@ -343,10 +345,10 @@ let g:tcomment_mapleader1='<C-\>'
 "}}}
 
 "{{{ Closetag
-let g:closetag_filenames = '*.html,*.xhtml,*.js,*.jsx,*.tsx'
-let g:closetag_filetypes = 'html,xhtml,javascript,javascriptreact,jsx,typescriptreact,typescript.tsx'
-let g:closetag_xhtml_filenames = '*.xhtml,*.js,*.jsx,*.tsx'
-let g:closetag_xhtml_filetypes = 'xhtml,js,jsx,tsx'
+let g:closetag_filenames = '*.html,*.xhtml,*.js,*.jsx,*.tsx,*.vue'
+let g:closetag_filetypes = 'html,xhtml,javascript,javascriptreact,jsx,typescriptreact,typescript.tsx,vue'
+let g:closetag_xhtml_filenames = '*.xhtml,*.js,*.jsx,*.tsx,*.vue'
+let g:closetag_xhtml_filetypes = 'xhtml,js,jsx,tsx,vue'
 let g:closetag_emptyTags_caseSensitive = 1
 "}}}
 
@@ -733,6 +735,48 @@ require'lspconfig'.diagnosticls.setup{
       javascriptreact = 'eslint',
       typescriptreact = 'eslint'
       },
+  },
+}
+require'lspconfig'.vuels.setup{
+  on_attach=on_attach_vim,
+  init_options = {
+    config = {
+      vetur = {
+        ignoreProjectWarning = true,
+        useWorkspaceDependencies = false,
+        validation = {
+          template = true,
+          style = true,
+          script = true,
+        },
+        completion = {
+          autoImport = false,
+          useScaffoldSnippets = false,
+          tagCasing = 'kebab',
+        },
+        format = {
+          defaultFormatter = {
+            js = 'none',
+            ts = 'none',
+          },
+          defaultFormatterOptions = {},
+          scriptInitialIndent = false,
+          styleInitialIndent = false,
+        },
+      },
+      css = {},
+      html = {
+        suggest = {},
+      },
+      javascript = {
+        format = {},
+      },
+      typescript = {
+        format = {},
+      },
+      emmet = {},
+      stylusSupremacy = {},
+    },
   },
 }
 EOF
