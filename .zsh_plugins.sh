@@ -21,5 +21,7 @@ source /Users/josh/dotfiles/zsh/modules/history/history.plugin.zsh
 fpath+=( /Users/josh/dotfiles/zsh/modules/history )
 source /Users/josh/dotfiles/zsh/modules/navigation/navigation.plugin.zsh
 fpath+=( /Users/josh/dotfiles/zsh/modules/navigation )
+source /Users/josh/dotfiles/zsh/modules/nvm/nvm.plugin.zsh
+fpath+=( /Users/josh/dotfiles/zsh/modules/nvm )
 source /Users/josh/dotfiles/zsh/modules/pure/pure.plugin.zsh
 fpath+=( /Users/josh/dotfiles/zsh/modules/pure )
