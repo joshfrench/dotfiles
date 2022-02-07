@@ -12,7 +12,6 @@ source /Users/josh/dotfiles/zsh/modules/autojump/autojump.plugin.zsh
 fpath+=( /Users/josh/dotfiles/zsh/modules/autojump )
 source /Users/josh/dotfiles/zsh/modules/aliases/aliases.plugin.zsh
 fpath+=( /Users/josh/dotfiles/zsh/modules/aliases )
-source /Users/josh/dotfiles/zsh/modules/completions/_just.zsh
 source /Users/josh/dotfiles/zsh/modules/completions/_kubebuilder.zsh
 fpath+=( /Users/josh/dotfiles/zsh/modules/completions )
 source /Users/josh/dotfiles/zsh/modules/env/env.zsh
