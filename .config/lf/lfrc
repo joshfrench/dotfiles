@@ -8,6 +8,6 @@ set previewer ~/go/bin/pistol
 
 map <enter> shell
 map <esc> quit
-map i $pistol $f | less -R
+map i $pistol $f | less -RN
 
 cmd open $$EDITOR $f
