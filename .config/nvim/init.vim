@@ -228,7 +228,7 @@ map <C-e> :NERDTreeToggleRefresh<CR>
 map <leader>e :NERDTreeFind<CR>
 
 let g:NERDTreeWinPos = "right"
-let NERDTreeIgnore=['\~$', '\.swo$', '\.swp$', '\.git']
+let NERDTreeIgnore=['\~$', '\.swo$', '\.swp$', '\.git$']
 let NERDTreeShowHidden=1
 let NERDTreeKeepTreeInNewTab=0
 let NERDTreeMinimalUI=1
