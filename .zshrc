@@ -62,7 +62,6 @@ PURE_GIT_PULL=0
 PURE_PROMPT_SYMBOL='%%'
 PURE_PROMPT_VICMD_SYMBOL=">"
 PURE_NEWLINE=1
-zstyle :prompt:pure:prompt:success color green
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=11'
 
