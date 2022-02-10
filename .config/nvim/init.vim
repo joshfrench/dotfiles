@@ -888,4 +888,8 @@ let g:rainbow_active = 0
 augroup rainbows
   autocmd FileType lisp,clojure,schema RainbowToggleOn
 augroup END
+
+augroup gcfg
+  autocmd FileType gcfg set syntax=cfg | setl commentstring=;\ %s
+augroup END
 "}}}
