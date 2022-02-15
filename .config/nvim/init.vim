@@ -388,7 +388,7 @@ endfunction
 function! LightlineLSPErrors() abort
   let e=''
   if luaeval('not vim.tbl_isempty(vim.lsp.buf_get_clients(0))')
-    let e=luaeval("vim.lsp.diagnostic.get_count(vim.fn.bufnr('%'), [[Error]])")
+    let e=luaeval("vim.diagnostic.get(vim.fn.bufnr('%'), [[Error]])")
   endif
   return e == '0' ? '' : e
 endfunction
@@ -396,7 +396,7 @@ endfunction
 function! LightlineLSPWarnings() abort
   let w=''
   if luaeval('not vim.tbl_isempty(vim.lsp.buf_get_clients(0))')
-    let w=luaeval("vim.lsp.diagnostic.get_count(vim.fn.bufnr('%'), [[Warning]])")
+    let w=luaeval("vim.diagnostic.get(vim.fn.bufnr('%'), [[Warning]])")
   endif
   return w == '0 '? '' : w
 endfunction
@@ -447,7 +447,7 @@ let g:lightline = {
       \ }
 \ }
 
-autocmd User LspDiagnosticsChanged call lightline#update()
+autocmd User DiagnosticChanged call lightline#update()
 "}}}
 
 "{{{ Slime
@@ -616,12 +616,12 @@ nmap <silent> <c-t> :TagbarToggle<CR>
 "{{{ LSP
 let g:diagnostic_auto_popup_while_jump = 1
 let g:diagnostic_insert_delay = 1
-sign define LspDiagnosticsSignError text=■ texthl=LspDiagnosticsSignError
-sign define LspDiagnosticsSignWarning text=■ texthl=LspDiagnosticsSignWarning
-sign define LspDiagnosticsSignInformation text=■ texthl=LspDiagnosticsSignInformation
-sign define LspDiagnosticsSignHint text=■ texthl=LspDiagnosticsSignHint
+sign define DiagnosticSignError text=■ texthl=DiagnosticSignError
+sign define DiagnosticSignWarning text=■ texthl=DiagnosticSignWarning
+sign define DiagnosticSignInformation text=■ texthl=DiagnosticSignInformation
+sign define DiagnosticSignHint text=■ texthl=DiagnosticSignHint
 autocmd CursorHold * lua vim.lsp.buf.document_highlight()
-autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics({focusable=false})
+autocmd CursorHold * lua vim.diagnostic.open_float({source="if_many"})
 autocmd CursorMoved * lua vim.lsp.buf.clear_references()
 " autocmd InsertLeave <buffer> silent! lua vim.api.nvim_buf_clear_namespace(0, vim.api.nvim_create_namespace('lsp_signature'), 0, -1)
 autocmd InsertLeave,BufWritePre *.go lua vim.lsp.buf.formatting()
@@ -858,13 +858,13 @@ EOF
 syntax on
 filetype plugin indent on
 
-hi LspDiagnosticsDefaultError guifg=#dc322f
-hi LspDiagnosticsDefaultInformation guifg=#268bd2
-hi LspDiagnosticsDefaultWarning guifg=#b58900
-hi LspDiagnosticsDefaultHint guifg=#268bd2
-hi LspDiagnosticsUnderlineError gui=undercurl cterm=undercurl guisp=#dc322f
-hi LspDiagnosticsUnderlineWarning gui=undercurl cterm=undercurl guisp=#b58900
-hi LspDiagnosticsUnderlineHint gui=undercurl cterm=undercurl guisp=#268bd2
+hi DiagnosticDefaultError guifg=#dc322f
+hi DiagnosticDefaultInformation guifg=#268bd2
+hi DiagnosticDefaultWarning guifg=#b58900
+hi DiagnosticDefaultHint guifg=#268bd2
+hi DiagnosticUnderlineError gui=undercurl cterm=undercurl guisp=#dc322f
+hi DiagnosticUnderlineWarning gui=undercurl cterm=undercurl guisp=#b58900
+hi DiagnosticUnderlineHint gui=undercurl cterm=undercurl guisp=#268bd2
 hi LspReferenceText cterm=reverse gui=reverse
 hi LspReferenceRead cterm=reverse gui=reverse
 hi LspReferenceWrite cterm=reverse gui=reverse
@@ -872,11 +872,11 @@ hi clear MatchParen
 hi MatchParen cterm=reverse gui=reverse
 hi clear ALEError
 hi ALEError cterm=undercurl gui=undercurl guisp=#dc322f
-hi! link ALEErrorSign LspDiagnosticsDefaultError
+hi! link ALEErrorSign DiagnosticDefaultError
 hi! link ALEVirtualTextError ALEErrorSign
 hi! link ALEErrorSignLineNr ALEErrorSign
-hi! link ALEWarningSign LspDiagnosticsDefaultWarning
-hi! link ALEInfoSogn LspDiagnosticsDefaultInformation
+hi! link ALEWarningSign DiagnosticDefaultWarning
+hi! link ALEInfoSogn DiagnosticDefaultInformation
 hi! link typescriptReserved Keyword
 hi HighlightedyankRegion gui=standout guibg=#073642 guifg=#b58900
 hi LightBulbSign guifg=#fdf6e3
