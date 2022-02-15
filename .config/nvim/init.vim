@@ -779,6 +779,9 @@ require'lspconfig'.vuels.setup{
     },
   },
 }
+require'lspconfig'.pyright.setup{
+  on_attach=on_attach_vim
+}
 EOF
 "}}}
 
