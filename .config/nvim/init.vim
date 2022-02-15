@@ -91,7 +91,7 @@ set shiftround                            " round to shiftwidth when realigning
 set tabstop=2
 set softtabstop=2
 set expandtab                             " use spaces when hitting TAB
-set nojoinspaces                          " prevent extra spaces when joining with J
+" set nojoinspaces                        " prevent extra spaces when joining with J (on by default in 0.6)
 "}}}
 
 "{{{ Do what I mean, not what I type
@@ -112,7 +112,7 @@ cnoreabbrev git Git
 "{{{ Keymapping
 map <S-H> gT                              " tab navigation
 map <S-L> gt
-nnoremap Y y$                             " Consistent with C and D
+" nnoremap Y y$                           " Consistent with C and D (on by default in 0.6)
 " toggle search highlighting
 nmap <silent> <leader><space> :set invhlsearch<CR>
 
@@ -552,7 +552,7 @@ let g:rainbow_conf = { 'guifgs': ['#268bd2', '#2aa198', '#859900', '#b58900', '#
 "}}}
 
 "{{{ Search & Replace
-set inccommand=nosplit
+" set inccommand=nosplit " (on by default in 0.6)
 nnoremap <Leader>s :let @s='\<'.expand('<cword>').'\>'<CR>:%s/<C-r>s//c<Left><Left>
 xnoremap <Leader>s "sy:%s/<C-r>s//c<Left>
 
