@@ -641,6 +641,11 @@ inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
 inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 
 lua << EOF
+vim.diagnostic.config({
+  virtual_text=false,
+  signs=true,
+  update_in_insert=false,
+})
 local on_attach_vim = function(client)
   require'lsp_signature'.on_attach({
     bind = true,
@@ -685,23 +690,6 @@ require'lspconfig'.gopls.setup{
   -- }
 }
 require'lspconfig'.r_language_server.setup{on_attach=on_attach_vim}
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, {
-    -- This will disable virtual text, like doing:
-    -- let g:diagnostic_enable_virtual_text = 0
-    virtual_text = false,
-
-    -- This is similar to:
-    -- let g:diagnostic_show_sign = 1
-    -- To configure sign display,
-    --  see: ":help vim.lsp.diagnostic.set_signs()"
-    signs = true,
-
-    -- This is similar to:
-    -- "let g:diagnostic_insert_delay = 1"
-    update_in_insert = false,
-  }
-)
 require'lspconfig'.diagnosticls.setup{
   filetypes = {   "javascript", "javascriptreact", "typescript", "typescriptreact", "typescript.tsx"},
   init_options = {
