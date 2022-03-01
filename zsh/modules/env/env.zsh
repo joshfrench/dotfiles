@@ -16,3 +16,5 @@ export PISTOL_CHROMA_FORMATTER=terminal16m
 export PISTOL_CHROMA_STYLE=solarized-dark
 
 # ./private.zsh is gitignored; store privileged items there
+private=./private.zsh
+[ -f $private ] && source $private
