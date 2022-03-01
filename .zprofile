@@ -1,3 +1,7 @@
+export NODE_PATH="/usr/local/lib/node"
+export GOPATH=$HOME/go
+export PATH="/Users/josh/.pyenv/shims:/usr/local/bin:/usr/local/sbin:$PATH:${GOPATH}/bin:/Users/josh/.local/bin"
+
 (
   # if no .zwc or base is newer, compile
   zcompare() {
@@ -8,7 +12,7 @@
 
   zcompare ${ZDOTDIR:-${HOME}}/.{zcompdump,zshrc}
 
-  for file in ~/dotfiles/zsh/modules/**/*.zsh; do
+  for file in ~/dotfiles/zsh/{modules,completions}/**/*.zsh; do
     zcompare ${file}
   done
 

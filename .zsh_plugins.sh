@@ -12,8 +12,6 @@ source /Users/josh/dotfiles/zsh/modules/autojump/autojump.plugin.zsh
 fpath+=( /Users/josh/dotfiles/zsh/modules/autojump )
 source /Users/josh/dotfiles/zsh/modules/aliases/aliases.plugin.zsh
 fpath+=( /Users/josh/dotfiles/zsh/modules/aliases )
-source /Users/josh/dotfiles/zsh/modules/completions/_kubebuilder.zsh
-fpath+=( /Users/josh/dotfiles/zsh/modules/completions )
 source /Users/josh/dotfiles/zsh/modules/env/env.zsh
 source /Users/josh/dotfiles/zsh/modules/env/private.zsh
 fpath+=( /Users/josh/dotfiles/zsh/modules/env )
@@ -21,9 +19,11 @@ source /Users/josh/dotfiles/zsh/modules/fzf/fzf.plugin.zsh
 fpath+=( /Users/josh/dotfiles/zsh/modules/fzf )
 source /Users/josh/dotfiles/zsh/modules/history/history.plugin.zsh
 fpath+=( /Users/josh/dotfiles/zsh/modules/history )
+source /Users/josh/dotfiles/zsh/modules/lazyload/kubectl.zsh
+source /Users/josh/dotfiles/zsh/modules/lazyload/nvm.zsh
+source /Users/josh/dotfiles/zsh/modules/lazyload/pyenv.zsh
+fpath+=( /Users/josh/dotfiles/zsh/modules/lazyload )
 source /Users/josh/dotfiles/zsh/modules/navigation/navigation.plugin.zsh
 fpath+=( /Users/josh/dotfiles/zsh/modules/navigation )
-source /Users/josh/dotfiles/zsh/modules/nvm/nvm.plugin.zsh
-fpath+=( /Users/josh/dotfiles/zsh/modules/nvm )
 source /Users/josh/dotfiles/zsh/modules/pure/pure.plugin.zsh
 fpath+=( /Users/josh/dotfiles/zsh/modules/pure )

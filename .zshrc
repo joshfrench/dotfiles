@@ -17,7 +17,6 @@
 setopt correct extendedglob
 setopt +o nomatch
 setopt prompt_subst
-
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 # COMPLETION_WAITING_DOTS="true"
 
@@ -26,16 +25,9 @@ setopt prompt_subst
 # much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-AUTO_PARAMS_SLASH=true
-
-# Customize...
-export EDITOR=nvim
-
-export NODE_PATH="/usr/local/lib/node"
-export GOPATH=$HOME/go
-export PATH="/usr/local/bin:/usr/local/sbin:$PATH:${GOPATH}/bin"
-
+# env vars -> modules/env
 # aliases -> modules/aliases
+# paths -> .zprofile
 
 foreground-vi() {
   fg %nvi
@@ -49,25 +41,11 @@ bindkey "^E" end-of-line
 bindkey '' backward-word
 bindkey '^F' forward-word
 
-# RIPGREP_CONFIG_PATH=~/dotfiles/.ripgreprc
-
 # Activate antibody, a zsh plugin manager (https://getantibody.github.io)
 source ~/.zsh_plugins.sh
-private=${HOME}/zsh/modules/private/private.zsh
-[ -f $private ] && source $private
 
+fpath=(./zsh/completions $fpath)
 autoload -Uz add-zsh-hook
-
-PURE_GIT_PULL=0
-PURE_PROMPT_SYMBOL='%%'
-PURE_PROMPT_VICMD_SYMBOL=">"
-PURE_NEWLINE=1
-
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=11'
-
-export LSCOLORS="exgxBxdxcxegaxabagacad"
-export LS_COLORS='di=34;40:ln=36;40:so=1;;40:pi=33;40:ex=32;40:bd=34;46:cd=0;40:su=0;41:sg=0;46:tw=0;42:ow=0;43:'
-
 autoload -Uz compinit
 if [[ -n ${ZDOTDIR:-${HOME}}/.zcompdump(#qN.m+1) ]]; then
   compinit
