@@ -16,9 +16,9 @@ set shell=/bin/bash\ -i
 
 "{{{ VIM UI
 set termguicolors
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-let &t_Cs = "\e[4:3m"
+" let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"  " fixes background in true color mode
+" let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+let &t_Cs = "\e[4:3m"                     " undercurl support
 let &t_Ce = "\e[4:0m"
 set background=dark                       " assume dark BG
 set winblend=0                            " no transparency on floating windows
@@ -50,7 +50,8 @@ set foldmethod=marker
 " set foldlevelstart=99
 set linebreak                             " softwrap at word boundaries
 set completeopt=menuone,noselect          " never autocomplete
-set signcolumn=yes:1
+" set signcolumn=yes:1
+set signcolumn=number
 
 let s:medium = 142                        " used for laptop/desktop UI tweaks
 autocmd FileType qf wincmd J
@@ -850,6 +851,7 @@ let g:neoformat_enabled_ruby = [] " slow af
 
 "{{{ Gitgutter
 let g:gitgutter_sign_priority=0
+let g:gitgutter_set_sign_backgrounds = 1
 "}}}
 
 "{{{ HighlightedYank
@@ -890,6 +892,7 @@ hi! link typescriptReserved Keyword
 hi HighlightedyankRegion gui=standout guibg=#073642 guifg=#b58900
 hi LightBulbSign guifg=#fdf6e3
 hi link TagbarSignature Comment
+hi SignColumn guibg=#073642
 
 augroup tsx_hi
   autocmd FileType typescript.tsx syn clear xmlError
