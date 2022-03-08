@@ -772,6 +772,24 @@ require'lspconfig'.vuels.setup{
 require'lspconfig'.pyright.setup{
   on_attach=on_attach_vim
 }
+-- too noisy
+-- require'lspconfig'.solargraph.setup{
+--   on_attach=on_attach_vim,
+--   cmd = { "solargraph", "stdio" },
+--   flags = { debounce_text_changes = 150 },
+--   settings = {
+--     solargraph = {
+--         autoformat = false,
+--         formatting = false,
+--         completion = true,
+--         diagnostic = false,
+--         folding = true,
+--         references = true,
+--         rename = true,
+--         symbols = true
+--     }
+--   }
+-- }
 EOF
 "}}}
 
@@ -827,6 +845,7 @@ let g:neoformat_typescript_prettier = {
   \ }
 let g:neoformat_enabled_typescriptreact = ['prettier']
 let g:neoformat_enabled_go = [] " let LSP handle go
+let g:neoformat_enabled_ruby = [] " slow af
 "}}}
 
 "{{{ Gitgutter

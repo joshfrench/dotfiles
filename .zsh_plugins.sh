@@ -22,6 +22,7 @@ fpath+=( /Users/josh/dotfiles/zsh/modules/history )
 source /Users/josh/dotfiles/zsh/modules/lazyload/kubectl.zsh
 source /Users/josh/dotfiles/zsh/modules/lazyload/nvm.zsh
 source /Users/josh/dotfiles/zsh/modules/lazyload/pyenv.zsh
+source /Users/josh/dotfiles/zsh/modules/lazyload/rbenv.zsh
 fpath+=( /Users/josh/dotfiles/zsh/modules/lazyload )
 source /Users/josh/dotfiles/zsh/modules/navigation/navigation.plugin.zsh
 fpath+=( /Users/josh/dotfiles/zsh/modules/navigation )
