@@ -869,10 +869,14 @@ EOF
 syntax on
 filetype plugin indent on
 
-hi DiagnosticDefaultError guifg=#dc322f
-hi DiagnosticDefaultInfo guifg=#268bd2
-hi DiagnosticDefaultWarn guifg=#b58900
-hi DiagnosticDefaultHint guifg=#268bd2
+hi DiagnosticError guifg=#dc322f guibg=#073642
+hi DiagnosticInfo guifg=#268bd2 guibg=#073642
+hi DiagnosticWarn guifg=#b58900 guibg=#073642
+hi DiagnosticHint guifg=#fdf6e3 guibg=#073642
+hi DiagnosticDefaultError guifg=#dc322f guibg=#073642
+hi DiagnosticDefaultInfo guifg=#268bd2 guibg=#073642
+hi DiagnosticDefaultWarn guifg=#b58900 guibg=#073642
+hi DiagnosticDefaultHint guifg=#fdf6e3 guibg=#073642
 hi DiagnosticUnderlineError gui=undercurl cterm=undercurl guisp=#dc322f
 hi DiagnosticUnderlineWarn gui=undercurl cterm=undercurl guisp=#b58900
 hi DiagnosticUnderlineHint gui=undercurl cterm=undercurl guisp=#268bd2
@@ -890,7 +894,7 @@ hi! link ALEWarningSign DiagnosticDefaultWarning
 hi! link ALEInfoSogn DiagnosticDefaultInformation
 hi! link typescriptReserved Keyword
 hi HighlightedyankRegion gui=standout guibg=#073642 guifg=#b58900
-hi LightBulbSign guifg=#fdf6e3
+hi LightBulbSign guifg=#fdf6e3 guibg=#073642
 hi link TagbarSignature Comment
 hi SignColumn guibg=#073642
 
