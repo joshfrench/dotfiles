@@ -1,6 +1,6 @@
 alias l=exa
 alias ll='exa -l'
-alias tmux='env TERM=screen-256color tmux'
+# alias tmux='env TERM=screen-256color tmux'
 alias vim=nvim
 alias tf=terraform
 alias diff=colordiff

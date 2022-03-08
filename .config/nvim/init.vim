@@ -18,6 +18,8 @@ set shell=/bin/bash\ -i
 set termguicolors
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+let &t_Cs = "\e[4:3m"
+let &t_Ce = "\e[4:0m"
 set background=dark                       " assume dark BG
 set winblend=0                            " no transparency on floating windows
 set shortmess+=filmnrxoOtTc               " shorter messages & prompts
@@ -617,8 +619,8 @@ nmap <silent> <c-t> :TagbarToggle<CR>
 let g:diagnostic_auto_popup_while_jump = 1
 let g:diagnostic_insert_delay = 1
 sign define DiagnosticSignError text=■ texthl=DiagnosticSignError
-sign define DiagnosticSignWarning text=■ texthl=DiagnosticSignWarning
-sign define DiagnosticSignInformation text=■ texthl=DiagnosticSignInformation
+sign define DiagnosticSignWarn text=■ texthl=DiagnosticSignWarn
+sign define DiagnosticSignInfo text=■ texthl=DiagnosticSignInfo
 sign define DiagnosticSignHint text=■ texthl=DiagnosticSignHint
 autocmd CursorHold * lua vim.lsp.buf.document_highlight()
 autocmd CursorHold * lua vim.diagnostic.open_float({source="if_many"})
@@ -847,11 +849,11 @@ syntax on
 filetype plugin indent on
 
 hi DiagnosticDefaultError guifg=#dc322f
-hi DiagnosticDefaultInformation guifg=#268bd2
-hi DiagnosticDefaultWarning guifg=#b58900
+hi DiagnosticDefaultInfo guifg=#268bd2
+hi DiagnosticDefaultWarn guifg=#b58900
 hi DiagnosticDefaultHint guifg=#268bd2
 hi DiagnosticUnderlineError gui=undercurl cterm=undercurl guisp=#dc322f
-hi DiagnosticUnderlineWarning gui=undercurl cterm=undercurl guisp=#b58900
+hi DiagnosticUnderlineWarn gui=undercurl cterm=undercurl guisp=#b58900
 hi DiagnosticUnderlineHint gui=undercurl cterm=undercurl guisp=#268bd2
 hi LspReferenceText cterm=reverse gui=reverse
 hi LspReferenceRead cterm=reverse gui=reverse
