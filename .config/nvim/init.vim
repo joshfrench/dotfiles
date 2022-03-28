@@ -155,6 +155,8 @@ Plug 'hrsh7th/nvim-compe'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/telescope.nvim'
+" Plug 'stevearc/dressing.nvim' " nicey nice vim.ui.select and vim.ui.input
+Plug 'williamboman/nvim-lsp-installer'
 " Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'sbdchd/neoformat'
 " Plug 'dense-analysis/ale'
@@ -162,7 +164,6 @@ Plug 'weilbith/nvim-code-action-menu'
 Plug 'kosayoda/nvim-lightbulb'
 Plug 'machakann/vim-highlightedyank'
 Plug 'ray-x/lsp_signature.nvim'
-Plug 'iamcco/diagnostic-languageserver'
 Plug 'lifepillar/vim-solarized8'
 Plug 'mhinz/vim-startify'
 Plug 'scrooloose/nerdtree'
@@ -183,6 +184,7 @@ Plug 'elzr/vim-json'
 Plug 'mxw/vim-jsx'
 Plug 'leafgarland/typescript-vim'
 " Plug 'HerringtonDarkholme/yats.vim'
+" Plug 'stevearc/vim-arduino'
 Plug 'ianks/vim-tsx'
 Plug 'jparise/vim-graphql'
 Plug 'fatih/vim-go'
@@ -623,7 +625,6 @@ sign define DiagnosticSignError text=■ texthl=DiagnosticSignError
 sign define DiagnosticSignWarn text=■ texthl=DiagnosticSignWarn
 sign define DiagnosticSignInfo text=■ texthl=DiagnosticSignInfo
 sign define DiagnosticSignHint text=■ texthl=DiagnosticSignHint
-autocmd CursorHold * lua vim.lsp.buf.document_highlight()
 autocmd CursorHold * lua vim.diagnostic.open_float({source="if_many"})
 autocmd CursorMoved * lua vim.lsp.buf.clear_references()
 " autocmd InsertLeave <buffer> silent! lua vim.api.nvim_buf_clear_namespace(0, vim.api.nvim_create_namespace('lsp_signature'), 0, -1)
@@ -649,17 +650,6 @@ vim.diagnostic.config({
   signs=true,
   update_in_insert=false,
 })
-local on_attach_vim = function(client)
-  require'lsp_signature'.on_attach({
-    bind = true,
-    hint_prefix = '',
-    -- hint_enable = false,
-    floating_window = false,
-    handler_opts = {
-      border = 'single',
-    },
-  })
-end
 require'compe'.setup{
   enabled = true;
   autocomplete = true;
@@ -683,102 +673,108 @@ require'compe'.setup{
     emoji = true;
   }
 }
-require'lspconfig'.tsserver.setup{on_attach=on_attach_vim}
-require'lspconfig'.gopls.setup{
-  on_attach = on_attach_vim;
-  -- settings = {
-  --   gopls = {
-      -- env = {GOFLAGS="-tags=linux"}
+local on_attach = function(client, bufno)
+  require'lsp_signature'.on_attach({
+    bind = true,
+    hint_prefix = '',
+    -- hint_enable = false,
+    floating_window = false,
+    handler_opts = {
+      border = 'single',
+    },
+  })
+  if client.resolved_capabilities.document_highlight then
+    vim.cmd("autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()")
+  end
+end
+local enhance_server_opts = {
+  -- ["gopls"] = function(opts)
+  --   opts.settings = {
+  --     golps = {
+  --       env = {GOFLAGS="-tags=linux"}
+  --     }
   --   }
-  -- }
-}
-require'lspconfig'.r_language_server.setup{on_attach=on_attach_vim}
-require'lspconfig'.diagnosticls.setup{
-  filetypes = {   "javascript", "javascriptreact", "typescript", "typescriptreact", "typescript.tsx"},
-  init_options = {
-    linters = {
-      eslint = {
-        sourceName = 'eslint',
-        rootPatterns = {".eslintrc.js"},
-        command = 'eslint_d',
-        args = {
-          "--stdin",
-          "--stdin-filename",
-          "%filepath",
-          "--format",
-          "json",
-        },
-        parseJson = {
-          errorsRoot = "[0].messages",
-          line = "line",
-          column = "column",
-          endLine = "endLine",
-          endColumn = "endColumn",
-          message = "${message} [${ruleId}]",
-          security = "severity",
-        },
-        securities = {[2] = "error", [1] = "warning"},
-      },
-    },
-    filetypes = {
-      ['typescript.tsx'] = 'eslint',
-      javascript = 'eslint',
-      javascriptreact = 'eslint',
-      typescriptreact = 'eslint'
-      },
-  },
-}
-require'lspconfig'.vuels.setup{
-  on_attach=on_attach_vim,
-  init_options = {
-    config = {
-      vetur = {
-        ignoreProjectWarning = true,
-        useWorkspaceDependencies = false,
-        validation = {
-          template = true,
-          style = true,
-          script = true,
-        },
-        completion = {
-          autoImport = false,
-          useScaffoldSnippets = false,
-          tagCasing = 'kebab',
-        },
-        format = {
-          defaultFormatter = {
-            js = 'none',
-            ts = 'none',
+  -- end
+  ["diagnosticls"] = function(opts)
+    opts.filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "typescript.tsx" }
+    opts.init_options = {
+      linters = {
+        eslint = {
+          sourceName = 'eslint',
+          rootPatterns = {".eslintrc.js"},
+          command = 'eslint_d',
+          args = {
+            "--stdin",
+            "--stdin-filename",
+            "%filepath",
+            "--format",
+            "json",
           },
-          defaultFormatterOptions = {},
-          scriptInitialIndent = false,
-          styleInitialIndent = false,
+          parseJson = {
+            errorsRoot = "[0].messages",
+            line = "line",
+            column = "column",
+            endLine = "endLine",
+            endColumn = "endColumn",
+            message = "${message} [${ruleId}]",
+            security = "severity",
+          },
+          securities = {[2] = "error", [1] = "warning"},
         },
       },
-      css = {},
-      html = {
-        suggest = {},
+      filetypes = {
+        ['typescript.tsx'] = 'eslint',
+        javascript = 'eslint',
+        javascriptreact = 'eslint',
+        typescriptreact = 'eslint'
+      }
+    }
+  end,
+  ["vuels"] = function(opts)
+    opts.init_options = {
+      config = {
+        vetur = {
+          ignoreProjectWarning = true,
+          useWorkspaceDependencies = false,
+          validation = {
+            template = true,
+            style = true,
+            script = true,
+          },
+          completion = {
+            autoImport = false,
+            useScaffoldSnippets = false,
+            tagCasing = 'kebab',
+          },
+          format = {
+            defaultFormatter = {
+              js = 'none',
+              ts = 'none',
+            },
+            defaultFormatterOptions = {},
+            scriptInitialIndent = false,
+            styleInitialIndent = false,
+          },
+        },
+        css = {},
+        html = {
+          suggest = {},
+        },
+        javascript = {
+          format = {},
+        },
+        typescript = {
+          format = {},
+        },
+        emmet = {},
+        stylusSupremacy = {},
       },
-      javascript = {
-        format = {},
-      },
-      typescript = {
-        format = {},
-      },
-      emmet = {},
-      stylusSupremacy = {},
-    },
-  },
-}
-require'lspconfig'.pyright.setup{
-  on_attach=on_attach_vim
-}
--- too noisy
--- require'lspconfig'.solargraph.setup{
---   on_attach=on_attach_vim,
---   cmd = { "solargraph", "stdio" },
---   flags = { debounce_text_changes = 150 },
---   settings = {
+    }
+  end
+-- ["solargraph"] = function(opts)
+--   opts.cmd = { "solargraph", "stdio" },
+--   opts.flags = { debounce_text_changes = 150 },
+--   opts.settings = {
 --     solargraph = {
 --         autoformat = false,
 --         formatting = false,
@@ -790,7 +786,19 @@ require'lspconfig'.pyright.setup{
 --         symbols = true
 --     }
 --   }
--- }
+-- end
+}
+require'nvim-lsp-installer'.on_server_ready(function(server)
+  local opts = {
+    on_attach = on_attach
+  }
+
+  if enhance_server_opts[server.name] then
+    enhance_server_opts[server.name](opts)
+  end
+
+  server:setup(opts)
+end)
 EOF
 "}}}
 
