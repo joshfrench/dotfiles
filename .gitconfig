@@ -21,3 +21,8 @@
 	helper = osxkeychain
 [url "ssh://git@github.com/rstudio/"]
   insteadOf = https://github.com/rstudio/
+[diff]
+	colorMoved = blocks
+[color "diff"]
+	oldMoved = magenta
+	newMoved = yellow
