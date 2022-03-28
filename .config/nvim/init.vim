@@ -50,8 +50,8 @@ set foldmethod=marker
 " set foldlevelstart=99
 set linebreak                             " softwrap at word boundaries
 set completeopt=menuone,noselect          " never autocomplete
-" set signcolumn=yes:1
-set signcolumn=number
+set signcolumn=yes:1
+" set signcolumn=number                   " not useful when gitgutter is noisy
 
 let s:medium = 142                        " used for laptop/desktop UI tweaks
 autocmd FileType qf wincmd J
@@ -456,7 +456,7 @@ autocmd User DiagnosticChanged call lightline#update()
 "{{{ Slime
 let g:slime_target="tmux"
 let g:slime_paste_file = tempname()
-let g:slime_default_config = {"socket_name": "default", "target_pane": "{right-of}"}
+let g:slime_default_config = {"socket_name": "default", "target_pane": "{right-of}"} " down-of, bottom, last...
 "}}}
 
 "{{{ Startify
