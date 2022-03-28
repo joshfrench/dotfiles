@@ -29,9 +29,15 @@ setopt prompt_subst
 # aliases -> modules/aliases
 # paths -> .zprofile
 
+# https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters/main.md#how-to-tweak-it
+(( ${+ZSH_HIGHLIGHT_STYLES} )) || typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[path]=underline
+ZSH_HIGHLIGHT_STYLES[path_prefix]=underline
+
 foreground-vi() {
   fg %nvi
 }
+
 zle -N foreground-vi
 bindkey '^Z' foreground-vi
 
