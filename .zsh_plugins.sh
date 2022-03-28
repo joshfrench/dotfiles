@@ -12,6 +12,8 @@ source /Users/josh/dotfiles/zsh/modules/autojump/autojump.plugin.zsh
 fpath+=( /Users/josh/dotfiles/zsh/modules/autojump )
 source /Users/josh/dotfiles/zsh/modules/aliases/aliases.plugin.zsh
 fpath+=( /Users/josh/dotfiles/zsh/modules/aliases )
+source /Users/josh/dotfiles/zsh/modules/direnv/direnv.zsh
+fpath+=( /Users/josh/dotfiles/zsh/modules/direnv )
 source /Users/josh/dotfiles/zsh/modules/env/env.zsh
 source /Users/josh/dotfiles/zsh/modules/env/private.zsh
 fpath+=( /Users/josh/dotfiles/zsh/modules/env )
@@ -28,3 +30,5 @@ source /Users/josh/dotfiles/zsh/modules/navigation/navigation.plugin.zsh
 fpath+=( /Users/josh/dotfiles/zsh/modules/navigation )
 source /Users/josh/dotfiles/zsh/modules/pure/pure.plugin.zsh
 fpath+=( /Users/josh/dotfiles/zsh/modules/pure )
+source /Users/josh/dotfiles/zsh/modules/pyenv/pyenv.zsh
+fpath+=( /Users/josh/dotfiles/zsh/modules/pyenv )
