@@ -196,7 +196,9 @@ Plug 'plasticboy/vim-markdown'
 Plug 'corriander/vim-markdown-indent'
 Plug 'leafOfTree/vim-vue-plugin'
 Plug 'preservim/tagbar'
-Plug 'itchyny/lightline.vim'
+" Plug 'itchyny/lightline.vim'
+" Plug 'nvim-lualine/lualine.nvim'
+Plug 'feline-nvim/feline.nvim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'machakann/vim-sandwich'
 Plug 'tpope/vim-unimpaired'
@@ -390,10 +392,10 @@ function! LightlineBranch()
   return NoNerd(fugitive#head())
 endfunction
 
-function! LightlineLSPErrors() abort
+function! LightlineLSPErrors()
   let e=''
   if luaeval('not vim.tbl_isempty(vim.lsp.buf_get_clients(0))')
-    let e=luaeval("vim.diagnostic.get(vim.fn.bufnr('%'), [[Error]])")
+    let e=luaeval("#vim.diagnostic.get(0, {severity = {min = vim.diagnostic.severity.ERROR}})")
   endif
   return e == '0' ? '' : e
 endfunction
@@ -401,7 +403,7 @@ endfunction
 function! LightlineLSPWarnings() abort
   let w=''
   if luaeval('not vim.tbl_isempty(vim.lsp.buf_get_clients(0))')
-    let w=luaeval("vim.diagnostic.get(vim.fn.bufnr('%'), [[Warning]])")
+    let w=luaeval("#vim.diagnostic.get(0, {severity = {min = vim.diagnostic.severity.WARN}})")
   endif
   return w == '0 '? '' : w
 endfunction
@@ -453,6 +455,85 @@ let g:lightline = {
 \ }
 
 autocmd User DiagnosticChanged call lightline#update()
+autocmd User LspDiagnosticChanged call lightline#update()
+"}}}
+
+"{{{ Feline
+lua << EOF
+local vi_mode_utils = require('feline.providers.vi_mode')
+require('feline').vi_mode_colors = {
+  BLOCK = "skyblue",
+  COMMAND = "green",
+  ENTER = "cyan",
+  INSERT = "red",
+  LINES = "skyblue",
+  MORE = "cyan",
+  NONE = "yellow",
+  NORMAL = "skyblue",
+  OP = "green",
+  REPLACE = "violet",
+  SELECT = "orange",
+  SHELL = "green",
+  TERM = "green",
+  ["V-REPLACE"] = "violet",
+  VISUAL = "skyblue"
+}
+local M = {
+  active = {},
+  inactive = {}
+}
+M.active[1] = {
+  {
+    provider = 'vi_mode',
+    icon = '',
+    padding = true,
+    hl = function()
+    return {
+      name = vi_mode_utils.get_mode_highlight_name(),
+      fg = 'black',
+      bg = vi_mode_utils.get_mode_color(),
+    }
+    end,
+  }
+}
+M.active[2] = {
+  {provider=''},
+}
+M.active[3] = {
+  {
+    provider = "file_type",
+    case = "lowercase",
+    filetype_icon = true
+  },
+  {
+    provider = "line_percentage",
+    case = "lowercase",
+  },
+  {
+    provider = 'position',
+  }
+}
+require('feline').setup({
+  vi_mode_colors = {
+    BLOCK = "skyblue",
+    COMMAND = "green",
+    ENTER = "cyan",
+    INSERT = "red",
+    LINES = "skyblue",
+    MORE = "cyan",
+    NONE = "yellow",
+    NORMAL = "#268bd2",
+    OP = "green",
+    REPLACE = "violet",
+    SELECT = "orange",
+    SHELL = "green",
+    TERM = "green",
+    ["V-REPLACE"] = "violet",
+    VISUAL = "skyblue"
+  },
+  components = M,
+})
+EOF
 "}}}
 
 "{{{ Slime
