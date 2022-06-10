@@ -157,7 +157,7 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/telescope.nvim'
 " Plug 'stevearc/dressing.nvim' " nicey nice vim.ui.select and vim.ui.input
 Plug 'williamboman/nvim-lsp-installer'
-" Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'sbdchd/neoformat'
 " Plug 'dense-analysis/ale'
 Plug 'weilbith/nvim-code-action-menu'
@@ -176,25 +176,25 @@ Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'alvan/vim-closetag'
-Plug 'hail2u/vim-css3-syntax'
+" Plug 'hail2u/vim-css3-syntax'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-Plug 'pangloss/vim-javascript'
-Plug 'elzr/vim-json'
+" Plug 'pangloss/vim-javascript'
+" Plug 'elzr/vim-json'
 Plug 'mxw/vim-jsx'
-Plug 'leafgarland/typescript-vim'
+" Plug 'leafgarland/typescript-vim'
 " Plug 'HerringtonDarkholme/yats.vim'
 " Plug 'stevearc/vim-arduino'
-Plug 'ianks/vim-tsx'
-Plug 'jparise/vim-graphql'
-Plug 'fatih/vim-go'
+" Plug 'ianks/vim-tsx'
+" Plug 'jparise/vim-graphql'
+" Plug 'fatih/vim-go'
 Plug 'sebdah/vim-delve'
 Plug 'chr4/nginx.vim'
 Plug 'lepture/vim-jinja'
 Plug 'hashivim/vim-terraform'
-Plug 'plasticboy/vim-markdown'
+" Plug 'plasticboy/vim-markdown'
 Plug 'corriander/vim-markdown-indent'
-Plug 'leafOfTree/vim-vue-plugin'
+" Plug 'leafOfTree/vim-vue-plugin'
 Plug 'preservim/tagbar'
 Plug 'itchyny/lightline.vim'
 Plug 'spywhere/lightline-lsp'
@@ -810,24 +810,29 @@ EOF
 "}}}
 
 "{{{ TreeSitter
-" lua <<EOF
-" require'nvim-treesitter.configs'.setup {
-"   highlight = {
-"     enable = true,
-"   },
-" }
-" EOF
-"   incremental_selection = {
-"     enable = true,
-"     keymaps = {
-"       init_selection = "gnn",
-"       node_incremental = "grn",
-"       scope_incremental = "grc",
-"       node_decremental = "grm",
-"     },
-"   },
-" set foldmethod=expr
-" set foldexpr=nvim_treesitter#foldexpr()
+  " incremental_selection = {
+  "   enable = true,
+  "   keymaps = {
+  "     init_selection = "gnn",
+  "     node_incremental = "grn",
+  "     scope_incremental = "grc",
+  "     node_decremental = "grm",
+  "   },
+  " },
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+lua <<EOF
+ require'nvim-treesitter.configs'.setup {
+   ensure_installed = {  "bash",  "clojure", "comment", "css", "dockerfile", "go", "gomod", "html", "http", "javascript", "jsdoc", "json", "lua", "make", "markdown", "python", "regex", "ruby", "tsx", "typescript", "vim", "vue", "yaml" },
+   highlight = {
+     enable = true,
+     additional_vim_regex_highlighting = true,
+   },
+   indent = {
+     enable = true,
+   },
+ }
+EOF
 "}}}
 
 "{{{ Ale (disabled)
