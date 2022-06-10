@@ -389,7 +389,7 @@ function! LightlinePWD()
 endfunction
 
 function! LightlineBranch()
-  return NoNerd(fugitive#head())
+  return NoNerd(FugitiveHead())
 endfunction
 
 function! LightlineMode()
