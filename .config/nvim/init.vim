@@ -614,9 +614,8 @@ sign define DiagnosticSignError text=■ texthl=DiagnosticSignError
 sign define DiagnosticSignWarn text=■ texthl=DiagnosticSignWarn
 sign define DiagnosticSignInfo text=■ texthl=DiagnosticSignInfo
 sign define DiagnosticSignHint text=■ texthl=DiagnosticSignHint
-autocmd CursorHold * lua vim.diagnostic.open_float({source="if_many"})
+" autocmd CursorHold * lua vim.diagnostic.open_float({source="if_many", focus=false})
 autocmd CursorMoved * lua vim.lsp.buf.clear_references()
-" autocmd InsertLeave <buffer> silent! lua vim.api.nvim_buf_clear_namespace(0, vim.api.nvim_create_namespace('lsp_signature'), 0, -1)
 autocmd InsertLeave,BufWritePre *.go lua vim.lsp.buf.formatting()
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
@@ -635,7 +634,7 @@ inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 
 lua << EOF
 vim.diagnostic.config({
-  virtual_text=false,
+  virtual_text=true,
   signs=true,
   update_in_insert=false,
 })
@@ -788,6 +787,25 @@ require'nvim-lsp-installer'.on_server_ready(function(server)
 
   server:setup(opts)
 end)
+do
+  local method = "textDocument/publishDiagnostics"
+  local default_handler = vim.lsp.handlers[method]
+  vim.lsp.handlers[method] = function(err, method, result, client_id, bufnr, config)
+    default_handler(err, method, result, client_id, bufnr, config)
+    local diagnostics = vim.diagnostic.get()
+    local qflist = {open = false}
+    for bufnr, diagnostic in pairs(diagnostics) do
+      for _, d in ipairs(diagnostic) do
+        d.bufnr = bufnr
+        d.lnum = d.range.start.line + 1
+        d.col = d.range.start.character + 1
+        d.text = d.message
+        table.insert(qflist, d)
+      end
+    end
+    vim.diagnostic.setqflist(qflist)
+  end
+end
 EOF
 "}}}
 
