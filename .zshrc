@@ -17,6 +17,7 @@
 setopt correct extendedglob
 setopt +o nomatch
 setopt prompt_subst
+setopt COMPLETE_IN_WORD
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 # COMPLETION_WAITING_DOTS="true"
 
