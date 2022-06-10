@@ -74,7 +74,7 @@ augroup END
 "}}}
 
 "{{{ Statusline
-set laststatus=2                          " status bar in all modes
+set laststatus=3                          " global status bar in all modes
 set noshowmode                            " already displayed in statusline
 "}}}
 
