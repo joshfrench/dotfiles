@@ -164,7 +164,8 @@ Plug 'weilbith/nvim-code-action-menu'
 Plug 'kosayoda/nvim-lightbulb'
 Plug 'machakann/vim-highlightedyank'
 Plug 'ray-x/lsp_signature.nvim'
-Plug 'lifepillar/vim-solarized8'
+" Plug 'lifepillar/vim-solarized8'
+Plug 'ishan9299/nvim-solarized-lua'
 Plug 'mhinz/vim-startify'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -209,7 +210,7 @@ call plug#end()
 "}}}
 
 "{{{ Colorscheme
-colorscheme solarized8
+colorscheme solarized
 let g:solarized_termtrans=1
 let g:solarized_visibility="low"
 let g:solarized_diffmode="low"
