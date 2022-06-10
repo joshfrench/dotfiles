@@ -26,3 +26,5 @@
 [color "diff"]
 	oldMoved = magenta
 	newMoved = yellow
+[safe]
+	directory = /Users/josh/src/rstudio/connect
