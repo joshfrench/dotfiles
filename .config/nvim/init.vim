@@ -47,7 +47,7 @@ set scrolloff=3                           " keep X lines above/below cursor
 set list
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " highlight whitespace
 set foldmethod=marker
-" set foldlevelstart=99
+set foldlevelstart=99
 set linebreak                             " softwrap at word boundaries
 set completeopt=menuone,noselect          " never autocomplete
 set signcolumn=yes:1
@@ -166,6 +166,7 @@ Plug 'machakann/vim-highlightedyank'
 Plug 'ray-x/lsp_signature.nvim'
 " Plug 'lifepillar/vim-solarized8'
 Plug 'ishan9299/nvim-solarized-lua'
+Plug 'p00f/nvim-ts-rainbow'
 Plug 'mhinz/vim-startify'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -203,7 +204,6 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'machakann/vim-sandwich'
 Plug 'tpope/vim-unimpaired'
 Plug 'jpalardy/vim-slime'
-Plug 'luochen1990/rainbow'
 Plug expand('~/dotfiles/spacetoggle')
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
@@ -542,10 +542,6 @@ let g:terraform_fmt_on_save=1
 let g:terraform_fold_sections=0
 "}}}
 
-"{{{ Rainbow Parens
-let g:rainbow_conf = { 'guifgs': ['#268bd2', '#2aa198', '#859900', '#b58900', '#cb4b16', '#6c71c4'], }
-"}}}
-
 "{{{ Search & Replace
 " set inccommand=nosplit " (on by default in 0.6)
 nnoremap <Leader>s :let @s='\<'.expand('<cword>').'\>'<CR>:%s/<C-r>s//c<Left><Left>
@@ -811,28 +807,33 @@ EOF
 "}}}
 
 "{{{ TreeSitter
-  " incremental_selection = {
-  "   enable = true,
-  "   keymaps = {
-  "     init_selection = "gnn",
-  "     node_incremental = "grn",
-  "     scope_incremental = "grc",
-  "     node_decremental = "grm",
-  "   },
-  " },
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
 lua <<EOF
- require'nvim-treesitter.configs'.setup {
-   ensure_installed = {  "bash",  "clojure", "comment", "css", "dockerfile", "go", "gomod", "html", "http", "javascript", "jsdoc", "json", "lua", "make", "markdown", "python", "regex", "ruby", "tsx", "typescript", "vim", "vue", "yaml" },
-   highlight = {
-     enable = true,
-     additional_vim_regex_highlighting = true,
-   },
-   indent = {
-     enable = true,
-   },
- }
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = {  "bash",  "clojure", "comment", "css", "dockerfile", "go", "gomod", "html", "http", "javascript", "jsdoc", "json", "lua", "make", "markdown", "python", "regex", "ruby", "tsx", "typescript", "vim", "vue", "yaml" },
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = true,
+  },
+  indent = {
+    enable = true,
+  },
+  rainbow = {
+    enable = true,
+    extended_mode = true,
+    colors = { '#268bd2', '#2aa198', '#859900', '#b58900', '#cb4b16', '#6c71c4', },
+  },
+  -- incremental_selection = {
+  --   enable = true,
+  --   keymaps = {
+  --     init_selection = "gnn",
+  --     node_incremental = "grn",
+  --     scope_incremental = "grc",
+  --     node_decremental = "grm",
+  --   },
+  -- },
+}
 EOF
 "}}}
 
@@ -876,7 +877,7 @@ let g:gitgutter_set_sign_backgrounds = 1
 "}}}
 
 "{{{ HighlightedYank
-  let g:highlightedyank_highlight_duration=500
+  let g:highlightedyank_highlight_duration=650
 "}}}
 
 "{{{ lightbulb
@@ -901,20 +902,13 @@ hi DiagnosticDefaultHint guifg=#fdf6e3 guibg=#073642
 hi DiagnosticUnderlineError gui=undercurl cterm=undercurl guisp=#dc322f
 hi DiagnosticUnderlineWarn gui=undercurl cterm=undercurl guisp=#b58900
 hi DiagnosticUnderlineHint gui=undercurl cterm=undercurl guisp=#268bd2
-hi LspReferenceText cterm=reverse gui=reverse
-hi LspReferenceRead cterm=reverse gui=reverse
-hi LspReferenceWrite cterm=reverse gui=reverse
+hi LspReferenceText gui=bold guibg=#004B5E
+hi LspReferenceRead gui=bold guibg=#004B5E
+hi LspReferenceWrite gui=bold guibg=#004B5E
 hi clear MatchParen
-hi MatchParen cterm=reverse gui=reverse
-hi clear ALEError
-hi ALEError cterm=undercurl gui=undercurl guisp=#dc322f
-hi! link ALEErrorSign DiagnosticDefaultError
-hi! link ALEVirtualTextError ALEErrorSign
-hi! link ALEErrorSignLineNr ALEErrorSign
-hi! link ALEWarningSign DiagnosticDefaultWarning
-hi! link ALEInfoSogn DiagnosticDefaultInformation
+hi MatchParen gui=bold guibg=#004B5E
 hi! link typescriptReserved Keyword
-hi HighlightedyankRegion gui=standout guibg=#073642 guifg=#b58900
+hi HighlightedyankRegion gui=bold guibg=#004B5E
 hi LightBulbSign guifg=#fdf6e3 guibg=#073642
 hi link TagbarSignature Comment
 hi SignColumn guibg=#073642
@@ -923,11 +917,6 @@ augroup tsx_hi
   autocmd FileType typescript.tsx syn clear xmlError
   autocmd FileType typescript.tsx hi link xmlTagN Function " fix some schemes
 augroup end
-
-let g:rainbow_active = 0
-augroup rainbows
-  autocmd FileType lisp,clojure,schema RainbowToggleOn
-augroup END
 
 augroup gcfg
   autocmd FileType gcfg set syntax=cfg | setl commentstring=;\ %s
