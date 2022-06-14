@@ -46,11 +46,12 @@ set scrolljump=3                          " how far to scroll when cursor leaves
 set scrolloff=3                           " keep X lines above/below cursor
 set list
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " highlight whitespace
-set foldmethod=marker
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
 set foldlevelstart=99
 set linebreak                             " softwrap at word boundaries
 set completeopt=menuone,noselect          " never autocomplete
-set signcolumn=yes:1
+set signcolumn=yes
 " set signcolumn=number                   " not useful when gitgutter is noisy
 
 let s:medium = 142                        " used for laptop/desktop UI tweaks
