@@ -176,7 +176,6 @@ Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'Valloric/MatchTagAlways'
-" Plug 'jiangmiao/auto-pairs'
 Plug 'LunarWatcher/auto-pairs', {'tag': '*'}
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
