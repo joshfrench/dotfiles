@@ -48,9 +48,10 @@ set list
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " highlight whitespace
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
+set indentexpr=treesitter#indentexpr()
 set foldlevelstart=99
 set linebreak                             " softwrap at word boundaries
-set completeopt=menuone,noselect          " never autocomplete
+set completeopt=menu,menuone,noselect     " never autocomplete
 set signcolumn=yes
 
 let s:medium = 142                        " used for laptop/desktop UI tweaks
@@ -149,7 +150,11 @@ vnoremap <M-k> :m '<-2<CR>gv=gv
 "{{{ Plugins
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/nvim-compe'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-emoji'
+Plug 'hrsh7th/nvim-cmp'
 " Plug expand('~/dotfiles/lsp-fzf')
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
@@ -622,10 +627,6 @@ nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
 nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 " nnoremap <silent><leader>. <cmd>lua vim.lsp.buf.code_action()<CR>
 " autocmd Filetype ts,go setlocal omnifunc=v:lua.vim.lsp.omnifunc
-inoremap <silent><expr> <CR>      compe#confirm('<CR>')
-inoremap <silent><expr> <Tab>     compe#confirm('<Tab>')
-inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
-inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 
 lua << EOF
 vim.diagnostic.config({
@@ -633,29 +634,28 @@ vim.diagnostic.config({
   signs=true,
   update_in_insert=false,
 })
-require'compe'.setup{
-  enabled = true;
-  autocomplete = true;
-  debug = false;
-  min_length = 1;
-  preselect = 'enable';
-  throttle_time = 80;
-  source_timeout = 200;
-  resolve_timeout = 800;
-  incomplete_delay = 400;
-  max_abbr_width = 100;
-  max_kind_width = 100;
-  max_menu_width = 100;
-  documentation = true;
-
-  source={
-    path = true;
-    buffer = true;
-    nvim_lsp = true;
-    nvim_lua = true;
-    emoji = true;
-  }
-}
+local cmp = require'cmp'
+local cmp_confirm = function(fallback)
+  if cmp.visible() and #cmp.get_entries() > 0 then
+    cmp.confirm({ select = true })
+  else
+    fallback()
+  end
+end
+cmp.setup({
+  mapping = cmp.mapping.preset.insert({
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4, {'i'}),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4, {'i'}),
+    ['<CR>'] = cmp.mapping(cmp_confirm, {'i'}),
+    ['<TAB>'] = cmp.mapping(cmp_confirm, {'i'}),
+  }),
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    { name = 'buffer' },
+    { name = 'path' },
+    { name = 'emoji' }
+  })
+})
 local on_attach = function(client, bufno)
   require'lsp_signature'.on_attach({
     bind = true,
