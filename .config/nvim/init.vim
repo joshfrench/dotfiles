@@ -52,7 +52,6 @@ set foldlevelstart=99
 set linebreak                             " softwrap at word boundaries
 set completeopt=menuone,noselect          " never autocomplete
 set signcolumn=yes
-" set signcolumn=number                   " not useful when gitgutter is noisy
 
 let s:medium = 142                        " used for laptop/desktop UI tweaks
 autocmd FileType qf wincmd J
@@ -110,7 +109,6 @@ command! -bang QA qa<bang>
 command! -bang Qa qa<bang>
 command! -bang Bd bd<bang>
 cmap Tabe tabe
-cnoreabbrev git Git
 "}}}
 
 "{{{ Keymapping
@@ -180,8 +178,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'alvan/vim-closetag'
 " Plug 'hail2u/vim-css3-syntax'
-" Plug 'tpope/vim-fugitive'
-" Plug 'airblade/vim-gitgutter'
 Plug 'lewis6991/gitsigns.nvim'
 " Plug 'pangloss/vim-javascript'
 " Plug 'elzr/vim-json'
@@ -873,14 +869,6 @@ let g:neoformat_enabled_go = [] " let LSP handle go
 let g:neoformat_enabled_ruby = [] " slow af
 "}}}
 
-"{{{ Gitgutter
-let g:gitgutter_sign_priority=0
-let g:gitgutter_set_sign_backgrounds = 1
-" let g:gitgutter_sign_added = '┃'
-" let g:gitgutter_sign_modified = '┃'
-" let g:gitgutter_sign_removed = '┃'
-"}}}
-
 "{{{ gitsigns
 lua << EOF
 require('gitsigns').setup{
@@ -962,6 +950,9 @@ hi HighlightedyankRegion gui=bold guibg=#004B5E
 hi LightBulbSign guifg=#fdf6e3 guibg=#073642
 hi link TagbarSignature Comment
 hi SignColumn guibg=#073642
+hi GitSignsDelete guibg=#073642
+hi DiffAdd guibg=#073642
+hi DiffChange guibg=#073642
 
 augroup tsx_hi
   autocmd FileType typescript.tsx syn clear xmlError
