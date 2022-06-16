@@ -155,6 +155,7 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-emoji'
 Plug 'hrsh7th/nvim-cmp'
+Plug 'antoinemadec/FixCursorHold.nvim'
 " Plug expand('~/dotfiles/lsp-fzf')
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
