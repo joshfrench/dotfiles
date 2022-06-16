@@ -815,7 +815,7 @@ EOF
 "{{{ lightbulb
 lua << EOF
 vim.fn.sign_define('LightBulbSign', { text = "■", texthl = "LightBulbSign", linehl="", numhl="" })
-vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]
+vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb({ ignore = {"gitsigns"} })]]
 EOF
 "}}}
 
