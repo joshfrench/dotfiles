@@ -1,4 +1,19 @@
-require'nvim-tree'.setup({
+vim.api.nvim_create_autocmd("BufEnter", {
+  nested = true,
+  callback = function()
+    if #vim.api.nvim_list_wins() == 1 and vim.api.nvim_buf_get_name(0):match("NvimTree_") ~= nil then
+      vim.cmd "quit"
+    end
+  end
+})
+
+local tree = require'nvim-tree'
+
+local keys = vim.keymap
+keys.set('n', '<C-e>', tree.toggle)
+keys.set('n', '<leader>e', function() tree.toggle(true, false)end)
+
+tree.setup({
   auto_reload_on_write = true,
   create_in_closed_folder = false,
   disable_netrw = false,
@@ -30,6 +45,8 @@ require'nvim-tree'.setup({
         -- user mappings go here
         { key = "<space>", action = "edit" },
         { key = "<C-e>", action = "close" },
+        { key = '<esc>', action = "close" },
+        { key = '<leader>e', action = 'close' },
         { key = "p", action = "parent_node" },
         { key = "u", action = "dir_up" },
         { key = "C", action = "cd" },
@@ -176,15 +193,3 @@ require'nvim-tree'.setup({
   },
 })
 
-vim.api.nvim_create_autocmd("BufEnter", {
-  nested = true,
-  callback = function()
-    if #vim.api.nvim_list_wins() == 1 and vim.api.nvim_buf_get_name(0):match("NvimTree_") ~= nil then
-      vim.cmd "quit"
-    end
-  end
-})
-
-local keys = vim.keymap
-
-keys.set('n', '<C-e>', require'nvim-tree'.toggle)
