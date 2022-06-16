@@ -10,7 +10,7 @@ require'nvim-tree'.setup({
   open_on_setup_file = false,
   open_on_tab = false,
   sort_by = "name",
-  update_cwd = false,
+  update_cwd = true,
   reload_on_bufenter = false,
   respect_buf_cwd = false,
   view = {
@@ -28,7 +28,11 @@ require'nvim-tree'.setup({
       custom_only = false,
       list = {
         -- user mappings go here
-        { key = "<space>", action = "edit" }
+        { key = "<space>", action = "edit" },
+        { key = "<C-e>", action = "close" },
+        { key = "p", action = "parent_node" },
+        { key = "u", action = "dir_up" },
+        { key = "C", action = "cd" },
       },
     },
   },
@@ -127,7 +131,7 @@ require'nvim-tree'.setup({
     use_system_clipboard = true,
     change_dir = {
       enable = true,
-      global = false,
+      global = true,
       restrict_above_cwd = false,
     },
     expand_all = {
