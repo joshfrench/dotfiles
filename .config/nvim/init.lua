@@ -10,4 +10,5 @@ require 'user.plugins'
 require 'user.colorscheme'
 require 'user.keymap'
 
+require 'user.typos'
 require 'user.plugins.nvim-tree'
