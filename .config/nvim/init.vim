@@ -163,7 +163,8 @@ Plug 'nvim-lua/telescope.nvim'
 " Plug 'stevearc/dressing.nvim' " nicey nice vim.ui.select and vim.ui.input
 Plug 'williamboman/nvim-lsp-installer'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'sbdchd/neoformat'
+Plug 'jose-elias-alvarez/null-ls.nvim'
+" Plug 'sbdchd/neoformat'
 " Plug 'dense-analysis/ale'
 Plug 'weilbith/nvim-code-action-menu'
 Plug 'kosayoda/nvim-lightbulb'
@@ -616,7 +617,7 @@ sign define DiagnosticSignInfo text=■ texthl=DiagnosticSignInfo
 sign define DiagnosticSignHint text=■ texthl=DiagnosticSignHint
 " autocmd CursorHold * lua vim.diagnostic.open_float({source="if_many", focus=false})
 autocmd CursorMoved * lua vim.lsp.buf.clear_references()
-autocmd InsertLeave,BufWritePre *.go lua vim.lsp.buf.formatting()
+autocmd InsertLeave,BufWritePre *.go,*.js lua vim.lsp.buf.formatting()
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
@@ -670,116 +671,10 @@ local on_attach = function(client, bufno)
     vim.cmd("autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()")
   end
 end
-local enhance_server_opts = {
-  -- ["gopls"] = function(opts)
-  --   opts.settings = {
-  --     golps = {
-  --       env = {GOFLAGS="-tags=linux"}
-  --     }
-  --   }
-  -- end
-  ["diagnosticls"] = function(opts)
-    opts.filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "typescript.tsx" }
-    opts.init_options = {
-      linters = {
-        eslint = {
-          sourceName = 'eslint',
-          rootPatterns = {".eslintrc.js"},
-          command = 'eslint_d',
-          args = {
-            "--stdin",
-            "--stdin-filename",
-            "%filepath",
-            "--format",
-            "json",
-          },
-          parseJson = {
-            errorsRoot = "[0].messages",
-            line = "line",
-            column = "column",
-            endLine = "endLine",
-            endColumn = "endColumn",
-            message = "${message} [${ruleId}]",
-            security = "severity",
-          },
-          securities = {[2] = "error", [1] = "warning"},
-        },
-      },
-      filetypes = {
-        ['typescript.tsx'] = 'eslint',
-        javascript = 'eslint',
-        javascriptreact = 'eslint',
-        typescriptreact = 'eslint'
-      }
-    }
-  end,
-  ["vuels"] = function(opts)
-    opts.init_options = {
-      config = {
-        vetur = {
-          ignoreProjectWarning = true,
-          useWorkspaceDependencies = false,
-          validation = {
-            template = true,
-            style = true,
-            script = true,
-          },
-          completion = {
-            autoImport = false,
-            useScaffoldSnippets = false,
-            tagCasing = 'kebab',
-          },
-          format = {
-            defaultFormatter = {
-              js = 'none',
-              ts = 'none',
-            },
-            defaultFormatterOptions = {},
-            scriptInitialIndent = false,
-            styleInitialIndent = false,
-          },
-        },
-        css = {},
-        html = {
-          suggest = {},
-        },
-        javascript = {
-          format = {},
-        },
-        typescript = {
-          format = {},
-        },
-        emmet = {},
-        stylusSupremacy = {},
-      },
-    }
-  end
--- ["solargraph"] = function(opts)
---   opts.cmd = { "solargraph", "stdio" },
---   opts.flags = { debounce_text_changes = 150 },
---   opts.settings = {
---     solargraph = {
---         autoformat = false,
---         formatting = false,
---         completion = true,
---         diagnostic = false,
---         folding = true,
---         references = true,
---         rename = true,
---         symbols = true
---     }
---   }
--- end
-}
 require'nvim-lsp-installer'.on_server_ready(function(server)
   local opts = {
     on_attach = on_attach
   }
-
-  if enhance_server_opts[server.name] then
-    enhance_server_opts[server.name](opts)
-  end
-
   server:setup(opts)
 end)
 do
@@ -835,38 +730,37 @@ require'nvim-treesitter.configs'.setup {
 EOF
 "}}}
 
-"{{{ Ale (disabled)
-let g:ale_enabled=1
-let g:ale_disable_lsp=1
-let g:ale_linters={
-\ 'typescript': ['eslint'],
-\ 'javascript': ['eslint'],
-\ 'go': ['gopls'],
-\}
-let g:ale_linters_explicit=1
-let g:ale_shell='/bin/bash'
-let g:ale_hover_cursor=0
-let g:ale_echo_cursor=0
-let g:ale_sign_error="●"
-let g:ale_sign_warning="●"
-let g:ale_sign_info="●"
-let g:ale_virtualtext_prefix='● '
-let g:ale_virtualtext_cursor=1
-"}}}
+"{{{ null-ls
+lua << EOF
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+local null_ls = require'null-ls'
+null_ls.setup({
+  on_attach = function(client, bufnr)
+    if client.supports_method("textDocument/formatting") then
+      vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+      vim.api.nvim_create_autocmd({"BufWritePre", "InsertLeave"}, {
+          group = augroup,
+          buffer = bufnr,
+          callback = function()
+              vim.lsp.buf.formatting_sync()
+          end,
+      })
+    end
+  end,
+  sources = {
+    null_ls.builtins.diagnostics.shellcheck,
+    null_ls.builtins.diagnostics.zsh,
 
-"{{{ Neoformat
-let g:neoformat_basic_format_trim = 1
-let g:neoformat_run_all_formatters = 1
-let g:neoformat_only_msg_on_error = 1
-au InsertLeave,BufWritepre <buffer> silent! undojoin | Neoformat
-let g:neoformat_typescript_prettier = {
-  \ 'exe': 'prettier',
-  \ 'args': ['--stdin', '--stdin-filepath', '"%:p"', '--parser', 'typescript'],
-  \ 'stdin': 1
-  \ }
-let g:neoformat_enabled_typescriptreact = ['prettier']
-let g:neoformat_enabled_go = [] " let LSP handle go
-let g:neoformat_enabled_ruby = [] " slow af
+    null_ls.builtins.code_actions.gitsigns,
+    null_ls.builtins.code_actions.shellcheck,
+
+    -- null_ls.builtins.formatting.black,
+    -- null_ls.builtins.formatting.cljstyle,
+    -- null_ls.builtins.formatting.jq,
+    -- null_ls.builtins.formatting.prettier,
+  }
+})
+EOF
 "}}}
 
 "{{{ gitsigns
