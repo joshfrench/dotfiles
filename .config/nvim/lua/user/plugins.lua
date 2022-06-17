@@ -44,6 +44,12 @@ return packer.startup(function(use)
       'hrsh7th/cmp-emoji',
     },
   }
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = {
+      'kyazdani42/nvim-web-devicons',
+    }
+  }
   use 'windwp/nvim-autopairs'
   use 'lewis6991/gitsigns.nvim'
   use 'b3nj5m1n/kommentary'
@@ -51,5 +57,4 @@ return packer.startup(function(use)
   if packer_bootstrap then
     packer.sync()
   end
-
 end)

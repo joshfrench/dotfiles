@@ -63,6 +63,7 @@ local opts = {
 
   -- status line
   laststatus = 3,                                 -- global statusline
+  showmode = false,                               -- mode is in statusline
 
   -- formatting
   wrap = true,
