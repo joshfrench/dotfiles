@@ -33,12 +33,20 @@ return packer.startup(function(use)
     run = ':TSUpdate',
     requires = {
       'p00f/nvim-ts-rainbow',
+      'JoosepAlviste/nvim-ts-context-commentstring',
     }
+  }
+  use {
+    'hrsh7th/nvim-cmp',
+    requires = {
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path',
+      'hrsh7th/cmp-emoji',
+    },
   }
   use 'windwp/nvim-autopairs'
   use 'lewis6991/gitsigns.nvim'
   use 'b3nj5m1n/kommentary'
-  use 'JoosepAlviste/nvim-ts-context-commentstring'
 
   if packer_bootstrap then
     packer.sync()
