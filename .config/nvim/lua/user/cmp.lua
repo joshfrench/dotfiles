@@ -20,7 +20,8 @@ cmp.setup({
     ['<TAB>'] = cmp.mapping(cmp_confirm, {'i'}),
   }),
   sources = cmp.config.sources({
-    -- { name = 'nvim_lsp' },
+    { name = 'nvim_lsp' },
+    { name = 'nvim_lua' },
     { name = 'buffer' },
     { name = 'path' },
     { name = 'emoji' }
