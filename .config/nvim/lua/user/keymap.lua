@@ -6,6 +6,8 @@ keys.set('n', '<S-L>', 'gt')
 
 -- paste
 keys.set('n', '<leader><space>', ':set invhlsearch<CR>', {silent = true})
+keys.set('n', '<leader>p', ':set paste<CR>', {silent = true})
+keys.set('i', '<leader>p', '<C-O>:set paste<CR>')
 
 -- tabshift without exiting Visual
 keys.set('v', '<', '<gv')
