@@ -4,10 +4,11 @@ local keys = vim.keymap
 keys.set('n', '<S-H>', 'gT')
 keys.set('n', '<S-L>', 'gt')
 
--- paste
+-- toggle hlsearch
 keys.set('n', '<leader><space>', ':set invhlsearch<CR>', {silent = true})
-keys.set('n', '<leader>p', ':set paste<CR>', {silent = true})
-keys.set('i', '<leader>p', '<C-O>:set paste<CR>')
+
+-- paste
+keys.set('i', '<leader>p', '<C-O>:set invpaste<CR>')
 
 -- tabshift without exiting Visual
 keys.set('v', '<', '<gv')
