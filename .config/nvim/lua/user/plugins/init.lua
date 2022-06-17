@@ -35,6 +35,8 @@ return packer.startup(function(use)
       'p00f/nvim-ts-rainbow',
     }
   }
+  use 'windwp/nvim-autopairs'
+  use 'lewis6991/gitsigns.nvim'
 
   if packer_bootstrap then
     packer.sync()
