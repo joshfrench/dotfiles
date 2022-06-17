@@ -20,3 +20,5 @@ local highlight = '#004b5e' -- midtone bg
 vim.api.nvim_set_hl(0, 'NvimTreeRootFolder', {fg=green})
 vim.api.nvim_set_hl(0, 'NvimTreeFolderIcon', {fg=cyan})
 vim.api.nvim_set_hl(0, 'NvimTreeIndentMarker', {fg=blue})
+vim.api.nvim_set_hl(0, 'SignColumn', {bg=base})
+vim.api.nvim_set_hl(0, 'GitSignsChange', {fg=blue, bg=base})
