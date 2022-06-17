@@ -29,9 +29,12 @@ local colors = {
 vim.api.nvim_set_hl(0, 'NvimTreeRootFolder', {fg=colors.green})
 vim.api.nvim_set_hl(0, 'NvimTreeFolderIcon', {fg=colors.cyan})
 vim.api.nvim_set_hl(0, 'NvimTreeIndentMarker', {fg=colors.blue})
+
 vim.api.nvim_set_hl(0, 'SignColumn', {bg=colors.base02})
 vim.api.nvim_set_hl(0, 'GitSignsChange', {fg=colors.blue, bg=colors.base02})
-vim.api.nvim_set_hl(0, 'lualine_b_normal', {bg=colors.base00})
-vim.api.nvim_set_hl(0, 'lualine_b_inactive', {bg=colors.base00})
+vim.api.nvim_set_hl(0, 'DiagnosticSignError', {fg=colors.red, bg=colors.base02})
+vim.api.nvim_set_hl(0, 'DiagnosticSignWarn',  {fg=colors.yellow, bg=colors.base02})
+vim.api.nvim_set_hl(0, 'DiagnosticSignHint',  {fg=colors.blue, bg=colors.base02})
+vim.api.nvim_set_hl(0, 'DiagnosticSignInfo',  {fg=colors.base3, bg=colors.base02})
 
 return colors

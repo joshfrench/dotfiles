@@ -2,10 +2,10 @@ local M = {}
 
 M.setup = function()
   local signs = {
-    { name = "DiagnosticSignError", sign = "■" },
-    { name = "DiagnosticSignWarn",  sign = "■" },
-    { name = "DiagnosticSignHint",  sign = "■" },
-    { name = "DiagnosticSignInfo",  sign = "■" },
+    { name = "DiagnosticSignError", sign = "" },
+    { name = "DiagnosticSignWarn",  sign = "" },
+    { name = "DiagnosticSignHint",  sign = "" },
+    { name = "DiagnosticSignInfo",  sign = "" },
   }
 
   for _, sign in ipairs(signs) do
