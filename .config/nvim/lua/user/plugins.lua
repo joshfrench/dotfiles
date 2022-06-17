@@ -45,6 +45,8 @@ return packer.startup(function(use)
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-emoji',
+      'dcampos/nvim-snippy',
+      'dcampos/cmp-snippy',
     },
   }
   use 'neovim/nvim-lspconfig'
