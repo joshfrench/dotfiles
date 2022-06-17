@@ -13,3 +13,4 @@ require 'user.keymap'
 
 require 'user.typos'
 require 'user.plugins.nvim-tree'
+require 'user.plugins.treesitter'

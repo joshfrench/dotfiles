@@ -25,7 +25,14 @@ return packer.startup(function(use)
   use {
     'kyazdani42/nvim-tree.lua',
     requires = {
-	    'kyazdani42/nvim-web-devicons',
+      'kyazdani42/nvim-web-devicons',
+    }
+  }
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate',
+    requires = {
+      'p00f/nvim-ts-rainbow',
     }
   }
 

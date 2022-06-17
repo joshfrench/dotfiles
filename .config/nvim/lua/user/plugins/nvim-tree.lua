@@ -7,7 +7,10 @@ vim.api.nvim_create_autocmd("BufEnter", {
   end
 })
 
-local tree = require'nvim-tree'
+local ok, tree = pcall(require, 'nvim-tree')
+if not ok then
+  return
+end
 
 local keys = vim.keymap
 keys.set('n', '<C-e>', tree.toggle)
