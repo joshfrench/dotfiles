@@ -14,6 +14,9 @@ treesitter.setup({
     extended_mode = true,
     colors = { '#268bd2', '#2aa198', '#859900', '#b58900', '#cb4b16', '#6c71c4', },
   },
+  context_commentstring = {
+    enable = true,
+  },
 })
 
 vim.opt.foldmethod = 'expr'

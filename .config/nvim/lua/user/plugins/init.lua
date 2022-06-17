@@ -37,6 +37,8 @@ return packer.startup(function(use)
   }
   use 'windwp/nvim-autopairs'
   use 'lewis6991/gitsigns.nvim'
+  use 'b3nj5m1n/kommentary'
+  use 'JoosepAlviste/nvim-ts-context-commentstring'
 
   if packer_bootstrap then
     packer.sync()
