@@ -1,9 +1,8 @@
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 
-local packer_bootstrap
 if fn.empty(fn.glob(install_path)) > 0 then
-  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+  PACKER_BOOTSTRAP = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
 
 local ok, packer = pcall(require, "packer")
@@ -52,6 +51,16 @@ return packer.startup(function(use)
   use 'neovim/nvim-lspconfig'
   use 'williamboman/nvim-lsp-installer'
   use {
+    'nvim-telescope/telescope.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        run = 'make',
+      },
+    }
+  }
+  use {
     'nvim-lualine/lualine.nvim',
     requires = {
       'kyazdani42/nvim-web-devicons',
@@ -68,7 +77,7 @@ return packer.startup(function(use)
   use 'b3nj5m1n/kommentary'
   use 'echasnovski/mini.nvim'
 
-  if packer_bootstrap then
+  if PACKER_BOOTSTRAP then
     packer.sync()
   end
 end)
