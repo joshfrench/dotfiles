@@ -6,19 +6,32 @@ if not ok then
   return
 end
 
-local base = vim.g.terminal_color_0 --#073642
-local red = vim.g.terminal_color_1 --#dc322f
-local green = vim.g.terminal_color_2 --#859900
-local yellow = vim.g.terminal_color_3 --#b58900
-local blue = vim.g.terminal_color_4 --#268bd2
-local magenta = vim.g.terminal_color_5 --#d33682
-local cyan = vim.g.terminal_color_6 --#2aa198
-local purple = vim.g.terminal_color_13 --#6c71c4
-local bright_white = vim.g.terminal_color_15 --#fdf6e3
-local highlight = '#004b5e' -- midtone bg
+local colors = {
+  base03  =  '#002b36',
+  base02  =  '#073642',
+  base01  =  '#586e75',
+  base00  =  '#657b83',
+  base0   =  '#839496',
+  base1   =  '#93a1a1',
+  base2   =  '#eee8d5',
+  base3   =  '#fdf6e3',
+  yellow  =  '#b58900',
+  orange  =  '#cb4b16',
+  red     =  '#dc322f',
+  magenta =  '#d33682',
+  violet  =  '#6c71c4',
+  blue    =  '#268bd2',
+  cyan    =  '#2aa198',
+  green   =  '#859900',
+  highlite = '#004b5e', -- additional midtone
+}
 
-vim.api.nvim_set_hl(0, 'NvimTreeRootFolder', {fg=green})
-vim.api.nvim_set_hl(0, 'NvimTreeFolderIcon', {fg=cyan})
-vim.api.nvim_set_hl(0, 'NvimTreeIndentMarker', {fg=blue})
-vim.api.nvim_set_hl(0, 'SignColumn', {bg=base})
-vim.api.nvim_set_hl(0, 'GitSignsChange', {fg=blue, bg=base})
+vim.api.nvim_set_hl(0, 'NvimTreeRootFolder', {fg=colors.green})
+vim.api.nvim_set_hl(0, 'NvimTreeFolderIcon', {fg=colors.cyan})
+vim.api.nvim_set_hl(0, 'NvimTreeIndentMarker', {fg=colors.blue})
+vim.api.nvim_set_hl(0, 'SignColumn', {bg=colors.base02})
+vim.api.nvim_set_hl(0, 'GitSignsChange', {fg=colors.blue, bg=colors.base02})
+vim.api.nvim_set_hl(0, 'lualine_b_normal', {bg=colors.base00})
+vim.api.nvim_set_hl(0, 'lualine_b_inactive', {bg=colors.base00})
+
+return colors
