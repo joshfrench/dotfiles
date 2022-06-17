@@ -50,3 +50,7 @@ trouble.setup({
   },
   use_diagnostic_signs = true -- enabling this will use the signs defined in your lsp client
 })
+
+vim.keymap.set('n', 'tt', trouble.toggle)
+vim.keymap.set('n', 'tw', function() trouble.toggle({mode="workspace_diagnostics"}) end)
+vim.keymap.set('n', 'td', function() trouble.toggle({mode="document_diagnostics"}) end)
