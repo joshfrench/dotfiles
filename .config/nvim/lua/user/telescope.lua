@@ -39,6 +39,7 @@ telescope.load_extension('fzf')
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>b', builtin.buffers)
 vim.keymap.set('n', 'gr', builtin.lsp_references)
-vim.keymap.set('n', '<leader>f', builtin.git_files) -- [f]ind files
-vim.keymap.set('n', '<leader>r', builtin.live_grep) -- [r]ipgrep
-vim.keymap.set('n', '<leader>m', builtin.marks) -- [m]arks
+vim.keymap.set('n', '<C-p>', builtin.git_files)
+vim.keymap.set('n', '<leader>f', builtin.current_buffer_fuzzy_find)
+vim.keymap.set('n', '<leader>F', builtin.live_grep)
+vim.keymap.set('n', '<leader>m', builtin.marks)
