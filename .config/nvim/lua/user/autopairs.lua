@@ -1,8 +1,8 @@
-local ok, autopairs = pcall(require, 'nvim-autopairs')
-if not ok then
-  return
-end
+vim.g.AutoPairsCompatibleMaps = 0
+vim.g.AutoPairsMapBS = 1
+vim.g.AutoPairsMultilineBackspace = 1
+vim.g.AutoPairsFiletypeBlacklist = {'TelescopePrompt'}
 
-autopairs.setup({
-  check_ts = true,
-})
+--[[ let g:AutoPairs = autopairs#AutoPairsDefine([
+    {"open":"\w\zs<", "close":">", "filetype":"typescript"}
+]) ]]
