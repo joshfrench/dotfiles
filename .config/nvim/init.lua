@@ -1,7 +1,7 @@
-local packer_sync = vim.api.nvim_create_augroup('packer_sync', {clear = true})
+local au = vim.api.nvim_create_augroup('packer_sync', {clear = true})
 vim.api.nvim_create_autocmd('BufWritePost', {
   pattern = 'init.lua',
-  group = packer_sync,
+  group = au,
   desc = 'Reload plugins on save',
   command = 'source <afile> | PackerSync',
 })
@@ -22,5 +22,5 @@ require 'user.autopairs'
 require 'user.gitsigns'
 require 'user.trouble'
 require 'user.comment'
-require 'user.surround'
+require 'user.sandwich'
 require 'user.spelling'
