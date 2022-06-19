@@ -43,4 +43,8 @@ vim.api.nvim_set_hl(0, 'LspReferenceText', {bold=true, bg=colors.highlite})
 vim.api.nvim_set_hl(0, 'LspReferenceTextRead', {bold=true, bg=colors.highlite})
 vim.api.nvim_set_hl(0, 'LspReferenceTextWrite', {bold=true, bg=colors.highlite})
 
+vim.api.nvim_set_hl(0, 'VistaKind', {bold=true, fg=colors.yellow})
+vim.api.nvim_set_hl(0, 'VistaTag', {fg=colors.base1})
+vim.api.nvim_set_hl(0, 'VistaIcon', {fg=colors.cyan})
+
 return colors

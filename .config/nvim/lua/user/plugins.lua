@@ -73,6 +73,7 @@ return packer.startup(function(use)
       'kyazdani42/nvim-web-devicons',
     }
   }
+  use 'liuchengxu/vista.vim'
   use 'LunarWatcher/auto-pairs' -- TODO: get on 4.0.0?
   use 'lewis6991/gitsigns.nvim'
   use 'b3nj5m1n/kommentary'
