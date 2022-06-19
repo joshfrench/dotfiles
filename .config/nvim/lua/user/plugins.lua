@@ -20,14 +20,7 @@ packer.init({
 
 return packer.startup(function(use)
   use 'wbthomason/packer.nvim'
-  use 'christoomey/vim-tmux-navigator'
   use 'ishan9299/nvim-solarized-lua'
-  use {
-    'kyazdani42/nvim-tree.lua',
-    requires = {
-      'kyazdani42/nvim-web-devicons',
-    }
-  }
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
@@ -51,6 +44,12 @@ return packer.startup(function(use)
   use 'neovim/nvim-lspconfig'
   use 'williamboman/nvim-lsp-installer'
   use 'hrsh7th/cmp-nvim-lsp-signature-help'
+  use {
+    'kyazdani42/nvim-tree.lua',
+    requires = {
+      'kyazdani42/nvim-web-devicons',
+    }
+  }
   use {
     'nvim-telescope/telescope.nvim',
     requires = {
@@ -78,10 +77,11 @@ return packer.startup(function(use)
   use 'lewis6991/gitsigns.nvim'
   use 'SmiteshP/nvim-navic'
   use 'b3nj5m1n/kommentary'
-  use 'machakann/vim-sandwich'
   use 'machakann/vim-highlightedyank'
   use 'kosayoda/nvim-lightbulb'
   use 'weilbith/nvim-code-action-menu'
+  use 'machakann/vim-sandwich'
+  use 'christoomey/vim-tmux-navigator'
   use 'tpope/vim-unimpaired'
 
   if PACKER_BOOTSTRAP then
