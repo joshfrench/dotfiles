@@ -7,16 +7,6 @@ if ok then
   M.capabilities = cmp_lsp.update_capabilities(M.capabilities)
 end
 
-local ok, status = pcall(require, 'lsp-status')
-if ok then
-  status.config({
-    show_filename = false,
-    diagnostics = false,
-  })
-  status.register_progress()
-  M.capabilities = vim.tbl_extend('keep', M.capabilities, status.capabilities)
-end
-
 M.setup = function()
   local signs = {
     { name = "DiagnosticSignError", sign = "" },
@@ -71,14 +61,10 @@ local function lsp_keymap(bufnr)
   vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 end
 
-local function lsp_status(client)
-  status.on_attach(client)
-end
-
 M.on_attach = function(client, bufnr)
   lsp_highlight_doc(client, bufnr)
   lsp_keymap(bufnr)
-  lsp_status(client)
+  require'nvim-navic'.attach(client, bufnr)
 end
 
 return M

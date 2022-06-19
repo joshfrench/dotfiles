@@ -76,7 +76,7 @@ return packer.startup(function(use)
   use 'liuchengxu/vista.vim'
   use 'LunarWatcher/auto-pairs' -- TODO: get on 4.0.0?
   use 'lewis6991/gitsigns.nvim'
-  use 'nvim-lua/lsp-status.nvim'
+  use 'SmiteshP/nvim-navic'
   use 'b3nj5m1n/kommentary'
   use 'machakann/vim-sandwich'
 
