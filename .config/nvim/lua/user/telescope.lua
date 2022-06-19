@@ -6,14 +6,18 @@ end
 local actions = require('telescope.actions')
 local action_state = require('telescope.actions.state')
 
+-- <CR> opens multiple selections in qf list and goes to first item,
+-- or goes to single selection
 local multiselect = function(prompt_bufnr, open_cmd)
   local picker = action_state.get_current_picker(prompt_bufnr)
-  local num_selections = #picker:get_multi_selection()
-  if not num_selections or num_selections <= 1 then
-    actions.add_selection(prompt_bufnr)
+  local selections = #picker:get_multi_selection()
+  if not selections or selections <= 1 then
+    actions.select_default(prompt_bufnr)
+  else
+    actions.send_selected_to_qflist(prompt_bufnr)
+    actions.open_qflist()
+    vim.cmd('cfirst')
   end
-  actions.send_selected_to_qf_list(prompt_bufnr)
-  actions.open_qflist()
 end
 
 telescope.setup({
