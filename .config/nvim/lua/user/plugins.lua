@@ -79,6 +79,7 @@ return packer.startup(function(use)
   use 'SmiteshP/nvim-navic'
   use 'b3nj5m1n/kommentary'
   use 'machakann/vim-sandwich'
+  use 'machakann/vim-highlightedyank'
 
   if PACKER_BOOTSTRAP then
     packer.sync()

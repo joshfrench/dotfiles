@@ -47,4 +47,6 @@ vim.api.nvim_set_hl(0, 'VistaKind', {bold=true, fg=colors.yellow})
 vim.api.nvim_set_hl(0, 'VistaTag', {fg=colors.base1})
 vim.api.nvim_set_hl(0, 'VistaIcon', {fg=colors.cyan})
 
+vim.api.nvim_set_hl(0, 'HighlightedyankRegion', {bg=colors.highlite})
+
 return colors
