@@ -81,6 +81,7 @@ return packer.startup(function(use)
   use 'machakann/vim-sandwich'
   use 'machakann/vim-highlightedyank'
   use 'kosayoda/nvim-lightbulb'
+  use 'weilbith/nvim-code-action-menu'
 
   if PACKER_BOOTSTRAP then
     packer.sync()
