@@ -20,7 +20,7 @@ M.setup = function()
   end
 
   vim.diagnostic.config({
-    virtual_text = false,
+    virtual_text = true,
     signs = { active = true },
     update_in_insert = false,
     underline = true,
