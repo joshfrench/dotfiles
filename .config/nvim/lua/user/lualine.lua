@@ -3,12 +3,21 @@ if not ok then
   return
 end
 
+local ok, lsp_status = pcall(require, 'lsp-status')
+if not ok then
+  return
+end
+
 local function pwd()
   return vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
 end
 
 local function paste()
   return "PASTE"
+end
+
+local function status()
+  return lsp_status.status()
 end
 
 local colors = require('user.colorscheme')
@@ -47,7 +56,7 @@ lualine.setup({
       pwd,
       {'branch', icons_enabled = false}
     },
-    lualine_c = {'filename'},
+    lualine_c = {'filename', {status, cond = function() return #vim.lsp.buf_get_clients() > 0 end}},
     lualine_x = {'diagnostics', 'filetype'},
     lualine_y = {'progress'},
     lualine_z = {'location'}
