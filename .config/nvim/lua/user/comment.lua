@@ -50,14 +50,9 @@ function M.insert_comment_above(...)
   vim.api.nvim_feedkeys("cl", "n", false)
 end
 
-function M.insert_comment_end(...)
-  local args = {...}
+function M.insert_comment_end()
   local commentstr = comment.get_config(0)[1]
-  vim.pretty_print(commentstr)
-  local line_number = args[1]
-  local content = vim.api.nvim_buf_get_lines(0, line_number-1, line_number, false)[1]
-  vim.api.nvim_win_set_cursor(0, {vim.api.nvim_win_get_cursor(0)[1], #content})
-  vim.api.nvim_feedkeys("a "..commentstr.." ", "n", false)
+  vim.api.nvim_feedkeys("A "..commentstr.." ", "n", false)
 end
 
 --[[ This is a method provided by kommentary's config, it will take care of
