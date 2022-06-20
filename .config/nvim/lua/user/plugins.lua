@@ -43,6 +43,12 @@ return packer.startup(function(use)
   }
   use 'neovim/nvim-lspconfig'
   use 'williamboman/nvim-lsp-installer'
+  use {
+    'jose-elias-alvarez/null-ls.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim'
+    }
+  }
   use 'hrsh7th/cmp-nvim-lsp-signature-help'
   use {
     'kyazdani42/nvim-tree.lua',
@@ -57,7 +63,7 @@ return packer.startup(function(use)
       {
         'nvim-telescope/telescope-fzf-native.nvim',
         run = 'make',
-      },
+      }
     }
   }
   use {

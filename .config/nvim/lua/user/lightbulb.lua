@@ -4,7 +4,7 @@ if not ok then
 end
 
 lightbulb.setup({
-  ignore = 'gitsigns',
+  ignore = {'gitsigns'},
   autocmd = {
     enabled = true,
   }
