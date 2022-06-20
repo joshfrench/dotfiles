@@ -61,9 +61,26 @@ local function lsp_keymap(bufnr)
   vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 end
 
+local function lsp_format(client, bufnr)
+  if client.resolved_capabilities.document_formatting then
+    vim.b.format = 1
+    local au = vim.api.nvim_create_augroup('lsp_doc_formatting', {clear=true})
+    vim.api.nvim_create_autocmd({'InsertLeave', 'BufWritePre'}, {
+      group = au,
+      buffer = bufnr,
+      callback = function()
+        if vim.b.format == 1 then -- :Format/:NoFormat to toggle
+          vim.lsp.buf.formatting()
+        end
+      end
+    })
+  end
+end
+
 M.on_attach = function(client, bufnr)
   lsp_highlight_doc(client, bufnr)
   lsp_keymap(bufnr)
+  lsp_format(client, bufnr)
   require'nvim-navic'.attach(client, bufnr)
 end
 

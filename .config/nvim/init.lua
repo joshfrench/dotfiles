@@ -12,6 +12,7 @@ require 'user.colorscheme'
 require 'user.keymap'
 
 require 'user.typos'
+require 'user.formatting'
 require 'user.treesitter'
 require 'user.cmp'
 require 'user.lsp'
