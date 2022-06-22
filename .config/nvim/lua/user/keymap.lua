@@ -5,7 +5,7 @@ keys.set('n', '<S-H>', 'gT')
 keys.set('n', '<S-L>', 'gt')
 
 -- toggle hlsearch
-keys.set('n', '<leader><space>', ':set invhlsearch<CR>', {silent = true})
+keys.set('n', '<leader><space>', ':set invhlsearch<CR>', { silent = true })
 
 -- paste
 keys.set('i', '<leader>p', '<C-O>:set invpaste<CR>')
@@ -21,7 +21,7 @@ keys.set('v', '.', ':normal .<CR>')
 keys.set('v', '<BS>', 'x')
 
 -- search w/regexps by default
-keys.set({'n', 'v'}, '/', '/\\v')
+keys.set({ 'n', 'v' }, '/', '/\\v')
 
 -- go to buffer menu with prompt
 keys.set('n', '<leader>B', ':ls<CR>:b')

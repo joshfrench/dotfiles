@@ -55,10 +55,10 @@ cmp.setup({
     expand = function(args) snippy.expand_snippet(args.body) end
   },
   mapping = cmp.mapping.preset.insert({
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4, {'i'}),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4, {'i'}),
-    ['<CR>'] = cmp.mapping(cmp_confirm, {'i'}),
-    ['<TAB>'] = cmp.mapping(cmp_confirm, {'i'}),
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4, { 'i' }),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4, { 'i' }),
+    ['<CR>'] = cmp.mapping(cmp_confirm, { 'i' }),
+    ['<TAB>'] = cmp.mapping(cmp_confirm, { 'i' }),
   }),
   sources = cmp.config.sources({
     { name = 'nvim_lsp', keyword_length = 3, max_item_count = 10 },
@@ -80,7 +80,7 @@ cmp.setup({
     }
   },
   formatting = {
-    fields = {'kind', 'abbr', 'menu'},
+    fields = { 'kind', 'abbr', 'menu' },
     format = function(entry, vim_item)
       vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
       vim_item.menu = ({

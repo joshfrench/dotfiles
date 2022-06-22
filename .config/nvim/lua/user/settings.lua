@@ -1,14 +1,14 @@
 local opts = {
   -- basics
   encoding = 'utf-8',
-  backup = false,                                 -- no backups please
+  backup = false, -- no backups please
   swapfile = false,
-  undofile = true,                                -- persistent undo is nice though
-  undodir = vim.fn.stdpath('data')..'undo',
+  undofile = true, -- persistent undo is nice though
+  undodir = vim.fn.stdpath('data') .. 'undo',
   undolevels = 1000,
   undoreload = 10000,
   updatetime = 250,
-  ttimeoutlen = 0,                                -- no delay on exiting imode with <esc>
+  ttimeoutlen = 0, -- no delay on exiting imode with <esc>
   shell = '/bin/bash -i',
 
   -- buffers
@@ -19,7 +19,7 @@ local opts = {
   tabpagemax = 15,
 
   -- commandline
-  history=1000,
+  history = 1000,
   wildmenu = true,
   wildmode = 'list:longest,full',
   wildignore = '*/tmp/*,*/sourcemaps/*,*/node_modules/*',
@@ -29,7 +29,7 @@ local opts = {
   background = 'dark',
   cursorline = true,
   signcolumn = "yes:1",
-  shortmess = vim.o.shortmess..'mrc',
+  shortmess = vim.o.shortmess .. 'mrc',
   viewoptions = 'folds,cursor,curdir,options',
   completeopt = 'menuone,noselect',
 
@@ -40,7 +40,7 @@ local opts = {
   scrolljump = 3,
   scrolloff = 3,
   list = true,
-  listchars = { tab = '› ', trail = '•', extends = '#', nbsp = '+'},
+  listchars = { tab = '› ', trail = '•', extends = '#', nbsp = '+' },
   foldlevelstart = 99,
   linebreak = true,
 
@@ -62,8 +62,8 @@ local opts = {
   nu = true,
 
   -- status line
-  laststatus = 3,                                 -- global statusline
-  showmode = false,                               -- mode is in statusline
+  laststatus = 3, -- global statusline
+  showmode = false, -- mode is in statusline
 
   -- formatting
   wrap = true,
@@ -72,7 +72,7 @@ local opts = {
   shiftround = true,
   tabstop = 2,
   softtabstop = 2,
-  expandtab = true,                               -- team spacebar for life
+  expandtab = true, -- team spacebar for life
 
   -- copy/paste
   clipboard = 'unnamedplus',

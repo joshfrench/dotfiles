@@ -1,4 +1,4 @@
-local au = vim.api.nvim_create_augroup('packer_sync', {clear = true})
+local au = vim.api.nvim_create_augroup('packer_sync', { clear = true })
 vim.api.nvim_create_autocmd('BufWritePost', {
   pattern = 'init.lua',
   group = au,
@@ -31,3 +31,4 @@ require 'user.navic'
 require 'user.lightbulb'
 require 'user.code_actions'
 require 'user.indent_blankline'
+require 'user.yank'

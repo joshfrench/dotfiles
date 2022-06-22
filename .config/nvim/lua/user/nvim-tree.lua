@@ -7,9 +7,9 @@ vim.api.nvim_create_autocmd("BufEnter", {
     local bufname = vim.api.nvim_buf_get_name(0)
     if vim.fn.winnr('$') == 1 and (
         bufname:match("NvimTree_") ~= nil or
-        bufname:match("__vista__") ~= nil
-      ) then
-        vim.cmd "quit"
+            bufname:match("__vista__") ~= nil
+        ) then
+      vim.cmd "quit"
     end
   end
 })
@@ -21,7 +21,7 @@ end
 
 local keys = vim.keymap
 keys.set('n', '<C-e>', tree.toggle)
-keys.set('n', '<leader>e', function() tree.toggle(true, false)end)
+keys.set('n', '<leader>e', function() tree.toggle(true, false) end)
 
 tree.setup({
   auto_reload_on_write = true,
@@ -57,15 +57,15 @@ tree.setup({
         { key = "<C-e>", action = "close" },
         { key = '<esc>', action = "close" },
         { key = '<leader>e', action = 'close' },
-        { key = "p", action = "parent_node" },
-        { key = "u", action = "dir_up" },
-        { key = "C", action = "cd" },
+        { key = 'u', action = "parent_node" },
+        { key = 'U', action = "dir_up" },
+        { key = 'C', action = "cd" },
       },
     },
   },
   renderer = {
     add_trailing = false,
-    group_empty = false,
+    group_empty = true,
     highlight_git = false,
     full_name = false,
     highlight_opened_files = "none",
@@ -151,7 +151,7 @@ tree.setup({
   },
   git = {
     enable = true,
-    ignore = true,
+    ignore = false,
     timeout = 400,
   },
   actions = {
@@ -165,7 +165,7 @@ tree.setup({
       max_folder_discovery = 300,
     },
     open_file = {
-      quit_on_open = false,
+      quit_on_open = true,
       resize_window = true,
       window_picker = {
         enable = true,
@@ -202,4 +202,3 @@ tree.setup({
     },
   },
 })
-
