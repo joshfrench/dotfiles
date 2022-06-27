@@ -14,6 +14,7 @@ local opts = {
   -- buffers
   switchbuf = 'useopen,usetab,uselast',
   hidden = true,
+  confirm = true,
   splitright = true,
   splitbelow = true,
   tabpagemax = 15,
