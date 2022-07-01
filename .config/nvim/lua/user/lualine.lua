@@ -18,7 +18,7 @@ end
 local colors = require('user.colorscheme')
 
 local theme = {
- normal = {
+  normal = {
     a = { fg = colors.base03, bg = colors.blue },
     b = { fg = colors.base03, bg = colors.base00 },
     c = { fg = colors.base1, bg = colors.base02 },
@@ -39,31 +39,31 @@ lualine.setup({
   options = {
     icons_enabled = true,
     theme = theme,
-    component_separators = { left = '|', right = '|'},
-    section_separators = { left = '', right = ''},
+    component_separators = { left = '|', right = '|' },
+    section_separators = { left = '', right = '' },
     disabled_filetypes = {},
     always_divide_middle = true,
     globalstatus = true,
   },
   sections = {
-    lualine_a = {'mode', {paste, cond = function() return vim.o.paste end}},
+    lualine_a = { 'mode', { paste, cond = function() return vim.o.paste end } },
     lualine_b = {
+      { 'branch', icons_enabled = false },
       pwd,
-      {'branch', icons_enabled = false}
     },
-    lualine_c = {'filename', {require'nvim-navic'.get_location, cond = require'nvim-navic'.is_available}},
-    lualine_x = {'diagnostics', 'filetype'},
-    lualine_y = {'progress'},
-    lualine_z = {'location'}
+    lualine_c = { relative_path, { require 'nvim-navic'.get_location, cond = require 'nvim-navic'.is_available } },
+    lualine_x = { 'diagnostics', 'filetype' },
+    lualine_y = { 'progress' },
+    lualine_z = { 'location' }
   },
   inactive_sections = {
     lualine_a = {},
     lualine_b = {},
-    lualine_c = {'filename'},
-    lualine_x = {'location'},
+    lualine_c = { 'filename' },
+    lualine_x = { 'location' },
     lualine_y = {},
     lualine_z = {}
   },
   tabline = {},
-  extensions = {'nvim-tree'}
+  extensions = { 'nvim-tree' }
 })
