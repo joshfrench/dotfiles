@@ -4,7 +4,11 @@ if not ok then
 end
 
 local function pwd()
-  return vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
+  return vim.fn.fnamemodify(vim.fn.getcwd(), ':~:.')
+end
+
+local function relative_path()
+  return vim.fn.pathshorten(vim.fn.expand('%:~:.'), 4)
 end
 
 local function paste()
