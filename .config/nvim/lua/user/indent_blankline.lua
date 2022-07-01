@@ -3,4 +3,6 @@ if not ok then
   return
 end
 
-indent.setup()
+indent.setup({
+  space_char_blankline = ' ',
+})
