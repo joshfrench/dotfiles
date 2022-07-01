@@ -41,7 +41,7 @@ local opts = {
   scrolljump = 3,
   scrolloff = 3,
   list = true,
-  listchars = { tab = '› ', trail = '•', extends = '#', nbsp = '+' },
+  listchars = { tab = '› ', trail = '⋅', extends = '#', nbsp = '+' },
   foldlevelstart = 99,
   linebreak = true,
 
