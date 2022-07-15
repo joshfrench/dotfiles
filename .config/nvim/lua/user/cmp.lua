@@ -5,8 +5,8 @@ end
 
 -- cr/tab to exit when there are no matches
 local cmp_confirm = function(fallback)
-  if cmp.visible() and #cmp.get_entries() > 0 then
-    cmp.confirm({ select = true })
+  if cmp.visible() and cmp.get_selected_entry() then
+    cmp.confirm()
   else
     fallback()
   end
