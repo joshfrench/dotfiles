@@ -35,7 +35,18 @@ telescope.setup({
         ["<cr>"] = multiselect,
       },
     }
-  }
+  },
+  pickers = {
+    buffers = {
+      show_all_buffers = true,
+      sort_lastused = true,
+      mappings = {
+        i = {
+          ['<C-d>'] = "delete_buffer",
+        }
+      }
+    },
+  },
 })
 
 telescope.load_extension('fzf')
