@@ -1,5 +1,5 @@
--- surround.vim style mappings
 -- '(' inserts pairs with padding, ')' inserts pair with no padding
+-- surround.vim style mappings
 -- |foo + sae( -> ( foo )
 -- |foo + sae) -> (foo)
 
