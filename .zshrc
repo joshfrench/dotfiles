@@ -40,16 +40,20 @@ foreground-vi() {
 }
 
 zle -N foreground-vi
-bindkey '^Z' foreground-vi
 
+# Activate antibody, a zsh plugin manager (https://getantibody.github.io)
+source ~/.zsh_plugins.sh
+
+bindkey '^Z' foreground-vi
 bindkey "^K" kill-line
 bindkey "^A" beginning-of-line
 bindkey "^E" end-of-line
 bindkey '' backward-word
 bindkey '^F' forward-word
 
-# Activate antibody, a zsh plugin manager (https://getantibody.github.io)
-source ~/.zsh_plugins.sh
+vim-mode-bindkey vicmd  -- change-surround sr
+vim-mode-bindkey vicmd  -- delete-surround sd
+vim-mode-bindkey vicmd  -- add-surround s
 
 fpath=(./zsh/completions $fpath)
 autoload -Uz add-zsh-hook
