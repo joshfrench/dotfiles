@@ -4,10 +4,10 @@ if not ok then
 end
 
 lightbulb.setup({
-  ignore = {'gitsigns'},
+  ignore = { 'gitsigns', 'null-ls' },
   autocmd = {
     enabled = true,
   }
 })
 
-vim.fn.sign_define('LightBulbSign', {text='', texthl='DiagnosticSignInfo', linehl='', numhl=''})
+vim.fn.sign_define('LightBulbSign', { text = '', texthl = 'DiagnosticSignInfo', linehl = '', numhl = '' })
