@@ -40,7 +40,10 @@ _gen_fzf_default_opts() {
     --color=gutter:$base03
     --cycle
     --layout=reverse
-    --preview='bat --style=numbers --color=always --line-range :500 {}'
+  "
+
+  export FZF_CTRL_T_OPTS="
+    --preview='if [ -d {} ]; then exa -lh --git --no-permissions --no-user {}; else bat --style=numbers --color=always --line-range :500 {}; fi'
   "
 }
 
