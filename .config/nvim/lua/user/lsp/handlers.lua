@@ -82,6 +82,7 @@ M.on_attach = function(client, bufnr)
   lsp_highlight_doc(client, bufnr)
   lsp_keymap(bufnr)
   lsp_format(client, bufnr)
+  require 'user.null-ls'.attach(client)
   require 'nvim-navic'.attach(client, bufnr)
 end
 
