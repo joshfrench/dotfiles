@@ -2,7 +2,7 @@ if [ $commands[pyenv] ]; then
   pyenv() {
     unfunction "$0"
 
-    source '/usr/local/Cellar/pyenv/2.2.5/completions/pyenv.zsh'
+    source "${HOMEBREW_PREFIX}/Cellar/pyenv/2.2.5/completions/pyenv.zsh"
     command pyenv rehash 2>/dev/null
     local command
     command="${1:-}"

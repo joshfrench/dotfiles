@@ -2,7 +2,7 @@ if [ $commands[rbenv] ]; then
   rbenv() {
     unfunction $0
 
-    source '/usr/local/Cellar/rbenv/1.2.0/libexec/../completions/rbenv.zsh'
+    source "${HOMEBREW_PREFIX}/Cellar/rbenv/1.2.0/libexec/../completions/rbenv.zsh"
     command rbenv rehash 2>/dev/null
     local command
     command="${1:-}"
