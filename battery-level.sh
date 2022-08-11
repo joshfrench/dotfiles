@@ -1,7 +1,13 @@
 #!/bin/bash
+set -eu
 
-percent=$(pmset -g batt | tail +2 | ack '(\d+)%' --output '$1')
-charging='#[bg=yellow]'
-[[ $(pmset -g ac) =~ 'No adapter' ]] || charging='#[bg=green]'
-[[ $percent -gt 15 ]] || warning='#[bg=red]'
-echo -n "$warning$charging $percent%"
+_battery_status() {
+  local bg percent
+  bg=green
+  percent=$(pmset -g batt | rg '(\d+)%' --only-matching -r '$1')
+  [[ $(pmset -g ac) =~ 'No adapter' ]] && bg=yellow
+  [[ $percent -le 15 ]] && bg=red
+  echo -n "#[bg=$bg] $percent%"
+}
+
+_battery_status
