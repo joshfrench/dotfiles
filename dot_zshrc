@@ -1,0 +1,67 @@
+# zmodload zsh/zprof
+# Set to this to use case-sensitive completion
+# CASE_SENSITIVE="true"
+
+# Uncomment this to disable bi-weekly auto-update checks
+# DISABLE_AUTO_UPDATE="true"
+
+# Uncomment to change how often before auto-updates occur? (in days)
+# export UPDATE_ZSH_DAYS=13
+
+# Uncomment following line if you want to disable colors in ls
+# DISABLE_LS_COLORS="true"
+
+# Uncomment following line if you want to disable autosetting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+setopt correct extendedglob
+setopt +o nomatch
+setopt prompt_subst
+setopt COMPLETE_IN_WORD
+# Uncomment following line if you want red dots to be displayed while waiting for completion
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment following line if you want to disable marking untracked files under
+# VCS as dirty. This makes repository status check for large repositories much,
+# much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# env vars -> modules/env
+# aliases -> modules/aliases
+# paths -> .zprofile
+
+# https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters/main.md#how-to-tweak-it
+(( ${+ZSH_HIGHLIGHT_STYLES} )) || typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[path]=underline
+ZSH_HIGHLIGHT_STYLES[path_prefix]=underline
+
+foreground-vi() {
+  fg %nvi
+}
+
+zle -N foreground-vi
+
+# Activate antibody, a zsh plugin manager (https://getantibody.github.io)
+source ~/dotfiles/zsh/zsh_plugins.sh
+
+bindkey '^Z' foreground-vi
+bindkey "^K" kill-line
+bindkey "^A" beginning-of-line
+bindkey "^E" end-of-line
+bindkey '^B' backward-word
+bindkey '^F' forward-word
+
+vim-mode-bindkey vicmd  -- change-surround sr
+vim-mode-bindkey vicmd  -- delete-surround sd
+vim-mode-bindkey vicmd  -- add-surround s
+
+fpath=(./zsh/completions $fpath)
+autoload -Uz add-zsh-hook
+autoload -Uz compinit
+if [[ -n ${ZDOTDIR:-${HOME}}/.zcompdump(#qN.m+1) ]]; then
+  compinit
+  touch ${ZDOTDIR:-${HOME}}/.zcompdump
+else
+  compinit -C
+fi
+# zprof
