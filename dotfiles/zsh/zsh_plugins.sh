@@ -16,8 +16,6 @@ source /Users/josh/dotfiles/zsh/modules/aliases/aliases.plugin.zsh
 fpath+=( /Users/josh/dotfiles/zsh/modules/aliases )
 source /Users/josh/dotfiles/zsh/modules/direnv/direnv.zsh
 fpath+=( /Users/josh/dotfiles/zsh/modules/direnv )
-source /Users/josh/dotfiles/zsh/modules/env/env.zsh
-fpath+=( /Users/josh/dotfiles/zsh/modules/env )
 source /Users/josh/dotfiles/zsh/modules/fzf/fzf.plugin.zsh
 fpath+=( /Users/josh/dotfiles/zsh/modules/fzf )
 source /Users/josh/dotfiles/zsh/modules/history/history.plugin.zsh

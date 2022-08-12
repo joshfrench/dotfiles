@@ -9,7 +9,6 @@ softmoth/zsh-vim-mode
 /Users/josh/dotfiles/zsh/modules/autojump
 /Users/josh/dotfiles/zsh/modules/aliases
 /Users/josh/dotfiles/zsh/modules/direnv
-/Users/josh/dotfiles/zsh/modules/env
 /Users/josh/dotfiles/zsh/modules/fzf
 /Users/josh/dotfiles/zsh/modules/history
 /Users/josh/dotfiles/zsh/modules/lazyload
