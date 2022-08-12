@@ -1,7 +1,13 @@
 #!/bin/bash
 
-percent=$(pmset -g batt | rg '\d+%' --only-matching)
-charging='#[bg=yellow]'
-[[ $(pmset -g ac) =~ 'No adapter' ]] || charging='#[bg=green]'
-[[ $percent -gt 15 ]] || warning='#[bg=red]'
-echo -n "$warning$charging $percent"
+_battery_status() {
+  local bg pm pct
+  bg=green
+  pm=$(pmset -g batt)
+  pct=$(echo "$pm" | perl -n -e '/(\d+)%/ && print $1')
+  [[ $pm =~ discharging ]] && bg=yellow
+  [[ $pct -le 15 ]] && bg=red
+  echo -n "#[bg=$bg] $pct%"
+}
+
+_battery_status
