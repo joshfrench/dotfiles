@@ -45,6 +45,10 @@ _gen_fzf_default_opts() {
     --cycle
     --layout=reverse
   "
+
+  export FZF_CTRL_T_OPTS="
+    --preview='if [ -d {} ]; then exa -lh --git --no-permissions --no-user {}; else bat --style=numbers --color=always --line-range :250 {}; fi'
+  "
 }
 
 _gen_fzf_default_opts
