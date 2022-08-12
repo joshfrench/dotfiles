@@ -35,12 +35,6 @@ setopt COMPLETE_IN_WORD
 ZSH_HIGHLIGHT_STYLES[path]=underline
 ZSH_HIGHLIGHT_STYLES[path_prefix]=underline
 
-foreground-vi() {
-  fg %nvi
-}
-
-zle -N foreground-vi
-
 # Activate antibody, a zsh plugin manager (https://getantibody.github.io)
 source ~/dotfiles/zsh/zsh_plugins.sh
 
