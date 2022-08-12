@@ -1,0 +1,13 @@
+set shell zsh
+
+set shellopts '-eu'
+
+set scrolloff 6
+
+set previewer ~/.config/lf/bat_preview.sh
+
+map <enter> shell
+map <esc> quit
+map i $pistol $f | less -R
+
+cmd open $$EDITOR $f
