@@ -8,6 +8,6 @@ set previewer ~/.config/lf/bat_preview.sh
 
 map <enter> shell
 map <esc> quit
-map i $pistol $f | less -R
+map i $bat $f
 
 cmd open $$EDITOR $f
