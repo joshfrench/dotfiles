@@ -2,5 +2,6 @@
 
 set -x
 
-# brew lockfile hash: {{ include (joinPath .chezmoi.homeDir "dotfiles" "Brewfile.lock.json") | sha256sum }}
+{{ $brewfile := joinPath .chezmoi.homeDir "dotfiles" "Brewfile" }}
+# brewfile hash: {{ include $brewfile | sha256sum }}
 brew bundle --file {{ joinPath .chezmoi.homeDir "dotfiles" "Brewfile" }}
