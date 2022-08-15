@@ -1,4 +1,9 @@
 # zmodload zsh/zprof
+
+# .zshrc is read when the shell is interactive, therefore it is a good place
+# for prompt customizations, modules, aliases, etc.
+# it is sourced for login and non-login shells alike.
+
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
 
@@ -35,6 +40,7 @@ setopt no_auto_remove_slash
 (( ${+ZSH_HIGHLIGHT_STYLES} )) || typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[path]=underline
 ZSH_HIGHLIGHT_STYLES[path_prefix]=underline
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=11'
 
 # Activate antibody, a zsh plugin manager (https://getantibody.github.io)
 source ~/dotfiles/zsh/zsh_plugins.sh
@@ -52,11 +58,9 @@ vim-mode-bindkey vicmd  -- add-surround s
 
 fpath=(./zsh/completions $fpath)
 autoload -Uz add-zsh-hook
-autoload -Uz compinit
-if [[ -n ${ZDOTDIR:-${HOME}}/.zcompdump(#qN.m+1) ]]; then
-  compinit
-  touch ${ZDOTDIR:-${HOME}}/.zcompdump
-else
-  compinit -C
-fi
+
+PURE_GIT_PULL=0
+PURE_PROMPT_SYMBOL='%%'
+PURE_PROMPT_VICMD_SYMBOL=">"
+PURE_NEWLINE=1
 # zprof

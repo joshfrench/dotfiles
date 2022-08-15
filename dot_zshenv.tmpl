@@ -1,0 +1,16 @@
+# .zshenv is sourced for all shells whether login, interactive. or none.
+# most of these vars won't be needed by scripts, but for simplicity
+# they're here.
+{{ $prefix := (output "brew" "--prefix" | trim) -}}
+{{ $cellar := (output "brew" "--cellar" | trim) -}}
+{{ $repo := (output "brew" "--repository" | trim) -}}
+export HOMEBREW_PREFIX="{{ $prefix }}";
+export HOMEBREW_CELLAR="{{ $cellar }}";
+export HOMEBREW_REPOSITORY="{{ $repo }}";
+export PATH="{{ $prefix }}/bin:{{ $prefix }}/sbin${PATH+:$PATH}";
+export MANPATH="{{ $prefix }}/share/man${MANPATH+:$MANPATH}:";
+export INFOPATH="{{ $prefix }}/share/info:${INFOPATH:-}";
+
+export EDITOR=nvim
+
+export RIPGREP_CONFIG_PATH=~/.ripgreprc
