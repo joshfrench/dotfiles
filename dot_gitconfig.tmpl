@@ -1,6 +1,6 @@
 [user]
-	name = Josh French
-	email = {{ if eq .chezmoi.hostname "Joshs-MacBook-Pro" }}josh.french@rstudio.com{{ else }}joshfrench@gmail.com{{ end }}
+  name = Josh French
+  email = {{ if eq .chezmoi.hostname "Joshs-MacBook-Pro" }}josh.french@rstudio.com{{ else }}joshfrench@gmail.com{{ end }}
 [alias]
   co = checkout
   stat = status
@@ -13,15 +13,15 @@
 [hub]
   protocol = https
 [core]
-	excludesfile = /Users/josh/.gitignore
+  excludesfile = /Users/josh/.gitignore
 [rerere]
   enabled = true
 [init]
   defaultBranch = main
 [credential]
-	helper = osxkeychain
+  helper = osxkeychain
 [diff]
-	colorMoved = blocks
+  colorMoved = blocks
 [color "diff"]
-	oldMoved = magenta
-	newMoved = yellow
+  oldMoved = magenta
+  newMoved = yellow
