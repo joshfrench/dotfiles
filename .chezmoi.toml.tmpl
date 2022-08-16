@@ -1,8 +1,9 @@
 {{ $email := promptStringOnce . "email" "email address" "joshfrench@gmail.com" -}}
 {{ $extradeps := promptBoolOnce . "extradeps" "install work-related packages" false -}}
+mode = "symlink"
 [merge]
   command = 'nvim'
-  args = ['-d', '{{ .Destination }}', '{{ .Source }}']
+  args = ['-d', '{{ `{{ .Destination }}` }}', '{{ `{{ .Source }}` }}']
 [data]
   email = {{ $email | quote }}
   extradeps = {{ $extradeps }}
