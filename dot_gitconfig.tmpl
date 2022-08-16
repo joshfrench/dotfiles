@@ -1,6 +1,6 @@
 [user]
   name = Josh French
-  email = {{ if eq .chezmoi.hostname "Joshs-MacBook-Pro" }}josh.french@rstudio.com{{ else }}joshfrench@gmail.com{{ end }}
+  email = {{ .email }}
 [alias]
   co = checkout
   stat = status

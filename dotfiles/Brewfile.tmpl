@@ -28,7 +28,7 @@ brew "tree"
 brew "yarn"
 brew "zsh"
 cask "iterm2-beta"
-{{ if eq .chezmoi.hostname "Joshs-MacBook-Pro" -}}
+{{ if .extradeps -}}
 brew "direnv"
 brew "helm"
 brew "helmfile"
