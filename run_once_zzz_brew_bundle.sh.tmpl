@@ -1,7 +1,6 @@
 #!/bin/bash
-
-set -x
-
-{{ $brewfile := joinPath .chezmoi.homeDir "dotfiles" "Brewfile" }}
+{{ $brewfile := joinPath .chezmoi.homeDir "dotfiles" "Brewfile" -}}
+{{ if stat $brewfile -}}
 # brewfile hash: {{ include $brewfile | sha256sum }}
+{{ end -}}
 brew bundle --file {{ joinPath .chezmoi.homeDir "dotfiles" "Brewfile" }}
