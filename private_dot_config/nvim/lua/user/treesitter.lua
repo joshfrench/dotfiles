@@ -4,7 +4,8 @@ if not ok then
 end
 
 treesitter.setup({
-  ensure_installed = { 'bash', 'go', 'json', 'lua', 'markdown', 'vim' },
+  ensure_installed = { 'bash', 'dockerfile', 'go', 'gomod', 'javascript', 'json', 'lua', 'markdown', 'toml', 'tsx',
+    'typescript', 'python', 'vim', 'yaml' },
   highlight = {
     enabled = true,
     additional_vim_regex_highlighting = true,
