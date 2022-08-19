@@ -3,8 +3,20 @@ if not ok then
   return
 end
 
+local configs = require('nvim-treesitter.parsers').get_parser_configs()
+configs.gotmpl = {
+  install_info = {
+    -- url = "https://github.com/dannylongeuay/tree-sitter-go-template",
+    url = "~/src/tree-sitter-go-template/",
+    files = { "src/parser.c" }
+  },
+  filetype = "gotmpl",
+  used_by = { "gohtmltmpl", "gotexttmpl", "gotmpl" }
+}
+
 treesitter.setup({
-  ensure_installed = { 'bash', 'dockerfile', 'go', 'gomod', 'javascript', 'json', 'lua', 'markdown', 'toml', 'tsx',
+  ensure_installed = { 'bash', 'dockerfile', 'go', 'gomod', 'gotmpl', 'javascript', 'json', 'lua', 'markdown', 'toml',
+    'tsx',
     'typescript', 'python', 'vim', 'yaml' },
   highlight = {
     enabled = true,
