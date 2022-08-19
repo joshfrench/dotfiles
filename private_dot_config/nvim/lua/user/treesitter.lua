@@ -15,9 +15,10 @@ configs.gotmpl = {
 }
 
 treesitter.setup({
-  ensure_installed = { 'bash', 'dockerfile', 'go', 'gomod', 'gotmpl', 'javascript', 'json', 'lua', 'markdown', 'toml',
-    'tsx',
-    'typescript', 'python', 'vim', 'yaml' },
+  ensure_installed = {
+    'bash', 'dockerfile', 'go', 'gomod', 'gotmpl', 'javascript', 'json',
+    'lua', 'markdown', 'toml', 'tsx', 'typescript', 'python', 'vim', 'yaml'
+  },
   highlight = {
     enabled = true,
     additional_vim_regex_highlighting = true,
