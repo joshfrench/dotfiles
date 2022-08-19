@@ -4,10 +4,10 @@ if not ok then
 end
 
 local configs = require('nvim-treesitter.parsers').get_parser_configs()
+
 configs.gotmpl = {
   install_info = {
-    -- url = "https://github.com/dannylongeuay/tree-sitter-go-template",
-    url = "~/src/tree-sitter-go-template/",
+    url = "https://github.com/dannylongeuay/tree-sitter-go-template",
     files = { "src/parser.c" }
   },
   filetype = "gotmpl",
