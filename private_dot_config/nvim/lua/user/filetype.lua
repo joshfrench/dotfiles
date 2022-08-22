@@ -8,11 +8,3 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufNewFile' }, {
     vim.opt_local.syntax = 'cfg'
   end
 })
-
-vim.api.nvim_create_autocmd({ 'BufEnter', 'BufNewFile' }, {
-  pattern = '*.gotmpl',
-  group = au,
-  callback = function()
-    vim.cmd[[TSBufEnable highlight]]
-  end
-})

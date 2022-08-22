@@ -36,3 +36,24 @@ treesitter.setup({
 vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 vim.opt.indentexpr = 'treesitter#indentexpr()'
+
+local au = vim.api.nvim_create_augroup('gotmpl_filetype', { clear = true })
+
+vim.api.nvim_create_autocmd({ 'BufEnter', 'BufNewFile' }, {
+  pattern = '*.gotmpl',
+  group = au,
+  callback = function()
+    vim.cmd [[TSBufEnable highlight]]
+  end
+})
+
+vim.api.nvim_create_autocmd({ 'BufEnter', 'BufNewFile' }, {
+  pattern = '*.yaml',
+  group = au,
+  callback = function()
+    if vim.fn.search('{{[- ][.].* }}', 'nw') then
+      vim.opt_local.filetype = 'gotmpl'
+      vim.cmd [[TSBufEnable highlight]]
+    end
+  end
+})

@@ -8,7 +8,7 @@ end
 local rename = {
   name = "rename",
   method = null_ls.methods.CODE_ACTION,
-  filetypes = {},
+  filetypes = { ["NvimTree"] = false, },
   generator = {
     async = true,
     fn = function(params, done)
@@ -16,7 +16,11 @@ local rename = {
         textDocument = { uri = vim.uri_from_bufnr(params.bufnr) },
         position = { line = params.row, character = params.col },
       }
-      vim.lsp.buf_request(params.bufnr, "textDocument/prepareRename", lspParams, function(_, result)
+      vim.lsp.buf_request(params.bufnr, "textDocument/prepareRename", lspParams, function(err, result)
+        if err ~= nil then
+          null_ls.disable('rename')
+          return done()
+        end
         if result ~= nil then
           return done({ {
             title = 'Rename',
