@@ -5,5 +5,6 @@ vim.filetype.add({
     gcfg = 'gcfg',
     gotmpl = 'gotmpl',
     tf = 'tf',
+    jenkinsfile = 'groovy',
   }
 })
