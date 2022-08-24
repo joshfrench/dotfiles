@@ -224,11 +224,6 @@ _G.packer_plugins = {
     path = "/Users/josh/.local/share/nvim/site/pack/packer/start/trouble.nvim",
     url = "https://github.com/folke/trouble.nvim"
   },
-  ["vim-highlightedyank"] = {
-    loaded = true,
-    path = "/Users/josh/.local/share/nvim/site/pack/packer/start/vim-highlightedyank",
-    url = "https://github.com/machakann/vim-highlightedyank"
-  },
   ["vim-sandwich"] = {
     loaded = true,
     path = "/Users/josh/.local/share/nvim/site/pack/packer/start/vim-sandwich",

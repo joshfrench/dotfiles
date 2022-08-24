@@ -85,7 +85,6 @@ return packer.startup(function(use)
   use 'lewis6991/gitsigns.nvim'
   use 'SmiteshP/nvim-navic'
   use 'b3nj5m1n/kommentary'
-  use 'machakann/vim-highlightedyank'
   use 'kosayoda/nvim-lightbulb'
   use 'weilbith/nvim-code-action-menu'
   use 'machakann/vim-sandwich'
