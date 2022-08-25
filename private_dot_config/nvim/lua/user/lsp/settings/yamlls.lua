@@ -38,6 +38,7 @@ local cfg = yaml.setup({
           "!If sequence",
           "!Not sequence",
           "!Or sequence",
+          "!secret"
         },
       }
     }
