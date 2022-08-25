@@ -20,6 +20,24 @@ local multiselect = function(prompt_bufnr, open_cmd)
   end
 end
 
+-- delmarks currently broken, see https://github.com/neovim/neovim/pull/16067
+local delete_marks = function(bufnr)
+  local picker = action_state.get_current_picker(bufnr)
+  local marks = picker:get_multi_selection()
+  if #marks == 0 then
+    marks = { action_state.get_selected_entry() }
+  end
+  for _, mark in ipairs(marks) do
+    local _, _, m = string.find(mark.display, "(%w) ")
+    if string.match(m, '[a-z]') then
+      vim.api.nvim_buf_del_mark(m)
+    else
+      vim.api.nvim_del_mark(m)
+    end
+  end
+  picker:refresh(require('telescope.builtin').marks())
+end
+
 telescope.setup({
   defaults = {
     mappings = {
@@ -43,6 +61,13 @@ telescope.setup({
       mappings = {
         i = {
           ['<C-d>'] = "delete_buffer",
+        }
+      }
+    },
+    marks = {
+      mappings = {
+        i = {
+          ['<C-d>'] = delete_marks,
         }
       }
     },
