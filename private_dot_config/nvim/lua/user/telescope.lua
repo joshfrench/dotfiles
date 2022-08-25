@@ -50,6 +50,7 @@ telescope.setup({
 })
 
 telescope.load_extension('fzf')
+telescope.load_extension('yaml_schema')
 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>b', builtin.buffers)
