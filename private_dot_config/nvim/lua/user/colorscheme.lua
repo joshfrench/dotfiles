@@ -40,8 +40,8 @@ vim.api.nvim_set_hl(0, 'DiagnosticSignHint', { fg = colors.blue, bg = colors.bas
 vim.api.nvim_set_hl(0, 'DiagnosticSignInfo', { fg = colors.base3, bg = colors.base02 })
 
 vim.api.nvim_set_hl(0, 'LspReferenceText', { bold = true, bg = colors.highlite })
-vim.api.nvim_set_hl(0, 'LspReferenceTextRead', { bold = true, bg = colors.highlite })
-vim.api.nvim_set_hl(0, 'LspReferenceTextWrite', { bold = true, bg = colors.highlite })
+vim.api.nvim_set_hl(0, 'LspReferenceRead', { bold = true, bg = colors.highlite })
+vim.api.nvim_set_hl(0, 'LspReferenceWrite', { bold = true, bg = colors.highlite })
 
 vim.api.nvim_set_hl(0, 'VistaKind', { bold = true, fg = colors.yellow })
 vim.api.nvim_set_hl(0, 'VistaTag', { fg = colors.base1 })
