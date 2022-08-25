@@ -34,7 +34,10 @@ local rename = {
   }
 }
 
+local lsp_handlers = require('user.lsp.handlers')
+
 null_ls.setup({
+  on_attach = lsp_handlers.on_attach,
   sources = {
     null_ls.builtins.diagnostics.shellcheck,
     -- null_ls.builtins.diagnostics.zsh,
