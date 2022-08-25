@@ -28,6 +28,7 @@ return packer.startup(function(use)
     requires = {
       'p00f/nvim-ts-rainbow',
       'JoosepAlviste/nvim-ts-context-commentstring',
+      'nvim-treesitter/playground',
     },
   }
   use {

@@ -31,9 +31,16 @@ treesitter.setup({
   context_commentstring = {
     enable = true,
   },
+  playground = {
+    enable = true,
+  },
+  query_linter = {
+    enable = true,
+    use_virtual_text = true,
+    lint_events = { "BufWrite", "CursorHold" },
+  },
 })
 
 vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 vim.opt.indentexpr = 'treesitter#indentexpr()'
-
