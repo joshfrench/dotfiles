@@ -45,23 +45,3 @@ local cfg = yaml.setup({
 })
 
 return cfg
-
---[[ return {
-  filetypes = { "gotmpl", "yaml", "yaml.docker-compose" },
-  settings = {
-    yaml = {
-      trace = {
-        server = "verbose"
-      },
-      schemas = {
-        ["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.23.6-standalone/all.json"] = "/*",
-      },
-      schemaStore = {
-        url = "https://www.schemastore.org/api/json/catalog.json",
-        enable = true,
-      },
-      customTags = {
-      }
-    }
-  }
-} ]]
