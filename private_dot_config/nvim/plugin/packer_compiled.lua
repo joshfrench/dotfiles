@@ -159,6 +159,11 @@ _G.packer_plugins = {
     path = "/Users/josh/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
   },
+  ["nvim-luapad"] = {
+    loaded = true,
+    path = "/Users/josh/.local/share/nvim/site/pack/packer/start/nvim-luapad",
+    url = "https://github.com/rafcamlet/nvim-luapad"
+  },
   ["nvim-navic"] = {
     loaded = true,
     path = "/Users/josh/.local/share/nvim/site/pack/packer/start/nvim-navic",

@@ -93,6 +93,8 @@ return packer.startup(function(use)
   use 'christoomey/vim-tmux-navigator'
   use 'tpope/vim-unimpaired'
 
+  use { 'rafcamlet/nvim-luapad', requires = "antoinemadec/FixCursorHold.nvim" }
+
   if PACKER_BOOTSTRAP then
     packer.sync()
   end
