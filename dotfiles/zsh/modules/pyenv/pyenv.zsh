@@ -11,8 +11,7 @@ _activate_pyenv() {
       read -q "?$(echo -e ${GREEN}.python-version found, run \`pyenv activate\`?${NC}) (y/N) " && \
       pyenv activate
   elif [ -f './requirements.txt' ] || [ -f './requirements.yml' ]; then
-    read -q "yn?$(echo -e "${GREEN}No pyenv created, run \`make pyenv\`?${NC} (y/N)") "
-    if [ ${yn} = 'y' ]; then
+    if read -q "yn?$(echo -e "${GREEN}No pyenv created, run \`make pyenv\`?${NC} (y/N)") "; then
       echo "\n"
       make pyenv
       pyenv activate
