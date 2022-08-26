@@ -15,6 +15,19 @@ local function paste()
   return "PASTE"
 end
 
+local function schema()
+  local s = require('yaml-companion').get_buf_schema(0)
+  if s.result and #s.result > 0 then
+    local schemas = {}
+    for _, r in ipairs(s.result) do
+      if r.name ~= "none" then
+        table.insert(schemas, r.name)
+      end
+    end
+    return table.concat(schemas, ',')
+  end
+end
+
 local colors = require('user.colorscheme')
 
 local theme = {
@@ -52,7 +65,7 @@ lualine.setup({
       pwd,
     },
     lualine_c = { relative_path, { require 'nvim-navic'.get_location, cond = require 'nvim-navic'.is_available } },
-    lualine_x = { 'diagnostics', 'filetype' },
+    lualine_x = { 'diagnostics', 'filetype', schema },
     lualine_y = { 'progress' },
     lualine_z = { 'location' }
   },

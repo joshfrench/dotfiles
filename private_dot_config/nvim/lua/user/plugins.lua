@@ -51,7 +51,7 @@ return packer.startup(function(use)
       'nvim-lua/plenary.nvim'
     }
   }
-  use "someone-stole-my-name/yaml-companion.nvim"
+  use { "~/src/joshfrench/yaml-companion.nvim/" }
   use 'hrsh7th/cmp-nvim-lsp-signature-help'
   use {
     'kyazdani42/nvim-tree.lua',
