@@ -5,7 +5,6 @@ end
 
 for _, server in ipairs(require 'nvim-lsp-installer'.get_installed_servers()) do
   local opts = {
-    on_attach = require 'user.lsp.handlers'.on_attach,
     capabilities = require 'user.lsp.handlers'.capabilities,
   }
 

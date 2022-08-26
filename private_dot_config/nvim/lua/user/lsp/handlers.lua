@@ -35,56 +35,73 @@ M.setup = function()
   })
 end
 
-local function lsp_highlight_doc(client, bufnr)
-  if client.resolved_capabilities.document_highlight then
-    local au = vim.api.nvim_create_augroup('lsp_doc_highlight', { clear = true })
-    vim.api.nvim_create_autocmd('CursorHold', {
-      group = au,
-      buffer = bufnr,
-      callback = vim.lsp.buf.document_highlight
-    })
-    vim.api.nvim_create_autocmd('CursorMoved', {
-      group = au,
-      buffer = bufnr,
-      callback = vim.lsp.buf.clear_references
-    })
+
+local au = vim.api.nvim_create_augroup('LspAttach', { clear = true })
+
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = au,
+  callback = function(args)
+    local bufnr = args.buf
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if client.server_capabilities.documentHighlightProvider then
+      vim.api.nvim_create_autocmd('CursorHold', {
+        group = au,
+        buffer = bufnr,
+        callback = vim.lsp.buf.document_highlight
+      })
+      vim.api.nvim_create_autocmd('CursorMoved', {
+        group = au,
+        buffer = bufnr,
+        callback = vim.lsp.buf.clear_references
+      })
+    end
   end
-end
+})
 
-local function lsp_keymap(bufnr)
-  local opts = { noremap = true, silent = true, buffer = bufnr }
-  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-  vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-  vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-  vim.keymap.set('n', 'Rn', vim.lsp.buf.rename, opts)
-end
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = au,
+  callback = function(args)
+    local bufnr = args.buf
+    local opts = { noremap = true, silent = true, buffer = bufnr }
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+    vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+    vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+    vim.keymap.set('n', 'Rn', vim.lsp.buf.rename, opts)
+  end
+})
 
-local function lsp_format(client, bufnr)
-  if client.resolved_capabilities.document_formatting then
-    vim.b.format = 1
-    local au = vim.api.nvim_create_augroup('lsp_doc_formatting', { clear = true })
-    vim.api.nvim_create_autocmd({ 'InsertLeave', 'BufWritePre' }, {
-      group = au,
-      buffer = bufnr,
-      callback = function()
-        if vim.b.format == 1 then -- :Format/:NoFormat to toggle
-          vim.lsp.buf.formatting()
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = au,
+  callback = function(args)
+    local bufnr = args.buf
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if client.server_capabilities.documentFormattingProvider then
+      vim.b.format = 1
+      vim.api.nvim_create_autocmd({ 'InsertLeave', 'BufWritePre' }, {
+        group = au,
+        buffer = bufnr,
+        callback = function()
+          if vim.b.format == 1 then -- :Format/:NoFormat to toggle
+            vim.lsp.buf.format({ async = false })
+          end
         end
-      end
-    })
+      })
+    end
   end
-end
+})
 
-M.on_attach = function(client, bufnr)
-  lsp_highlight_doc(client, bufnr)
-  lsp_keymap(bufnr)
-  lsp_format(client, bufnr)
-  if client.resolved_capabilities.document_symbol then
-    require 'nvim-navic'.attach(client, bufnr)
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = au,
+  callback = function(args)
+    local bufnr = args.buf
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if client.server_capabilities.documentSymbolProvider then
+      require 'nvim-navic'.attach(client, bufnr)
+    end
   end
-end
+})
 
 return M

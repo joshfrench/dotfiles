@@ -48,7 +48,7 @@ null_ls.setup({
 })
 
 M.attach = function(client)
-  if client.resolved_capabilities.rename then
+  if client.server_capabilities.rename then
     if not null_ls.is_registered('rename') then
       null_ls.register(rename)
     end
