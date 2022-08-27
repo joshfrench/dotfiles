@@ -1,4 +1,4 @@
-local ok, context = pcall(require, 'yaml-companion.context')
+local ok, yaml = pcall(require, 'yaml-companion')
 if not ok then
   return
 end
@@ -20,12 +20,12 @@ local detectSchema = function(bufnr)
     end
   end
   if schema then
-    context.schema(bufnr, { result = { schema } })
+    yaml.set_buf_schema(bufnr, { result = { schema } })
   end
 end
 
 local au = vim.api.nvim_create_augroup('detectSchema', { clear = true })
-vim.api.nvim_create_autocmd({'BufEnter', 'BufNew'}, {
+vim.api.nvim_create_autocmd({ 'BufEnter', 'BufNew' }, {
   pattern = { '*.yml', '*.yaml', '*.gotmpl' },
   group = au,
   callback = function(args)
