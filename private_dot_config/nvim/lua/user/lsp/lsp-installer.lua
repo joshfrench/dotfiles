@@ -12,6 +12,7 @@ lspinstaller.setup({
     'pyright',
     'sumneko_lua',
     'tsserver',
+    'yamlls'
   },
   ui = {
     icons = {

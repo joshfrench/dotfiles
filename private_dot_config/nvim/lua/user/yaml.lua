@@ -3,8 +3,21 @@ if not ok then
   return
 end
 
-local all = require('yaml-companion.lsp.util').get_all_yaml_schemas()
+yaml.setup({
+  builtin_matchers = {
+    kubernetes = { enabled = false },
+  },
+  schemas = {
+    result = {
+      {
+        name = "Kubernetes 1.26.3",
+        uri = "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.23.6-standalone-strict/all.json"
+      },
+    },
+  },
+})
 
+-- TODO: this becomes a matcher/eliminate autocmd
 local schemas = {
   ['^AWSTemplateFormatVersion: '] = {
     name = 'AWS CloudFormation',
@@ -24,7 +37,19 @@ local detectSchema = function(bufnr)
   end
 end
 
-local au = vim.api.nvim_create_augroup('detectSchema', { clear = true })
+local au = vim.api.nvim_create_augroup('yamlls', { clear = true })
+
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = au,
+  pattern = { '*.yaml', '*.yml', '*.gotmpl' },
+  callback = function(args)
+    local bufnr = args.buf
+    local opts = { noremap = true, silent = true, buffer = bufnr }
+    vim.keymap.set('n', '<leader>y', require('telescope').extensions.yaml_schema.yaml_schema, opts)
+  end
+})
+
+--[[
 vim.api.nvim_create_autocmd({ 'BufEnter', 'BufNew' }, {
   pattern = { '*.yml', '*.yaml', '*.gotmpl' },
   group = au,
@@ -32,4 +57,4 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufNew' }, {
     local bufnr = args.buf
     detectSchema(bufnr)
   end
-})
+}) ]]
