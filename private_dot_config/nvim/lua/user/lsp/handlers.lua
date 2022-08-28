@@ -78,14 +78,14 @@ vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)
     local bufnr = args.buf
     local client = vim.lsp.get_client_by_id(args.data.client_id)
-    if client.server_capabilities.documentFormattingProvider then
+    if client.supports_method("textDocument/formatting") then
       vim.b.format = 1
       vim.api.nvim_create_autocmd({ 'InsertLeave', 'BufWritePre' }, {
         group = au,
         buffer = bufnr,
         callback = function()
           if vim.b.format == 1 then -- :Format/:NoFormat to toggle
-            vim.lsp.buf.format({ async = false })
+            vim.lsp.buf.format({ id = client.id, async = false })
           end
         end
       })
