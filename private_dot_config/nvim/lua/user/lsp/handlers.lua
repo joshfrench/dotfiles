@@ -78,7 +78,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)
     local bufnr = args.buf
     local client = vim.lsp.get_client_by_id(args.data.client_id)
-    if client.server_capabilities.documentFormattingProvider or client.name == 'yamlls' then -- should just use null-ls+prettier_d for yaml tbh
+    if client.supports_method("textDocument/formatting") then
       vim.b.format = 1
       vim.api.nvim_create_autocmd({ 'InsertLeave', 'BufWritePre' }, {
         group = au,
