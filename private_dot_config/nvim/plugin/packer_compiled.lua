@@ -239,6 +239,11 @@ _G.packer_plugins = {
     path = "/Users/josh/.local/share/nvim/site/pack/packer/start/trouble.nvim",
     url = "https://github.com/folke/trouble.nvim"
   },
+  ["vim-coffee-script"] = {
+    loaded = true,
+    path = "/Users/josh/.local/share/nvim/site/pack/packer/start/vim-coffee-script",
+    url = "https://github.com/kchmck/vim-coffee-script"
+  },
   ["vim-sandwich"] = {
     loaded = true,
     path = "/Users/josh/.local/share/nvim/site/pack/packer/start/vim-sandwich",

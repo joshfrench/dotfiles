@@ -95,6 +95,8 @@ return packer.startup(function(use)
 
   use { 'rafcamlet/nvim-luapad', requires = "antoinemadec/FixCursorHold.nvim" }
 
+  use 'kchmck/vim-coffee-script'
+
   if PACKER_BOOTSTRAP then
     packer.sync()
   end
