@@ -5,22 +5,19 @@ return {
       debounce_text_changes = 150,
     },
     single_file_support = true,
-    settings = {
-      redhat = { telemetry = { enabled = false } },
-      yaml = {
-        validate = true,
-        format = { enable = true },
-        hover = true,
-        schemaStore = {
-          enable = true,
-          url = "https://www.schemastore.org/api/json/catalog.json",
-        },
-        schemaDownload = { enable = true },
-        schemas = { result = {} },
-        trace = { server = "debug" },
-      },
-    },
+    redhat = { telemetry = { enabled = false } },
     yaml = {
+      validate = true,
+      format = { enable = true },
+      hover = true,
+      completion = true,
+      schemaStore = {
+        enable = true,
+        url = "https://www.schemastore.org/api/json/catalog.json",
+      },
+      schemaDownload = { enable = true },
+      schemas = { result = {} },
+      trace = { server = "debug" },
       customTags = {
         "!Base64",
         "!Cidr",
@@ -42,6 +39,6 @@ return {
         "!Or sequence",
         "!secret"
       },
-    }
+    },
   }
 }
