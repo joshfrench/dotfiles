@@ -13,6 +13,6 @@ softmoth/zsh-vim-mode
 /Users/josh/dotfiles/zsh/modules/history
 /Users/josh/dotfiles/zsh/modules/lazyload
 /Users/josh/dotfiles/zsh/modules/navigation
-/Users/josh/dotfiles/zsh/modules/ripgrep
+/Users/josh/dotfiles/zsh/modules/nvm
 /Users/josh/dotfiles/zsh/modules/pure # symlink me!
 /Users/josh/dotfiles/zsh/modules/pyenv

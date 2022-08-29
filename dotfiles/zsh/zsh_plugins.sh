@@ -27,6 +27,8 @@ source /Users/josh/dotfiles/zsh/modules/lazyload/rbenv.zsh
 fpath+=( /Users/josh/dotfiles/zsh/modules/lazyload )
 source /Users/josh/dotfiles/zsh/modules/navigation/navigation.plugin.zsh
 fpath+=( /Users/josh/dotfiles/zsh/modules/navigation )
+source /Users/josh/dotfiles/zsh/modules/nvm/nvm.zsh
+fpath+=( /Users/josh/dotfiles/zsh/modules/nvm )
 source /Users/josh/dotfiles/zsh/modules/pure/pure.plugin.zsh
 fpath+=( /Users/josh/dotfiles/zsh/modules/pure )
 source /Users/josh/dotfiles/zsh/modules/pyenv/pyenv.zsh

@@ -64,5 +64,6 @@ PURE_PROMPT_SYMBOL='%%'
 PURE_PROMPT_VICMD_SYMBOL=">"
 PURE_NEWLINE=1
 
+_activate_nvm
 _activate_pyenv
 # zprof
