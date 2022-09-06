@@ -7,20 +7,21 @@ _activate_pyenv() {
   # elif [[ -f './Pipfile' ]]; then
   #   [[ -v PIPENV_ACTIVE ]] || echo -e "${GREEN}🐍 Run 'pipenv shell' to load Pipenv.${NC}"
   if [[ -f './.python-version' ]]; then
-    [[ ! -v PYENV_VIRTUAL_ENV ]] && \
-      read -q "?$(echo ${GREEN}.python-version found, run \`pyenv activate\`?${NC}) (y/N) " && \
-      pyenv activate
+    pyenv=$(cat ./.python-version)
+    if [[ ! -v PYENV_VIRTUAL_ENV ]]; then
+      read -q "?$(echo ${GREEN}.python-version found, activate ${pyenv}?${NC}) (y/N) " && pyenv activate
+    elif [ ! ${PYENV_VIRTUAL_ENV##*/} = ${pyenv} ]; then
+      read -q "?$(echo $GREEN)pyenv is ${PYENV_VIRTUAL_ENV##*/}, activate ${pyenv} instead? (y/N) " && pyenv activate
+    fi
   elif [ -f './requirements.txt' ] || [ -f './requirements.yml' ]; then
     if read -q "yn?$(echo "${GREEN}No pyenv created, run \`make pyenv\`?${NC} (y/N)") "; then
-      echo "\n"
+      echo ''
       make pyenv
       pyenv activate
+      pyenv pyright
       echo "\n${GREEN}Next: aws sso and \`make deps\`.${NC}"
     fi
   fi
 }
 
-typeset -ag chpwd_functions;
-if [[ -z "${chpwd_functions[(r)_activate_pyenv]+1}" ]]; then
-  chpwd_functions+=_activate_pyenv
-fi
+add-zsh-hook chpwd _activate_pyenv
