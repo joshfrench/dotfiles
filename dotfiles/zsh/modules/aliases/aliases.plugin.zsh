@@ -9,6 +9,7 @@ alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
 alias koff='kubectl config unset current-context'
 alias kctl='kubectl'
 alias kctx='kubectx'
+alias hk='heroku'
 
 # git branch (interactive)
 function gb() {

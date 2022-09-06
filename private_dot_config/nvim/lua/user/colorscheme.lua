@@ -51,4 +51,7 @@ vim.api.nvim_set_hl(0, 'HighlightedyankRegion', { bg = colors.highlite })
 
 vim.api.nvim_set_hl(0, 'IndentBlanklineChar', { fg = colors.base02 })
 
+vim.cmd [[ hi link coffeeSpaceError NONE ]]
+vim.cmd [[ hi link coffeeSemicolonError NONE ]]
+
 return colors
