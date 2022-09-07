@@ -24,6 +24,9 @@ setopt +o nomatch
 setopt prompt_subst
 setopt COMPLETE_IN_WORD
 setopt no_auto_remove_slash
+
+# case insensitive completion: lowercase -> anycase
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 # COMPLETION_WAITING_DOTS="true"
 
