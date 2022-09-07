@@ -24,6 +24,6 @@ __j() { # replace upstream j() with a version that doesn't do shitty colorizatio
 j() {
  [ -f ${HOMEBREW_PREFIX}/etc/profile.d/autojump.sh ] && . ${HOMEBREW_PREFIX}/etc/profile.d/autojump.sh
   unset -f j
- alias j=__j
- __j "$@"
+  alias j=__j
+  __j "$@"
 }
