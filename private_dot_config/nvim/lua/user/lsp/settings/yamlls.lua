@@ -1,5 +1,5 @@
 return {
-  filetypes = { "gotmpl", "yaml", "yaml.docker-compose" },
+  filetypes = { "yaml", "yaml.docker-compose" },
   settings = {
     flags = {
       debounce_text_changes = 150,

@@ -18,10 +18,11 @@ yaml.setup({
 })
 
 local au = vim.api.nvim_create_augroup('yamlls', { clear = true })
+local yaml_types = { '*.yaml', '*.yml', '*.gotmpl' }
 
 vim.api.nvim_create_autocmd('LspAttach', {
   group = au,
-  pattern = { '*.yaml', '*.yml', '*.gotmpl' },
+  pattern = yaml_types,
   callback = function(args)
     local bufnr = args.buf
     local opts = { noremap = true, silent = true, buffer = bufnr }
@@ -29,7 +30,21 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end
 })
 
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = au,
+  pattern = yaml_types,
+  callback = function(args)
+    local client = vim.lsp.get_active_clients({ buffer = args.buf, name = 'yamlls' })[1]
+    if client then
+      vim.lsp.buf_detach_client(args.buf, client.id)
+      print "Detaching yamlls, do not lint gotmpls"
+    end
+  end
+})
+
+
 -- TODO: this becomes a matcher/eliminate autocmd
+--[[
 local schemas = {
   ['^AWSTemplateFormatVersion: '] = {
     name = 'AWS CloudFormation',
@@ -49,7 +64,6 @@ local detectSchema = function(bufnr)
   end
 end
 
---[[
 vim.api.nvim_create_autocmd({ 'BufEnter', 'BufNew' }, {
   pattern = { '*.yml', '*.yaml', '*.gotmpl' },
   group = au,
