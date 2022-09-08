@@ -23,7 +23,7 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufNewFile' }, {
   pattern = '*.yaml',
   group = gotmpl,
   callback = function()
-    if vim.fn.search('{{[- ][.].* }}', 'nw') > 0 then
+    if vim.fn.search('{{-\\= \\(\\.\\|if\\|end\\).* \\=}}', 'cnw') > 0 then
       vim.opt_local.filetype = 'gotmpl'
       vim.cmd [[TSBufEnable highlight]]
     end
