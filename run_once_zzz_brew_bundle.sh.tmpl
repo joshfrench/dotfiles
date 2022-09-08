@@ -3,4 +3,4 @@
 {{ if stat $brewfile -}}
 # brewfile hash: {{ include $brewfile | sha256sum }}
 {{ end -}}
-brew bundle --file {{ joinPath .chezmoi.homeDir "dotfiles" "Brewfile" }}
+exec brew bundle --file {{ joinPath .chezmoi.homeDir "dotfiles" "Brewfile" }}
