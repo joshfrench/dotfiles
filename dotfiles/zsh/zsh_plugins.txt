@@ -4,7 +4,8 @@ zsh-users/zsh-completions
 zsh-users/zsh-autosuggestions
 zsh-users/zsh-syntax-highlighting
 zsh-users/zsh-history-substring-search
-softmoth/zsh-vim-mode
+# softmoth/zsh-vim-mode
+jeffreytse/zsh-vi-mode
 
 /Users/josh/dotfiles/zsh/modules/autojump
 /Users/josh/dotfiles/zsh/modules/aliases
