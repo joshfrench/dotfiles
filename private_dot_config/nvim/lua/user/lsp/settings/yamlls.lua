@@ -7,8 +7,8 @@ return {
     single_file_support = true,
     redhat = { telemetry = { enabled = false } },
     yaml = {
-      validate = true,
-      format = { enable = true },
+      validate = false,
+      format = { enable = true, proseWrap = "Never" },
       hover = true,
       completion = true,
       schemaStore = {
