@@ -22,7 +22,7 @@ if [ $commands[pyenv] ]; then
     export PYENV_ROOT="$HOME/.pyenv"
     export PYENV_SHELL=zsh
     export PYENV_VIRTUALENV_INIT=1
-    source '/usr/local/Cellar/pyenv/2.3.3/libexec/../completions/pyenv.zsh'
+    source "/usr/local/Cellar/pyenv/$(__pyenv --version | cut -d' ' -f2)/completions/pyenv.zsh"
 
     command pyenv rehash 2>/dev/null
 

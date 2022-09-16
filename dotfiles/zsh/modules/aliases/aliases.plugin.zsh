@@ -28,5 +28,11 @@ function ap() {
   local profiles selection profile
   profiles=$(aws configure list-profiles)
   if [[ -n "$1" ]] && [[ "$profiles" =~ (^|[[:space:]])"$1"($|[[:space:]]) ]]; then selection="$1"; else selection=$(echo "$profiles" | fzf --height=10%); fi &&
-  if [[ -t 1 ]]; then export AWS_PROFILE="$selection" && aws sso login; else echo "$selection"; fi
+  if [[ -t 1 ]]; then
+    export AWS_PROFILE="$selection"
+    aws sso login
+    [[ -v TMUX ]] && tmux setenv AWS_PROFILE $AWS_PROFILE
+  else
+    echo "$selection"
+  fi
 }
