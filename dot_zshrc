@@ -25,6 +25,11 @@ setopt prompt_subst
 setopt COMPLETE_IN_WORD
 setopt no_auto_remove_slash
 
+# load compinit but use the cache.
+# .zprofile regens the cache on login shells only.
+autoload -Uz compinit
+compinit -C
+
 # case insensitive completion: lowercase -> anycase
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 # Uncomment following line if you want red dots to be displayed while waiting for completion
