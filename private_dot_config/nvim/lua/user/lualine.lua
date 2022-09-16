@@ -61,10 +61,11 @@ lualine.setup({
   sections = {
     lualine_a = { 'mode', { paste, cond = function() return vim.o.paste end } },
     lualine_b = {
-      { 'branch', icons_enabled = false },
       pwd,
+      { 'branch', icons_enabled = false },
     },
-    lualine_c = { relative_path, { require 'nvim-navic'.get_location, cond = require 'nvim-navic'.is_available } },
+    -- lualine_c = { relative_path, { require 'nvim-navic'.get_location, cond = require 'nvim-navic'.is_available } },
+    lualine_c = {},
     lualine_x = { 'diagnostics', 'filetype', schema },
     lualine_y = { 'progress' },
     lualine_z = { 'location' }

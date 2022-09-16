@@ -51,6 +51,10 @@ vim.api.nvim_set_hl(0, 'HighlightedyankRegion', { bg = colors.highlite })
 
 vim.api.nvim_set_hl(0, 'IndentBlanklineChar', { fg = colors.base02 })
 
+vim.api.nvim_set_hl(0, 'WinBar', { bg = colors.base02, bold = false })
+vim.api.nvim_set_hl(0, 'WinSeparator', { bg = colors.base02, fg = colors.base00 })
+vim.api.nvim_set_hl(0, 'WinBarMod', { bg = colors.base02, fg = colors.red })
+
 vim.cmd [[ hi link coffeeSpaceError NONE ]]
 vim.cmd [[ hi link coffeeSemicolonError NONE ]]
 
