@@ -51,9 +51,12 @@ vim.api.nvim_set_hl(0, 'HighlightedyankRegion', { bg = colors.highlite })
 
 vim.api.nvim_set_hl(0, 'IndentBlanklineChar', { fg = colors.base02 })
 
-vim.api.nvim_set_hl(0, 'WinBar', { bg = colors.base02, bold = false })
-vim.api.nvim_set_hl(0, 'WinSeparator', { bg = colors.base02, fg = colors.base00 })
-vim.api.nvim_set_hl(0, 'WinBarMod', { bg = colors.base02, fg = colors.red })
+vim.api.nvim_set_hl(0, 'WinBar', { fg = colors.base1, bg = colors.highlite })
+vim.api.nvim_set_hl(0, 'WinSeparator', { fg = colors.base00, bg = colors.highlite })
+vim.api.nvim_set_hl(0, 'WinBarMod', { fg = colors.red, bg = colors.highlite })
+vim.api.nvim_set_hl(0, 'NavicSeparator', { link = 'WinSeparator' })
+vim.api.nvim_set_hl(0, 'NavicText', { link = 'WinBar' })
+vim.api.nvim_set_hl(0, 'WinBarNC', { link = 'WinSeparator' })
 
 vim.cmd [[ hi link coffeeSpaceError NONE ]]
 vim.cmd [[ hi link coffeeSemicolonError NONE ]]

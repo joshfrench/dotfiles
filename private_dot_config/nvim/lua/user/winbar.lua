@@ -9,6 +9,7 @@ local M = {}
 M.excludes = {
   'help',
   'startify',
+  'vista',
   'vista_kind',
   'dashboard',
   'packer',
@@ -17,6 +18,16 @@ M.excludes = {
   'alpha',
   'qf',
 }
+
+-- wraps `term` in `hl` group iff STL belongs to the active window
+local function a(hl, term)
+  local winnr = tostring(vim.api.nvim_get_current_win())
+  if winnr == vim.g.actual_curwin then
+    return ('%#' .. hl .. '#' .. term .. '%*')
+  else
+    return term
+  end
+end
 
 local function excludes()
   if vim.tbl_contains(M.excludes, vim.bo.filetype) or
@@ -45,9 +56,9 @@ local function head()
   else
     local icon, color = icons.get_icon_color(h, ft)
     if icon then
-      local hl = 'WinBarIcon' .. ft
-      vim.api.nvim_set_hl(0, hl, { fg = color, bg = colors.base02 })
-      return '%#' .. hl .. '#' .. icon .. ' ' .. h .. '%*'
+      local hl = 'WinBarIcon' .. ft:gsub('^%l', string.upper)
+      vim.api.nvim_set_hl(0, hl, { bg = colors.highlite, fg = color })
+      return a(hl, icon .. ' ' .. h)
     else
       return h
     end
@@ -55,16 +66,15 @@ local function head()
 end
 
 local function navic_location()
-  if not ok_navic then
-    return ""
+  if ok_navic and navic.is_available then
+    return navic.get_location({ highlight = true, icons = {} })
   else
-    return navic.get_location()
+    return ""
   end
 end
 
 local function modified()
   if vim.bo.mod then
-    -- return ' %#WinBarMod#[+]%*'
     return ' %#WinBarMod#●%*'
   else
     return ""
@@ -79,7 +89,6 @@ M.get_winbar = function()
   local segments = {
     path(),
     head(),
-    navic_location(),
   }
 
   segments = vim.tbl_filter(function(s)
@@ -90,13 +99,16 @@ M.get_winbar = function()
     end
   end, segments)
 
-  return ' ' .. table.concat(segments, sep) .. modified()
+  local bar = table.concat(segments, sep)
 
-  -- return ' ' .. path() .. sep .. head() .. sep .. navic_location()
+  local nav = navic_location()
+  if not (nav == nil or nav == "") then
+    bar = bar .. '%#WinSeparator# | %*' .. nav
+  end
+
+  return ' ' .. bar .. modified()
 end
 
 vim.o.winbar = "%{%v:lua.require'user.winbar'.get_winbar()%}"
 
 return M
--- " %#MsgArea#lua > %*%#MsgArea#user > %*%#DevIconlua# %*%#String#winbar.lua%*"
--- vim.opt.winbar = '%#MSGAREA'

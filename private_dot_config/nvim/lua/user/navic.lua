@@ -34,3 +34,12 @@ navic.setup({
     TypeParameter = " ",
   },
 })
+
+for _, group in ipairs({ "NavicIconsFile", "NavicIconsModule", "NavicIconsNamespace", "NavicIconsPackage",
+  "NavicIconsClass", "NavicIconsMethod", "NavicIconsProperty", "NavicIconsField", "NavicIconsConstructor",
+  "NavicIconsEnum", "NavicIconsInterface", "NavicIconsFunction", "NavicIconsVariable", "NavicIconsConstant",
+  "NavicIconsString", "NavicIconsNumber", "NavicIconsBoolean", "NavicIconsArray", "NavicIconsObject", "NavicIconsKey",
+  "NavicIconsNull", "NavicIconsEnumMember", "NavicIconsStruct", "NavicIconsEvent", "NavicIconsOperator",
+  "NavicIconsTypeParameter" }) do
+  vim.api.nvim_set_hl(0, group, { link = "WinSeparator" })
+end
