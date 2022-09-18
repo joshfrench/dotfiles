@@ -3,6 +3,7 @@
 # change infrequently or which are expensive.
 
 if [[ -n ${ZDOTDIR:-${HOME}}/.zcompdump(#qN.m+1) ]]; then
+  autoload -Uz compinit
   compinit
   touch ${ZDOTDIR:-${HOME}}/.zcompdump
 fi
