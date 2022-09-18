@@ -6,6 +6,8 @@ if not ok then
   return
 end
 
+require('colorizer').setup()
+
 local colors = {
   base03   = '#002b36',
   base02   = '#073642',

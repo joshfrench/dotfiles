@@ -92,6 +92,7 @@ return packer.startup(function(use)
   use 'machakann/vim-sandwich'
   use 'christoomey/vim-tmux-navigator'
   use 'tpope/vim-unimpaired'
+  use 'norcalli/nvim-colorizer.lua'
 
   use { 'rafcamlet/nvim-luapad', requires = "antoinemadec/FixCursorHold.nvim" }
 

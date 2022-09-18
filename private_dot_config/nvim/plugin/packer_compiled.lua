@@ -154,6 +154,11 @@ _G.packer_plugins = {
     path = "/Users/josh/.local/share/nvim/site/pack/packer/start/nvim-code-action-menu",
     url = "https://github.com/weilbith/nvim-code-action-menu"
   },
+  ["nvim-colorizer.lua"] = {
+    loaded = true,
+    path = "/Users/josh/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua",
+    url = "https://github.com/norcalli/nvim-colorizer.lua"
+  },
   ["nvim-lightbulb"] = {
     loaded = true,
     path = "/Users/josh/.local/share/nvim/site/pack/packer/start/nvim-lightbulb",
