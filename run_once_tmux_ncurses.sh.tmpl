@@ -1,0 +1,7 @@
+#!/bin/bash
+
+{{ $terminfo := joinPath .chezmoi.homeDir "dotfiles" "tmux-256color" -}}
+{{ if stat $terminfo -}}
+# terminfo hash: {{ include $terminfo | sha256sum }}
+{{ end -}}
+/usr/bin/tic -x {{ $terminfo }}
