@@ -14,6 +14,7 @@ local custom = {
   },
   Dockerfile = { color = colors.blue },
   [".gitignore"] = { color = colors.red },
+  COMMIT_EDITMSG = { color = colors.yellow },
 }
 
 local all = icons.get_icons()
