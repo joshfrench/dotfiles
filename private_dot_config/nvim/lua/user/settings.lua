@@ -33,6 +33,7 @@ local opts = {
   shortmess = vim.o.shortmess .. 'mrc',
   viewoptions = 'folds,cursor,curdir,options',
   completeopt = 'menuone,noselect',
+  title = true,
 
   -- text editing
   virtualedit = "onemore",
