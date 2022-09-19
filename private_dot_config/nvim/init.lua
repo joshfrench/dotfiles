@@ -38,3 +38,5 @@ require 'user.filetype'
 require 'user.yaml'
 require 'user.user_commands'
 require 'user.winbar'
+
+pcall(require, 'user.posit')
