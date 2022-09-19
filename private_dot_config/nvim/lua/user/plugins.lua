@@ -94,7 +94,7 @@ return packer.startup(function(use)
   use 'tpope/vim-unimpaired'
   use 'norcalli/nvim-colorizer.lua'
 
-  use { 'rafcamlet/nvim-luapad', requires = "antoinemadec/FixCursorHold.nvim" }
+  use { 'rafcamlet/nvim-luapad' }
 
   use 'kchmck/vim-coffee-script'
 
