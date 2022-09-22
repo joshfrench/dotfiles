@@ -13,7 +13,7 @@ local custom = {
     name = 'GCFG',
   },
   Dockerfile = { color = colors.blue },
-  [".gitignore"] = { color = colors.red },
+  [".gitignore"] = { color = colors.base0 },
   COMMIT_EDITMSG = { color = colors.yellow },
 }
 
