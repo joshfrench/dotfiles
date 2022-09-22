@@ -45,6 +45,9 @@ local function path()
   for seg in string.gmatch(relpath, '[^/]+') do
     table.insert(t, seg)
   end
+  if t[1] == '.' then
+    table.remove(t, 1)
+  end
   return table.concat(t, sep)
 end
 
