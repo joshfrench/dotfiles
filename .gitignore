@@ -1,2 +1,3 @@
 # work-related stuff:
 private_dot_config/nvim/lua/user/posit.lua
+dotfiles/zsh/modules/posit/posit.lua
