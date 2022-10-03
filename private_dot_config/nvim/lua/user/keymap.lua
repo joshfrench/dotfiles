@@ -1,5 +1,8 @@
 local keys = vim.keymap
 
+-- space doubles as leader outside of insert mode (how to do this in lua?)
+vim.cmd([[map <space> <leader>]])
+
 -- tab navigation
 keys.set('n', '<S-H>', 'gT')
 keys.set('n', '<S-L>', 'gt')
