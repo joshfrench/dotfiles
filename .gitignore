@@ -1,3 +1,4 @@
 # work-related stuff:
 private_dot_config/nvim/lua/user/posit.lua
+private_dot_config/karabiner/automatic_backups
 dotfiles/zsh/modules/posit
