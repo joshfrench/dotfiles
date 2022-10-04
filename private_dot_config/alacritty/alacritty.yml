@@ -789,9 +789,10 @@ key_bindings:
   # fix some vim bindings:
   - { key: Slash, mods: Control, chars: "\x1f" }
   - { key: Key6, mods: Control, chars: "\x1e" }
-  - { key: Space, mods: Control, chars: "\x00" }
   - { key: J, mods: Alt, chars: "\x1bj" }
   - { key: K, mods: Alt, chars: "\x1bk" }
+  # tmux leader:
+  - { key: Space, mods: Control, chars: "\x00" }
   #- { key: Paste,                                       action: Paste          }
   #- { key: Copy,                                        action: Copy           }
   #- { key: L,         mods: Control,                    action: ClearLogNotice }
