@@ -1,5 +1,5 @@
 #!/bin/bash
-{{ $plugins := joinPath .chezmoi.homeDir "dotfiles" "zsh" "zsh_plugins.txt" -}}
+{{ $plugins := joinPath .chezmoi.homeDir "dotfiles" "zsh" "zsh_plugins.txt.tmpl" -}}
 {{ if stat $plugins -}}
 # plugins hash: {{ include $plugins | sha256sum }}
 {{ end -}}
