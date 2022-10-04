@@ -51,31 +51,12 @@ ZSH_HIGHLIGHT_STYLES[path]=underline
 ZSH_HIGHLIGHT_STYLES[path_prefix]=underline
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=11'
 
-# ZVM (TODO: make this a plugin)
-ZVM_CURSOR_STYLE_ENABLED=true
-ZVM_VI_SURROUND_BINDKEY='s-prefix'
-ZVM_VI_HIGHLIGHT_BACKGROUND=#586e75
-ZVM_VI_HIGHLIGHT_FOREGROUND=#002b36
-function zvm_after_lazy_keybindings() {
-  bindkey -M viins '^R' fzf-history-widget
-  bindkey -M vicmd '^[' zvm_enter_insert_mode
-}
-
-# softmoth/zsh-vi-mode
-# vim-mode-bindkey vicmd  -- change-surround sr
-# vim-mode-bindkey vicmd  -- delete-surround sd
-# vim-mode-bindkey vicmd  -- add-surround sa
-# vim-mode-bindkey vicmd  -- vi-insert '^['
-
 # Activate antibody, a zsh plugin manager (https://getantibody.github.io)
 source ~/dotfiles/zsh/zsh_plugins.sh
 
 bindkey '^Z' foreground-vi
-bindkey "^K" kill-line
 bindkey "^A" beginning-of-line
 bindkey "^E" end-of-line
-bindkey '^B' backward-word
-bindkey '^F' forward-word
 
 fpath=(./zsh/completions $fpath)
 autoload -Uz add-zsh-hook
