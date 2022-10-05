@@ -18,5 +18,6 @@ vim-mode-bindkey vicmd  -- change-surround sr
 vim-mode-bindkey vicmd  -- delete-surround sd
 vim-mode-bindkey vicmd  -- add-surround sa
 vim-mode-bindkey vicmd  -- vi-insert '^['
-vim-mode-bindkey viins -- vi-backward-word '^b'
-vim-mode-bindkey viins -- vi-forward-word '^f'
+vim-mode-bindkey viins -- vi-backward-word '^B'
+vim-mode-bindkey viins -- vi-forward-word '^F'
+vim-mode-bindkey viins -- kill-line '^X'

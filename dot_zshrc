@@ -49,7 +49,7 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 (( ${+ZSH_HIGHLIGHT_STYLES} )) || typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[path]=underline
 ZSH_HIGHLIGHT_STYLES[path_prefix]=underline
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=11'
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=10'
 
 # Activate antibody, a zsh plugin manager (https://getantibody.github.io)
 source ~/dotfiles/zsh/zsh_plugins.sh
