@@ -1,4 +1,5 @@
 #!/bin/bash
+# generate Brewfile with `brew bundle --describe`
 {{ $brewfile := joinPath .chezmoi.homeDir "dotfiles" "Brewfile" -}}
 {{ if stat $brewfile -}}
 # brewfile hash: {{ include $brewfile | sha256sum }}
