@@ -43,8 +43,9 @@ return packer.startup(function(use)
       'dcampos/cmp-snippy',
     },
   }
+  use 'williamboman/mason.nvim'
+  use 'williamboman/mason-lspconfig.nvim'
   use 'neovim/nvim-lspconfig'
-  use 'williamboman/nvim-lsp-installer'
   use {
     'jose-elias-alvarez/null-ls.nvim',
     requires = {
