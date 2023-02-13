@@ -4,21 +4,22 @@ if not ok then
 end
 
 lspinstaller.setup({
-  ensure_installed = {
-    'bashls',
-    'eslint',
-    'gopls',
-    'jsonls',
-    'pyright',
-    'sumneko_lua',
-    'tsserver',
-    'yamlls'
-  },
-  ui = {
-    icons = {
-      server_installed = "✓",
-      server_pending = "➜",
-      server_uninstalled = "✗"
-    }
-  },
+    ensure_installed = {
+        'bashls',
+        'eslint',
+        'gopls',
+        'jsonls',
+        'pyright',
+        'rust',
+        'sumneko_lua',
+        'tsserver',
+        'yamlls'
+    },
+    ui = {
+        icons = {
+            server_installed = "✓",
+            server_pending = "➜",
+            server_uninstalled = "✗"
+        }
+    },
 })
