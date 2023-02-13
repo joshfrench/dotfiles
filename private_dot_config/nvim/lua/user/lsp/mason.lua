@@ -42,7 +42,8 @@ local handlers = {
   end,
 }
 
-for server in io.popen([[ls ./lua/user/lsp/settings]]):lines() do
+local settings = vim.fn.stdpath('config') .. '/lua/user/lsp/settings'
+for server in io.popen('ls ' .. settings):lines() do
   local name = server:match("(.+)%.lua")
   local ok, server_opts = pcall(require, "user.lsp.settings." .. name)
   if ok then

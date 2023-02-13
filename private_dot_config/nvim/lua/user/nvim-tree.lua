@@ -7,6 +7,19 @@ local keys = vim.keymap
 keys.set('n', '<C-e>', tree.toggle)
 keys.set('n', '<leader>e', function() tree.toggle(true, false) end)
 
+vim.api.nvim_create_autocmd({ "VimEnter" }, {
+  callback = function(data)
+    local dir = vim.fn.isdirectory(data.file) == 1
+    if not dir then
+      return
+    end
+
+    vim.cmd.cd(data.file)
+
+    require('nvim-tree.api').tree.open()
+  end
+})
+
 tree.setup({
   auto_reload_on_write = true,
   create_in_closed_folder = false,
@@ -14,9 +27,6 @@ tree.setup({
   hijack_cursor = false,
   hijack_netrw = true,
   hijack_unnamed_buffer_when_opening = false,
-  ignore_buffer_on_setup = false,
-  open_on_setup = false,
-  open_on_setup_file = false,
   open_on_tab = false,
   sort_by = "name",
   update_cwd = true,
@@ -37,13 +47,13 @@ tree.setup({
       custom_only = false,
       list = {
         -- user mappings go here
-        { key = "<space>", action = "edit" },
-        { key = "<C-e>", action = "close" },
-        { key = '<esc>', action = "close" },
+        { key = "<space>",   action = "edit" },
+        { key = "<C-e>",     action = "close" },
+        { key = '<esc>',     action = "close" },
         { key = '<leader>e', action = 'close' },
-        { key = 'u', action = "parent_node" },
-        { key = 'U', action = "dir_up" },
-        { key = 'C', action = "cd" },
+        { key = 'u',         action = "parent_node" },
+        { key = 'U',         action = "dir_up" },
+        { key = 'C',         action = "cd" },
       },
     },
   },
@@ -109,7 +119,6 @@ tree.setup({
     update_cwd = false,
     ignore_list = {},
   },
-  ignore_ft_on_setup = {},
   system_open = {
     cmd = "",
     args = {},
