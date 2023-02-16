@@ -50,6 +50,10 @@ end
   TypeParameter = "",
 } ]]
 cmp.setup({
+  window = {
+    completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
+  },
   snippet = {
     expand = function(args) snippy.expand_snippet(args.body) end
   },
@@ -79,7 +83,7 @@ cmp.setup({
     }
   },
   formatting = {
-    fields = { 'kind', 'abbr', 'menu' },
+    fields = { 'abbr', 'kind', 'menu' },
     --[[ format = function(entry, vim_item)
       vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
       vim_item.menu = ({
@@ -92,7 +96,7 @@ cmp.setup({
       return vim_item
     end, ]]
     format = require('lspkind').cmp_format({
-      mode = 'text_symbol',
+      mode = 'symbol',
       maxwidth = 50,
       ellipsis_char = '...',
     })
