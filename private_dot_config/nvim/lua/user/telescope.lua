@@ -40,6 +40,7 @@ end
 
 telescope.setup({
   defaults = {
+    layout_strategy = "flex",
     mappings = {
       i = {
         ["<esc>"] = actions.close, -- close w/ <esc>
@@ -71,6 +72,11 @@ telescope.setup({
         }
       }
     },
+    lsp_references = {
+      show_line = false, -- hide inline result (preview pane only)
+      -- fname_width = 50,
+      trim_text = false,
+    }
   },
 })
 
