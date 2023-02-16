@@ -22,7 +22,7 @@ if not ok then
   return
 end
 
-local kind_icons = {
+--[[ local kind_icons = {
   Text = "",
   Method = "m",
   Function = "",
@@ -48,14 +48,13 @@ local kind_icons = {
   Event = "",
   Operator = "",
   TypeParameter = "",
-}
-
+} ]]
 cmp.setup({
   snippet = {
     expand = function(args) snippy.expand_snippet(args.body) end
   },
   mapping = cmp.mapping.preset.insert({
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4, { 'i' }),
+    ['<C-d>'] = cmp.mapping.scroll_docs( -4, { 'i' }),
     ['<C-f>'] = cmp.mapping.scroll_docs(4, { 'i' }),
     ['<CR>'] = cmp.mapping(cmp_confirm, { 'i' }),
     ['<TAB>'] = cmp.mapping(cmp_confirm, { 'i' }),
@@ -64,9 +63,9 @@ cmp.setup({
     { name = 'nvim_lsp' },
     { name = 'nvim_lsp_signature_help' },
     { name = 'nvim_lua' },
-    { name = 'buffer', keyword_length = 2, max_item_count = 5 },
+    { name = 'buffer',                 keyword_length = 2, max_item_count = 5 },
     { name = 'path', },
-    { name = 'emoji', max_item_count = 20 }
+    { name = 'emoji',                  max_item_count = 20 }
   }),
   sorting = {
     comparators = {
@@ -81,16 +80,21 @@ cmp.setup({
   },
   formatting = {
     fields = { 'kind', 'abbr', 'menu' },
-    format = function(entry, vim_item)
+    --[[ format = function(entry, vim_item)
       vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
       vim_item.menu = ({
-        nvim_lsp = "[LSP]",
-        nvim_lua = "[VIM]",
-        luasnip = "[Snippet]",
-        buffer = "[Buffer]",
-        path = "[Path]",
-      })[entry.source.name]
+            nvim_lsp = "[LSP]",
+            nvim_lua = "[VIM]",
+            luasnip = "[Snippet]",
+            buffer = "[Buffer]",
+            path = "[Path]",
+          })[entry.source.name]
       return vim_item
-    end,
+    end, ]]
+    format = require('lspkind').cmp_format({
+      mode = 'text_symbol',
+      maxwidth = 50,
+      ellipsis_char = '...',
+    })
   }
 })

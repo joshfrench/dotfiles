@@ -10,9 +10,9 @@ end
 M.setup = function()
   local signs = {
     { name = "DiagnosticSignError", sign = "" },
-    { name = "DiagnosticSignWarn", sign = "" },
-    { name = "DiagnosticSignHint", sign = "" },
-    { name = "DiagnosticSignInfo", sign = "" },
+    { name = "DiagnosticSignWarn",  sign = "" },
+    { name = "DiagnosticSignHint",  sign = "" },
+    { name = "DiagnosticSignInfo",  sign = "" },
   }
 
   for _, sign in ipairs(signs) do
@@ -89,17 +89,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
           end
         end
       })
-    end
-  end
-})
-
-vim.api.nvim_create_autocmd('LspAttach', {
-  group = au,
-  callback = function(args)
-    local bufnr = args.buf
-    local client = vim.lsp.get_client_by_id(args.data.client_id)
-    if client.server_capabilities.documentSymbolProvider then
-      require 'nvim-navic'.attach(client, bufnr)
     end
   end
 })

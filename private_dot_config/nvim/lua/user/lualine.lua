@@ -7,13 +7,10 @@ local function pwd()
   return vim.fn.fnamemodify(vim.fn.getcwd(), ':~:.')
 end
 
-local function relative_path()
-  return vim.fn.pathshorten(vim.fn.expand('%:~:.'), 4)
-end
-
 local function paste()
   return "PASTE"
 end
+
 
 local function schema()
   local s = require('yaml-companion').get_buf_schema(0)
@@ -29,6 +26,15 @@ local function schema()
 end
 
 local colors = require('user.colorscheme')
+
+local function modified()
+  if vim.bo.mod then
+    -- return '%#WinBarMod#●%*'
+    return '●'
+  else
+    return ""
+  end
+end
 
 local theme = {
   normal = {
@@ -54,7 +60,18 @@ lualine.setup({
     theme = theme,
     component_separators = { left = '|', right = '|' },
     section_separators = { left = '', right = '' },
-    disabled_filetypes = {},
+    disabled_filetypes = {
+      winbar = { 'NvimTree' },
+      'help',
+      'startify',
+      'aerial',
+      'dashboard',
+      'packer',
+      'NvimTree',
+      'Trouble',
+      'alpha',
+      'qf',
+    },
     always_divide_middle = true,
     globalstatus = true,
   },
@@ -79,5 +96,21 @@ lualine.setup({
     lualine_z = {}
   },
   tabline = {},
-  extensions = { 'nvim-tree' }
+  extensions = { 'nvim-tree' },
+  winbar = {
+    lualine_a = {
+      { modified,                                     color = 'WinBarMod' },
+      { function() return vim.fn.expand('%:~:.') end, color = 'WinBar' },
+      { 'aerial',                                     sep = ' > ',        color = 'WinBar' },
+    },
+    lualine_b = {
+    }
+
+  },
+  inactive_winbar = {
+    lualine_a = {
+      { modified,                                     color = { fg = colors.red, bg = colors.base02 }, separator = "" },
+      { function() return vim.fn.expand('%:~:.') end, color = { bg = colors.base02 } },
+    },
+  }
 })

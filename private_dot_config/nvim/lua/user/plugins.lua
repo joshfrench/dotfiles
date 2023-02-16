@@ -82,7 +82,8 @@ return packer.startup(function(use)
       'kyazdani42/nvim-web-devicons',
     }
   }
-  use 'liuchengxu/vista.vim'
+  use 'onsails/lspkind.nvim'
+  use 'stevearc/aerial.nvim'
   use 'LunarWatcher/auto-pairs' -- TODO: get on 4.0.0?
   use 'lukas-reineke/indent-blankline.nvim'
   use 'lewis6991/gitsigns.nvim'
