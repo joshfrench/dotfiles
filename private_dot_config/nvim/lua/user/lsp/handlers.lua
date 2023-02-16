@@ -7,6 +7,14 @@ if ok then
   M.capabilities = cmp_lsp.default_capabilities(M.capabilities)
 end
 
+vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
+  vim.lsp.handlers.hover, { border = 'rounded', }
+)
+
+vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
+  vim.lsp.handlers.hover, { border = 'rounded', }
+)
+
 M.setup = function()
   local signs = {
     { name = "DiagnosticSignError", sign = "" },
