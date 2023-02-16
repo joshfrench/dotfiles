@@ -45,13 +45,11 @@ vim.api.nvim_set_hl(0, 'LspReferenceText', { bold = true, bg = colors.highlite }
 vim.api.nvim_set_hl(0, 'LspReferenceRead', { bold = true, bg = colors.highlite })
 vim.api.nvim_set_hl(0, 'LspReferenceWrite', { bold = true, bg = colors.highlite })
 
-vim.api.nvim_set_hl(0, 'VistaKind', { bold = true, fg = colors.yellow })
-vim.api.nvim_set_hl(0, 'VistaTag', { fg = colors.base1 })
-vim.api.nvim_set_hl(0, 'VistaIcon', { fg = colors.cyan })
-
 vim.api.nvim_set_hl(0, 'HighlightedyankRegion', { bg = colors.highlite })
 
 vim.api.nvim_set_hl(0, 'IndentBlanklineChar', { fg = colors.base02 })
+
+vim.api.nvim_set_hl(0, 'AerialLine', { bold = true, bg = colors.highlite })
 
 vim.api.nvim_set_hl(0, 'WinBar', { fg = colors.base1, bg = colors.highlite })
 vim.api.nvim_set_hl(0, 'WinSeparator', { fg = colors.base00, bg = colors.highlite })
