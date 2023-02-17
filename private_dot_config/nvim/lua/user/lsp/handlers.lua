@@ -35,10 +35,11 @@ M.setup = function()
     severity_sort = true,
     float = {
       focusable = false,
-      style = 'minimal',
+      border = 'rounded',
+      close_events = { 'BufLeave', 'CursorMoved', 'InsertEnter', 'FocusLost' },
+      -- style = 'minimal',
       source = 'if_many',
-      header = 'a header',
-      prefix = 'a prefix',
+      scope = 'cursor',
     }
   })
 end
@@ -55,9 +56,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.api.nvim_create_autocmd('CursorHold', {
         group = au,
         buffer = bufnr,
-        callback = vim.lsp.buf.document_highlight
+        callback = vim.lsp.buf.document_highlight,
       })
-      vim.api.nvim_create_autocmd('CursorMoved', {
+      vim.api.nvim_create_autocmd({ 'CursorMoved', 'BufLeave', 'InsertEnter', 'FocusLost' }, {
         group = au,
         buffer = bufnr,
         callback = vim.lsp.buf.clear_references
@@ -65,6 +66,13 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
   end
 })
+
+local function open_diagnostic_or_docs()
+  local float, _ = vim.diagnostic.open_float();
+  if (float == nil) then
+    vim.lsp.buf.hover()
+  end
+end
 
 vim.api.nvim_create_autocmd('LspAttach', {
   group = au,
@@ -74,7 +82,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
     vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+    vim.keymap.set('n', 'K', open_diagnostic_or_docs, opts)
     vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
     vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
     vim.keymap.set('n', 'Rn', vim.lsp.buf.rename, opts)
