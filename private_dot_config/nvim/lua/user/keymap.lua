@@ -38,7 +38,7 @@ keys.set('v', '<M-j>', ":m '>+1<CR>gv=gv")
 keys.set('v', '<M-k>', ":m '<-2<CR>gv=gv")
 
 -- close any floats
-keys.set('n', '<ESC>', function()
+keys.set('n', 'q', function()
   for _, win in ipairs(vim.api.nvim_list_wins()) do
     local config = vim.api.nvim_win_get_config(win);
     if config.relative ~= "" then
