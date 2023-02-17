@@ -32,7 +32,7 @@ local opts = {
   signcolumn = "yes:1",
   shortmess = vim.o.shortmess .. 'mrc',
   viewoptions = 'folds,cursor,curdir,options',
-  completeopt = 'menuone,noselect',
+  completeopt = 'menuone,noselect,noinsert',
   title = true,
 
   -- text editing
