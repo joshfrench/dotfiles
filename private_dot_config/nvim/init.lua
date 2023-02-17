@@ -35,6 +35,7 @@ require 'user.yank'
 require 'user.close'
 require 'user.filetype'
 require 'user.yaml'
+require 'user.marks'
 require 'user.user_commands'
 
 pcall(require, 'user.posit')

@@ -94,6 +94,7 @@ return packer.startup(function(use)
   use 'christoomey/vim-tmux-navigator'
   use 'tpope/vim-unimpaired'
   use 'norcalli/nvim-colorizer.lua'
+  use 'chentoast/marks.nvim'
 
   use { 'rafcamlet/nvim-luapad' }
 
