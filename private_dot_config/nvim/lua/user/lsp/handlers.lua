@@ -7,12 +7,14 @@ if ok then
   M.capabilities = cmp_lsp.default_capabilities(M.capabilities)
 end
 
+local border_style = 'rounded';
+
 vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
-  vim.lsp.handlers.hover, { border = 'rounded', }
+  vim.lsp.handlers.hover, { border = border_style, }
 )
 
 vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
-  vim.lsp.handlers.hover, { border = 'rounded', }
+  vim.lsp.handlers.hover, { border = border_style, }
 )
 
 M.setup = function()
@@ -35,7 +37,7 @@ M.setup = function()
     severity_sort = true,
     float = {
       focusable = false,
-      border = 'rounded',
+      border = border_style,
       close_events = { 'BufLeave', 'CursorMoved', 'InsertEnter', 'FocusLost' },
       -- style = 'minimal',
       source = 'if_many',
