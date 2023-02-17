@@ -84,7 +84,7 @@ return packer.startup(function(use)
   }
   use 'onsails/lspkind.nvim'
   use 'stevearc/aerial.nvim'
-  use 'LunarWatcher/auto-pairs' -- TODO: get on 4.0.0?
+  use 'LunarWatcher/auto-pairs'
   use 'lukas-reineke/indent-blankline.nvim'
   use 'lewis6991/gitsigns.nvim'
   use 'b3nj5m1n/kommentary'
