@@ -7,7 +7,7 @@
 export HOMEBREW_PREFIX="{{ $prefix }}";
 export HOMEBREW_CELLAR="{{ $cellar }}";
 export HOMEBREW_REPOSITORY="{{ $repo }}";
-export PATH="{{ $prefix }}/bin:{{ $prefix }}/sbin${PATH+:$PATH}:/Users/josh/.local/bin:/Users/josh/.krew/bin"; # clobbered by /etc/zshrc which moves these to the end... fix?
+export PATH="{{ $prefix }}/bin:{{ $prefix }}/sbin${PATH+:$PATH}:/Users/josh/.local/bin:/Users/josh/.krew/bin:${HOME}/.cargo/bin"; # clobbered by /etc/zshrc which moves these to the end... fix?
 export MANPATH="{{ $prefix }}/share/man${MANPATH+:$MANPATH}:";
 export INFOPATH="{{ $prefix }}/share/info:${INFOPATH:-}";
 

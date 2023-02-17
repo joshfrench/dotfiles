@@ -24,6 +24,7 @@ setopt +o nomatch
 setopt prompt_subst
 setopt COMPLETE_IN_WORD
 setopt no_auto_remove_slash
+unsetopt BEEP
 
 # load compinit but use the cache.
 # .zprofile regens the cache on login shells only.
