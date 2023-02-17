@@ -45,4 +45,6 @@ keys.set('n', '<ESC>', function()
       vim.api.nvim_win_close(win, false);
     end
   end
-end)
+end, {
+  nowait = true
+})
