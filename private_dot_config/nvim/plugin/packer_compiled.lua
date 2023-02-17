@@ -189,11 +189,6 @@ _G.packer_plugins = {
     path = "/Users/josh/.local/share/nvim/site/pack/packer/start/nvim-luapad",
     url = "https://github.com/rafcamlet/nvim-luapad"
   },
-  ["nvim-navic"] = {
-    loaded = true,
-    path = "/Users/josh/.local/share/nvim/site/pack/packer/start/nvim-navic",
-    url = "https://github.com/SmiteshP/nvim-navic"
-  },
   ["nvim-snippy"] = {
     loaded = true,
     path = "/Users/josh/.local/share/nvim/site/pack/packer/start/nvim-snippy",

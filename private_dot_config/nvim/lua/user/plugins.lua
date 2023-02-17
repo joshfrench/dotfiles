@@ -87,7 +87,6 @@ return packer.startup(function(use)
   use 'LunarWatcher/auto-pairs' -- TODO: get on 4.0.0?
   use 'lukas-reineke/indent-blankline.nvim'
   use 'lewis6991/gitsigns.nvim'
-  use 'SmiteshP/nvim-navic'
   use 'b3nj5m1n/kommentary'
   use 'kosayoda/nvim-lightbulb'
   use 'weilbith/nvim-code-action-menu'
