@@ -59,6 +59,32 @@ vim.api.nvim_set_hl(0, 'WinBarNC', { fg = colors.base1, bg = colors.base02 })
 
 vim.api.nvim_set_hl(0, 'MarkSignHL', { fg = colors.blue, bg = colors.base02 })
 
+vim.api.nvim_set_hl(0, 'DapUIScope', { fg = colors.cyan })
+vim.api.nvim_set_hl(0, 'DapUIType', { fg = colors.violet })
+vim.api.nvim_set_hl(0, 'DapUIModifiedValue', { fg = colors.cyan })
+vim.api.nvim_set_hl(0, 'DapUIDecoration', { fg = colors.cyan })
+vim.api.nvim_set_hl(0, 'DapUIThread', { fg = colors.green })
+vim.api.nvim_set_hl(0, 'DapUIStoppedThread', { fg = colors.cyan })
+vim.api.nvim_set_hl(0, 'DapUISource', { fg = colors.violet })
+vim.api.nvim_set_hl(0, 'DapUILineNumber', { fg = colors.cyan })
+vim.api.nvim_set_hl(0, 'DapUIFloatBorder', { fg = colors.cyan })
+vim.api.nvim_set_hl(0, 'DapUIWatchesEmpty', { fg = colors.red })
+vim.api.nvim_set_hl(0, 'DapUIWatchesValue', { fg = colors.green })
+vim.api.nvim_set_hl(0, 'DapUIWatchesError', { fg = colors.red })
+vim.api.nvim_set_hl(0, 'DapUIBreakpointsPath', { fg = colors.cyan })
+vim.api.nvim_set_hl(0, 'DapUIBreakpointsInfo', { fg = colors.green })
+vim.api.nvim_set_hl(0, 'DapUIBreakpointsCurrentLine', { fg = colors.green, bold = true })
+vim.api.nvim_set_hl(0, 'DapUIBreakpointsDisabledLine', { fg = colors.base1 })
+vim.api.nvim_set_hl(0, 'DapUIStepOver', { fg = colors.cyan })
+vim.api.nvim_set_hl(0, 'DapUIStepInto', { fg = colors.cyan })
+vim.api.nvim_set_hl(0, 'DapUIStepBack', { fg = colors.cyan })
+vim.api.nvim_set_hl(0, 'DapUIStepOut', { fg = colors.cyan })
+vim.api.nvim_set_hl(0, 'DapUIStop', { fg = colors.red })
+vim.api.nvim_set_hl(0, 'DapUIPlayPause', { fg = colors.green })
+vim.api.nvim_set_hl(0, 'DapUIRestart', { fg = colors.green })
+vim.api.nvim_set_hl(0, 'DapUIUnavailable', { fg = colors.base1 })
+vim.api.nvim_set_hl(0, 'DapUIWinSelect', { fg = colors.cyan })
+
 vim.cmd [[ hi link coffeeSpaceError NONE ]]
 vim.cmd [[ hi link coffeeSemicolonError NONE ]]
 

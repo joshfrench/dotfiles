@@ -61,7 +61,12 @@ lualine.setup({
     component_separators = { left = '|', right = '|' },
     section_separators = { left = '', right = '' },
     disabled_filetypes = {
-      winbar = { 'NvimTree', 'dapui_scopes', 'dapui_breakpoints', 'dapui_stacks', 'dapui_watches', 'dap-repl', 'dapui_console' },
+      'dapui_scopes',
+      'dapui_breakpoints',
+      'dapui_stacks',
+      'dapui_watches',
+      'dap-repl',
+      'dapui_console',
       'help',
       'startify',
       'aerial',
