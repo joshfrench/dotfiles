@@ -106,6 +106,8 @@ return packer.startup(function(use)
 
   use 'kchmck/vim-coffee-script'
 
+  use 'luukvbaal/statuscol.nvim'
+
   if PACKER_BOOTSTRAP then
     packer.sync()
   end
