@@ -40,6 +40,7 @@ vim.api.nvim_set_hl(0, 'DiagnosticSignError', { fg = colors.red, bg = colors.bas
 vim.api.nvim_set_hl(0, 'DiagnosticSignWarn', { fg = colors.yellow, bg = colors.base02 })
 vim.api.nvim_set_hl(0, 'DiagnosticSignHint', { fg = colors.blue, bg = colors.base02 })
 vim.api.nvim_set_hl(0, 'DiagnosticSignInfo', { fg = colors.base3, bg = colors.base02 })
+vim.api.nvim_set_hl(0, 'DiagnosticSignOk', { fg = colors.green, bg = colors.base02 })
 
 vim.api.nvim_set_hl(0, 'LspReferenceText', { bold = true, bg = colors.highlite })
 vim.api.nvim_set_hl(0, 'LspReferenceRead', { bold = true, bg = colors.highlite })
