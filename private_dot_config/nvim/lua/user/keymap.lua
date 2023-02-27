@@ -27,7 +27,7 @@ keys.set('v', '<BS>', 'x')
 keys.set({ 'n', 'v' }, '/', '/\\v')
 
 -- go to buffer menu with prompt
-keys.set('n', '<leader>B', ':ls<CR>:b')
+keys.set('n', '<C-B>', ':ls<CR>:b')
 
 -- move lines
 keys.set('n', '<M-j>', ':m .+1<CR>==')
