@@ -26,7 +26,9 @@ return packer.startup(function(use)
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
     requires = {
-      'p00f/nvim-ts-rainbow',
+      -- 'p00f/nvim-ts-rainbow', -- unmaintained
+      -- 'mrjones2014/nvim-ts-rainbow', -- mainline
+      'HiPhish/nvim-ts-rainbow2', -- active fork
       'JoosepAlviste/nvim-ts-context-commentstring',
       'nvim-treesitter/playground',
     },
