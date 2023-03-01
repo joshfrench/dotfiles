@@ -4,7 +4,41 @@ require("nvim-dap-virtual-text").setup {
   commented = true,
 }
 local dapui = require('dapui')
-dapui.setup({})
+dapui.setup({
+  expand_lines = false,
+  force_buffers = true,
+  layouts = {
+    {
+      elements = { {
+        id = "scopes",
+        size = 1
+      } },
+      position = "bottom",
+      size = 15,
+    },
+    {
+      elements = { {
+        id = "breakpoints",
+        size = 0.25,
+      }, {
+        id = "watches",
+        size = 0.25,
+      }, {
+        id = "stacks",
+        size = 0.25,
+      }, {
+        id = "repl",
+        size = 0.25,
+      } },
+      position = "right",
+      size = 75,
+    },
+  },
+  mappings = {
+    expand = { "<space>", "<right>" },
+    open = { "o", "<cr>" },
+  }
+})
 dap.listeners.after.event_initialized["dapui_config"] = dapui.open
 dap.listeners.before.event_terminated["dapui_config"] = dapui.close
 dap.listeners.before.event_exited["dapui_config"] = dapui.close
