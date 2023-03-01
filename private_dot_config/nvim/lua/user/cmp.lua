@@ -50,6 +50,7 @@ end
   TypeParameter = "",
 } ]]
 cmp.setup({
+  preselect = cmp.PreselectMode.None,
   window = {
     completion = cmp.config.window.bordered(),
     documentation = cmp.config.window.bordered(),
@@ -64,12 +65,12 @@ cmp.setup({
     ['<TAB>'] = cmp.mapping(cmp_confirm, { 'i' }),
   }),
   sources = cmp.config.sources({
-    { name = 'nvim_lsp',               max_item_count = 20, group_index = 1 },
-    { name = 'nvim_lsp_signature_help' },
+    { name = 'nvim_lsp',                max_item_count = 20,                group_index = 1 },
+    { name = 'nvim_lsp_signature_help', preselect = cmp.PreselectMode.None, },
     { name = 'nvim_lua' },
-    { name = 'buffer',                 keyword_length = 2,  max_item_count = 5, group_index = 2 },
+    { name = 'buffer',                  keyword_length = 2,                 max_item_count = 5, group_index = 2 },
     { name = 'path', },
-    { name = 'emoji',                  max_item_count = 20 }
+    { name = 'emoji',                   max_item_count = 20 }
   }),
   sorting = {
     comparators = {
