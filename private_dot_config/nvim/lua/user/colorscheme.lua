@@ -45,6 +45,8 @@ vim.api.nvim_set_hl(0, 'DiagnosticSignOk', { fg = colors.green, bg = colors.base
 vim.api.nvim_set_hl(0, 'LspReferenceText', { bold = true, bg = colors.highlite })
 vim.api.nvim_set_hl(0, 'LspReferenceRead', { bold = true, bg = colors.highlite })
 vim.api.nvim_set_hl(0, 'LspReferenceWrite', { bold = true, bg = colors.highlite })
+vim.api.nvim_set_hl(0, 'LspCodeLens', { italic = true, fg = colors.base01 })
+vim.api.nvim_set_hl(0, 'LspCodeLensSeparator', { italic = true, fg = colors.base01 })
 
 vim.api.nvim_set_hl(0, 'HighlightedyankRegion', { bg = colors.highlite })
 

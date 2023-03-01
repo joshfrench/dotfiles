@@ -39,5 +39,6 @@ require 'user.yaml'
 require 'user.marks'
 require 'user.statuscol'
 require 'user.user_commands'
+require 'user.codelens'
 
 pcall(require, 'user.posit')
