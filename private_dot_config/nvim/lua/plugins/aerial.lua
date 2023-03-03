@@ -26,12 +26,6 @@ return {
   },
   init = function()
     vim.keymap.set('n', '<C-t>', '<cmd>AerialToggle<CR>', { silent = true })
-    vim.api.nvim_create_autocmd('User', {
-      pattern = 'LazyDone',
-      callback = function()
-        local colors = require('user.colors')
-        vim.api.nvim_set_hl(0, 'AerialLine', { bold = true, bg = colors.highlite })
-      end
-    })
+    vim.api.nvim_set_hl(0, 'AerialLine', { bold = true, bg = require('user.colors').highlite })
   end
 }
