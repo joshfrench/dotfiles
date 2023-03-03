@@ -1,12 +1,3 @@
-local M = {}
-
-M.capabilities = vim.lsp.protocol.make_client_capabilities()
-
-local ok, cmp_lsp = pcall(require, 'cmp_nvim_lsp')
-if ok then
-  M.capabilities = cmp_lsp.default_capabilities(M.capabilities)
-end
-
 local border_style = 'rounded';
 
 vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
@@ -17,35 +8,46 @@ vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
   vim.lsp.handlers.hover, { border = border_style, }
 )
 
-M.setup = function()
-  local signs = {
-    { name = "DiagnosticSignError", sign = "" },
-    { name = "DiagnosticSignWarn",  sign = "" },
-    { name = "DiagnosticSignHint",  sign = "" },
-    { name = "DiagnosticSignInfo",  sign = "" },
-  }
+local signs = {
+  { name = "DiagnosticSignError", sign = "" },
+  { name = "DiagnosticSignWarn",  sign = "" },
+  { name = "DiagnosticSignHint",  sign = "" },
+  { name = "DiagnosticSignInfo",  sign = "" },
+}
 
-  for _, sign in ipairs(signs) do
-    vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.sign })
-  end
-
-  vim.diagnostic.config({
-    virtual_text = true,
-    signs = { active = true },
-    update_in_insert = false,
-    underline = true,
-    severity_sort = true,
-    float = {
-      focusable = false,
-      border = border_style,
-      close_events = { 'BufLeave', 'CursorMoved', 'InsertEnter', 'FocusLost' },
-      -- style = 'minimal',
-      source = 'if_many',
-      scope = 'cursor',
-    }
-  })
+for _, sign in ipairs(signs) do
+  vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.sign })
 end
 
+local colors = require('user.colors')
+vim.api.nvim_set_hl(0, 'DiagnosticUnderlineError', { undercurl = true, sp = colors.red })
+vim.api.nvim_set_hl(0, 'DiagnosticSignError', { fg = colors.red, bg = colors.base02 })
+vim.api.nvim_set_hl(0, 'DiagnosticSignWarn', { fg = colors.yellow, bg = colors.base02 })
+vim.api.nvim_set_hl(0, 'DiagnosticSignHint', { fg = colors.blue, bg = colors.base02 })
+vim.api.nvim_set_hl(0, 'DiagnosticSignInfo', { fg = colors.base3, bg = colors.base02 })
+vim.api.nvim_set_hl(0, 'DiagnosticSignOk', { fg = colors.green, bg = colors.base02 })
+
+vim.api.nvim_set_hl(0, 'LspReferenceText', { bold = true, bg = colors.highlite })
+vim.api.nvim_set_hl(0, 'LspReferenceRead', { bold = true, bg = colors.highlite })
+vim.api.nvim_set_hl(0, 'LspReferenceWrite', { bold = true, bg = colors.highlite })
+vim.api.nvim_set_hl(0, 'LspCodeLens', { italic = true, fg = colors.base01 })
+vim.api.nvim_set_hl(0, 'LspCodeLensSeparator', { italic = true, fg = colors.base01 })
+
+vim.diagnostic.config({
+  virtual_text = true,
+  signs = { active = true },
+  update_in_insert = false,
+  underline = true,
+  severity_sort = true,
+  float = {
+    focusable = false,
+    border = border_style,
+    close_events = { 'BufLeave', 'CursorMoved', 'InsertEnter', 'FocusLost' },
+    -- style = 'minimal',
+    source = 'if_many',
+    scope = 'cursor',
+  }
+})
 
 local au = vim.api.nvim_create_augroup('LspAttach', { clear = true })
 
@@ -110,5 +112,3 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
   end
 })
-
-return M

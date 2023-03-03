@@ -28,7 +28,7 @@ local colors = {
   highlite = '#004b5e', -- additional midtone
 }
 
-vim.api.nvim_set_hl(0, 'DiagnosticUnderlineError', { undercurl = true, sp = colors.red })
+-- vim.api.nvim_set_hl(0, 'DiagnosticUnderlineError', { undercurl = true, sp = colors.red })
 
 vim.api.nvim_set_hl(0, 'NvimTreeRootFolder', { fg = colors.green })
 vim.api.nvim_set_hl(0, 'NvimTreeFolderIcon', { fg = colors.cyan })
@@ -36,15 +36,15 @@ vim.api.nvim_set_hl(0, 'NvimTreeIndentMarker', { fg = colors.blue })
 
 vim.api.nvim_set_hl(0, 'SignColumn', { bg = colors.base02 })
 vim.api.nvim_set_hl(0, 'GitSignsChange', { fg = colors.blue, bg = colors.base02 })
-vim.api.nvim_set_hl(0, 'DiagnosticSignError', { fg = colors.red, bg = colors.base02 })
-vim.api.nvim_set_hl(0, 'DiagnosticSignWarn', { fg = colors.yellow, bg = colors.base02 })
-vim.api.nvim_set_hl(0, 'DiagnosticSignHint', { fg = colors.blue, bg = colors.base02 })
-vim.api.nvim_set_hl(0, 'DiagnosticSignInfo', { fg = colors.base3, bg = colors.base02 })
-vim.api.nvim_set_hl(0, 'DiagnosticSignOk', { fg = colors.green, bg = colors.base02 })
+-- vim.api.nvim_set_hl(0, 'DiagnosticSignError', { fg = colors.red, bg = colors.base02 })
+-- vim.api.nvim_set_hl(0, 'DiagnosticSignWarn', { fg = colors.yellow, bg = colors.base02 })
+-- vim.api.nvim_set_hl(0, 'DiagnosticSignHint', { fg = colors.blue, bg = colors.base02 })
+-- vim.api.nvim_set_hl(0, 'DiagnosticSignInfo', { fg = colors.base3, bg = colors.base02 })
+-- vim.api.nvim_set_hl(0, 'DiagnosticSignOk', { fg = colors.green, bg = colors.base02 })
 
-vim.api.nvim_set_hl(0, 'LspReferenceText', { bold = true, bg = colors.highlite })
-vim.api.nvim_set_hl(0, 'LspReferenceRead', { bold = true, bg = colors.highlite })
-vim.api.nvim_set_hl(0, 'LspReferenceWrite', { bold = true, bg = colors.highlite })
+-- vim.api.nvim_set_hl(0, 'LspReferenceText', { bold = true, bg = colors.highlite })
+-- vim.api.nvim_set_hl(0, 'LspReferenceRead', { bold = true, bg = colors.highlite })
+-- vim.api.nvim_set_hl(0, 'LspReferenceWrite', { bold = true, bg = colors.highlite })
 vim.api.nvim_set_hl(0, 'LspCodeLens', { italic = true, fg = colors.base01 })
 vim.api.nvim_set_hl(0, 'LspCodeLensSeparator', { italic = true, fg = colors.base01 })
 
@@ -52,12 +52,12 @@ vim.api.nvim_set_hl(0, 'HighlightedyankRegion', { bg = colors.highlite })
 
 vim.api.nvim_set_hl(0, 'IndentBlanklineChar', { fg = colors.base02 })
 
-vim.api.nvim_set_hl(0, 'AerialLine', { bold = true, bg = colors.highlite })
+--  vim.api.nvim_set_hl(0, 'AerialLine', { bold = true, bg = colors.highlite })
 
-vim.api.nvim_set_hl(0, 'WinBar', { fg = colors.base1, bg = colors.highlite })
-vim.api.nvim_set_hl(0, 'WinSeparator', { fg = colors.base00, bg = colors.highlite })
-vim.api.nvim_set_hl(0, 'WinBarMod', { fg = colors.red, bg = colors.highlite })
-vim.api.nvim_set_hl(0, 'WinBarNC', { fg = colors.base1, bg = colors.base02 })
+-- vim.api.nvim_set_hl(0, 'WinBar', { fg = colors.base1, bg = colors.highlite })
+-- vim.api.nvim_set_hl(0, 'WinSeparator', { fg = colors.base00, bg = colors.highlite })
+-- vim.api.nvim_set_hl(0, 'WinBarMod', { fg = colors.red, bg = colors.highlite })
+-- vim.api.nvim_set_hl(0, 'WinBarNC', { fg = colors.base1, bg = colors.base02 })
 
 vim.api.nvim_set_hl(0, 'MarkSignHL', { fg = colors.blue, bg = colors.base02 })
 

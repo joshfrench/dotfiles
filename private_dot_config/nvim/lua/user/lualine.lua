@@ -106,7 +106,7 @@ lualine.setup({
     lualine_a = {
       { modified,                                     color = 'WinBarMod' },
       { function() return vim.fn.expand('%:~:.') end, color = 'WinBar' },
-      { 'aerial',                                     sep = ' > ',        color = 'WinBar' },
+      { 'aerial',                                     color = 'WinBar',   sep = ' > ', },
     },
     lualine_b = {
     }
