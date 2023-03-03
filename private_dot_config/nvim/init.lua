@@ -12,18 +12,18 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require 'user.settings'
-require 'user.keymap'
-require 'user.typos'
-require 'user.spelling'
-require 'user.user_commands'
-require 'user.yank'
-require 'user.codelens'
-require 'user.misc'
-
-pcall(require, 'user.posit')
 
 require('lazy').setup("plugins", {
   install = { colorscheme = { 'solarized' } }
 })
 
+require 'user.codelens'
+require 'user.keymap'
 require 'user.lsp'
+require 'user.misc'
+require 'user.spelling'
+require 'user.typos'
+require 'user.user_commands'
+require 'user.yank'
+
+pcall(require, 'user.posit')
