@@ -20,6 +20,7 @@ return {
     'dcampos/cmp-snippy',
     'onsails/lspkind.nvim',
   },
+  event = 'InsertEnter',
   config = function()
     local cmp = require('cmp')
     cmp.setup({

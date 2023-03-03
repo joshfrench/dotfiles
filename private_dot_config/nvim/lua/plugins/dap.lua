@@ -1,18 +1,24 @@
 return {
   'mfussenegger/nvim-dap',
+  dependencies = {
+    'rcarriga/nvim-dap-ui',
+    'leoluz/nvim-dap-go',
+    'mfussenegger/nvim-dap-python',
+    {
+      'theHamsta/nvim-dap-virtual-text',
+      opts = { commented = true },
+    },
+  },
+  lazy = true,
+  keys = {
+    '<leader>db',
+    '<leader>dc',
+    '<leader>ds',
+  },
   init = function()
     vim.fn.sign_define('DapBreakpoint', { text = '⚫', texthl = 'DiagnosticSignError' })
     vim.fn.sign_define('DapBreakpointRejected', { text = '✖', texthl = 'DiagnosticSignError' })
     vim.fn.sign_define('DapStopped', { text = '▶', texthl = 'DiagnosticSignOk' })
-
-    vim.keymap.set('n', '<leader>db', require('dap').toggle_breakpoint, { silent = true })
-    vim.keymap.set('n', '<leader>dR', require('dap').run_to_cursor, { silent = true })
-    vim.keymap.set('n', '<leader>dc', require('dap').continue, { silent = true })
-    vim.keymap.set('n', '<leader>ds', require('dap').continue, { silent = true })
-    vim.keymap.set('n', '<leader>di', require('dap').step_into, { silent = true })
-    vim.keymap.set('n', '<leader>do', require('dap').step_over, { silent = true })
-    vim.keymap.set('n', '<leader>du', require('dap').step_out, { silent = true })
-    vim.keymap.set('n', '<leader>dx', require('dap').terminate, { silent = true })
 
     local colors = require('user.colors')
     for hl, color in pairs({
@@ -50,52 +56,14 @@ return {
     dap.listeners.after.event_initialized["dapui_config"] = require('dapui').open
     dap.listeners.before.event_terminated["dapui_config"] = require('dapui').close
     dap.listeners.before.event_exited["dapui_config"] = require('dapui').close
+
+    vim.keymap.set('n', '<leader>db', require('dap').toggle_breakpoint, { silent = true })
+    vim.keymap.set('n', '<leader>dR', require('dap').run_to_cursor, { silent = true })
+    vim.keymap.set('n', '<leader>di', require('dap').step_into, { silent = true })
+    vim.keymap.set('n', '<leader>do', require('dap').step_over, { silent = true })
+    vim.keymap.set('n', '<leader>du', require('dap').step_out, { silent = true })
+    vim.keymap.set('n', '<leader>dx', require('dap').terminate, { silent = true })
   end,
-  dependencies = {
-    'leoluz/nvim-dap-go',
-    -- 'mfussenegger/nvim-dap-python'
-
-    { 'theHamsta/nvim-dap-virtual-text', opts = { commented = true } },
-
-    {
-      'rcarriga/nvim-dap-ui',
-      opts = {
-        expand_lines = false,
-        force_buffers = true,
-        layouts = {
-          {
-            elements = { {
-              id = "scopes",
-              size = 1
-            } },
-            position = "bottom",
-            size = 15,
-          },
-          {
-            elements = { {
-              id = "breakpoints",
-              size = 0.25,
-            }, {
-              id = "watches",
-              size = 0.25,
-            }, {
-              id = "stacks",
-              size = 0.25,
-            }, {
-              id = "repl",
-              size = 0.25,
-            } },
-            position = "right",
-            size = 75,
-          },
-        },
-        mappings = {
-          expand = { "<space>", "<right>" },
-          open = { "o", "<cr>" },
-        }
-      },
-    }
-  },
 }
 
 --[[ Additional keymaps

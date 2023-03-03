@@ -41,7 +41,8 @@ end
 
 return {
   'b3nj5m1n/kommentary',
-  init = function()
+  event = 'InsertEnter',
+  config = function()
     vim.g.kommentary_create_default_mappings = false
 
     local keys = vim.keymap

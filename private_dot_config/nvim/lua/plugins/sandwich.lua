@@ -1,5 +1,6 @@
 return {
   'machakann/vim-sandwich',
+  event = 'InsertEnter',
   config = function()
     -- '(' inserts pairs with padding, ')' inserts pair with no padding
     -- surround.vim style mappings

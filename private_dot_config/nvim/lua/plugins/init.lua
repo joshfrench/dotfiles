@@ -7,7 +7,10 @@ return {
   'norcalli/nvim-colorizer.lua',
   'christoomey/vim-tmux-navigator',
   'tpope/vim-unimpaired',
-  'rafcamlet/nvim-luapad',
+  {
+    'rafcamlet/nvim-luapad',
+    cmd = { 'LuaPad', 'LuaRun' },
+  },
   {
     'kchmck/vim-coffee-script',
     ft = 'coffeescript',
