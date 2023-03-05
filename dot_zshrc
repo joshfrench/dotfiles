@@ -61,9 +61,4 @@ bindkey "^E" end-of-line
 
 fpath=(./zsh/completions $fpath)
 autoload -Uz add-zsh-hook
-
-PURE_GIT_PULL=0
-PURE_PROMPT_SYMBOL='%%'
-PURE_PROMPT_VICMD_SYMBOL=">"
-PURE_NEWLINE=1
 # zprof
