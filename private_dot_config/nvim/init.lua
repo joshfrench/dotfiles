@@ -17,6 +17,7 @@ require('lazy').setup("plugins", {
   install = { colorscheme = { 'solarized' } }
 })
 
+require 'user.filetype'
 require 'user.codelens'
 require 'user.keymap'
 require 'user.lsp'
