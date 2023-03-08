@@ -1,3 +1,5 @@
+source /Users/josh/Library/Caches/antibody/https-COLON--SLASH--SLASH-github.com-SLASH-mafredri-SLASH-zsh-async/async.plugin.zsh
+fpath+=( /Users/josh/Library/Caches/antibody/https-COLON--SLASH--SLASH-github.com-SLASH-mafredri-SLASH-zsh-async )
 source /Users/josh/Library/Caches/antibody/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zsh-completions/zsh-completions.plugin.zsh
 fpath+=( /Users/josh/Library/Caches/antibody/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zsh-completions )
 source /Users/josh/Library/Caches/antibody/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
@@ -8,9 +10,9 @@ source /Users/josh/Library/Caches/antibody/https-COLON--SLASH--SLASH-github.com-
 fpath+=( /Users/josh/Library/Caches/antibody/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zsh-history-substring-search )
 source /Users/josh/Library/Caches/antibody/https-COLON--SLASH--SLASH-github.com-SLASH-softmoth-SLASH-zsh-vim-mode/zsh-vim-mode.plugin.zsh
 fpath+=( /Users/josh/Library/Caches/antibody/https-COLON--SLASH--SLASH-github.com-SLASH-softmoth-SLASH-zsh-vim-mode )
-source /Users/josh/Library/Caches/antibody/https-COLON--SLASH--SLASH-github.com-SLASH-spaceship-prompt-SLASH-spaceship-prompt/async.zsh
-source /Users/josh/Library/Caches/antibody/https-COLON--SLASH--SLASH-github.com-SLASH-spaceship-prompt-SLASH-spaceship-prompt/spaceship.zsh
-fpath+=( /Users/josh/Library/Caches/antibody/https-COLON--SLASH--SLASH-github.com-SLASH-spaceship-prompt-SLASH-spaceship-prompt )
+source /Users/josh/Library/Caches/antibody/https-COLON--SLASH--SLASH-github.com-SLASH-romkatv-SLASH-powerlevel10k/powerlevel10k.zsh-theme
+source /Users/josh/Library/Caches/antibody/https-COLON--SLASH--SLASH-github.com-SLASH-romkatv-SLASH-powerlevel10k/powerlevel9k.zsh-theme
+fpath+=( /Users/josh/Library/Caches/antibody/https-COLON--SLASH--SLASH-github.com-SLASH-romkatv-SLASH-powerlevel10k )
 source /Users/josh/dotfiles/zsh/modules/autojump/autojump.plugin.zsh
 fpath+=( /Users/josh/dotfiles/zsh/modules/autojump )
 source /Users/josh/dotfiles/zsh/modules/aliases/aliases.plugin.zsh
