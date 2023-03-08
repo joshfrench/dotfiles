@@ -35,7 +35,10 @@ return {
         n = {
           ["<cr>"] = multiselect,
         },
-      }
+      },
+      file_ignore_patterns = {
+        ".git",
+      },
     },
     pickers = {
       buffers = {
