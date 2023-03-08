@@ -12,6 +12,26 @@
 #
 #   for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done
 
+local -A colors=(
+  base03 '#002b36'
+  base02 '#073642'
+  base01 '#586e75'
+  base00 '#657b83'
+  base0 '#839496'
+  base1 '#93a1a1'
+  base2 '#eee8d5'
+  base3 '#fdf6e3'
+  yellow '#b58900'
+  orange '#cb4b16'
+  red '#dc322f'
+  magenta '#d33682'
+  violet '#6c71c4'
+  blue '#268bd2'
+  cyan '#2aa198'
+  green '#859900'
+  highlite '#004b5e'
+)
+
 # Temporarily change options.
 'builtin' 'local' '-a' 'p10k_config_opts'
 [[ ! -o 'aliases'         ]] || p10k_config_opts+=('aliases')
@@ -33,7 +53,9 @@
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
     # =========================[ Line #1 ]=========================
     # os_icon               # os identifier
+    time
     dir                     # current directory
+    pyenv                   # python environment (https://github.com/pyenv/pyenv)
     vcs                     # git status
     # =========================[ Line #2 ]=========================
     newline                 # \n
@@ -51,9 +73,9 @@
     background_jobs         # presence of background jobs
     direnv                  # direnv status (https://direnv.net/)
     asdf                    # asdf version manager (https://github.com/asdf-vm/asdf)
-    virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
+    # virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
     anaconda                # conda environment (https://conda.io/)
-    pyenv                   # python environment (https://github.com/pyenv/pyenv)
+    # pyenv                   # python environment (https://github.com/pyenv/pyenv)
     goenv                   # go environment (https://github.com/syndbg/goenv)
     nodenv                  # node.js version from nodenv (https://github.com/nodenv/nodenv)
     nvm                     # node.js version from nvm (https://github.com/nvm-sh/nvm)
@@ -76,10 +98,10 @@
     phpenv                  # php version from phpenv (https://github.com/phpenv/phpenv)
     scalaenv                # scala version from scalaenv (https://github.com/scalaenv/scalaenv)
     haskell_stack           # haskell version from stack (https://haskellstack.org/)
+    aws                     # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
     kubecontext             # current kubernetes context (https://kubernetes.io/)
     terraform               # terraform workspace (https://www.terraform.io)
     # terraform_version     # terraform version (https://www.terraform.io)
-    aws                     # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
     aws_eb_env              # aws elastic beanstalk environment (https://aws.amazon.com/elasticbeanstalk/)
     azure                   # azure account name (https://docs.microsoft.com/en-us/cli/azure)
     gcloud                  # google cloud cli account and project (https://cloud.google.com/)
@@ -103,7 +125,7 @@
     timewarrior             # timewarrior tracking status (https://timewarrior.net/)
     taskwarrior             # taskwarrior task count (https://taskwarrior.org/)
     # cpu_arch              # CPU architecture
-    time                    # current time
+    #time                    # current time
     # =========================[ Line #2 ]=========================
     newline                 # \n
     # ip                    # ip address and bandwidth usage for a specified network interface
@@ -196,7 +218,7 @@
   # Red prompt symbol if the last command failed.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND=1
   # Default prompt symbol.
-  typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIINS_CONTENT_EXPANSION='❯'
+  typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIINS_CONTENT_EXPANSION='%%'
   # Prompt symbol in command vi mode.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VICMD_CONTENT_EXPANSION='❮'
   # Prompt symbol in visual vi mode.
@@ -349,11 +371,11 @@
 
   #####################################[ vcs: git status ]######################################
   # Branch icon. Set this parameter to '\UE0A0 ' for the popular Powerline branch icon.
-  typeset -g POWERLEVEL9K_VCS_BRANCH_ICON=
+  typeset -g POWERLEVEL9K_VCS_BRANCH_ICON=' '
 
   # Untracked files icon. It's really a question mark, your font isn't broken.
   # Change the value of this parameter to show a different icon.
-  typeset -g POWERLEVEL9K_VCS_UNTRACKED_ICON='?'
+  typeset -g POWERLEVEL9K_VCS_UNTRACKED_ICON='●'
 
   # Formatter for Git status.
   #
@@ -376,10 +398,15 @@
     if (( $1 )); then
       # Styling for up-to-date Git status.
       local       meta='%f'   # default foreground
-      local      clean='%2F'  # green foreground
-      local   modified='%3F'  # yellow foreground
-      local  untracked='%4F'  # blue foreground
-      local conflicted='%1F'  # red foreground
+      #local      clean='%2F'  # green foreground
+      # local   modified='%3F'  # yellow foreground
+      # local  untracked='%4F'  # blue foreground
+      # local conflicted='%1F'  # red foreground
+      local      clean="%F{$colors[base0]}"
+      local     staged="%F{$colors[green]}"
+      local   modified="%F{$colors[yellow]}"
+      local  untracked="%F{$colors[red]}"
+      local conflicted="%F{$colors[red]}"
     else
       # Styling for incomplete and stale Git status.
       local       meta='%f'  # default foreground
@@ -397,7 +424,7 @@
       # Otherwise show the first 12 … the last 12.
       # Tip: To always show local branch name in full without truncation, delete the next line.
       (( $#branch > 32 )) && branch[13,-13]="…"  # <-- this line
-      res+="${clean}${(g::)POWERLEVEL9K_VCS_BRANCH_ICON}${branch//\%/%%}"
+      res+="${clean}${(g::)POWERLEVEL9K_VCS_BRANCH_ICON}${branch//\%/%%} "
     fi
 
     if [[ -n $VCS_STATUS_TAG
@@ -439,19 +466,22 @@
     # ⇢42 if ahead of the push remote; no leading space if also behind: ⇠42⇢42.
     (( VCS_STATUS_PUSH_COMMITS_AHEAD  )) && res+="${clean}⇢${VCS_STATUS_PUSH_COMMITS_AHEAD}"
     # *42 if have stashes.
-    (( VCS_STATUS_STASHES        )) && res+=" ${clean}*${VCS_STATUS_STASHES}"
+    # (( VCS_STATUS_STASHES        )) && res+=" ${clean}*${VCS_STATUS_STASHES}"
     # 'merge' if the repo is in an unusual state.
     [[ -n $VCS_STATUS_ACTION     ]] && res+=" ${conflicted}${VCS_STATUS_ACTION}"
     # ~42 if have merge conflicts.
     (( VCS_STATUS_NUM_CONFLICTED )) && res+=" ${conflicted}~${VCS_STATUS_NUM_CONFLICTED}"
     # +42 if have staged changes.
-    (( VCS_STATUS_NUM_STAGED     )) && res+=" ${modified}+${VCS_STATUS_NUM_STAGED}"
+    # (( VCS_STATUS_NUM_STAGED     )) && res+=" ${modified}+${VCS_STATUS_NUM_STAGED}"
+    (( VCS_STATUS_NUM_STAGED     )) && res+="${staged}●"
     # !42 if have unstaged changes.
-    (( VCS_STATUS_NUM_UNSTAGED   )) && res+=" ${modified}!${VCS_STATUS_NUM_UNSTAGED}"
+    # (( VCS_STATUS_NUM_UNSTAGED   )) && res+=" ${modified}!${VCS_STATUS_NUM_UNSTAGED}"
+    (( VCS_STATUS_NUM_UNSTAGED   )) && res+="${modified}●"
     # ?42 if have untracked files. It's really a question mark, your font isn't broken.
     # See POWERLEVEL9K_VCS_UNTRACKED_ICON above if you want to use a different icon.
     # Remove the next line if you don't want to see untracked files at all.
-    (( VCS_STATUS_NUM_UNTRACKED  )) && res+=" ${untracked}${(g::)POWERLEVEL9K_VCS_UNTRACKED_ICON}${VCS_STATUS_NUM_UNTRACKED}"
+    # (( VCS_STATUS_NUM_UNTRACKED  )) && res+=" ${untracked}${(g::)POWERLEVEL9K_VCS_UNTRACKED_ICON}${VCS_STATUS_NUM_UNTRACKED}"
+    (( VCS_STATUS_NUM_UNTRACKED  )) && res+="${untracked}${POWERLEVEL9K_VCS_UNTRACKED_ICON}"
     # "─" if the number of unstaged files is unknown. This can happen due to
     # POWERLEVEL9K_VCS_MAX_INDEX_SIZE_DIRTY (see below) being set to a non-negative number lower
     # than the number of files in the Git index, or due to bash.showDirtyState being set to false
@@ -939,7 +969,7 @@
 
   ################[ pyenv: python environment (https://github.com/pyenv/pyenv) ]################
   # Pyenv color.
-  typeset -g POWERLEVEL9K_PYENV_FOREGROUND=6
+  typeset -g POWERLEVEL9K_PYENV_FOREGROUND=$colors[green]
   # Hide python version if it doesn't come from one of these sources.
   typeset -g POWERLEVEL9K_PYENV_SOURCES=(shell local global)
   # If set to false, hide python version if it's the same as global:
@@ -958,10 +988,12 @@
   # 1. Display just "$P9K_CONTENT" if it's equal to "$P9K_PYENV_PYTHON_VERSION" or
   #    starts with "$P9K_PYENV_PYTHON_VERSION/".
   # 2. Otherwise display "$P9K_CONTENT $P9K_PYENV_PYTHON_VERSION".
-  typeset -g POWERLEVEL9K_PYENV_CONTENT_EXPANSION='${P9K_CONTENT}${${P9K_CONTENT:#$P9K_PYENV_PYTHON_VERSION(|/*)}:+ $P9K_PYENV_PYTHON_VERSION}'
+  # typeset -g POWERLEVEL9K_PYENV_CONTENT_EXPANSION='${P9K_CONTENT}${${P9K_CONTENT:#$P9K_PYENV_PYTHON_VERSION(|/*)}:+ $P9K_PYENV_PYTHON_VERSION}'
+  typeset -g POWERLEVEL9K_PYENV_CONTENT_EXPANSION='${P9K_CONTENT}'
 
   # Custom icon.
   # typeset -g POWERLEVEL9K_PYENV_VISUAL_IDENTIFIER_EXPANSION='⭐'
+  typeset -g POWERLEVEL9K_PYENV_VISUAL_IDENTIFIER_EXPANSION=''
 
   ################[ goenv: go environment (https://github.com/syndbg/goenv) ]################
   # Goenv color.
@@ -1194,7 +1226,7 @@
   #############[ kubecontext: current kubernetes context (https://kubernetes.io/) ]#############
   # Show kubecontext only when the command you are typing invokes one of these tools.
   # Tip: Remove the next line to always show kubecontext.
-  typeset -g POWERLEVEL9K_KUBECONTEXT_SHOW_ON_COMMAND='kubectl|helm|kubens|kubectx|oc|istioctl|kogito|k9s|helmfile|flux|fluxctl|stern|kubeseal|skaffold|kubent|kubecolor'
+  # typeset -g POWERLEVEL9K_KUBECONTEXT_SHOW_ON_COMMAND='kubectl|helm|kubens|kubectx|oc|istioctl|kogito|k9s|helmfile|flux|fluxctl|stern|kubeseal|skaffold|kubent|kubecolor'
 
   # Kubernetes context classes for the purpose of using different colors, icons and expansions with
   # different contexts.
@@ -1223,11 +1255,16 @@
   #   typeset -g POWERLEVEL9K_KUBECONTEXT_TEST_VISUAL_IDENTIFIER_EXPANSION='⭐'
   #   typeset -g POWERLEVEL9K_KUBECONTEXT_TEST_CONTENT_EXPANSION='> ${P9K_CONTENT} <'
   typeset -g POWERLEVEL9K_KUBECONTEXT_CLASSES=(
-      # '*prod*'  PROD    # These values are examples that are unlikely
-      # '*test*'  TEST    # to match your needs. Customize them as needed.
+      'lucid-production*'  PROD    # These values are examples that are unlikely
+      'lucid-staging*'  STAGING    # to match your needs. Customize them as needed.
       '*'       DEFAULT)
-  typeset -g POWERLEVEL9K_KUBECONTEXT_DEFAULT_FOREGROUND=5
+  typeset -g POWERLEVEL9K_KUBECONTEXT_DEFAULT_FOREGROUND=$colors[blue]
+  typeset -g POWERLEVEL9K_KUBECONTEXT_PROD_FOREGROUND=$colors[red]
+  typeset -g POWERLEVEL9K_KUBECONTEXT_STAGING_FOREGROUND=$colors[violet]
   # typeset -g POWERLEVEL9K_KUBECONTEXT_DEFAULT_VISUAL_IDENTIFIER_EXPANSION='⭐'
+  typeset -g POWERLEVEL9K_KUBECONTEXT_DEFAULT_VISUAL_IDENTIFIER_EXPANSION=''
+  typeset -g POWERLEVEL9K_KUBECONTEXT_STAGING_VISUAL_IDENTIFIER_EXPANSION=''
+  typeset -g POWERLEVEL9K_KUBECONTEXT_PROD_VISUAL_IDENTIFIER_EXPANSION=''
 
   # Use POWERLEVEL9K_KUBECONTEXT_CONTENT_EXPANSION to specify the content displayed by kubecontext
   # segment. Parameter expansions are very flexible and fast, too. See reference:
@@ -1320,7 +1357,7 @@
   #[ aws: aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html) ]#
   # Show aws only when the command you are typing invokes one of these tools.
   # Tip: Remove the next line to always show aws.
-  typeset -g POWERLEVEL9K_AWS_SHOW_ON_COMMAND='aws|awless|terraform|pulumi|terragrunt'
+  # typeset -g POWERLEVEL9K_AWS_SHOW_ON_COMMAND='aws|awless|terraform|pulumi|terragrunt'
 
   # POWERLEVEL9K_AWS_CLASSES is an array with even number of elements. The first element
   # in each pair defines a pattern against which the current AWS profile gets matched.
@@ -1351,12 +1388,14 @@
       '*'       DEFAULT)
   typeset -g POWERLEVEL9K_AWS_DEFAULT_FOREGROUND=3
   # typeset -g POWERLEVEL9K_AWS_DEFAULT_VISUAL_IDENTIFIER_EXPANSION='⭐'
+  typeset -g POWERLEVEL9K_AWS_DEFAULT_VISUAL_IDENTIFIER_EXPANSION=''
 
   # AWS segment format. The following parameters are available within the expansion.
   #
   # - P9K_AWS_PROFILE  The name of the current AWS profile.
   # - P9K_AWS_REGION   The region associated with the current AWS profile.
-  typeset -g POWERLEVEL9K_AWS_CONTENT_EXPANSION='${P9K_AWS_PROFILE//\%/%%}${P9K_AWS_REGION:+ ${P9K_AWS_REGION//\%/%%}}'
+  # typeset -g POWERLEVEL9K_AWS_CONTENT_EXPANSION='${P9K_AWS_PROFILE//\%/%%}${P9K_AWS_REGION:+ ${P9K_AWS_REGION//\%/%%}}'
+  typeset -g POWERLEVEL9K_AWS_CONTENT_EXPANSION='${P9K_AWS_PROFILE//\%/%%}'
 
   #[ aws_eb_env: aws elastic beanstalk environment (https://aws.amazon.com/elasticbeanstalk/) ]#
   # AWS Elastic Beanstalk environment color.
@@ -1569,7 +1608,7 @@
 
   ####################################[ time: current time ]####################################
   # Current time color.
-  typeset -g POWERLEVEL9K_TIME_FOREGROUND=6
+  typeset -g POWERLEVEL9K_TIME_FOREGROUND=$colors[base01]
   # Format for the current time: 09:51:02. See `man 3 strftime`.
   typeset -g POWERLEVEL9K_TIME_FORMAT='%D{%H:%M:%S}'
   # If set to true, time will update when you hit enter. This way prompts for the past

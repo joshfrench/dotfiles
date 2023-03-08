@@ -68,6 +68,8 @@ bindkey "^E" end-of-line
 
 fpath=(./zsh/completions $fpath)
 autoload -Uz add-zsh-hook
+
+PYENV_VIRTUALENV_DISABLE_PROMPT=1
 # zprof
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
