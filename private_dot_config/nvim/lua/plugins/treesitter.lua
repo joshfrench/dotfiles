@@ -11,8 +11,8 @@ return {
   opts = {
     ensure_installed = {
       'bash', 'dockerfile', 'go', 'gomod', 'gotmpl', 'javascript', 'json', 'lua',
-      'make', 'markdown', 'ruby', 'terraform', 'toml', 'tsx', 'typescript', 'python',
-      'rust', 'vim', 'yaml'
+      'make', 'markdown', 'markdown_inline', 'regex', 'ruby', 'terraform', 'toml',
+      'tsx', 'typescript', 'python', 'rust', 'vim', 'yaml'
     },
     highlight = {
       enabled = true,
