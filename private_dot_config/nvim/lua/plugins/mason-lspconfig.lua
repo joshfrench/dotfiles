@@ -29,12 +29,12 @@ return {
     }
 
     local settings = vim.fn.stdpath('config') .. '/lua/user/lsp/'
-    for server in io.popen('ls ' .. settings):lines() do
-      local name = server:match("(.+)%.lua")
-      local ok, server_opts = pcall(require, "user.lsp." .. name)
+    for file in vim.fs.dir(settings) do
+      file = file:match("^(.+)%.lua$")
+      local ok, server_opts = pcall(require, "user.lsp." .. file)
       if ok then
-        handlers[name] = function()
-          require('lspconfig')[name].setup(vim.tbl_deep_extend("keep", server_opts, opts))
+        handlers[file] = function()
+          require('lspconfig')[file].setup(vim.tbl_deep_extend("keep", server_opts, opts))
         end
       end
     end

@@ -2,7 +2,11 @@ return {
   'mfussenegger/nvim-dap',
   dependencies = {
     'rcarriga/nvim-dap-ui',
-    'leoluz/nvim-dap-go',
+    {
+      'leoluz/nvim-dap-go',
+      name = 'dap-go',
+      config = true,
+    },
     'mfussenegger/nvim-dap-python',
     {
       'theHamsta/nvim-dap-virtual-text',
@@ -52,11 +56,12 @@ return {
     end
   end,
   config = function()
-    local dap = require('dap')
-    dap.listeners.after.event_initialized["dapui_config"] = require('dapui').open
-    dap.listeners.before.event_terminated["dapui_config"] = require('dapui').close
-    dap.listeners.before.event_exited["dapui_config"] = require('dapui').close
+    require('dap').listeners.after.event_initialized["dapui_config"] = require('dapui').open
+    require('dap').listeners.before.event_terminated["dapui_config"] = require('dapui').close
+    require('dap').listeners.before.event_exited["dapui_config"] = require('dapui').close
 
+    vim.keymap.set('n', '<leader>dc', require('dap').continue, { silent = true })
+    vim.keymap.set('n', '<leader>ds', require('dap').continue, { silent = true }) -- s for start
     vim.keymap.set('n', '<leader>db', require('dap').toggle_breakpoint, { silent = true })
     vim.keymap.set('n', '<leader>dR', require('dap').run_to_cursor, { silent = true })
     vim.keymap.set('n', '<leader>di', require('dap').step_into, { silent = true })

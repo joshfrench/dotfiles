@@ -35,5 +35,5 @@ return {
       expand = { "<space>", "<right>" },
       open = { "o", "<cr>" },
     }
-  },
+  }
 }

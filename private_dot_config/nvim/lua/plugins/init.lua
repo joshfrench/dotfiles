@@ -1,5 +1,6 @@
 return {
-  { 'ishan9299/nvim-solarized-lua',
+  {
+    'ishan9299/nvim-solarized-lua',
     init = function()
       vim.cmd('colorscheme solarized')
     end
@@ -9,7 +10,7 @@ return {
   'tpope/vim-unimpaired',
   {
     'rafcamlet/nvim-luapad',
-    cmd = { 'LuaPad', 'LuaRun' },
+    cmd = { 'Luapad', 'LuaRun' },
   },
   {
     'kchmck/vim-coffee-script',
