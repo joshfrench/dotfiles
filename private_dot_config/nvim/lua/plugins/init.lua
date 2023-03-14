@@ -19,5 +19,8 @@ return {
       vim.cmd [[ hi link coffeeSpaceError NONE ]]
       vim.cmd [[ hi link coffeeSemicolonError NONE ]]
     end
+  },
+  {
+    'Olical/conjure',
   }
 }

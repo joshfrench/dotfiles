@@ -8,6 +8,7 @@ return {
     ensure_installed = {
       'bashls',
       'eslint',
+      'fennel_language_server',
       'gopls',
       'jsonls',
       'pyright',

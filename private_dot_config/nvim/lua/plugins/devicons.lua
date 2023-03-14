@@ -11,6 +11,10 @@ return {
         cterm_color = '231',
         name = 'GCFG',
       },
+      fnl = {
+        icon = "󱅽",
+        color = colors.green,
+      },
       -- Dockerfile = { color = colors.blue },
       [".gitignore"] = { color = colors.base0 },
       COMMIT_EDITMSG = { color = colors.yellow },
