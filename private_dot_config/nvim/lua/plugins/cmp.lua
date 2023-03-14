@@ -34,7 +34,7 @@ return {
         expand = function(args) require('snippy').expand_snippet(args.body) end
       },
       mapping = require('cmp').mapping.preset.insert({
-        ['<C-d>'] = require('cmp').mapping.scroll_docs( -4, { 'i' }),
+        ['<C-d>'] = require('cmp').mapping.scroll_docs(-4, { 'i' }),
         ['<C-f>'] = require('cmp').mapping.scroll_docs(4, { 'i' }),
         ['<CR>'] = require('cmp').mapping(cmp_confirm, { 'i' }),
         ['<TAB>'] = require('cmp').mapping(cmp_confirm, { 'i' }),

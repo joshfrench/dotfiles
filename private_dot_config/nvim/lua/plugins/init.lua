@@ -21,6 +21,8 @@ return {
     end
   },
   {
+    -- TODO: change default bindings, fuckin with my <leader>e
     'Olical/conjure',
-  }
+    ft = { 'fennel', 'clojure' },
+  },
 }
