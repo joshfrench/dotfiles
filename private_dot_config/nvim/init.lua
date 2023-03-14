@@ -27,19 +27,20 @@ if not vim.loop.fs_stat(hotpot_path) then
 end
 vim.opt.runtimepath:prepend(hotpot_path)
 
-require("hotpot").setup({
-  provide_require_fennel = true,
-  compiler = {
-    modules = {
-      correlate = true,
-    },
-  },
-})
-
 require 'user.settings'
 
 require('lazy').setup({
-  { 'rktjmp/hotpot.nvim' },
+  {
+    'rktjmp/hotpot.nvim',
+    opts = {
+      provide_require_fennel = true,
+      compiler = {
+        modules = {
+          correlate = true,
+        },
+      },
+    },
+  },
   { import = 'plugins' }
 }, {
   install = { colorscheme = { 'solarized' } }
