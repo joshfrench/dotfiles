@@ -182,8 +182,8 @@ return {
   opts = opts,
   init = function()
     local keys = vim.keymap
-    keys.set('n', '<C-e>', require('nvim-tree').toggle)
-    keys.set('n', '<leader>e', function() require('nvim-tree').toggle(true, false) end)
+    keys.set('n', '<C-e>', require('nvim-tree.api').tree.toggle)
+    keys.set('n', '<leader>e', function() require('nvim-tree.api').tree.toggle(true, false) end)
 
     vim.api.nvim_create_autocmd('VimEnter', {
       callback = function(data)
