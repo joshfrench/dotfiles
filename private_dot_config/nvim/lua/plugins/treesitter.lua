@@ -5,18 +5,20 @@ return {
     -- 'mrjones2014/nvim-ts-rainbow', -- mainline
     'HiPhish/nvim-ts-rainbow2', -- active fork
     'JoosepAlviste/nvim-ts-context-commentstring',
-    'nvim-treesitter/playground',
   },
   build = ':TSUpdate',
   opts = {
     ensure_installed = {
       'bash', 'dockerfile', 'fennel', 'go', 'gomod', 'gotmpl', 'javascript', 'json',
-      'lua', 'make', 'markdown', 'markdown_inline', 'regex', 'ruby', 'terraform',
-      'toml', 'tsx', 'typescript', 'python', 'rust', 'vim', 'yaml'
+      'lua', 'make', 'markdown', 'markdown_inline', 'query', 'regex', 'ruby',
+      'terraform', 'toml', 'tsx', 'typescript', 'python', 'rust', 'vim', 'yaml'
+    },
+    indent = {
+      enabled = true,
     },
     highlight = {
-      enabled = true,
-      additional_vim_regex_highlighting = true,
+      enable = true,
+      additional_vim_regex_highlighting = false,
     },
     rainbow = {
       enable = true,
@@ -49,6 +51,18 @@ return {
     vim.opt.foldmethod = 'expr'
     vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
     vim.opt.indentexpr = 'treesitter#indentexpr()'
+
+    -- no idea why this doesn't work automatically :(
+    local g = vim.api.nvim_create_augroup('treesitter', { clear = true })
+    vim.api.nvim_create_autocmd('BufEnter', {
+      group = g,
+      callback = function()
+        local enable = require('nvim-treesitter.configs').commands.TSEnable.run
+        enable('highlight')
+        enable('rainbow')
+      end,
+      once = true
+    })
 
     local colors = require('user.colors')
     for hl, color in pairs({
