@@ -8,32 +8,47 @@ return {
     'nvim-treesitter/playground',
   },
   build = ':TSUpdate',
-  opts = {
-    ensure_installed = {
-      'bash', 'dockerfile', 'go', 'gomod', 'gotmpl', 'javascript', 'json', 'lua',
-      'make', 'markdown', 'markdown_inline', 'regex', 'ruby', 'terraform', 'toml',
-      'tsx', 'typescript', 'python', 'rust', 'vim', 'yaml'
-    },
-    highlight = {
-      enabled = true,
-      additional_vim_regex_highlighting = true,
-    },
-    rainbow = {
-      enable = true,
-      extended_mode = true,
-    },
-    context_commentstring = {
-      enable = true,
-    },
-    playground = {
-      enable = true,
-    },
-    query_linter = {
-      enable = true,
-      use_virtual_text = true,
-      lint_events = { "BufWrite", "CursorHold" },
-    },
-  },
+  config = function()
+    require('nvim-treesitter.configs').setup({
+      ensure_installed = {
+        'bash', 'dockerfile', 'fennel', 'go', 'gomod', 'gotmpl', 'javascript', 'json',
+        'lua', 'make', 'markdown', 'markdown_inline', 'query', 'regex', 'ruby',
+        'terraform', 'toml', 'tsx', 'typescript', 'python', 'rust', 'vim', 'yaml'
+      },
+      indent = {
+        enabled = true,
+      },
+      highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = false,
+      },
+      rainbow = {
+        enable = true,
+        extended_mode = true,
+        hlgroups = {
+          'TSRainbowPlain',
+          'TSRainbowBlue',
+          'TSRainbowCyan',
+          'TSRainbowViolet',
+          'TSRainbowRed',
+          'TSRainbowOrange',
+          'TSRainbowYellow',
+          'TSRainbowGreen',
+        },
+      },
+      context_commentstring = {
+        enable = true,
+      },
+      playground = {
+        enable = true,
+      },
+      query_linter = {
+        enable = true,
+        use_virtual_text = true,
+        lint_events = { "BufWrite", "CursorHold" },
+      },
+    })
+  end,
   init = function()
     local configs = require('nvim-treesitter.parsers').get_parser_configs()
 
@@ -52,13 +67,14 @@ return {
 
     local colors = require('user.colors')
     for hl, color in pairs({
-      TSRainbowRed = colors.red,
-      TSRainbowYellow = colors.yellow,
-      TSRainbowBlue = colors.blue,
-      TSRainbowOrange = colors.orange,
-      TSRainbowGreen = colors.green,
-      TSRainbowViolet = colors.violet,
+      TSRainbowPlain = colors.base1,
       TSRainbowCyan = colors.cyan,
+      TSRainbowViolet = colors.violet,
+      TSRainbowRed = colors.red,
+      TSRainbowOrange = colors.orange,
+      TSRainbowYellow = colors.yellow,
+      TSRainbowGreen = colors.green,
+      TSRainbowBlue = colors.blue,
     }) do
       vim.api.nvim_set_hl(0, hl, { fg = color })
     end
