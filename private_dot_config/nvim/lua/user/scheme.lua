@@ -16,18 +16,12 @@ local cyan     = '#2aa198'
 local green    = '#859900'
 local highlite = '#004b5e' -- additional midtone
 
-function string.starts(String, Start)
-  return string.sub(String, 1, string.len(Start)) == Start
-end
-
 for h, c in pairs({
   include = green,
   namespace = base1,
   string = cyan,
-  ['@punctuation.bracket'] = base1,
+  ['punctuation.bracket'] = base1,
 }) do
-  if not h:starts('@') then
-    h = '@' .. h
-  end
-  vim.api.nvim_set_hl(0, h, { fg = c })
+  -- TODO: clear background on @parameter, others?
+  vim.api.nvim_set_hl(0, '@' .. h, { fg = c })
 end
