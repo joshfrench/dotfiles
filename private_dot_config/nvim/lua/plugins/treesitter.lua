@@ -1,7 +1,7 @@
 return {
   'nvim-treesitter/nvim-treesitter',
   dependencies = {
-    'HiPhish/nvim-ts-rainbow2',
+    'HiPhish/nvim-ts-rainbow2', -- active fork
     'JoosepAlviste/nvim-ts-context-commentstring',
     'nvim-treesitter/playground',
   },
