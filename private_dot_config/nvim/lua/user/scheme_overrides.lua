@@ -23,6 +23,7 @@ for h, c in pairs({
   ['punctuation.bracket'] = base1,
   parameter = base1,
 }) do
-  -- TODO: clear background on @parameter, others?
   vim.api.nvim_set_hl(0, '@' .. h, { fg = c })
 end
+
+vim.api.nvim_set_hl(0, '@constructor', {})
