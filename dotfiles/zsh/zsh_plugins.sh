@@ -36,5 +36,3 @@ source /Users/josh/dotfiles/zsh/modules/pyenv/pyenv.zsh
 fpath+=( /Users/josh/dotfiles/zsh/modules/pyenv )
 source /Users/josh/dotfiles/zsh/modules/vimode/vimode.zsh
 fpath+=( /Users/josh/dotfiles/zsh/modules/vimode )
-source /Users/josh/dotfiles/zsh/modules/posit/posit.zsh
-fpath+=( /Users/josh/dotfiles/zsh/modules/posit )
