@@ -15,6 +15,9 @@ return {
         icon = "󱅽",
         color = colors.green,
       },
+      rs = {
+        icon = "🦀"
+      },
       -- Dockerfile = { color = colors.blue },
       [".gitignore"] = { color = colors.base0 },
       COMMIT_EDITMSG = { color = colors.yellow },
