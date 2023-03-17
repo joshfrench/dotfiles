@@ -1661,7 +1661,11 @@ local -A colors=(
   #   - always:   Trim down prompt when accepting a command line.
   #   - same-dir: Trim down prompt when accepting a command line unless this is the first command
   #               typed after changing current working directory.
-  typeset -g POWERLEVEL9K_TRANSIENT_PROMPT=same-dir
+  # typeset -g POWERLEVEL9K_TRANSIENT_PROMPT=same-dir
+
+  # customize transient prompt: leave timetstamp by hiding other elements
+  function p10k-on-post-prompt() { p10k display '1/left/(dir|vcs)'=hide '1/right/*'=hide }
+  function p10k-on-pre-prompt()  { p10k display '1/left/(dir|vcs)'=show '1/right/*'=show }
 
   # Instant prompt mode.
   #
