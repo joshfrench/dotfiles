@@ -7,6 +7,8 @@
 " TODO: remove . and : from FennelSymbol and highlight them separatly
 " then they are could be removed from iskeyword maybe? : not allowed in symbol
 " at all, `.` is allowed at the start and end of the symbol
+"
+" (cribbed from https://github.com/Olical/aniseed/blob/master/syntax/fennel.vim)
 if exists("b:current_syntax")
   finish
 endif

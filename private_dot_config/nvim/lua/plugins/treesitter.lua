@@ -1,7 +1,24 @@
 return {
   'nvim-treesitter/nvim-treesitter',
   dependencies = {
-    'HiPhish/nvim-ts-rainbow2', -- active fork
+    {
+      'HiPhish/nvim-ts-rainbow2',
+      config = function()
+        local colors = require('user.colors')
+        for hl, color in pairs({
+          TSRainbowPlain = colors.base1,
+          TSRainbowCyan = colors.cyan,
+          TSRainbowViolet = colors.violet,
+          TSRainbowRed = colors.red,
+          TSRainbowOrange = colors.orange,
+          TSRainbowYellow = colors.yellow,
+          TSRainbowGreen = colors.green,
+          TSRainbowBlue = colors.blue,
+        }) do
+          vim.api.nvim_set_hl(0, hl, { fg = color })
+        end
+      end
+    },
     'JoosepAlviste/nvim-ts-context-commentstring',
   },
   build = ':TSUpdate',
@@ -47,6 +64,10 @@ return {
     })
   end,
   init = function()
+    vim.opt.foldmethod = 'expr'
+    vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+    vim.opt.indentexpr = 'treesitter#indentexpr()'
+
     local configs = require('nvim-treesitter.parsers').get_parser_configs()
 
     configs.gotmpl = {
@@ -57,35 +78,5 @@ return {
       filetype = "gotmpl",
       used_by = { "gohtmltmpl", "gotexttmpl", "gotmpl" }
     }
-
-    vim.opt.foldmethod = 'expr'
-    vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
-    vim.opt.indentexpr = 'treesitter#indentexpr()'
-
-    -- no idea why this doesn't work automatically :(
-    local g = vim.api.nvim_create_augroup('treesitter', { clear = true })
-    vim.api.nvim_create_autocmd('BufEnter', {
-      group = g,
-      callback = function()
-        local enable = require('nvim-treesitter.configs').commands.TSEnable.run
-        enable('highlight')
-        enable('rainbow')
-      end,
-      once = true
-    })
-
-    local colors = require('user.colors')
-    for hl, color in pairs({
-      TSRainbowPlain = colors.base1,
-      TSRainbowCyan = colors.cyan,
-      TSRainbowViolet = colors.violet,
-      TSRainbowRed = colors.red,
-      TSRainbowOrange = colors.orange,
-      TSRainbowYellow = colors.yellow,
-      TSRainbowGreen = colors.green,
-      TSRainbowBlue = colors.blue,
-    }) do
-      vim.api.nvim_set_hl(0, hl, { fg = color })
-    end
   end
 }

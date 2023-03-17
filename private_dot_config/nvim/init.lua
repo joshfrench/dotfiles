@@ -55,5 +55,6 @@ require 'user.spelling'
 require 'user.typos'
 require 'user.user_commands'
 require 'user.yank'
+require 'user.scheme_overrides'
 
 pcall(require, 'user.posit')
