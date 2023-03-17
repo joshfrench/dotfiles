@@ -1616,7 +1616,7 @@ local -A colors=(
   # If set to true, time will update when you hit enter. This way prompts for the past
   # commands will contain the start times of their commands as opposed to the default
   # behavior where they contain the end times of their preceding commands.
-  typeset -g POWERLEVEL9K_TIME_UPDATE_ON_COMMAND=false
+  typeset -g POWERLEVEL9K_TIME_UPDATE_ON_COMMAND=true
   # Custom icon.
   typeset -g POWERLEVEL9K_TIME_VISUAL_IDENTIFIER_EXPANSION=
   # Custom prefix.
@@ -1663,9 +1663,9 @@ local -A colors=(
   #               typed after changing current working directory.
   # typeset -g POWERLEVEL9K_TRANSIENT_PROMPT=same-dir
 
-  # customize transient prompt: leave timetstamp by hiding other elements
-  function p10k-on-post-prompt() { p10k display '1/left/(dir|vcs)'=hide '1/right/*'=hide }
-  function p10k-on-pre-prompt()  { p10k display '1/left/(dir|vcs)'=show '1/right/*'=show }
+  # customize transient prompt: leave timestamp by hiding other elements
+  function p10k-on-post-prompt() { p10k display '1/left/(dir|vcs)'=hide '1/left/time'=show '1/right/*'=hide }
+  function p10k-on-pre-prompt()  { p10k display '1/left/(dir|vcs)'=show '1/left/time'=hide '1/right/*'=show }
 
   # Instant prompt mode.
   #
