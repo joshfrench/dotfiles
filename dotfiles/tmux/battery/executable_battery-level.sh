@@ -1,13 +1,13 @@
 #!/bin/bash
 
 _battery_status() {
-  local bg pm pct
-  bg=green
+  local fg pm pct
+  fg=green
   pm=$(pmset -g batt)
   pct=$(echo "$pm" | perl -n -e '/(\d+)%/ && print $1')
-  [[ $pm =~ discharging ]] && bg=yellow
-  [[ $pct -le 15 ]] && bg=red
-  echo -n "#[bg=$bg] $pct%"
+  [[ $pm =~ discharging ]] && fg=yellow
+  [[ $pct -le 15 ]] && fg=red
+  echo -n "#[fg=$fg] $pct%"
 }
 
 _battery_status
