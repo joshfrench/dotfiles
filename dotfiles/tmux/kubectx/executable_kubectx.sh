@@ -79,7 +79,7 @@ main() {
   color=$(get_kubectx_color)
   error=$(get_status_error)
 
-  result="#[fg=${color}]${config%/default}"
+  result="#[fg=${color}]󱃾 ${config%/default}"
 
   if [[ -n ${error} ]]; then
     result=" #[fg=#dc322f]${error}#[default]"
