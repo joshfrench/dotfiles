@@ -1,0 +1,10 @@
+function set_tmux_pyenv() {
+  if [[ -n "$TMUX" ]]; then
+    if [[ $1 == '-u' ]]; then
+      tmux set -pqu @pyenv-name
+    else
+      tmux set -pq @pyenv-name "$1"
+    fi
+    tmux refresh-client -S
+  fi
+}
