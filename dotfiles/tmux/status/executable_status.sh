@@ -1,20 +1,15 @@
 #!/usr/bin/env zsh
 
 tmux_status() {
-  local pyenv aws kubectx battery
-  typeset -a segments
+  declare -a outputs
+  declare -a segments=(pyenv aws kubectx battery)
 
-  pyenv=$(~/dotfiles/tmux/status/pyenv.sh)
-  aws=$(~/dotfiles/tmux/status/aws.sh)
-  kubectx=$(~/dotfiles/tmux/status/kubectx.sh)
-  battery=$(~/dotfiles/tmux/status/battery.sh)
+  for segment in $segments; do
+    output="$(~/dotfiles/tmux/status/${segment}.sh)"
+    [[ -n "$output" ]] && outputs+="$output"
+  done
 
-  [[ -n "$pyenv" ]]   && segments+=$pyenv
-  [[ -n "$aws" ]]     && segments+=$aws
-  [[ -n "$kubectx" ]] && segments+=$kubectx
-  [[ -n "$battery" ]] && segments+=$battery
-
-  echo -n "${(j.  .)segments}"
+  echo -n "${(j.  .)outputs}"
 }
 
 tmux_status
