@@ -11,10 +11,11 @@ alias hk='heroku'
 kctl() {
   if [[ $1 == '-u' ]]; then
     kubectl config unset current-context
+    [[ -v TMUX ]] && tmux set -qgu @tmux_kubecontext_status_config
   else
     kubectl $@
   fi
-  tmux refresh-client -S
+  [[ -v TMUX ]] && tmux refresh-client -S
 }
 
 # git branch (interactive)

@@ -62,7 +62,7 @@ main() {
   config=$(get_status_config)
   color=$(get_kubectx_color)
 
-  echo -n "#[fg=${color}]󱃾 ${config%/default}"
+  [[ -n "$config" ]] && echo -n "#[fg=${color}]󱃾 ${config%/default}"
 }
 
 main
