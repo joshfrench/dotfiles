@@ -15,11 +15,8 @@ _battery_status() {
       sym='󰂎'
     fi
   fi
-  if (( pct <= 75 )); then
-    fg=yellow
-  elif (( pct <= 25  )); then
-    fg=red
-  fi
+  (( pct < 75 )) && fg=yellow
+  (( pct < 25 )) && fg=red
   echo -n "#[fg=$fg]$sym $pct%"
 }
 
