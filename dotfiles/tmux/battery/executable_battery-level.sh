@@ -1,13 +1,26 @@
 #!/bin/bash
 
 _battery_status() {
-  local fg pm pct
-  fg=green
+  local fg=green sym='' pm pct
   pm=$(pmset -g batt)
   pct=$(echo "$pm" | perl -n -e '/(\d+)%/ && print $1')
-  [[ $pm =~ discharging ]] && fg=yellow
-  [[ $pct -le 15 ]] && fg=red
-  echo -n "#[fg=$fg]$pct%"
+  if [[ $pm =~ discharging ]]; then
+    if (( pct >= 75 )); then
+      sym='󱊣'
+    elif (( pct >= 50 )); then
+      sym='󱊢'
+    elif (( pct >= 25 )); then
+      sym='󱊡'
+    else
+      sym='󰂎'
+    fi
+  fi
+  if (( pct <= 50 )); then
+    fg=yellow
+  elif (( pct <= 10  )); then
+    fg=red
+  fi
+  echo -n "#[fg=$fg]$sym $pct%"
 }
 
 _battery_status
