@@ -33,8 +33,10 @@ function ap() {
   if [[ $1 == "-u" ]]; then
     unset AWS_PROFILE
     aws sso logout
-    tmux set -pqu @aws-profile
-    tmux refresh-client -S
+    if [[ -v TMUX ]]; then
+      tmux set -pqu @aws-profile
+      tmux refresh-client -S
+    fi
     return 0
   fi
   local profiles selection profile
