@@ -5,7 +5,6 @@ tmux_aws_profile() {
   if [[ -n "$ap" ]]; then
     echo -n "#[fg=#b58900]󰅣 ${ap}#[default]"
   fi
-
 }
 
 tmux_aws_profile
