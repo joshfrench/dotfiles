@@ -53,7 +53,6 @@ local -A colors=(
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
     # =========================[ Line #1 ]=========================
     # os_icon               # os identifier
-    time
     dir                     # current directory
     vcs                     # git status
     # =========================[ Line #2 ]=========================
@@ -133,6 +132,7 @@ local -A colors=(
     # battery               # internal battery
     # wifi                  # wifi speed
     # example               # example user-defined segment (see prompt_example function below)
+    time
   )
 
   # Defines character set used by powerlevel10k. It's best to let `p10k configure` set it for you.
@@ -1664,8 +1664,8 @@ local -A colors=(
   # typeset -g POWERLEVEL9K_TRANSIENT_PROMPT=same-dir
 
   # customize transient prompt: leave timestamp by hiding other elements
-  function p10k-on-post-prompt() { p10k display '1/left/(dir|vcs)'=hide '1/left/time'=show '1/right/*'=hide }
-  function p10k-on-pre-prompt()  { p10k display '1/left/(dir|vcs)'=show '1/left/time'=hide '1/right/*'=show }
+  function p10k-on-post-prompt() { p10k display '1/left/(dir|vcs)'=hide }
+  function p10k-on-pre-prompt()  { p10k display '1/left/(dir|vcs)'=show }
 
   # Instant prompt mode.
   #
