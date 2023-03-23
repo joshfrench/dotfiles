@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 init(){
   tmux set-option -goq @tmux_kubecontext_status_config ""
@@ -16,13 +16,13 @@ get_tmux_option(){
 get_kubectx_color() {
   case $(get_status_config) in
     lucid-production-*)
-      echo "#dc322f"
+      echo "#d33682"
       ;;
     lucid-staging-*)
-      echo '#2aa198'
+      echo '#6c71c4'
       ;;
     *)
-      echo '#6c71c4'
+      echo '#268bd2'
       ;;
   esac
 }
@@ -52,19 +52,20 @@ reset_context(){
 }
 
 update_context(){
-  local config exitcode=0
+  local exitcode=0
+  typeset -a config
   if [[ ! -x "$(command -v /usr/local/bin/kubectl)" ]]; then
     set_status_error "executable kubectl command was not found"
     return
   fi
 
-  config=$(/usr/local/bin/kubectl config view --minify -o jsonpath='{.current-context}/{..namespace}' 2>/dev/null)
+  config=($(/usr/local/bin/kubectl config view --minify -o jsonpath='{.current-context} {..namespace}')) 2>/dev/null
   exitcode=$?
-  if [[ -z "${config}" ]] || [[ $exitcode != 0 ]]; then
+  if [[ ${#config[@]} -eq 0 ]] || [[ $exitcode != 0 ]]; then
     set_status_error "failed to get config with kubectl"
     return
   fi
-  set_status_config "$config"
+  set_status_config "${(j./.)config}"
 
   clear_status_error
 }

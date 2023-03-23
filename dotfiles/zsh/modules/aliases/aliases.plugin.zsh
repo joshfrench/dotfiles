@@ -6,11 +6,16 @@ alias tf=tfswitch
 alias diff=colordiff
 alias cat=bat
 alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
-alias koff='kubectl config unset current-context'
-alias kctl='kubectl'
-alias kctx='kubectx'
-alias kbns='kubens'
 alias hk='heroku'
+
+kctl() {
+  if [[ $1 == '-u' ]]; then
+    kubectl config unset current-context
+  else
+    kubectl $@
+  fi
+  tmux refresh-client -S
+}
 
 # git branch (interactive)
 function gb() {
@@ -25,14 +30,24 @@ function gb() {
 
 # AWS profile
 function ap() {
-  if [[ $1 == "-u" ]]; then unset AWS_PROFILE && aws sso logout && return 0; fi
+  if [[ $1 == "-u" ]]; then
+    unset AWS_PROFILE
+    aws sso logout
+    tmux set -pqu @aws-profile
+    tmux refresh-client -S
+    return 0
+  fi
   local profiles selection profile
   profiles=$(aws configure list-profiles)
   if [[ -n "$1" ]] && [[ "$profiles" =~ (^|[[:space:]])"$1"($|[[:space:]]) ]]; then selection="$1"; else selection=$(echo "$profiles" | fzf --height=10%); fi &&
   if [[ -t 1 ]]; then
     export AWS_PROFILE="$selection"
     aws sso login
-    [[ -v TMUX ]] && tmux setenv AWS_PROFILE $AWS_PROFILE
+    if [[ -v TMUX ]]; then
+      tmux set -pq @aws-profile $AWS_PROFILE
+      tmux setenv AWS_PROFILE $AWS_PROFILE
+      tmux refresh-client -S
+    fi
   else
     echo "$selection"
   fi
