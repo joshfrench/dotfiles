@@ -132,6 +132,7 @@ local -A colors=(
     # battery               # internal battery
     # wifi                  # wifi speed
     # example               # example user-defined segment (see prompt_example function below)
+    chezmoi
   )
 
   # Defines character set used by powerlevel10k. It's best to let `p10k configure` set it for you.
@@ -1647,6 +1648,14 @@ local -A colors=(
     # instant_prompt_example. This will give us the same `example` prompt segment in the instant
     # and regular prompts.
     prompt_example
+  }
+
+  function prompt_chezmoi() {
+    p10k segment -i ' ' -t '' -f $colors[cyan] -c '$CHEZMOI'
+  }
+
+  function instant_prompt_chezmoi() {
+    prompt_chezmoi
   }
 
   # User-defined prompt segments can be customized the same way as built-in segments.
