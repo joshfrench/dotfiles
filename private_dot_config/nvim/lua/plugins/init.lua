@@ -29,4 +29,5 @@ return {
     'Olical/conjure',
     ft = { 'fennel', 'clojure' },
   },
+  'cpea2506/relative-toggle.nvim',
 }
