@@ -1,3 +1,6 @@
+; inherits gotmpl
+; extends
+
 ; Identifiers
 
 [
