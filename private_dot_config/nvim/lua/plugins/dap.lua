@@ -3,12 +3,6 @@ return {
   dependencies = {
     'rcarriga/nvim-dap-ui',
     {
-      'leoluz/nvim-dap-go',
-      name = 'dap-go',
-      config = true,
-    },
-    'mfussenegger/nvim-dap-python',
-    {
       'theHamsta/nvim-dap-virtual-text',
       opts = { commented = true },
     },
