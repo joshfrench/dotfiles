@@ -1,5 +1,6 @@
 return {
   'jay-babu/mason-null-ls.nvim',
+  lazy = true,
   opts = {
     ensure_installed = {
       'shellcheck',

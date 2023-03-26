@@ -12,5 +12,6 @@ return {
   config = function()
     require('mason').setup()
     require('mason-nvim-dap').setup_handlers({})
+    require('mason-null-ls').setup()
   end
 }

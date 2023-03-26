@@ -11,7 +11,7 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufNewFile' }, {
 
 local gotmpl = vim.api.nvim_create_augroup('gotmpl_filetype', { clear = true })
 
-vim.api.nvim_create_autocmd({ 'BufEnter', 'BufNewFile' }, {
+vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
   pattern = { '*.yml', '*.yaml' },
   group = gotmpl,
   callback = function(args)
