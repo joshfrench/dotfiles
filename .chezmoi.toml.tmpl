@@ -7,3 +7,4 @@ mode = "symlink"
 [data]
   email = {{ $email | quote }}
   extradeps = {{ $extradeps }}
+  brew_prefix = {{ if eq .chezmoi.arch "arm64" }}'/opt/homebrew'{{ else }}'/usr/local'{{ end }}
