@@ -24,10 +24,12 @@ return {
     'nvim-treesitter/playground',
     cmd = 'TSPlaygroundToggle',
   },
+  'cpea2506/relative-toggle.nvim',
+  --[[
   {
     -- TODO: change default bindings, fuckin with my <leader>e
     'Olical/conjure',
     ft = { 'fennel', 'clojure' },
   },
-  'cpea2506/relative-toggle.nvim',
+  --]]
 }

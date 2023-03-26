@@ -19,7 +19,7 @@ return {
     'dcampos/nvim-snippy',
     'dcampos/cmp-snippy',
     'onsails/lspkind.nvim',
-    'PaterJason/cmp-conjure'
+    -- 'PaterJason/cmp-conjure'
   },
   event = 'InsertEnter',
   config = function()
@@ -46,7 +46,7 @@ return {
         { name = 'buffer',                  max_item_count = 20,                group_index = 2, keyword_length = 2 },
         { name = 'path', },
         { name = 'emoji',                   max_item_count = 20 },
-        { name = 'conjure' },
+        -- { name = 'conjure' },
       }),
       sorting = {
         comparators = {
