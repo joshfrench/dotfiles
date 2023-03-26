@@ -29,6 +29,8 @@ vim.opt.runtimepath:prepend(hotpot_path)
 
 require 'user.settings'
 
+require('hotpot')
+
 require('lazy').setup({
   {
     'rktjmp/hotpot.nvim',
