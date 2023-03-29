@@ -1,7 +1,8 @@
 #!/bin/bash
 
 tmux_show_pyenv() {
-  local pyenv="${PYENV_VERSION:-$(tmux show -pqv -t "$(tmux display -p '#{pane_id}')" @pyenv-name)}"
+  local pyenv_name=${PYENV_VIRTUAL_ENV##*/}
+  local pyenv="${pyenv_name:-$(tmux show -pqv -t "$(tmux display -p '#{pane_id}')" @pyenv-name)}"
   if [[ -n "$pyenv" ]]; then
     echo -n "#[fg=#859900] ${pyenv}#[default]"
   fi

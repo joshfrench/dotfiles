@@ -9,15 +9,15 @@ _activate_pyenv() {
   if [[ -f './.python-version' ]]; then
     pyenv=$(cat ./.python-version)
     if [[ ! -v PYENV_VIRTUAL_ENV ]]; then
-      read -q "?$(echo ${GREEN}.python-version found, activate ${pyenv}?${NC}) (y/N) " && pyenv activate
+      read -q "?$(echo ${GREEN}.python-version found, activate ${pyenv}?${NC}) (y/N) " && pyenv activate $pyenv
     elif [ ! ${PYENV_VIRTUAL_ENV##*/} = ${pyenv} ]; then
-      read -q "?$(echo $GREEN)pyenv is ${PYENV_VIRTUAL_ENV##*/}, activate ${pyenv} instead? (y/N) " && pyenv activate
+      read -q "?$(echo $GREEN)pyenv is ${PYENV_VIRTUAL_ENV##*/}, activate ${pyenv} instead? (y/N) " && pyenv activate $pyenv
     fi
   elif [ -f './requirements.txt' ] || [ -f './requirements.yml' ]; then
     if read -q "yn?$(echo "${GREEN}No pyenv created, run \`make pyenv\`?${NC} (y/N)") "; then
       echo ''
       make pyenv
-      pyenv activate
+      pyenv activate $(cat ./.python-version)
       pyenv pyright
       echo "\n${GREEN}Next: aws sso and \`make deps\`.${NC}"
     fi
