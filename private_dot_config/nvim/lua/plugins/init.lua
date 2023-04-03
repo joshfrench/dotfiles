@@ -19,6 +19,11 @@ return {
     cmd = 'TSPlaygroundToggle',
   },
   'cpea2506/relative-toggle.nvim',
+  -- { "ellisonleao/glow.nvim", config = true, cmd = "Glow" },
+  {
+    'toppair/peek.nvim',
+    build = 'deno task --quiet build:fast'
+  },
   --[[
   {
     -- TODO: change default bindings, fuckin with my <leader>e

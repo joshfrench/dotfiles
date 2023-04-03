@@ -18,8 +18,6 @@ kctl() {
   [[ -v TMUX ]] && tmux refresh-client -S
 }
 
-compdef kctl='kubectl'
-
 # git branch (interactive)
 function gb() {
   if [[ -n "$1" ]]; then git checkout "$1" && return 0; fi

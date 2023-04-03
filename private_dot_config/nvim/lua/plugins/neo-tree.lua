@@ -82,6 +82,7 @@ return {
           ['F'] = function(_)
             require('telescope.builtin').live_grep()
           end,
+          ['/'] = 'noop', -- just use builtin search
         }
       }
     },
@@ -89,5 +90,6 @@ return {
   init = function()
     vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
     vim.keymap.set('n', '<C-e>', ':Neotree toggle reveal<cr>', { silent = true })
+    vim.keymap.set('n', '<leader>e', ':Neotree toggle<cr>', { silent = true })
   end
 }

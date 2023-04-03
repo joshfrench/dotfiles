@@ -18,10 +18,11 @@ get_kubectx_color() {
       echo "#d33682"
       ;;
     lucid-staging-*)
-      echo '#6c71c4'
+      echo '#2aa198'
       ;;
     *)
-      echo '#268bd2'
+      echo '#6c71c4'
+      # echo '#268bd2'
       ;;
   esac
 }

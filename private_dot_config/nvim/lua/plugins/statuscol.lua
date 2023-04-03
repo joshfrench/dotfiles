@@ -20,6 +20,9 @@ end
 
 return {
   'luukvbaal/statuscol.nvim',
+  cond = function()
+    return vim.fn.has('nvim-0.9') and true or false
+  end,
   opts = {
     setopt              = true,
     DapStopped          = dap_click,
@@ -27,6 +30,5 @@ return {
     DiagnosticSignHint  = diagnostic_click,
     DiagnosticSignInfo  = diagnostic_click,
     DiagnosticSignWarn  = diagnostic_click,
-
   }
 }
