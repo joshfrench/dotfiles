@@ -77,6 +77,7 @@ return {
         'Trouble',
         'alpha',
         'qf',
+        'neo-tree',
       },
       always_divide_middle = false,
       globalstatus = true,

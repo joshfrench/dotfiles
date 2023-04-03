@@ -32,7 +32,10 @@ local opts = {
         { key = '<leader>e', action = 'close' },
         { key = 'u',         action = "parent_node" },
         { key = 'U',         action = "dir_up" },
+        { key = '<BS>',      action = "dir_up" },
         { key = 'C',         action = "cd" },
+        { key = '.',         action = "cd" },
+        { key = 'F',         action = ":Telescope live_grep<CR>" }
       },
     },
   },
@@ -179,6 +182,7 @@ return {
   dependencies = {
     'kyazdani42/nvim-web-devicons',
   },
+  enabled = false,
   opts = opts,
   init = function()
     local keys = vim.keymap
