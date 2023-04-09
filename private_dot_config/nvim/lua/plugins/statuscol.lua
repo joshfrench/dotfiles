@@ -2,7 +2,7 @@ local function diagnostic_click(args)
   if args.button == "l" then
     vim.diagnostic.open_float({ scope = 'line' }) -- Open diagnostic float on left click
   elseif args.button == "m" then
-    vim.lsp.buf.code_action() -- Open code action on middle click
+    vim.lsp.buf.code_action()                     -- Open code action on middle click
   end
 end
 
@@ -24,11 +24,8 @@ return {
     return vim.fn.has('nvim-0.9') and true or false
   end,
   opts = {
-    setopt              = true,
-    DapStopped          = dap_click,
-    DiagnosticSignError = diagnostic_click,
-    DiagnosticSignHint  = diagnostic_click,
-    DiagnosticSignInfo  = diagnostic_click,
-    DiagnosticSignWarn  = diagnostic_click,
+    clickhandlers = {
+      DapStopped = dap_click,
+    }
   }
 }
