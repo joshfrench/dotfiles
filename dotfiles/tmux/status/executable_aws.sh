@@ -1,4 +1,6 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
+
+setopt extendedglob
 
 # TODO: could/should this be global rather than per-pane?
 _get_ap() {
@@ -6,14 +8,15 @@ _get_ap() {
 }
 
 tmux_aws_profile() {
-  local pane ap
+  [[ -f ${HOME}/.aws/sso/cache/^botocore*.json(#qN.mh+11) ]] && return # show nothing if creds are stale
+  local pane ap fg='#b58900'
   pane=$(tmux display -p '#{pane_id}')
   if [[ -n "$AWS_PROFILE" ]] && [[ -z $(_get_ap "$pane") ]]; then
     tmux set -pq -t "$pane" @aws-profile "$AWS_PROFILE"
   fi
   ap=$(_get_ap "$pane")
   if [[ -n "$ap" ]]; then
-    echo -n "#[fg=#b58900]󰅣 ${ap}#[default]"
+    echo -n "#[fg=$fg]󰅣 ${ap}#[default]"
   fi
 }
 
