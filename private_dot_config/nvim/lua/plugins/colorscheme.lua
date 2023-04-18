@@ -23,10 +23,10 @@ return {
     vim.api.nvim_set_hl(0, 'NeoTreeGitStaged', { fg = colors.green })
     vim.api.nvim_set_hl(0, 'NeoTreeRootName', { fg = colors.green })
     vim.api.nvim_set_hl(0, 'NeoTreeModifiedSymbol', { fg = colors.red })
-    vim.api.nvim_set_hl(0, 'NeoTreeTabActive', { fg = colors.base2, bg = colors.base03 })
-    vim.api.nvim_set_hl(0, 'NeoTreeTabSeparatorActive', { bg = colors.base03, fg = colors.base01 })
+    vim.api.nvim_set_hl(0, 'NeoTreeTabActive', { fg = colors.base2, bg = colors.base02 })
+    vim.api.nvim_set_hl(0, 'NeoTreeTabSeparatorActive', { fg = colors.base01, bg = colors.base02 })
     vim.api.nvim_set_hl(0, 'NeoTreeTabInactive', { fg = colors.base00, bg = colors.base03 })
-    vim.api.nvim_set_hl(0, 'NeoTreeTabSeparatorInactive', { bg = colors.base03, fg = colors.base01 })
+    vim.api.nvim_set_hl(0, 'NeoTreeTabSeparatorInactive', { fg = colors.base01, bg = colors.base03 })
 
     -- map semantic highlight groups
     local links = {
