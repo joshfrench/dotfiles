@@ -8,7 +8,11 @@ return {
         test = true,
         tidy = true,
         upgrade_dependency = true,
-        vendor = true }
+        vendor = true
+      },
+      formatting = {
+        ['local'] = 'github.com/rstudio/'
+      }
     }
   }
 }
