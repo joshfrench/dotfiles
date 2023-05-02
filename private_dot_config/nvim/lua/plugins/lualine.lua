@@ -85,8 +85,8 @@ return {
     sections = {
       lualine_a = { 'mode', { paste, cond = function() return vim.o.paste end } },
       lualine_b = {
+        { 'branch', icon = "" },
         pwd,
-        { 'branch', icons_enabled = false },
       },
       lualine_c = {},
       lualine_x = { 'diagnostics', 'filetype', schema },
