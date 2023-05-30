@@ -8,7 +8,7 @@ return {
     redhat = { telemetry = { enabled = false } },
     yaml = {
       validate = false,
-      format = { enable = true, proseWrap = "Never" },
+      format = { enable = false, proseWrap = "Never" },
       hover = true,
       completion = true,
       schemaStore = {
@@ -17,7 +17,7 @@ return {
       },
       schemaDownload = { enable = true },
       schemas = { result = {} },
-      trace = { server = "debug" },
+      -- trace = { server = "debug" },
       customTags = {
         "!Base64",
         "!Cidr",
