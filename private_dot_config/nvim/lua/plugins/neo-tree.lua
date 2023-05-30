@@ -96,6 +96,11 @@ return {
     filesystem = {
       use_libuv_file_watcher = true,
       hijack_netrw_behavior = 'open_current',
+      filtered_items = {
+        always_show = {
+          ".github",
+        },
+      },
       window = {
         mappings = {
           ['F'] = function(_)
@@ -107,7 +112,7 @@ return {
             if node.type == 'directory' then
               require 'neo-tree.sources.filesystem'.toggle_directory(state, node)
             else
-              require 'neo-tree.sources.filesystem'.open(state)
+              require 'neo-tree.sources.filesystem.commands'.open(state)
             end
           end,
           ['h'] = function(state)
