@@ -4,7 +4,8 @@ vim.filetype.add({
   extension = {
     gcfg = 'gcfg',
     gotmpl = 'gotmpl',
-    tf = 'tf',
+    tf = 'terraform',
     jenkinsfile = 'groovy',
+    hcl = 'terraform',
   }
 })
