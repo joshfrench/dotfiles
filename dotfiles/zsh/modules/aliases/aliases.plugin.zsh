@@ -35,7 +35,7 @@ function ap() {
     unset AWS_PROFILE
     aws sso logout
     if [[ -v TMUX ]]; then
-      tmux set -pqu @aws-profile
+      tmux set -qu @aws-profile
       tmux refresh-client -S
     fi
     return 0
@@ -47,7 +47,7 @@ function ap() {
     export AWS_PROFILE="$selection"
     aws sso login
     if [[ -v TMUX ]]; then
-      tmux set -pq @aws-profile $AWS_PROFILE
+      tmux set -q @aws-profile $AWS_PROFILE
       tmux setenv AWS_PROFILE $AWS_PROFILE
       tmux refresh-client -S
     fi
