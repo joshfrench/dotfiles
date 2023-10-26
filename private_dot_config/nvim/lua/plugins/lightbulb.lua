@@ -1,7 +1,7 @@
 return {
   'kosayoda/nvim-lightbulb',
   opts = {
-    ignore = { 'gitsigns', 'null-ls' },
+    ignore = { clients = { 'gitsigns', 'null-ls' } },
     autocmd = {
       enabled = true,
     }
