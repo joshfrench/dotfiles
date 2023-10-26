@@ -24,6 +24,16 @@ return {
     'toppair/peek.nvim',
     build = 'deno task --quiet build:fast'
   },
+  {
+    'zbirenbaum/copilot.lua',
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = function()
+      require("copilot").setup({
+        suggestion = { auto_trigger = true }
+      })
+    end,
+  },
   --[[
   {
     -- TODO: change default bindings, fuckin with my <leader>e
