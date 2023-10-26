@@ -41,7 +41,6 @@ end
 
 return {
   'b3nj5m1n/kommentary',
-  event = 'InsertEnter',
   config = function()
     vim.g.kommentary_create_default_mappings = false
 
