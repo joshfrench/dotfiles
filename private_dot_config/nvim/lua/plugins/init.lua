@@ -34,6 +34,16 @@ return {
       })
     end,
   },
+  {
+    'f-person/git-blame.nvim',
+    config = function()
+      require('gitblame').setup({
+        date_format = '%r',
+        delay = 250,
+        highlight_group = 'Gitblame'
+      })
+    end
+  },
   --[[
   {
     -- TODO: change default bindings, fuckin with my <leader>e
