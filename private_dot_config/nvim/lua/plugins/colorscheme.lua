@@ -29,6 +29,7 @@ return {
     vim.api.nvim_set_hl(0, 'NeoTreeTabSeparatorInactive', { fg = colors.base01, bg = colors.base03 })
     vim.api.nvim_set_hl(0, 'MatchParen', { bold = true, bg = colors.highlite })
     vim.api.nvim_set_hl(0, 'Gitblame', { italic = true, bg = colors.base02, fg = colors.base01 })
+    vim.api.nvim_set_hl(0, 'Whitespace', { fg = colors.highlite })
 
     -- map semantic highlight groups
     local links = {
