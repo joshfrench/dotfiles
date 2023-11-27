@@ -13,35 +13,9 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- bootstrap hotpot so we can use fennel before/while lazy is loading plugins
---[[
-local hotpot_path = plugins_path .. "/hotpot.nvim"
-if not vim.loop.fs_stat(hotpot_path) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "--single-branch",
-    "https://github.com/rktjmp/hotpot.nvim.git",
-    hotpot_path,
-  })
-end
-vim.opt.runtimepath:prepend(hotpot_path)
---]]
 require 'user.settings'
 
 require('lazy').setup({
-  --[[ {
-    'rktjmp/hotpot.nvim',
-    opts = {
-      provide_require_fennel = true,
-      compiler = {
-        modules = {
-          correlate = true,
-        },
-      },
-    },
-  }, ]]
   { import = 'plugins' }
 }, {
   install = { colorscheme = { 'solarized' } },
