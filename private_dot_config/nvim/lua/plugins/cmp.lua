@@ -44,6 +44,15 @@ return {
         ['<C-f>'] = cmp.mapping.scroll_docs(4, { 'i' }),
         ['<CR>'] = cmp.mapping(cmp_confirm, { 'i' }),
         -- ['<TAB>'] = cmp.mapping(cmp_confirm, { 'i' }),
+        ["<TAB>"] = cmp.mapping(function(fallback)
+          if cmp.visible() and cmp.get_selected_entry() then -- and has_words_before() then
+            cmp.confirm()
+          elseif require('copilot.suggestion').is_visible() then
+            require('copilot.suggestion').accept()
+          else
+            fallback()
+          end
+        end),
       }),
       sources = cmp.config.sources({
         {
