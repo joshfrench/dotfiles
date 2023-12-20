@@ -29,6 +29,20 @@ function gb() {
     if [[ -t 1 ]]; then git checkout "$branch"; else echo $branch; fi
 }
 
+function aws_login() {
+  local profile=$1 old login
+  aws sts get-caller-identity &> /dev/null
+  if [[ $? = 1 ]]; then
+    aws sso login --profile $profile
+  fi
+  export AWS_PROFILE=$profile
+  if [[ -v TMUX ]]; then
+    tmux set -q @aws-profile $profile
+    tmux setenv AWS_PROFILE $profile
+    tmux refresh-client -S
+  fi
+}
+
 # AWS profile
 function ap() {
   if [[ $1 == "-u" ]]; then
@@ -44,14 +58,26 @@ function ap() {
   profiles=$(aws configure list-profiles)
   if [[ -n "$1" ]] && [[ "$profiles" =~ (^|[[:space:]])"$1"($|[[:space:]]) ]]; then selection="$1"; else selection=$(echo "$profiles" | fzf --height=10%); fi &&
   if [[ -t 1 ]]; then
-    export AWS_PROFILE="$selection"
-    aws sso login
-    if [[ -v TMUX ]]; then
-      tmux set -q @aws-profile $AWS_PROFILE
-      tmux setenv AWS_PROFILE $AWS_PROFILE
-      tmux refresh-client -S
-    fi
+    aws_login "$selection"
   else
     echo "$selection"
   fi
+}
+
+# Pulumi stack
+function stack() {
+  local stack profile
+  stack=${1:-$(pulumi stack ls -j | jq '.[].name' -r | fzf --height=10%)}
+  case $stack in
+    lucid-*) profile=hostedapps-poweruser ;;
+    vivid-staging*|vivid-production*) profile=${stack}-poweruser ;;
+    staging*|production*) profile=vivid-${stack}-poweruser ;;
+    *) echo "Stack ${stack} not associated with a profile" && return ;;
+  esac
+  if [[ -t 1 ]]; then
+    pulumi stack select $stack
+    aws_login $profile
+    echo
+  fi
+  echo $stack
 }

@@ -15,7 +15,7 @@ source /Users/josh/Library/Caches/antibody/https-COLON--SLASH--SLASH-github.com-
 fpath+=( /Users/josh/Library/Caches/antibody/https-COLON--SLASH--SLASH-github.com-SLASH-romkatv-SLASH-powerlevel10k )
 source /Users/josh/dotfiles/zsh/modules/autojump/autojump.plugin.zsh
 fpath+=( /Users/josh/dotfiles/zsh/modules/autojump )
-source /Users/josh/dotfiles/zsh/modules/aliases/aliases.plugin.zsh
+source /Users/josh/dotfiles/zsh/modules/aliases/aliases.zsh
 fpath+=( /Users/josh/dotfiles/zsh/modules/aliases )
 source /Users/josh/dotfiles/zsh/modules/direnv/direnv.zsh
 fpath+=( /Users/josh/dotfiles/zsh/modules/direnv )
