@@ -99,6 +99,7 @@ return {
       filtered_items = {
         always_show = {
           ".github",
+          "posit",
         },
       },
       window = {
