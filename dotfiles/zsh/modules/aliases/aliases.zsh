@@ -32,7 +32,7 @@ function gb() {
 function aws_login() {
   local profile=$1 old login
   aws sts get-caller-identity &> /dev/null
-  if [[ $? = 1 ]]; then
+  if [[ $? != 0 ]]; then
     aws sso login --profile $profile
   fi
   export AWS_PROFILE=$profile
