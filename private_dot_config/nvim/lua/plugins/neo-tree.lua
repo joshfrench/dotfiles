@@ -32,8 +32,8 @@ return {
       git_status = {
         symbols = {
           -- Change type
-          added     = "",  -- or "✚", but this is redundant info if you use git_status_colors on the name
-          modified  = "",  -- or "", but this is redundant info if you use git_status_colors on the name
+          added     = "", -- or "✚", but this is redundant info if you use git_status_colors on the name
+          modified  = "", -- or "", but this is redundant info if you use git_status_colors on the name
           deleted   = "✖", -- this can only be used in the git_status source
           renamed   = "", -- this can only be used in the git_status source
           -- Status type
@@ -98,8 +98,11 @@ return {
       hijack_netrw_behavior = 'open_current',
       filtered_items = {
         always_show = {
+          "dist",
           ".github",
           "posit",
+          ".goreleaser.yaml",
+          ".mockery.yaml",
         },
       },
       window = {

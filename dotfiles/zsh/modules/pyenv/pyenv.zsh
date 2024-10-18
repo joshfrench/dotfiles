@@ -24,4 +24,4 @@ _activate_pyenv() {
   fi
 }
 
-add-zsh-hook chpwd _activate_pyenv
+# add-zsh-hook chpwd _activate_pyenv

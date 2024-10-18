@@ -11,7 +11,7 @@ return {
         vendor = true
       },
       formatting = {
-        ['local'] = 'github.com/rstudio/'
+        ['local'] = 'github.com/posit-hosted/'
       }
     }
   }

@@ -44,6 +44,9 @@ return {
       })
     end
   },
+  {
+    'IndianBoy42/tree-sitter-just',
+  },
   --[[
   {
     -- TODO: change default bindings, fuckin with my <leader>e

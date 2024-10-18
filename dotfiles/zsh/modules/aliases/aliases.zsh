@@ -1,5 +1,5 @@
-alias ls=exa
-alias ll='exa -l'
+alias ls=eza
+alias ll='eza -l'
 # alias tmux='env TERM=screen-256color tmux'
 alias vim=nvim
 alias tf=tfswitch
@@ -8,7 +8,7 @@ alias cat=bat
 alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
 alias hk='heroku'
 
-kctl() {
+k() {
   if [[ $1 == '-u' ]]; then
     kubectl config unset current-context
     [[ -v TMUX ]] && tmux set -qgu @tmux_kubecontext_status_config
@@ -70,8 +70,8 @@ function stack() {
   stack=${1:-$(pulumi stack ls -j | jq '.[].name' -r | fzf --height=10%)}
   case $stack in
     lucid-*) profile=hostedapps-poweruser ;;
-    vivid-staging*|vivid-production*) profile=${stack}-poweruser ;;
-    staging*|production*) profile=vivid-${stack}-poweruser ;;
+    vivid-development*|vivid-staging*|vivid-production*) profile=${stack}-poweruser ;;
+    development*|staging*|production*) profile=vivid-${stack}-poweruser ;;
     *) echo "Stack ${stack} not associated with a profile" && return ;;
   esac
   if [[ -t 1 ]]; then

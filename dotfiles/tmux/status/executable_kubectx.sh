@@ -14,10 +14,10 @@ get_tmux_option(){
 
 get_kubectx_color() {
   case $(get_status_config) in
-    lucid-production-*)
+    lucid-production-* | vivid-production-*)
       echo "#d33682"
       ;;
-    lucid-staging-*)
+    lucid-staging-*  | vivid-staging-*)
       echo '#2aa198'
       ;;
     *)
