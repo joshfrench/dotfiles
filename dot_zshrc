@@ -59,8 +59,14 @@ ZSH_HIGHLIGHT_STYLES[path]=underline
 ZSH_HIGHLIGHT_STYLES[path_prefix]=underline
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=10'
 
-# Activate antibody, a zsh plugin manager (https://getantibody.github.io)
-source ~/dotfiles/zsh/zsh_plugins.sh
+# Antidote
+zsh_plugins=~/dotfiles/zsh/zsh_plugins
+fpath=(/opt/homebrew/opt/antidote/share/antidote/functions/ $fpath)
+autoload -Uz antidote
+if [[ ! ${zsh_plugins}.zsh -nt ${zsh_plugins}.zsh ]]; then
+  antidote bundle <${zsh_plugins}.txt >|${zsh_plugins}.zsh
+fi
+source ${zsh_plugins}.zsh
 
 bindkey '^Z' foreground-vi
 bindkey "^A" beginning-of-line

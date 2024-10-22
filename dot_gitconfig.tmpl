@@ -1,6 +1,7 @@
 [user]
   name = Josh French
   email = {{ .email }}
+  signingkey = {{ include (joinPath .chezmoi.homeDir ".ssh" "id_ed25519.pub") }}
 [alias]
   co = checkout
   stat = status

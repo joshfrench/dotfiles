@@ -78,7 +78,6 @@ local opts = {
 
   -- copy/paste
   clipboard = 'unnamedplus',
-  pastetoggle = '<leader>p',
 }
 
 for k, v in pairs(opts) do

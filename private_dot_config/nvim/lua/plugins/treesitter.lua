@@ -1,26 +1,5 @@
 return {
   'nvim-treesitter/nvim-treesitter',
-  dependencies = {
-    {
-      'HiPhish/nvim-ts-rainbow2',
-      config = function()
-        local colors = require('user.colors')
-        for hl, color in pairs({
-          TSRainbowPlain = colors.base1,
-          TSRainbowCyan = colors.cyan,
-          TSRainbowViolet = colors.violet,
-          TSRainbowRed = colors.red,
-          TSRainbowOrange = colors.orange,
-          TSRainbowYellow = colors.yellow,
-          TSRainbowGreen = colors.green,
-          TSRainbowBlue = colors.blue,
-        }) do
-          vim.api.nvim_set_hl(0, hl, { fg = color })
-        end
-      end
-    },
-    'JoosepAlviste/nvim-ts-context-commentstring',
-  },
   build = ':TSUpdate',
   config = function()
     require('nvim-treesitter.configs').setup({
@@ -35,20 +14,6 @@ return {
       highlight = {
         enable = true,
         additional_vim_regex_highlighting = false,
-      },
-      rainbow = {
-        enable = true,
-        extended_mode = true,
-        hlgroups = {
-          'TSRainbowPlain',
-          'TSRainbowBlue',
-          'TSRainbowCyan',
-          'TSRainbowViolet',
-          'TSRainbowRed',
-          'TSRainbowOrange',
-          'TSRainbowYellow',
-          'TSRainbowGreen',
-        },
       },
       context_commentstring = {
         enable = true,
@@ -78,5 +43,7 @@ return {
       filetype = "gotmpl",
       used_by = { "gohtmltmpl", "gotexttmpl", "gotmpl" }
     }
+
+    vim.g.skip_ts_context_commentstring_module = true
   end
 }

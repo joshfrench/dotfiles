@@ -7,7 +7,6 @@ _get_ap() {
 }
 
 tmux_aws_profile() {
-  [[ -f ${HOME}/.aws/sso/cache/^botocore*.json(#qN.mh+11) ]] && return # show nothing if creds are stale
   local ap fg='#b58900' icon='󰅣'
   if [[ -n "$AWS_PROFILE" ]] && [[ -z $(_get_ap) ]]; then
     tmux set -q @aws-profile "$AWS_PROFILE"
@@ -18,6 +17,7 @@ tmux_aws_profile() {
       fg='#cb4b16'
       icon='󰅟'
     fi
+    [[ -f ${HOME}/.aws/sso/cache/*.json(#qN.mh-11) ]] || color="#586e75" # indicate stale creds
     echo -n "#[fg=$fg]${icon} ${ap}#[default]"
   fi
 }

@@ -42,11 +42,11 @@ reset_context(){
 update_context(){
   local exitcode=0
   typeset -a config
-  if [[ ! -x "$(command -v /usr/local/bin/kubectl)" ]]; then
+  if [[ ! -x "$(command -v ${HOMEBREW_PREFIX}/bin/kubectl)" ]]; then
     return
   fi
 
-  config=($(/usr/local/bin/kubectl config view --minify -o jsonpath='{.current-context} {..namespace}')) 2>/dev/null
+  config=($(${HOMEBREW_PREFIX}/bin/kubectl config view --minify -o jsonpath='{.current-context} {..namespace}')) 2>/dev/null
   exitcode=$?
   if [[ ${#config[@]} -eq 0 ]] || [[ $exitcode != 0 ]]; then
     return
