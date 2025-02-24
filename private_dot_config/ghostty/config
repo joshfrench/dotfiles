@@ -1,0 +1,30 @@
+theme = "Builtin Solarized Dark"
+
+font-size = 16
+font-family = SauceCodePro Nerd Font
+font-style = Medium
+font-style-bold = SemiBold
+font-style-bold-italic = SemiBold Italic
+font-feature = -calt, -liga, -dlig
+bold-is-bright = true
+font-codepoint-map = U+1F900-U+1F9FF=Menlo
+
+adjust-underline-position = 3
+adjust-underline-thickness = -10%
+
+selection-foreground = #fdf6e3
+
+cursor-click-to-move = true
+mouse-hide-while-typing = true
+window-width = 167
+window-height = 66
+window-position-y = 0
+window-position-x = 700
+window-padding-x = 4,0
+
+command = /opt/homebrew/bin/tmux new-session -A -D
+window-inherit-working-directory = true
+
+copy-on-select = clipboard
+
+keybind = ctrl+shift+alt+cmd+g=toggle_quick_terminal
