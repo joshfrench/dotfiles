@@ -38,6 +38,8 @@ require('lazy').setup(
 )
 
 require 'user.keymap'
+require 'user.lsp'
+require 'user.misc'
 require 'user.spelling'
 require 'user.typos'
 require 'user.commands'

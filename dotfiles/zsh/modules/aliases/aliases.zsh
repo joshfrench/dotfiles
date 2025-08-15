@@ -59,6 +59,7 @@ function ap() {
   if [[ -n "$1" ]] && [[ "$profiles" =~ (^|[[:space:]])"$1"($|[[:space:]]) ]]; then selection="$1"; else selection=$(echo "$profiles" | fzf --height=10%); fi &&
   if [[ -t 1 ]]; then
     aws_login "$selection"
+    export AWS_REGION=$(aws configure get region --profile "$selection")
   else
     echo "$selection"
   fi
@@ -68,6 +69,7 @@ function ap() {
 function stack() {
   local stack profile
   stack=${1:-$(pulumi stack ls -j | jq '.[].name' -r | fzf --height=10%)}
+  stack=${stack#rstudio/}
   case $stack in
     lucid-*) profile=hostedapps-poweruser ;;
     vivid-development*|vivid-staging*|vivid-production*) profile=${stack}-poweruser ;;

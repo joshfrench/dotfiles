@@ -2,3 +2,6 @@
 .vim/undo
 .python-version
 pyrightconfig.json
+CLAUDE.md
+.claude/
+.serena/
