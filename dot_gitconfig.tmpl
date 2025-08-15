@@ -11,18 +11,23 @@
 [push]
   default = upstream
   autoSetupRemote = true
+  followTags = true
 [hub]
   protocol = https
 [core]
   excludesfile = /Users/josh/.gitignore
 [rerere]
   enabled = true
+  autoupdate = true
 [init]
   defaultBranch = main
 [credential]
   helper = osxkeychain
 [diff]
   colorMoved = blocks
+  algorithm = histogram
+  mnemonicPrefix = true
+  renames = true
 [color "diff"]
   oldMoved = magenta
   newMoved = yellow
@@ -32,3 +37,18 @@
   program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
 [commit]
   gpgsign = true
+  verbose = true
+[branch]
+  sort = -committerdate
+[tag]
+  sort = version:refname
+[help]
+  autocorrect = prompt
+[rebase]
+  autoStash = true
+  autoSquash = true
+  updateRefs = true
+[merge]
+  conflictStyle = diff3
+[pull]
+  rebase = true
