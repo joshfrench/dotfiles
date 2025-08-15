@@ -16,43 +16,45 @@ return {
           opts = {
             insert = true,
             trigger = function()
-              return {':'}
+              return { ':' }
             end,
           },
         },
       },
     },
     keymap = {
-      preset = 'super-tab',
-      ['<ESC>'] = { 'cancel', 'fallback' },
+      preset = 'enter',
+      ['<TAB>'] = {
+        function(cmp)
+          if cmp.is_visible() and cmp.get_selected_item() then
+            return cmp.accept()
+          elseif require('copilot.suggestion').is_visible() then
+            require('copilot.suggestion').accept()
+          end
+          cmp.hide()
+          return true
+        end,
+        'fallback'
+      },
     },
-    signature = { enabled = true },
     completion = {
       documentation = { auto_show = true, auto_show_delay_ms = 500 },
-      ghost_text = { enabled = true },
+      ghost_text = { enabled = false },
+      list = {
+        selection = {
+          preselect = false,
+        },
+      },
       menu = {
+        auto_show = true,
         draw = {
           columns = {
-            { "label", "label_description", gap = 1 },
-            { "kind_icon", "kind", gap = 1 }
+            { "label",     "label_description", gap = 1 },
+            { "kind_icon", "kind",              gap = 1 }
           }
         },
       },
     },
+    signature = { enabled = true },
   },
-  init = function ()
-    vim.api.nvim_create_autocmd("User", {
-      pattern = "BlinkCmpMenuOpen",
-      callback = function()
-        vim.b.copilot_suggestion_hidden = true
-      end,
-    })
-
-    vim.api.nvim_create_autocmd("User", {
-      pattern = "BlinkCmpMenuClose",
-      callback = function()
-        vim.b.copilot_suggestion_hidden = false
-      end,
-    })
-  end
 }

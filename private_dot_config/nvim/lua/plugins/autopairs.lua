@@ -1,5 +1,6 @@
 return {
   'LunarWatcher/auto-pairs',
+  enabled = false,
   init = function()
     vim.g.AutoPairsCompatibleMaps = 0
     vim.g.AutoPairsMapBS = 1
