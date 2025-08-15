@@ -30,6 +30,20 @@ return {
     vim.api.nvim_set_hl(0, 'MatchParen', { bold = true, bg = colors.highlite })
     vim.api.nvim_set_hl(0, 'Gitblame', { italic = true, bg = colors.base02, fg = colors.base01 })
     vim.api.nvim_set_hl(0, 'Whitespace', { fg = colors.highlite })
+    vim.api.nvim_set_hl(0, 'SignColumn', { bg = colors.base02 })
+
+    vim.api.nvim_set_hl(0, 'DiagnosticUnderlineError', { undercurl = true, sp = colors.red })
+    vim.api.nvim_set_hl(0, 'DiagnosticSignError', { fg = colors.red, bg = colors.base02 })
+    vim.api.nvim_set_hl(0, 'DiagnosticSignWarn', { fg = colors.yellow, bg = colors.base02 })
+    vim.api.nvim_set_hl(0, 'DiagnosticSignHint', { fg = colors.blue, bg = colors.base02 })
+    vim.api.nvim_set_hl(0, 'DiagnosticSignInfo', { fg = colors.base3, bg = colors.base02 })
+    vim.api.nvim_set_hl(0, 'DiagnosticSignOk', { fg = colors.green, bg = colors.base02 })
+
+    vim.api.nvim_set_hl(0, 'LspReferenceText', { bold = true, bg = colors.highlite })
+    vim.api.nvim_set_hl(0, 'LspReferenceRead', { bold = true, bg = colors.highlite })
+    vim.api.nvim_set_hl(0, 'LspReferenceWrite', { bold = true, bg = colors.highlite })
+    vim.api.nvim_set_hl(0, 'LspCodeLens', { italic = true, fg = colors.base01 })
+    vim.api.nvim_set_hl(0, 'LspCodeLensSeparator', { italic = true, fg = colors.base01 })
 
     -- map semantic highlight groups
     local links = {

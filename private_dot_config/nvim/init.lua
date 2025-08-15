@@ -15,34 +15,30 @@ vim.opt.rtp:prepend(lazypath)
 
 require 'user.settings'
 
-require('lazy').setup({
-  { import = 'plugins' }
-}, {
-  install = { colorscheme = { 'solarized' } },
-  performance = {
-    rtp = {
-      disabled_plugins = {
-        "gzip",
-        "matchit",
-        -- "matchparen",
-        "netrwPlugin",
-        "tarPlugin",
-        "tohtml",
-        "tutor",
-        "zipPlugin",
+require('lazy').setup(
+  {
+    { import = 'plugins' }
+  },
+  {
+    install = { colorscheme = { 'solarized' } },
+    performance = {
+      rtp = {
+        disabled_plugins = {
+          "gzip",
+          "matchit",
+          "netrwPlugin",
+          "tarPlugin",
+          "tohtml",
+          "tutor",
+          "zipPlugin",
+        }
       }
     }
   }
-})
+)
 
-require 'user.filetype'
-require 'user.codelens'
 require 'user.keymap'
-require 'user.lsp'
-require 'user.misc'
 require 'user.spelling'
 require 'user.typos'
-require 'user.user_commands'
-require 'user.yank'
-
-pcall(require, 'user.posit')
+require 'user.commands'
+require 'user.lsp'

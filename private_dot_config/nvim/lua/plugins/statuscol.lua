@@ -20,9 +20,6 @@ end
 
 return {
   'luukvbaal/statuscol.nvim',
-  cond = function()
-    return vim.fn.has('nvim-0.9') and true or false
-  end,
   opts = {
     clickhandlers = {
       DapStopped = dap_click,

@@ -42,6 +42,6 @@ return {
   },
   init = function()
     local colors = require('user.colors')
-    vim.api.nvim_set_hl(0, 'GitSignsChange', { fg = colors.blue, bg = colors.base02 })
+    vim.api.nvim_set_hl(0, 'GitSignsChange', { fg = colors.blue, bg = colors.base01 })
   end
 }

@@ -14,9 +14,3 @@ return {
     })
   end
 }
-
---[[
-let g:AutoPairs = autopairs#AutoPairsDefine([
-    {"open":"\w\zs<", "close":">", "filetype":"typescript"}
-])
---]]

@@ -1,7 +1,7 @@
 local opts = {
   -- basics
   encoding = 'utf-8',
-  backup = false, -- no backups please
+  backup = false,  -- no backups please
   swapfile = false,
   undofile = true, -- persistent undo is nice though
   undodir = vim.fn.stdpath('data') .. 'undo',
@@ -34,6 +34,7 @@ local opts = {
   viewoptions = 'folds,cursor,curdir,options',
   completeopt = 'menuone,noselect,noinsert',
   title = true,
+  winborder = 'rounded',
 
   -- text editing
   virtualedit = "onemore",
@@ -64,7 +65,7 @@ local opts = {
   nu = true,
 
   -- status line
-  laststatus = 3, -- global statusline
+  laststatus = 3,   -- global statusline
   showmode = false, -- mode is in statusline
 
   -- formatting
