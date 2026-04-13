@@ -1,3 +1,4 @@
+-- TODO: requires nvim-dap to be installed
 local function dap_click(args)
   if args.button == "l" then
     if args.clicks == 2 then

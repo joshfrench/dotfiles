@@ -1,6 +1,5 @@
 local colors = require('user.colors')
 
-local function paste() return "PASTE" end
 local function pwd() return vim.fn.fnamemodify(vim.fn.getcwd(), ':~:.') end
 
 local function modified()
@@ -27,18 +26,20 @@ local theme = {
 
 require('lualine').setup({
   options = {
-    icons_enabled = true, theme = theme,
+    icons_enabled = true,
+    theme = theme,
     component_separators = { left = '|', right = '|' },
     section_separators = { left = '', right = '' },
     disabled_filetypes = {
       'dapui_scopes', 'dapui_breakpoints', 'dapui_stacks', 'dapui_watches',
       'dap-repl', 'dapui_console', 'help', 'startify', 'aerial', 'dashboard',
-      'packer', 'NvimTree', 'Trouble', 'alpha', 'qf', 'neo-tree',
+      'Trouble', 'alpha', 'qf', 'neo-tree',
     },
-    always_divide_middle = false, globalstatus = true,
+    always_divide_middle = false,
+    globalstatus = true,
   },
   sections = {
-    lualine_a = { 'mode', { paste, cond = function() return vim.o.paste end } },
+    lualine_a = { 'mode' },
     lualine_b = { { 'branch', icon = "" }, pwd },
     lualine_c = {},
     lualine_x = { 'diagnostics', 'filetype' },
@@ -46,22 +47,24 @@ require('lualine').setup({
     lualine_z = { 'location' }
   },
   inactive_sections = {
-    lualine_a = {}, lualine_b = {},
-    lualine_c = { 'filename' }, lualine_x = { 'location' },
-    lualine_y = {}, lualine_z = {}
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = { 'filename' },
+    lualine_x = { 'location' },
+    lualine_y = {},
+    lualine_z = {}
   },
   tabline = {},
-  extensions = { 'nvim-tree' },
   winbar = {
     lualine_a = {
-      { modified, color = 'WinBarMod' },
+      { modified,                                     color = 'WinBarMod' },
       { function() return vim.fn.expand('%:~:.') end, color = 'WinBar' },
     },
     lualine_b = {},
   },
   inactive_winbar = {
     lualine_a = {
-      { modified, color = { fg = colors.red, bg = colors.base02 }, separator = "" },
+      { modified,                                     color = { fg = colors.red, bg = colors.base02 }, separator = "" },
       { function() return vim.fn.expand('%:~:.') end, color = { bg = colors.base02 } },
     },
   }

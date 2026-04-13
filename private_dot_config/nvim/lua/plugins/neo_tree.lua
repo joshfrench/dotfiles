@@ -36,7 +36,6 @@ require('neo-tree').setup({
   },
   filesystem = {
     use_libuv_file_watcher = true,
-    hijack_netrw_behavior = 'open_current',
     filtered_items = {
       always_show = { "dist", ".github", "posit", ".goreleaser.yaml", ".mockery.yaml" },
     },
