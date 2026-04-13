@@ -1,6 +1,10 @@
 -- must be loaded before plugins, otherwise they all bind to the default leader
 vim.g.mapleader = ' '
 
+-- disable netrw (replaced by neo-tree)
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 local opts = {
 	-- basics
 	encoding = 'utf-8',
