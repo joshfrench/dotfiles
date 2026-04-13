@@ -19,10 +19,17 @@ require 'plugins.colorscheme'
 -- Core plugins (no config needed)
 vim.pack.add({
   'https://github.com/christoomey/vim-tmux-navigator',
-  'https://github.com/cpea2506/relative-toggle.nvim',
   'https://github.com/nvim-lua/plenary.nvim',
   'https://github.com/kyazdani42/nvim-web-devicons',
   'https://github.com/MunifTanjim/nui.nvim',
+})
+
+-- Toggle relative numbers on focus/mode change
+vim.api.nvim_create_autocmd({ 'InsertEnter', 'WinLeave', 'FocusLost' }, {
+  callback = function() vim.wo.relativenumber = false end,
+})
+vim.api.nvim_create_autocmd({ 'InsertLeave', 'WinEnter', 'FocusGained' }, {
+  callback = function() vim.wo.relativenumber = true end,
 })
 
 -- Treesitter
@@ -30,9 +37,6 @@ vim.pack.add({ 'https://github.com/nvim-treesitter/nvim-treesitter' })
 require 'plugins.treesitter'
 
 -- Git
-vim.pack.add({ 'https://github.com/f-person/git-blame.nvim' })
-require 'plugins.git_blame'
-
 vim.pack.add({ 'https://github.com/lewis6991/gitsigns.nvim' })
 require 'plugins.gitsigns'
 

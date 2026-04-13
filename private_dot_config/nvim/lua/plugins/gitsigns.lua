@@ -3,6 +3,9 @@ local colors = require('user.colors')
 vim.api.nvim_set_hl(0, 'GitSignsChange', { fg = colors.blue })
 
 require('gitsigns').setup({
+  current_line_blame = true,
+  current_line_blame_opts = { delay = 250 },
+  current_line_blame_formatter = '<author>, <author_time:%R> - <summary>',
   on_attach = function(bufnr)
     local gs = package.loaded.gitsigns
 
