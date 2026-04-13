@@ -5,3 +5,4 @@ pyrightconfig.json
 CLAUDE.md
 .claude/
 .serena/
+!.github/

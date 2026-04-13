@@ -4,10 +4,10 @@ vim.lsp.enable({
 })
 
 vim.lsp.config('*',
---- @type vim.lsp.Config
+  --- @type vim.lsp.Config
   {
     capabilities = require('blink.cmp').get_lsp_capabilities(),
-    root_markers = {'.git'},
+    root_markers = { '.git' },
   }
 )
 
@@ -40,22 +40,25 @@ local function open_diagnostic_or_docs()
   end
 end
 
+
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
   callback = function(event)
     vim.keymap.set('n', 'K', open_diagnostic_or_docs, { noremap = true, silent = true, buffer = event.buf })
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { noremap = true, silent = true, buffer = event.buf })
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { noremap = true, silent = true, buffer = event.buf })
 
     local client = vim.lsp.get_client_by_id(event.data.client_id)
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf) then
       local highlight_augroup = vim.api.nvim_create_augroup('lsp-highlight', { clear = true })
 
-      vim.api.nvim_create_autocmd({'CursorHold', 'CursorHoldI'}, {
+      vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
         buffer = event.buf,
         group = highlight_augroup,
         callback = vim.lsp.buf.document_highlight,
       })
 
-      vim.api.nvim_create_autocmd({'CursorMoved', 'CursorMovedI'}, {
+      vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
         buffer = event.buf,
         group = highlight_augroup,
         callback = vim.lsp.buf.clear_references,
@@ -64,7 +67,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_formatting, event.buf) then
       vim.b.format = 1
-      vim.api.nvim_create_autocmd({'InsertLeave', 'BufWritePre'}, {
+      vim.api.nvim_create_autocmd({ 'InsertLeave', 'BufWritePre' }, {
         group = vim.api.nvim_create_augroup('lsp-format', { clear = true }),
         buffer = event.buf,
         callback = function()

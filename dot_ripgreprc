@@ -1,6 +1,5 @@
 --max-columns=150
 --max-columns-preview
---hidden
 --smart-case
 --colors=match:fg:white
 --colors=path:fg:yellow

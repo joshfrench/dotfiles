@@ -11,7 +11,7 @@ return {
               auto_trigger = true,
               debounce = 75,
               keymap = {
-                accept = "<Tab>",
+                -- accept = "<Tab>", -- handled in blink.cmp
                 accept_word = false,
                 accept_line = false,
                 next = false,
@@ -28,7 +28,7 @@ return {
     event = "InsertEnter",
     build = "make tiktoken", -- Only on MacOS or Linux
     opts = {
-      model = "claude-3.7-sonnet",
+      model = "claude-sonnet-4.5",
       mappings = {
         close = {
           normal = "<ESC>",

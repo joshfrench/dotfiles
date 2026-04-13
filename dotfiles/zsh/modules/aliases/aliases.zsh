@@ -65,21 +65,5 @@ function ap() {
   fi
 }
 
-# Pulumi stack
-function stack() {
-  local stack profile
-  stack=${1:-$(pulumi stack ls -j | jq '.[].name' -r | fzf --height=10%)}
-  stack=${stack#rstudio/}
-  case $stack in
-    lucid-*) profile=hostedapps-poweruser ;;
-    vivid-development*|vivid-staging*|vivid-production*) profile=${stack}-poweruser ;;
-    development*|staging*|production*) profile=vivid-${stack}-poweruser ;;
-    *) echo "Stack ${stack} not associated with a profile" && return ;;
-  esac
-  if [[ -t 1 ]]; then
-    pulumi stack select $stack
-    aws_login $profile
-    echo
-  fi
-  echo $stack
-}
+# set pane-title for tmux use
+alias claude='printf "\033]2;claude\033\\" && command claude'

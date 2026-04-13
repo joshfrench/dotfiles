@@ -30,9 +30,8 @@ return {
             return cmp.accept()
           elseif require('copilot.suggestion').is_visible() then
             require('copilot.suggestion').accept()
+            return true
           end
-          cmp.hide()
-          return true
         end,
         'fallback'
       },
