@@ -1,46 +1,20 @@
-return {
-  {
-    "CopilotC-Nvim/CopilotChat.nvim",
-    dependencies = {
-      {
-        "zbirenbaum/copilot.lua",
-        config = function()
-          require("copilot").setup({
-            suggestion = {
-              enabled = true,
-              auto_trigger = true,
-              debounce = 75,
-              keymap = {
-                -- accept = "<Tab>", -- handled in blink.cmp
-                accept_word = false,
-                accept_line = false,
-                next = false,
-                prev = false,
-                dismiss = false,
-              },
-            },
-            panel = { enabled = false },
-          })
-        end,
-      },
-      { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
+require("copilot").setup({
+  suggestion = {
+    enabled = true, auto_trigger = true, debounce = 75,
+    keymap = {
+      accept_word = false, accept_line = false,
+      next = false, prev = false, dismiss = false,
     },
-    event = "InsertEnter",
-    build = "make tiktoken", -- Only on MacOS or Linux
-    opts = {
-      model = "claude-sonnet-4.5",
-      mappings = {
-        close = {
-          normal = "<ESC>",
-        },
-        reset = {
-          normal = "<C-c>",
-          insert = "<C-c>",
-        }
-      }
-    },
-    init = function()
-      vim.keymap.set('n', '<leader>a', require("CopilotChat").toggle, { silent = true })
-    end
   },
-}
+  panel = { enabled = false },
+})
+
+require("CopilotChat").setup({
+  model = "claude-sonnet-4.5",
+  mappings = {
+    close = { normal = "<ESC>" },
+    reset = { normal = "<C-c>", insert = "<C-c>" },
+  }
+})
+
+vim.keymap.set('n', '<leader>a', require("CopilotChat").toggle, { silent = true })

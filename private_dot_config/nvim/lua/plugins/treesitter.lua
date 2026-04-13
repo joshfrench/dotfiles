@@ -1,55 +1,29 @@
-return {
-  'nvim-treesitter/nvim-treesitter',
-  build = ':TSUpdate',
-  config = function()
-    require('nvim-treesitter.configs').setup({
-      ensure_installed = {
-        'bash', 'dockerfile', 'fennel', 'go', 'gomod', 'gotmpl', 'javascript', 'json',
-        'lua', 'make', 'markdown', 'markdown_inline', 'query', 'regex', 'ruby',
-        'terraform', 'toml', 'tsx', 'typescript', 'python', 'rust', 'vim', 'yaml'
-      },
-      indent = {
-        enabled = true,
-      },
-      highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = false,
-      },
-      context_commentstring = {
-        enable = true,
-      },
-      playground = {
-        enable = true,
-      },
-      query_linter = {
-        enable = true,
-        use_virtual_text = true,
-        lint_events = { "BufWrite", "CursorHold" },
-      },
-    })
-  end,
-  init = function()
-    vim.opt.foldmethod = 'expr'
-    vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
-    vim.opt.indentexpr = 'treesitter#indentexpr()'
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 
-    local configs = require('nvim-treesitter.parsers').get_parser_configs()
+vim.g.skip_ts_context_commentstring_module = true
 
-    configs.gotmpl = {
-      install_info = {
-        url = "https://github.com/dannylongeuay/tree-sitter-go-template",
-        files = { "src/parser.c" }
-      },
-      filetype = "gotmpl",
-      used_by = { "gohtmltmpl", "gotexttmpl", "gotmpl" }
-    }
+vim.treesitter.query.add_directive("inject-go-tmpl!", function(_, _, bufnr, _, metadata)
+  local fname = vim.fs.basename(vim.api.nvim_buf_get_name(bufnr))
+  local _, _, ext, _ = string.find(fname, ".*%.(%a+)(%.%a+)")
+  metadata["injection.language"] = ext
+end, {})
 
-    vim.g.skip_ts_context_commentstring_module = true
-
-    vim.treesitter.query.add_directive("inject-go-tmpl!", function(_, _, bufnr, _, metadata)
-      local fname = vim.fs.basename(vim.api.nvim_buf_get_name(bufnr))
-      local _, _, ext, _ = string.find(fname, ".*%.(%a+)(%.%a+)")
-      metadata["injection.language"] = ext
-    end, {})
-  end
+local ensure = {
+  'bash', 'dockerfile', 'fennel', 'go', 'gomod', 'gotmpl', 'javascript', 'json',
+  'lua', 'make', 'markdown', 'markdown_inline', 'query', 'regex', 'ruby',
+  'terraform', 'toml', 'tsx', 'typescript', 'python', 'rust', 'vim', 'yaml'
 }
+
+vim.api.nvim_create_autocmd('VimEnter', {
+  once = true,
+  callback = function()
+    local installed = require('nvim-treesitter.config').get_installed()
+    local installed_set = {}
+    for _, lang in ipairs(installed) do installed_set[lang] = true end
+    local missing = vim.tbl_filter(function(lang) return not installed_set[lang] end, ensure)
+    if #missing > 0 then
+      vim.cmd('TSInstall ' .. table.concat(missing, ' '))
+    end
+  end,
+})

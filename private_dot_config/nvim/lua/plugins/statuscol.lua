@@ -1,11 +1,3 @@
-local function diagnostic_click(args)
-  if args.button == "l" then
-    vim.diagnostic.open_float({ scope = 'line' }) -- Open diagnostic float on left click
-  elseif args.button == "m" then
-    vim.lsp.buf.code_action()                     -- Open code action on middle click
-  end
-end
-
 local function dap_click(args)
   if args.button == "l" then
     if args.clicks == 2 then
@@ -18,11 +10,6 @@ local function dap_click(args)
   end
 end
 
-return {
-  'luukvbaal/statuscol.nvim',
-  opts = {
-    clickhandlers = {
-      DapStopped = dap_click,
-    }
-  }
-}
+require('statuscol').setup({
+  clickhandlers = { DapStopped = dap_click }
+})

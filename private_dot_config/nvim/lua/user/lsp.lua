@@ -27,7 +27,7 @@ vim.diagnostic.config({
   },
   float = {
     focusable = false,
-    close_events = { 'Bufleave', 'CursorMoved', 'InsertEnter', 'FocusLost' },
+    close_events = { 'BufLeave', 'CursorMoved', 'InsertEnter', 'FocusLost' },
     source = 'if_many',
     scope = 'cursor',
   }
@@ -52,12 +52,14 @@ vim.api.nvim_create_autocmd('LspAttach', {
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf) then
       local highlight_augroup = vim.api.nvim_create_augroup('lsp-highlight', { clear = true })
 
+      ---@diagnostic disable-next-line: param-type-mismatch
       vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
         buffer = event.buf,
         group = highlight_augroup,
         callback = vim.lsp.buf.document_highlight,
       })
 
+      ---@diagnostic disable-next-line: param-type-mismatch
       vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
         buffer = event.buf,
         group = highlight_augroup,
@@ -67,12 +69,13 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_formatting, event.buf) then
       vim.b.format = 1
+      ---@diagnostic disable-next-line: param-type-mismatch
       vim.api.nvim_create_autocmd({ 'InsertLeave', 'BufWritePre' }, {
         group = vim.api.nvim_create_augroup('lsp-format', { clear = true }),
         buffer = event.buf,
-        callback = function()
+        callback = function(ev)
           if vim.b.format == 1 then
-            vim.lsp.buf.format({ id = client.id, async = false })
+            vim.lsp.buf.format({ id = client.id, async = ev.event == 'InsertLeave' })
           end
         end
       })
