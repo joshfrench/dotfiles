@@ -66,7 +66,7 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=10'
 zsh_plugins=~/dotfiles/zsh/zsh_plugins
 fpath=(/opt/homebrew/opt/antidote/share/antidote/functions/ $fpath)
 autoload -Uz antidote
-if [[ ! ${zsh_plugins}.zsh -nt ${zsh_plugins}.zsh ]]; then
+if [[ ! ${zsh_plugins}.zsh -nt ${zsh_plugins}.txt ]]; then
   antidote bundle <${zsh_plugins}.txt >|${zsh_plugins}.zsh
 fi
 source ${zsh_plugins}.zsh
