@@ -1,10 +1,12 @@
 theme = "iTerm2 Solarized Dark"
 
 font-size = 16
-font-family = SauceCodePro Nerd Font
-font-style = Medium
-font-style-bold = SemiBold
-font-style-bold-italic = SemiBold Italic
+font-family = Iosevka Custom Extended
+# font-family = RobotoMono Nerd Font
+font-style = Extended
+font-style-bold = Extrabold Extended
+font-style-italic = Extended Italic
+font-style-bold-italic = Extrabold Extended Italic
 font-feature = -calt, -liga, -dlig
 bold-is-bright = true
 font-codepoint-map = U+1F900-U+1F9FF=Menlo
