@@ -1,8 +1,11 @@
-if [ $commands[kubectl] ]; then
-  kubectl() {
-    unfunction "$0"
+(( $+commands[kubectl] )) || return
+(( $+functions[compdef] )) || return
+
+kubectl() {
+  unfunction "$0"
+  if [[ -o interactive  ]]; then
     source <(kubectl completion zsh)
-    compdef k='kubectl'
-    $0 "$@"
-  }
-fi
+    compdef k=kubectl
+  fi
+  $0 "$@"
+}
