@@ -7,6 +7,7 @@ alias diff=colordiff
 alias cat=bat
 alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
 alias hk='heroku'
+alias clod='claude'
 
 k() {
   if [[ $1 == '-u' ]]; then
