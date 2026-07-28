@@ -1,9 +1,13 @@
 return {
-  cmd = { 'gopls', '-remote=auto' },
+  cmd = { 'gopls' },
   filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
   root_markers = { 'go.mod', 'go.work', '.git' },
   settings = {
     gopls = {
+      gofumpt = true,
+      ['local'] = 'github.com/posit-hosted/',
+      buildFlags = { '-tags=e2e' },
+
       codelenses = {
         gc_details = false,
         generate = true,
@@ -13,10 +17,7 @@ return {
         upgrade_dependency = true,
         vendor = true
       },
-      ['formatting.local'] = 'github.com/posit-hosted/',
-      buildFlags = { '-tags=e2e' },
 
-      ['formatting.gofumpt'] = true,
       directoryFilters = {
         '-**/node_modules',
         '-**/.git',
@@ -26,14 +27,25 @@ return {
       semanticTokens = true,
       usePlaceholders = true,
 
+      hints = {
+        assignVariableTypes = true,
+        compositeLiteralFields = true,
+        compositeLiteralTypes = true,
+        constantValues = true,
+        functionTypeParameters = true,
+        parameterNames = true,
+        rangeVariableTypes = true,
+      },
+
       analyses = {
         unusedparams = true,
         shadow = false,
         nilness = true,
         unusedwrite = true,
+        useany = true,
       },
 
-      staticcheck = false,
+      staticcheck = true,
     }
   }
 }

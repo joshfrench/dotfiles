@@ -29,7 +29,9 @@ vim.api.nvim_create_autocmd({ 'InsertEnter', 'WinLeave', 'FocusLost' }, {
   callback = function() vim.wo.relativenumber = false end,
 })
 vim.api.nvim_create_autocmd({ 'InsertLeave', 'WinEnter', 'FocusGained' }, {
-  callback = function() vim.wo.relativenumber = true end,
+  callback = function()
+    if vim.wo.number then vim.wo.relativenumber = true end
+  end,
 })
 
 -- Treesitter
@@ -52,6 +54,9 @@ require 'plugins.statuscol'
 
 vim.pack.add({ 'https://github.com/HiPhish/rainbow-delimiters.nvim' })
 require 'plugins.rainbow_delimiters'
+
+vim.pack.add({ 'https://github.com/SmiteshP/nvim-navic' })
+require 'plugins.navic'
 
 vim.pack.add({ 'https://github.com/nvim-lualine/lualine.nvim' })
 require 'plugins.lualine'
@@ -82,7 +87,7 @@ require 'plugins.copilot'
 -- Completion
 vim.pack.add({
   'https://github.com/moyiz/blink-emoji.nvim',
-  { src = 'https://github.com/saghen/blink.cmp', version = vim.version.range('1.0') },
+  { src = 'https://github.com/saghen/blink.cmp', version = vim.version.range('1.x') },
 })
 require 'plugins.blink'
 

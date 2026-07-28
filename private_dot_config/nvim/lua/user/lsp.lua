@@ -1,6 +1,7 @@
 vim.lsp.enable({
   'lua_ls',
-  'gopls'
+  'gopls',
+  'yaml_language_server',
 })
 
 vim.lsp.config('*',
@@ -10,6 +11,8 @@ vim.lsp.config('*',
     root_markers = { '.git' },
   }
 )
+
+vim.api.nvim_set_hl(0, 'LspInlayHint', { fg = '#586e75', italic = true })
 
 vim.diagnostic.config({
   virtual_text = true,
@@ -49,6 +52,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { noremap = true, silent = true, buffer = event.buf })
 
     local client = vim.lsp.get_client_by_id(event.data.client_id)
+    if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentSymbol, event.buf) then
+      require('nvim-navic').attach(client, event.buf)
+    end
+
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf) then
       local highlight_augroup = vim.api.nvim_create_augroup('lsp-highlight', { clear = true })
 
@@ -65,6 +72,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
         group = highlight_augroup,
         callback = vim.lsp.buf.clear_references,
       })
+    end
+
+    if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf) then
+      vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
     end
 
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_formatting, event.buf) then

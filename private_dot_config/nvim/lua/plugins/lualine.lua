@@ -59,6 +59,11 @@ require('lualine').setup({
     lualine_a = {
       { modified,                                     color = 'WinBarMod' },
       { function() return vim.fn.expand('%:~:.') end, color = 'WinBar' },
+      {
+        function() return require('nvim-navic').get_location() end,
+        cond = function() return require('nvim-navic').is_available() end,
+        color = 'WinBar',
+      },
     },
     lualine_b = {},
   },

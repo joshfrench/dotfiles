@@ -1,6 +1,6 @@
 require('blink.cmp').setup({
   sources = {
-    default = { 'lsp', 'buffer', 'path', 'emoji' },
+    default = { 'lsp', 'buffer', 'path', 'emoji', 'snippets' },
     providers = {
       emoji = {
         module = "blink-emoji", name = "Emoji",
@@ -8,6 +8,17 @@ require('blink.cmp').setup({
           insert = true,
           trigger = function() return { ':' } end,
         },
+      },
+      snippets = {
+        opts = {
+          search_paths = { vim.fn.stdpath('config') .. '/snippets' },
+        },
+        transform_items = function(_, items)
+          for _, item in ipairs(items) do
+            item.labelDetails = { description = item.description }
+          end
+          return items
+        end,
       },
     },
   },
