@@ -33,10 +33,13 @@ setopt COMPLETE_IN_WORD
 setopt no_auto_remove_slash
 unsetopt BEEP
 
-# load compinit but use the cache.
-# .zprofile regens the cache on login shells only.
+# load compinit; rebuild cache once a day, otherwise use it as-is.
 autoload -Uz compinit
-compinit -C
+if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qNmh+24) ]]; then
+  compinit
+else
+  compinit -C
+fi
 
 # case insensitive completion: lowercase -> anycase
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
@@ -72,7 +75,7 @@ bindkey '^Z' foreground-vi
 bindkey "^A" beginning-of-line
 bindkey "^E" end-of-line
 
-fpath=(./zsh/completions $fpath)
+fpath=($HOME/dotfiles/zsh/completions $fpath)
 autoload -Uz add-zsh-hook
 
 PYENV_VIRTUALENV_DISABLE_PROMPT=1
@@ -87,3 +90,5 @@ PYENV_VIRTUALENV_DISABLE_PROMPT=1
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+fpath+=~/.zfunc; autoload -Uz compinit; compinit

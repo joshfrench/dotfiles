@@ -1,9 +1,3 @@
 # .zprofile is read once at login. settings here are inherited by subshells
 # (e.g. `zsh -c`, `make`, etc.) this is an appropriate place for things that
 # change infrequently or which are expensive.
-
-if [[ -n ${ZDOTDIR:-${HOME}}/.zcompdump(#qN.m+1) ]]; then
-  autoload -Uz compinit
-  compinit
-  touch ${ZDOTDIR:-${HOME}}/.zcompdump
-fi
