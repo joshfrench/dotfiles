@@ -8,7 +8,7 @@ vim.treesitter.query.add_directive("inject-go-tmpl!", function(_, _, bufnr, _, m
 end, {})
 
 local ensure = {
-  'bash', 'dockerfile', 'fennel', 'go', 'gomod', 'gotmpl', 'javascript', 'json',
+  'bash', 'diff', 'dockerfile', 'fennel', 'go', 'gomod', 'gotmpl', 'hcl', 'javascript', 'json',
   'lua', 'make', 'markdown', 'markdown_inline', 'query', 'regex', 'ruby',
   'terraform', 'toml', 'tsx', 'typescript', 'python', 'rust', 'vim', 'yaml'
 }

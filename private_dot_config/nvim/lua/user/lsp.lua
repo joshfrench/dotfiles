@@ -2,6 +2,9 @@ vim.lsp.enable({
   'lua_ls',
   'gopls',
   'yaml_language_server',
+  'basedpyright',
+  'ruff',
+  'terraformls',
 })
 
 vim.lsp.config('*',

@@ -77,6 +77,10 @@ vim.pack.add({
 })
 require 'plugins.neo_tree'
 
+-- Linting
+vim.pack.add({ 'https://github.com/mfussenegger/nvim-lint' })
+require 'plugins.lint'
+
 -- Copilot
 vim.pack.add({
   'https://github.com/zbirenbaum/copilot.lua',

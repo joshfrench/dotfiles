@@ -2,7 +2,7 @@ alias ls=eza
 alias ll='eza -l'
 # alias tmux='env TERM=screen-256color tmux'
 alias vim=nvim
-alias tf=tfswitch
+alias tf=terraform
 alias diff=colordiff
 alias cat=bat
 alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
