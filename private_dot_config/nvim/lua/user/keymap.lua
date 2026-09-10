@@ -31,8 +31,12 @@ keys.set('i', '<M-k>', '<ESC>:m .-2<CR>==gi')
 keys.set('v', '<M-j>', ":m '>+1<CR>gv=gv")
 keys.set('v', '<M-k>', ":m '<-2<CR>gv=gv")
 
--- close any floats
+-- close any floats, or the quickfix list if focused
 keys.set('n', 'q', function()
+  if vim.bo.filetype == 'qf' then
+    vim.cmd.cclose()
+    return
+  end
   for _, win in ipairs(vim.api.nvim_list_wins()) do
     local config = vim.api.nvim_win_get_config(win);
     if config.relative ~= "" then
@@ -41,4 +45,12 @@ keys.set('n', 'q', function()
   end
 end, {
   nowait = true
+})
+
+-- in the quickfix window, jump to the entry then close the list
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'qf',
+  callback = function(ev)
+    keys.set('n', 'p', '<Cmd>.cc<CR><Cmd>cclose<CR>', { buffer = ev.buf, silent = true })
+  end,
 })
