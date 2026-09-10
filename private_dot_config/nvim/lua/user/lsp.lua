@@ -47,6 +47,12 @@ local function open_diagnostic_or_docs()
 end
 
 
+-- Created once. Creating these inside the LspAttach callback with clear = true
+-- makes a second client attaching to the same buffer wipe the first client's
+-- autocmds, which happens with basedpyright and ruff both serving Python.
+local highlight_augroup = vim.api.nvim_create_augroup('lsp-highlight', { clear = true })
+local format_augroup = vim.api.nvim_create_augroup('lsp-format', { clear = true })
+
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
   callback = function(event)
@@ -55,13 +61,17 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { noremap = true, silent = true, buffer = event.buf })
 
     local client = vim.lsp.get_client_by_id(event.data.client_id)
+
+    -- Ruff advertises hover but returns nothing useful. Let basedpyright answer K.
+    if client and client.name == 'ruff' then
+      client.server_capabilities.hoverProvider = false
+    end
+
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentSymbol, event.buf) then
       require('nvim-navic').attach(client, event.buf)
     end
 
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf) then
-      local highlight_augroup = vim.api.nvim_create_augroup('lsp-highlight', { clear = true })
-
       ---@diagnostic disable-next-line: param-type-mismatch
       vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
         buffer = event.buf,
@@ -81,16 +91,36 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
     end
 
-    if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_formatting, event.buf) then
+    -- Register once per buffer. Do not gate on supports_method here: ruff
+    -- registers formatting dynamically after initialize, so the capability is
+    -- not yet visible at attach time. The formatter is chosen on write instead.
+    if vim.b.format == nil then
       vim.b.format = 1
+
       ---@diagnostic disable-next-line: param-type-mismatch
       vim.api.nvim_create_autocmd({ 'InsertLeave', 'BufWritePre' }, {
-        group = vim.api.nvim_create_augroup('lsp-format', { clear = true }),
+        group = format_augroup,
         buffer = event.buf,
         callback = function(ev)
-          if vim.b.format == 1 then
-            vim.lsp.buf.format({ id = client.id, async = ev.event == 'InsertLeave' })
+          if vim.b.format ~= 1 then
+            return
           end
+          local formatters = vim.lsp.get_clients({
+            bufnr = ev.buf,
+            method = vim.lsp.protocol.Methods.textDocument_formatting,
+          })
+          if #formatters == 0 then
+            return
+          end
+          -- Prefer ruff over basedpyright when both serve the buffer.
+          local formatter = formatters[1]
+          for _, c in ipairs(formatters) do
+            if c.name == 'ruff' then
+              formatter = c
+              break
+            end
+          end
+          vim.lsp.buf.format({ id = formatter.id, async = ev.event == 'InsertLeave' })
         end
       })
     end
